@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# TypeScript compiled files
+*.js
+*.d.ts
+*.map
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Firebase files
+firebase-service-account.json
+google-services.json
+
+# Temporary files
+*.tmp
+*.temp
+
+# MacOS system files
+.DS_Store
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+
+# Coverage files
+coverage/
+*.lcov
+
+# Test files
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Miscellaneous
+*.bak
+*.swp
+*~
