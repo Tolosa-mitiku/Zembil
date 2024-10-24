@@ -53,3 +53,70 @@ coverage/
 *.bak
 *.swp
 *~
+
+
+
+
+# Flutter/Dart specific files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+.svn/
+
+# Flutter specific folders
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+
+# Xcode related files
+**/xcuserdata/
+**/DerivedData/
+**/.vscode/
+**/test-output/
+
+# Android specific folders
+.android/
+gradle/
+**/local.properties
+**/gradle.properties
+**/gradlew
+**/gradlew.bat
+
+# Firebase related files (keep google-services.json if needed)
+**/google-services.json
+**/firebase-service-account.json
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.swp
+*.tmp
+*.log
+*.bak
+*.orig
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# MacOS
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+*.class
+*.jar
+*.war
+*.ear
+*.dll
+*.exe
+*.o
+*.so
