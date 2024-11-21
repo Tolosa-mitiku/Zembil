@@ -27,13 +27,13 @@ app.use(cors());
 
 // Routes
 
-app.use("/", authRoutes);
-app.use("/buyers", buyerRoutes);
-app.use("/sellers", sellerRoutes);
-app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
-app.use("/payments", paymentRoutes);
-app.use("/chats", chatRoutes);
+app.use("api/v1/", authRoutes);
+app.use("api/v1/buyers", buyerRoutes);
+app.use("api/v1/sellers", sellerRoutes);
+app.use("api/v1/products", productRoutes);
+app.use("api/v1/orders", orderRoutes);
+app.use("api/v1/payments", paymentRoutes);
+app.use("api/v1/chats", chatRoutes);
 
 // Error handling middleware (optional but recommended)
 app.use(
