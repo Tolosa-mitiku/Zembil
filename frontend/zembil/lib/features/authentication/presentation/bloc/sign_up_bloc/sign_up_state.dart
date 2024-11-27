@@ -8,10 +8,27 @@ abstract class SignUpState extends Equatable {
 
 class SignUpInitial extends SignUpState {}
 
+// Firebase signup states
 class SignUpWithGoogleLoading extends SignUpState {}
 
 class SignUpWithEmailAndPasswordLoading extends SignUpState {}
 
+class FirebaseEmailVerificationRequired extends SignUpState {}
+
+class FirebaseSignUpAuthenticated extends SignUpState {}
+
+// Zembil login states
+
+class ZembilLogInAuthenticated extends SignUpState {
+  final AuthUser? user;
+
+  ZembilLogInAuthenticated(this.user);
+
+  @override
+  List<Object> get props => [user!];
+}
+
+// form states
 class SignUpFormValidationError extends SignUpState {
   final String? emailError;
   final String? passwordError;
@@ -27,15 +44,7 @@ class SignUpFormValidationError extends SignUpState {
   List<Object?> get props => [emailError, passwordError, confirmPasswordError];
 }
 
-class SignUpAuthenticated extends SignUpState {
-  final AuthUser? user;
-
-  SignUpAuthenticated(this.user);
-
-  @override
-  List<Object> get props => [user!];
-}
-
+// SignUp error state
 class SignUpError extends SignUpState {
   final String message;
 

@@ -8,12 +8,13 @@ export const createUserInDB = async (firebaseUID: string, role: string) => {
       firebaseUID,
       role,
     });
-
+    console.log(user);
     // Save the user document to the database
     await user.save();
 
     return user;
   } catch (error) {
+    console.log(error);
     throw new Error("Error creating user in MongoDB");
   }
 };

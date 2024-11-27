@@ -12,7 +12,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       {required this.checkOnboardingUseCase,
       required this.checkAuthenticatedUseCase})
       : super(SplashInitial()) {
-    on<checkOnboardingStatus>((event, emit) async {
+    on<CheckOnboardingStatus>((event, emit) async {
       final isOnboarded = checkOnboardingUseCase.call();
       if (isOnboarded) {
         final isAuthenticated = await checkAuthenticatedUseCase.call();

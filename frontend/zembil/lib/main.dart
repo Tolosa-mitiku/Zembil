@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:zembil/core/utils.dart';
 import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart';
+import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
 import 'package:zembil/features/on_boarding/presentation/bloc/onboarding/onboarding_bloc.dart';
@@ -24,6 +25,7 @@ void main() async {
     BlocProvider(create: (context) => locator<AuthBloc>()),
     BlocProvider(create: (context) => locator<OnboardingBloc>()),
     BlocProvider(create: (context) => locator<SplashBloc>()),
+    BlocProvider(create: (context) => locator<EmailVerificationBloc>()),
   ], child: const MyApp()));
 }
 
@@ -57,6 +59,9 @@ Route? _generateRoute(RouteSettings settings) {
 
     case "/home":
       return MaterialPageRoute(builder: (_) => const Home());
+
+    // case "/VerifyEmail":
+    // return MaterialPageRoute(builder: (_) => const VerifyEmailScreen());
     default:
       return null;
   }

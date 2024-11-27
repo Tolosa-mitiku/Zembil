@@ -1,6 +1,6 @@
 class AuthUser {
-  final String uid;
-  final String? email;
+  final String? firebaseUID;
+  final String? role;
 
-  AuthUser({required this.uid, this.email});
+  AuthUser({this.firebaseUID, this.role});
 }

@@ -3,10 +3,11 @@ import 'package:zembil/core/failures.dart';
 import 'package:zembil/features/authentication/domain/entity/auth.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, AuthUser?>> signUpWithEmail(
-      String email, String password);
-  Future<Either<Failure, AuthUser?>> loginWithEmail(
-      String email, String password);
-  Future<Either<Failure, AuthUser?>> signInWithGoogle();
+  Future<Either<Failure, void>> signUpWithEmail(String email, String password);
+  Future<Either<Failure, void>> loginWithEmail(String email, String password);
+  Future<Either<Failure, AuthUser?>> zembilLogIn();
+  Future<Either<Failure, void>> signInWithGoogle();
+  Future<Either<Failure, void>> sendVerificationEmail();
+  Future<Either<Failure, bool?>> checkEmailVerification();
   Future<Either<Failure, void>> signOut();
 }

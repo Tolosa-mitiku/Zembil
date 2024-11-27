@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zembil/core/failures.dart';
+import 'package:zembil/features/authentication/domain/usecase/login_zembil.dart';
 import 'package:zembil/features/authentication/domain/usecase/sign_in_with_google.dart';
 import 'package:zembil/features/authentication/domain/usecase/sign_up_with_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/validate_confirm_password.dart';
@@ -12,6 +13,7 @@ import 'sign_up_state.dart';
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final SignUpWithEmail signUpWithEmail;
   final SignInWithGoogle signInWithGoogle;
+  final ZembilLogIn zembilLogIn;
   final ValidateEmail validateEmail;
   final ValidatePassword validatePassword;
   final ValidateConfirmPassword validateConfirmPassword;
@@ -23,6 +25,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpBloc({
     required this.signUpWithEmail,
     required this.signInWithGoogle,
+    required this.zembilLogIn,
     required this.validateEmail,
     required this.validatePassword,
     required this.validateConfirmPassword,
@@ -42,7 +45,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       _validateForm(emit);
     });
 
-    on<SignUpWithEmailEvent>((event, emit) async {
+// Firebase sign up with email and password bloc
+
+    on<FirebaseSignUpWithEmailEvent>((event, emit) async {
       emit(SignUpWithEmailAndPasswordLoading());
 
       final emailError = validateEmail(email);
@@ -64,19 +69,29 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       final result = await signUpWithEmail(event.email, event.password);
       result.fold(
         (failure) => emit(SignUpError(_mapFailureToMessage(failure))),
-        (user) => emit(SignUpAuthenticated(user)),
+        (_) => emit(FirebaseEmailVerificationRequired()),
       );
     });
 
-    on<SignInWithGoogleEvent>((event, emit) async {
+// firebase sign up with google bloc
+
+    on<FirebaseSignUpWithGoogleEvent>((event, emit) async {
       emit(SignUpWithGoogleLoading());
-      final result = await signInWithGoogle();
+      final result = await signInWithGoogle.call();
       result.fold(
         (failure) => emit(SignUpError(_mapFailureToMessage(failure))),
-        (user) => emit(SignUpAuthenticated(user)),
+        (_) => emit(FirebaseSignUpAuthenticated()),
       );
     });
+
+// zembil log in bloc
+    on<ZembilLogInEvent>((event, emit) async {
+      final result = await zembilLogIn.call();
+      result.fold((failure) => emit(SignUpError(_mapFailureToMessage(failure))),
+          (user) => emit(ZembilLogInAuthenticated(user)));
+    });
   }
+
   void _validateForm(Emitter<SignUpState> emit) {
     final emailError = validateEmail(email);
     final passwordError = validatePassword(password);

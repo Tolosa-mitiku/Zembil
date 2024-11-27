@@ -1,23 +1,23 @@
 import 'package:zembil/features/authentication/domain/entity/auth.dart';
 
 class AuthUserModel extends AuthUser {
-  AuthUserModel({required super.uid, super.email});
+  AuthUserModel({super.firebaseUID, super.role});
 
   factory AuthUserModel.fromFirebaseUser(user) {
-    return AuthUserModel(uid: user.uid, email: user.email);
+    return AuthUserModel(firebaseUID: user.uid);
   }
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
     return AuthUserModel(
-      uid: json['uid'],
-      email: json['email'],
+      firebaseUID: json['uid'],
+      role: json['email'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'uid': uid,
-      'email': email,
+      'firebaseUID': firebaseUID,
+      'role': role,
     };
   }
 }

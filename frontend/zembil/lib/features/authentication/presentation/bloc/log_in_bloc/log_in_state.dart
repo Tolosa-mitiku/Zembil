@@ -8,9 +8,29 @@ abstract class LogInState extends Equatable {
 
 class LogInInitial extends LogInState {}
 
+// Firebase login states
 class LogInWithGoogleLoading extends LogInState {}
 
 class LogInWithEmailAndPasswordLoading extends LogInState {}
+
+class FirebaseEmailVerified extends LogInState {}
+
+class FirebaseEmailVerificationRequired extends LogInState {}
+
+class FirebaseLogInAuthenticated extends LogInState {}
+
+class FirebaseGoogleLogInAuthenticated extends LogInState {}
+
+// Zembil login states
+
+class ZembilLogInAuthenticated extends LogInState {
+  final AuthUser? user;
+
+  ZembilLogInAuthenticated(this.user);
+
+  @override
+  List<Object> get props => [user!];
+}
 
 class LogInFormValidationError extends LogInState {
   final String? emailError;
@@ -23,15 +43,6 @@ class LogInFormValidationError extends LogInState {
 
   @override
   List<Object?> get props => [emailError, passwordError];
-}
-
-class LogInAuthenticated extends LogInState {
-  final AuthUser? user;
-
-  LogInAuthenticated(this.user);
-
-  @override
-  List<Object> get props => [user!];
 }
 
 class LogInError extends LogInState {

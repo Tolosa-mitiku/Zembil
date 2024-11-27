@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_state.dart';
+import 'package:zembil/features/authentication/presentation/pages/email_verification.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_rich_text.dart';
@@ -31,7 +32,18 @@ class Login extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 50.0, vertical: 100),
             child:
                 BlocConsumer<LogInBloc, LogInState>(listener: (context, state) {
-              if (state is LogInAuthenticated) {
+              if (state is FirebaseLogInAuthenticated) {
+                context.read<LogInBloc>().add(CheckVerificationEmailEvent());
+              } else if (state is FirebaseEmailVerified ||
+                  state is FirebaseGoogleLogInAuthenticated) {
+                context.read<LogInBloc>().add(ZembilLogInEvent());
+              } else if (state is FirebaseEmailVerificationRequired) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EmailVerificationScreen()),
+                );
+              } else if (state is ZembilLogInAuthenticated) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Home()),
@@ -91,9 +103,10 @@ class Login extends StatelessWidget {
                           emailController: _emailController,
                           passwordController: _passwordController,
                           onPressed: () {
-                            context.read<LogInBloc>().add(LogInWithEmailEvent(
-                                _emailController.text,
-                                _passwordController.text));
+                            context.read<LogInBloc>().add(
+                                FirebaseLogInWithEmailEvent(
+                                    _emailController.text,
+                                    _passwordController.text));
                           },
                         ),
                   SizedBox(
@@ -106,7 +119,7 @@ class Login extends StatelessWidget {
                           onPressed: () {
                             context
                                 .read<LogInBloc>()
-                                .add(SignInWithGoogleEvent());
+                                .add(FirebaseSignInWithGoogleEvent());
                           }),
                   SizedBox(
                     height: screenHeight * 0.05,

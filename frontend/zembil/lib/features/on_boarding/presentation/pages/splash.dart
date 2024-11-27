@@ -24,7 +24,7 @@ class _SplashState extends State<Splash> {
 
   void _splashDelay() async {
     await Future.delayed(Duration(seconds: 3));
-    context.read<SplashBloc>().add(checkOnboardingStatus());
+    context.read<SplashBloc>().add(CheckOnboardingStatus());
   }
 
   @override
