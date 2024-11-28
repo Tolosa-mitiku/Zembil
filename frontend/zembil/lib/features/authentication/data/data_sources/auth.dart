@@ -85,7 +85,7 @@ class FirebaseAuthService extends AuthRemoteDataSource {
       if (token != null) {
         await _secureStorageHelper.saveToken(token); // Save token securely
       }
-      
+
       AuthUserModel userData = AuthUserModel(firebaseUID: token);
 
       try {
@@ -110,6 +110,16 @@ class FirebaseAuthService extends AuthRemoteDataSource {
       } else {
         return Right(false);
       }
+    } catch (e) {
+      return Left(AuthFailure("Error checking email verification: $e"));
+    }
+  }
+
+  Future<Either<Failure, void>> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+
+      return Right(null);
     } catch (e) {
       return Left(AuthFailure("Error checking email verification: $e"));
     }

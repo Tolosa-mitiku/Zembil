@@ -40,6 +40,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, void>> resetPassword(String email) {
+    return _firebaseAuthService.resetPassword(email);
+  }
+
+  @override
   Future<Either<Failure, void>> signOut() {
     return _firebaseAuthService.signOut();
   }

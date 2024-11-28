@@ -4,9 +4,10 @@ import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_state.dart';
 import 'package:zembil/features/authentication/presentation/pages/email_verification.dart';
+import 'package:zembil/features/authentication/presentation/pages/forgot_password.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
-import 'package:zembil/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_rich_text.dart';
+import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
 import 'package:zembil/home.dart';
@@ -98,10 +99,8 @@ class Login extends StatelessWidget {
                   ),
                   state is LogInWithEmailAndPasswordLoading
                       ? CircularProgressIndicator()
-                      : AuthButton(
+                      : CustomButton(
                           text: 'Log In',
-                          emailController: _emailController,
-                          passwordController: _passwordController,
                           onPressed: () {
                             context.read<LogInBloc>().add(
                                 FirebaseLogInWithEmailEvent(
@@ -132,6 +131,18 @@ class Login extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Signup()),
+                      );
+                    },
+                  ),
+                  AuthRichText(
+                    text1: '',
+                    text2: 'Forgot Password?',
+                    onPressed: () {
+                      // Navigate to the Login Page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordScreen()),
                       );
                     },
                   ),

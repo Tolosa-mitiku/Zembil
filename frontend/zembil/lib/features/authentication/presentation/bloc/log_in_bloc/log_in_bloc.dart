@@ -56,7 +56,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         return;
       }
 
-      final result = await loginWithEmail(event.email, event.password);
+      final result = await loginWithEmail.call(event.email, event.password);
 
       result.fold(
         (failure) => emit(LogInError(_mapFailureToMessage(failure))),

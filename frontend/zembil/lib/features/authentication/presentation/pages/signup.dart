@@ -5,8 +5,8 @@ import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/si
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_state.dart';
 import 'package:zembil/features/authentication/presentation/pages/email_verification.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
-import 'package:zembil/features/authentication/presentation/widgets/auth_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_rich_text.dart';
+import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
 import 'package:zembil/features/authentication/presentation/widgets/terms_and_privacy.dart';
@@ -108,10 +108,8 @@ class Signup extends StatelessWidget {
                   ),
                   state is SignUpWithEmailAndPasswordLoading
                       ? CircularProgressIndicator()
-                      : AuthButton(
+                      : CustomButton(
                           text: 'Sign Up',
-                          emailController: _emailController,
-                          passwordController: _passwordController,
                           onPressed: () {
                             context.read<SignUpBloc>().add(
                                 FirebaseSignUpWithEmailEvent(

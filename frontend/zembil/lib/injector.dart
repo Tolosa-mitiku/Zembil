@@ -10,6 +10,7 @@ import 'package:zembil/features/authentication/domain/repository/auth.dart';
 import 'package:zembil/features/authentication/domain/usecase/check_verification_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/login_with_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/login_zembil.dart';
+import 'package:zembil/features/authentication/domain/usecase/reset_password.dart';
 import 'package:zembil/features/authentication/domain/usecase/send_verification_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/sign_in_with_google.dart';
 import 'package:zembil/features/authentication/domain/usecase/sign_out.dart';
@@ -18,6 +19,7 @@ import 'package:zembil/features/authentication/domain/usecase/validate_confirm_p
 import 'package:zembil/features/authentication/domain/usecase/validate_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/validate_password.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
+import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:zembil/features/on_boarding/data/repository/onboarding.dart';
@@ -64,6 +66,10 @@ Future<void> setupLocator() async {
         checkVerificationEmail: locator(),
         zembilLogIn: locator(),
       ));
+  locator.registerLazySingleton(() => ForgotPasswordBloc(
+        validateEmail: locator(),
+        resetPassword: locator(),
+      ));
 
 // usecases
   locator.registerLazySingleton(() => LogInWithEmail(locator()));
@@ -78,6 +84,7 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => CheckAuthenticatedUseCase(locator()));
   locator.registerLazySingleton(() => SendVerificationEmail(locator()));
   locator.registerLazySingleton(() => CheckVerificationEmail(locator()));
+  locator.registerLazySingleton(() => ResetPassword(locator()));
   locator.registerLazySingleton(() => ZembilLogIn(locator()));
 
   //repositories
