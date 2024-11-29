@@ -7,12 +7,12 @@ import serviceAccount from "./firebase-service-account.json";
 // Import route files
 import authRoutes from "./routes/auth";
 import buyerRoutes from "./routes/buyer";
+import userRoutes from "./routes/user";
 // import chatRoutes from "./routes/chat";
 import orderRoutes from "./routes/order";
 import paymentRoutes from "./routes/payment";
 import productRoutes from "./routes/product";
 import sellerRoutes from "./routes/seller";
-
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
@@ -32,6 +32,7 @@ app.use("/api/v1/gete", (req, res) => {
   res.send("hello world");
 });
 app.use("/api/v1/", authRoutes);
+app.use("/api/v1/profile", userRoutes);
 app.use("/api/v1/buyers", buyerRoutes);
 app.use("/api/v1/sellers", sellerRoutes);
 app.use("/api/v1/products", productRoutes);

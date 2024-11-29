@@ -89,11 +89,13 @@ class FirebaseAuthService extends AuthRemoteDataSource {
       AuthUserModel userData = AuthUserModel(firebaseUID: token);
 
       try {
-        final response = await httpClient.post(Urls.login, userData.toJson(),
-            temptoken: token);
+        final response = await httpClient.post(
+          Urls.login,
+          userData.toJson(),
+        );
         return Right(AuthUserModel.fromJson(jsonDecode(response.body)));
       } catch (e) {
-        return Left((ServerFailure("Server Failure: ${e.toString()}")));
+        return Left(ServerFailure("Server Failure: ${e.toString()}"));
       }
     } catch (e) {
       return Left(AuthFailure("Login failed: ${e.toString()}"));

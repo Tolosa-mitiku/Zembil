@@ -22,18 +22,31 @@ import 'package:zembil/features/authentication/presentation/bloc/email_verificat
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:zembil/features/on_boarding/data/repository/onboarding.dart';
-import 'package:zembil/features/on_boarding/domain/repository/onboarding.dart';
-import 'package:zembil/features/on_boarding/domain/usecase/check_authenticated.dart';
-import 'package:zembil/features/on_boarding/domain/usecase/check_onboarding.dart';
-import 'package:zembil/features/on_boarding/domain/usecase/complete_onboarding.dart';
-import 'package:zembil/features/on_boarding/presentation/bloc/onboarding/onboarding_bloc.dart';
-import 'package:zembil/features/on_boarding/presentation/bloc/splash/splash_bloc.dart';
+import 'package:zembil/features/home/data/data_sources/product_datasource.dart';
+import 'package:zembil/features/home/data/data_sources/product_remote_datasource.dart';
+import 'package:zembil/features/home/data/repository/product_repository_impl.dart';
+import 'package:zembil/features/home/domain/repository/product_repository.dart';
+import 'package:zembil/features/home/domain/usecase/get_products.dart';
+import 'package:zembil/features/home/presentation/bloc/product_bloc.dart';
+import 'package:zembil/features/onboarding/data/repository/onboarding.dart';
+import 'package:zembil/features/onboarding/domain/repository/onboarding.dart';
+import 'package:zembil/features/onboarding/domain/usecase/check_authenticated.dart';
+import 'package:zembil/features/onboarding/domain/usecase/check_onboarding.dart';
+import 'package:zembil/features/onboarding/domain/usecase/complete_onboarding.dart';
+import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_bloc.dart';
+import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.dart';
+import 'package:zembil/features/profile/data/data_sources/profile_data_source.dart';
+import 'package:zembil/features/profile/data/data_sources/profile_remote_source.dart';
+import 'package:zembil/features/profile/data/repository/profile_repository_impl.dart';
+import 'package:zembil/features/profile/domain/repository/profile_repository.dart';
+import 'package:zembil/features/profile/domain/usecase/get_profile.dart';
+import 'package:zembil/features/profile/presentation/bloc/profile_bloc.dart';
 
 final locator = GetIt.instance;
 
 Future<void> setupLocator() async {
 // blocs
+  //  Authentication
   locator.registerLazySingleton(() => OnboardingBloc(
         completeOnboardingUseCase: locator(),
       ));
@@ -71,7 +84,18 @@ Future<void> setupLocator() async {
         resetPassword: locator(),
       ));
 
+// Profile
+  locator.registerLazySingleton(() => ProfileBloc(
+        getProfile: locator(),
+        signOut: locator(),
+      ));
+
+  locator.registerLazySingleton(() => ProductBloc(
+        getProducts: locator(),
+      ));
+
 // usecases
+  // Authentication
   locator.registerLazySingleton(() => LogInWithEmail(locator()));
   locator.registerLazySingleton(() => SignInWithGoogle(locator()));
   locator.registerLazySingleton(() => SignUpWithEmail(locator()));
@@ -86,16 +110,36 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => CheckVerificationEmail(locator()));
   locator.registerLazySingleton(() => ResetPassword(locator()));
   locator.registerLazySingleton(() => ZembilLogIn(locator()));
+  locator.registerLazySingleton(() => GetProducts(locator()));
 
-  //repositories
+  // Profile
+  locator.registerLazySingleton(() => GetProfile(locator()));
+
+//repositories
+  // Authentication
   locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(locator()));
   locator.registerLazySingleton<OnboardingRepository>(
       () => OnboardingRepositoryImpl(locator(), locator()));
 
-  // data sources
+  // Profile
+  locator.registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(locator()));
+
+  // Product
+  locator.registerLazySingleton<ProductRepository>(
+      () => ProductRepositoryImpl(locator()));
+
+// data sources
   locator
       .registerLazySingleton<AuthRemoteDataSource>(() => FirebaseAuthService());
+  // Profile
+  locator.registerLazySingleton<ProfileDataSource>(
+      () => ProfileRemoteSource(locator(), locator()));
+
+  // Product
+  locator.registerLazySingleton<ProductDatasource>(
+      () => ProductRemoteDatasource(locator()));
 
   //external
   locator.registerLazySingleton(() => HttpClient(

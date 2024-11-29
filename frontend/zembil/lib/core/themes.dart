@@ -18,7 +18,7 @@ ThemeData primaryTheme = ThemeData(
         fontWeight: FontWeight.w300,
         fontSize: 14,
         letterSpacing: -0.25,
-        color: Colors.black),
+        color: primaryColor),
     labelLarge: TextStyle(
         color: primaryColor,
         fontWeight: FontWeight.bold,

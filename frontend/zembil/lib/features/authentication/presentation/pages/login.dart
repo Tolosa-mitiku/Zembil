@@ -10,7 +10,7 @@ import 'package:zembil/features/authentication/presentation/widgets/auth_rich_te
 import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
-import 'package:zembil/home.dart';
+import 'package:zembil/features/navigation/pages/home.dart';
 import 'package:zembil/injector.dart';
 
 class Login extends StatelessWidget {
@@ -47,7 +47,7 @@ class Login extends StatelessWidget {
               } else if (state is ZembilLogInAuthenticated) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => IndexPage()),
                 );
               } else if (state is LogInError) {
                 ScaffoldMessenger.of(context).showSnackBar(

@@ -99,13 +99,12 @@ class HttpClient {
     String endpoint,
     Map<String, dynamic> body, {
     Map<String, String>? additionalHeaders,
-    String? temptoken,
   }) async {
     final token = await secureStorageHelper.getToken();
 
     final headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $temptoken',
+      'Authorization': 'Bearer $token',
       ...?additionalHeaders,
     };
 

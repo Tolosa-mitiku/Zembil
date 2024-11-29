@@ -7,10 +7,11 @@ import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart'
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
-import 'package:zembil/features/on_boarding/presentation/bloc/onboarding/onboarding_bloc.dart';
-import 'package:zembil/features/on_boarding/presentation/bloc/splash/splash_bloc.dart';
-import 'package:zembil/features/on_boarding/presentation/pages/splash.dart';
-import 'package:zembil/home.dart';
+import 'package:zembil/features/home/presentation/bloc/product_bloc.dart';
+import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_bloc.dart';
+import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.dart';
+import 'package:zembil/features/onboarding/presentation/pages/splash.dart';
+import 'package:zembil/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:zembil/injector.dart';
 
 void main() async {
@@ -26,6 +27,8 @@ void main() async {
     BlocProvider(create: (context) => locator<OnboardingBloc>()),
     BlocProvider(create: (context) => locator<SplashBloc>()),
     BlocProvider(create: (context) => locator<EmailVerificationBloc>()),
+    BlocProvider(create: (context) => locator<ProfileBloc>()),
+    BlocProvider(create: (context) => locator<ProductBloc>()),
   ], child: const MyApp()));
 }
 
@@ -57,8 +60,8 @@ Route? _generateRoute(RouteSettings settings) {
     case "/signup":
       return MaterialPageRoute(builder: (_) => Signup());
 
-    case "/home":
-      return MaterialPageRoute(builder: (_) => const Home());
+    // case "/home":
+    //   return MaterialPageRoute(builder: (_) => HomePage());
 
     // case "/VerifyEmail":
     // return MaterialPageRoute(builder: (_) => const VerifyEmailScreen());

@@ -58,8 +58,10 @@ export const deleteProduct = async (req: Request, res: Response) => {
 // Get all products (optionally filter by category, deals, etc.)
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const filters = req.query;
-    const products = await Product.find(filters);
+    // const filters = req.query;
+    // const products = await Product.find(filters);
+    // const filters = req.query;
+    const products = await Product.find();
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: "Error fetching products", error });

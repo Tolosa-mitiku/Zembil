@@ -10,7 +10,7 @@ import 'package:zembil/features/authentication/presentation/widgets/custom_butto
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
 import 'package:zembil/features/authentication/presentation/widgets/terms_and_privacy.dart';
-import 'package:zembil/home.dart';
+import 'package:zembil/features/navigation/pages/home.dart';
 import 'package:zembil/injector.dart';
 
 class Signup extends StatelessWidget {
@@ -44,7 +44,7 @@ class Signup extends StatelessWidget {
               } else if (state is ZembilLogInAuthenticated) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => IndexPage()),
                 );
               } else if (state is SignUpError) {
                 ScaffoldMessenger.of(context).showSnackBar(
