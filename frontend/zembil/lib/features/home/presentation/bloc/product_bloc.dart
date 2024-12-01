@@ -1,16 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zembil/core/failures.dart';
-import 'package:zembil/features/home/domain/usecase/get_products.dart';
+import 'package:zembil/features/home/domain/usecase/get_all_products.dart';
+import 'package:zembil/features/home/domain/usecase/get_featured_products.dart';
 import 'package:zembil/features/home/presentation/bloc/product_event.dart';
 import 'package:zembil/features/home/presentation/bloc/product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  final GetProducts getProducts;
-  ProductBloc({required this.getProducts}) : super(ProductInitial()) {
+  final GetAllProducts getProducts;
+  final GetFeaturedProducts getFeaturedProducts;
+  ProductBloc({required this.getProducts, required this.getFeaturedProducts})
+      : super(ProductInitial()) {
     on<GetProductsEvent>((event, emit) async {
-      final result = await getProducts.call();
-      result.fold((failure) => emit(ProductError(mapFailureToMessage(failure))),
-          (products) => emit(ProductLoaded(products)));
+      final products = await getProducts.call();
+      final featuredProducts = await getFeaturedProducts.call();
+      products
+          .fold((failure) => emit(ProductError(mapFailureToMessage(failure))),
+              (products) {
+        featuredProducts
+            .fold((failure) => emit(ProductError(mapFailureToMessage(failure))),
+                (featuredProducts) {
+          emit(ProductLoaded(products, featuredProducts));
+        });
+      });
     });
   }
 

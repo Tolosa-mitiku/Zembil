@@ -12,10 +12,12 @@ class ProductRemoteDatasource extends ProductDatasource {
 
   ProductRemoteDatasource(this.httpClient);
   @override
-  Future<Either<Failure, List<ProductModel>>> getProducts() async {
+  Future<Either<Failure, List<ProductModel>>> getProducts(
+      Map<String, String>? filters) async {
     try {
-      final response = await httpClient.get(Urls.products);
+      final response = await httpClient.get(Urls.products, filters: filters);
       final decodedResponse = jsonDecode(response.body) as List<dynamic>;
+
       final products = decodedResponse
           .map((e) => ProductModel.fromJson(e))
           .whereType<ProductModel>()

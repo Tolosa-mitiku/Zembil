@@ -8,15 +8,17 @@ abstract class ProductState extends Equatable {
 
 class ProductInitial extends ProductState {}
 
+// All Products States
 class ProductLoading extends ProductState {}
 
 class ProductLoaded extends ProductState {
   final List<ProductEntity> products;
+  final List<ProductEntity> featuredProducts;
 
-  ProductLoaded(this.products);
+  ProductLoaded(this.products, this.featuredProducts);
 
   @override
-  List<Object> get props => [products];
+  List<Object> get props => [products, featuredProducts];
 }
 
 class ProductError extends ProductState {

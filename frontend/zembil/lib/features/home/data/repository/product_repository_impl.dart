@@ -9,7 +9,8 @@ class ProductRepositoryImpl implements ProductRepository {
   ProductRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<Failure, List<ProductModel>>> getProducts() async {
-    return await dataSource.getProducts();
+  Future<Either<Failure, List<ProductModel>>> getProducts(
+      Map<String, String>? filters) async {
+    return await dataSource.getProducts(filters);
   }
 }

@@ -58,11 +58,21 @@ export const deleteProduct = async (req: Request, res: Response) => {
 // Get all products (optionally filter by category, deals, etc.)
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
-    // const filters = req.query;
-    // const products = await Product.find(filters);
-    // const filters = req.query;
-    const products = await Product.find();
+    const filters = req.query;
+    const products = await Product.find(filters);
+    console.log(req.query);
+    console.log(products);
     res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching products", error });
+  }
+};
+
+// Get all products (optionally filter by category, deals, etc.)
+export const getFeaturedProducts = async (req: Request, res: Response) => {
+  try {
+    const product = await Product.find({ category: "Shoes" });
+    res.status(200).json("shoes");
   } catch (error) {
     res.status(500).json({ message: "Error fetching products", error });
   }

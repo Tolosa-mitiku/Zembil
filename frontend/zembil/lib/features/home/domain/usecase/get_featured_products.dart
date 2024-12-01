@@ -3,11 +3,11 @@ import 'package:zembil/core/failures.dart';
 import 'package:zembil/features/home/domain/entity/product.dart';
 import 'package:zembil/features/home/domain/repository/product_repository.dart';
 
-class GetProducts {
+class GetFeaturedProducts {
   final ProductRepository repository;
-  GetProducts(this.repository);
+  GetFeaturedProducts(this.repository);
 
   Future<Either<Failure, List<ProductEntity>>> call() async {
-    return await repository.getProducts();
+    return await repository.getProducts({"isFeatured": "true"});
   }
 }

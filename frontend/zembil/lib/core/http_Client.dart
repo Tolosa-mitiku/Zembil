@@ -17,15 +17,19 @@ class HttpClient {
   Future<http.Response> get(
     String endpoint, {
     Map<String, String>? additionalHeaders,
+    Map<String, String>? filters, // Add filters as query parameters
   }) async {
     final token = await secureStorageHelper.getToken();
 
+    // Combine default headers with additional headers
     final headers = {
       'Authorization': 'Bearer $token',
       ...?additionalHeaders,
     };
 
-    final url = Uri.parse('$baseUrl$endpoint');
+    // Add filters to the URL as query parameters
+    final url =
+        Uri.parse('$baseUrl$endpoint').replace(queryParameters: filters);
 
     try {
       final response = await client.get(url, headers: headers);

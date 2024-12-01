@@ -5,4 +5,5 @@ abstract class ProductEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// All Products Event
 class GetProductsEvent extends ProductEvent {}
