@@ -7,7 +7,8 @@ class GetAllProducts {
   final ProductRepository repository;
   GetAllProducts(this.repository);
 
-  Future<Either<Failure, List<ProductEntity>>> call() async {
-    return await repository.getProducts(null);
+  Future<Either<Failure, List<ProductEntity>>> call(String category) async {
+    return await repository
+        .getProducts(category != 'All' ? {'category': category} : null);
   }
 }

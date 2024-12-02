@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class DiscountEntity extends Equatable {
-  final int percentage;
+  final double percentage;
   final String? startDate;
   final String? endDate;
 

@@ -9,9 +9,9 @@ class DimensionModel extends DimensionEntity {
 
   factory DimensionModel.fromJson(Map<String, dynamic> json) {
     return DimensionModel(
-      length: json['length'] as int,
-      height: json['height'] as int,
-      width: json['width'] as int,
+      length: (json['length'] as num).toDouble(),
+      height: (json['height'] as num).toDouble(),
+      width: (json['width'] as num).toDouble(),
     );
   }
 

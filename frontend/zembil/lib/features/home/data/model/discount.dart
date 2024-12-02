@@ -9,7 +9,7 @@ class DiscountModel extends DiscountEntity {
 
   factory DiscountModel.fromJson(Map<String, dynamic> json) {
     return DiscountModel(
-      percentage: json['percentage'] as int,
+      percentage: (json['percentage'] as num).toDouble(),
       startDate: json['startDate'] as String?,
       endDate: json['endDate'] as String?,
     );

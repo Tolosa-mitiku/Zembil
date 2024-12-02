@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class DimensionEntity extends Equatable {
-  final int length;
-  final int height;
-  final int width;
+  final double length;
+  final double height;
+  final double width;
 
   const DimensionEntity({
     required this.length,
