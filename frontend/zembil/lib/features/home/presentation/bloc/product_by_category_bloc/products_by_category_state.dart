@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:zembil/features/home/domain/entity/product.dart';
 
-abstract class CategoryState extends Equatable {
-  const CategoryState();
+abstract class ProductsByCategoryState extends Equatable {
+  const ProductsByCategoryState();
 
   @override
   List<Object> get props => [];
 }
 
-class ProductsByCategoryInitial extends CategoryState {}
+class ProductsByCategoryInitial extends ProductsByCategoryState {}
 
-class ProductsByCategoryLoading extends CategoryState {}
+class ProductsByCategoryLoading extends ProductsByCategoryState {}
 
-class ProductsByCategoryLoaded extends CategoryState {
+class ProductsByCategoryLoaded extends ProductsByCategoryState {
   final List<ProductEntity> products;
 
   const ProductsByCategoryLoaded(this.products);
@@ -20,7 +20,7 @@ class ProductsByCategoryLoaded extends CategoryState {
   List<Object> get props => [products];
 }
 
-class ProductsByCategoryError extends CategoryState {
+class ProductsByCategoryError extends ProductsByCategoryState {
   final String message;
 
   const ProductsByCategoryError(this.message);

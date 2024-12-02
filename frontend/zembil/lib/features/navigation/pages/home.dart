@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zembil/features/home/presentation/pages/home.dart';
+import 'package:zembil/features/home/presentation/pages/product_detail.dart';
 import 'package:zembil/features/navigation/bloc/navigation_bloc.dart';
 import 'package:zembil/features/navigation/bloc/navigation_state.dart';
 import 'package:zembil/features/navigation/widgets/navigation.dart';
@@ -9,7 +10,7 @@ import 'package:zembil/features/profile/presentation/pages/profile_page.dart';
 class IndexPage extends StatelessWidget {
   final List<Widget> screens = [
     HomePage(),
-    CartPage(),
+    ProductDetailPage(productId: "1"),
     OrdersPage(),
     SettingsPage(),
     ProfilePage(),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
-import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_event.dart';
-import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_state.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_event.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_state.dart';
+import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
+import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_event.dart';
+import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_state.dart';
 import 'package:zembil/features/home/presentation/widgets/category.dart';
+import 'package:zembil/features/home/presentation/widgets/category_shimmer.dart';
 import 'package:zembil/features/home/presentation/widgets/feature.dart';
+import 'package:zembil/features/home/presentation/widgets/feature_shimmer.dart';
 import 'package:zembil/features/home/presentation/widgets/product.dart';
+import 'package:zembil/features/home/presentation/widgets/product_shimmer.dart';
 import 'package:zembil/features/home/presentation/widgets/search.dart';
 
 // ignore: must_be_immutable
@@ -35,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     context.read<FeaturedProductBloc>().add(GetFeaturedProductsEvent());
     context
-        .read<CategoryBloc>()
+        .read<ProductsByCategoryBloc>()
         .add(GetProductsByCategoriesEvent(selectedCategory));
     super.initState();
   }
@@ -58,38 +61,35 @@ class _HomePageState extends State<HomePage> {
                   if (state is FeaturedProductLoaded) {
                     return Features(state.featuredProducts);
                   } else {
-                    return Center(
-                      child: Text("No Products Found!!"),
-                    );
+                    return FeaturesShimmer();
                   }
                 },
               ),
               SizedBox(height: 30),
-              BlocBuilder<CategoryBloc, CategoryState>(
+              BlocBuilder<ProductsByCategoryBloc, ProductsByCategoryState>(
                 builder: (context, state) {
-                  print("Gebtenal $state");
-                  return Category(
-                      categories: categories,
-                      selectedCategory: selectedCategory,
-                      onCategorySelected: (category) {
-                        print("AAAAAAAAAAAAAaaaaaaaa$category");
-                        print(selectedCategory);
-                        selectedCategory = category;
-                        print(selectedCategory);
-                        context
-                            .read<CategoryBloc>()
-                            .add(GetProductsByCategoriesEvent(category));
-                      });
+                  // if (state is ProductsByCategoryLoading) {
+                  //   return CategoryShimmer();
+                  // } else {
+                    return Category(
+                        categories: categories,
+                        selectedCategory: selectedCategory,
+                        onCategorySelected: (category) {
+                          selectedCategory = category;
+
+                          context
+                              .read<ProductsByCategoryBloc>()
+                              .add(GetProductsByCategoriesEvent(category));
+                        });
+                  // }
                 },
               ),
-              BlocBuilder<CategoryBloc, CategoryState>(
+              BlocBuilder<ProductsByCategoryBloc, ProductsByCategoryState>(
                 builder: (context, state) {
                   if (state is ProductsByCategoryLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return ProductsShimmer();
                   } else if (state is ProductsByCategoryLoaded) {
                     return Products(products: state.products);
-                    // } else if (state is ProductLoaded) {
-                    //   return Products(products: state.products);
                   } else if (state is ProductsByCategoryError) {
                     return Center(child: Text('Error: ${state.message}'));
                   } else {

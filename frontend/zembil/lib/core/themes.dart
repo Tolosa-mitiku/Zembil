@@ -9,11 +9,27 @@ ThemeData primaryTheme = ThemeData(
   primaryColorDark: primaryColorDark,
   scaffoldBackgroundColor: Colors.black,
   textTheme: const TextTheme(
+    headlineLarge: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'poppins',
+        fontSize: 24),
+    headlineMedium: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'poppins',
+        fontSize: 16),
     titleMedium: TextStyle(
       fontSize: 40,
       fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
+    bodyLarge: TextStyle(
+        fontWeight: FontWeight.w300,
+        fontSize: 16,
+        fontFamily: 'poppins',
+        letterSpacing: -0.25,
+        color: Colors.black),
     bodyMedium: TextStyle(
         fontWeight: FontWeight.w300,
         fontSize: 14,
@@ -27,6 +43,7 @@ ThemeData primaryTheme = ThemeData(
     labelMedium: TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.w300,
+      letterSpacing: -0.25,
       fontSize: 14,
     ),
     bodySmall: TextStyle(

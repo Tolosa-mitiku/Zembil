@@ -14,6 +14,7 @@ class FeaturedProductBloc
       : super(FeaturedProductInitial()) {
     on<GetFeaturedProductsEvent>((event, emit) async {
       emit(FeaturedProductInitial());
+      await Future.delayed(Duration(seconds: 5));
       final featuredProducts = await getFeaturedProducts.call();
 
       featuredProducts.fold((failure) {

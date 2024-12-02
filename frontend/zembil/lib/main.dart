@@ -7,8 +7,9 @@ import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart'
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
-import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_bloc.dart';
+import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
+import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/pages/splash.dart';
@@ -30,7 +31,8 @@ void main() async {
     BlocProvider(create: (context) => locator<EmailVerificationBloc>()),
     BlocProvider(create: (context) => locator<ProfileBloc>()),
     BlocProvider(create: (context) => locator<FeaturedProductBloc>()),
-    BlocProvider(create: (context) => locator<CategoryBloc>()),
+    BlocProvider(create: (context) => locator<ProductsByCategoryBloc>()),
+    BlocProvider(create: (context) => locator<ProductDetailBloc>()),
   ], child: const MyApp()));
 }
 

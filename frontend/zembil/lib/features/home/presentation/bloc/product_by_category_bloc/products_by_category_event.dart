@@ -1,6 +1,6 @@
-abstract class CategoryEvent {}
+abstract class ProductsByCategoryEvent {}
 
-class GetProductsByCategoriesEvent extends CategoryEvent {
+class GetProductsByCategoriesEvent extends ProductsByCategoryEvent {
   final String category;
 
   GetProductsByCategoriesEvent(this.category);
