@@ -28,6 +28,7 @@ import 'package:zembil/features/home/data/repository/product_repository_impl.dar
 import 'package:zembil/features/home/domain/repository/product_repository.dart';
 import 'package:zembil/features/home/domain/usecase/get_all_products.dart';
 import 'package:zembil/features/home/domain/usecase/get_featured_products.dart';
+import 'package:zembil/features/home/domain/usecase/get_product.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
@@ -94,14 +95,14 @@ Future<void> setupLocator() async {
       ));
 
   locator.registerLazySingleton(() => FeaturedProductBloc(
-        getProducts: locator(),
         getFeaturedProducts: locator(),
       ));
 
   locator.registerLazySingleton(() => ProductsByCategoryBloc(
-        getProducts: locator(),
+        getProductsByCategory: locator(),
       ));
-  locator.registerLazySingleton(() => ProductDetailBloc());
+  locator.registerLazySingleton(() =>
+      ProductDetailBloc(getProduct: locator(), getRelatedProducts: locator()));
 
 // usecases
   // Authentication
@@ -119,7 +120,8 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => CheckVerificationEmail(locator()));
   locator.registerLazySingleton(() => ResetPassword(locator()));
   locator.registerLazySingleton(() => ZembilLogIn(locator()));
-  locator.registerLazySingleton(() => GetAllProducts(locator()));
+  locator.registerLazySingleton(() => GetProduct(locator()));
+  locator.registerLazySingleton(() => GetProductsByCategory(locator()));
   locator.registerLazySingleton(() => GetFeaturedProducts(locator()));
 
   // Profile

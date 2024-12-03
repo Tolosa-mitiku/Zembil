@@ -4,7 +4,7 @@ import 'package:zembil/features/home/domain/entity/product.dart';
 class RelatedProducts extends StatelessWidget {
   final List<ProductEntity> relatedProducts;
 
-  const RelatedProducts({super.key, required this.relatedProducts});
+  const RelatedProducts(this.relatedProducts, {super.key});
 
   @override
   Widget build(BuildContext context) {

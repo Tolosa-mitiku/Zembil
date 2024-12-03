@@ -28,4 +28,19 @@ class ProductRemoteDatasource extends ProductDatasource {
       return Left(ServerFailure("Server Error"));
     }
   }
+
+  @override
+  Future<Either<Failure, ProductModel>> getProduct(String productId) async {
+    try {
+      final response = await httpClient.get("${Urls.products}/$productId");
+      final decodedResponse = jsonDecode(response.body) as Map<String, dynamic>;
+
+      final product = ProductModel.fromJson(decodedResponse);
+
+      return Right(product);
+    } catch (e) {
+      print(e);
+      return Left(ServerFailure("Server Error"));
+    }
+  }
 }

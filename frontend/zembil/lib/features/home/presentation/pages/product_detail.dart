@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zembil/features/home/domain/entity/product.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_event.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_state.dart';
-import 'package:zembil/features/home/presentation/widgets/product_detail_content.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_appbar.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_description.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_description_shimmer.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_images.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_images_shimmer.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_info.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_info_shimmer.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_sizes.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_sizes_shimmer.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/related_products.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/related_products_shimmer.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final String productId;
 
-  const ProductDetailPage({super.key, required this.productId});
+  const ProductDetailPage(this.productId, {super.key});
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -18,7 +27,7 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   void initState() {
-    context.read<ProductDetailBloc>().add(FetchProductDetail("1"));
+    context.read<ProductDetailBloc>().add(FetchProductDetail(widget.productId));
     super.initState();
   }
 
@@ -26,68 +35,99 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: BlocBuilder<ProductDetailBloc, ProductDetailState>(
-        builder: (context, state) {
-          if (state is ProductDetailLoading) {
-            return ProductDetailContent(
-                product: ProductEntity(
-                    id: "64a7c3be9f1b2a001b0c7b93",
-                    title: "Smart Watch",
-                    price: 100,
-                    images: [
-                      "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    ],
-                    category: "Electronics",
-                    description:
-                        "Fitness tracker with heart rate monitor, GPS, and waterproof design.",
-                    discount: null,
-                    stockQuantity: 50,
-                    weight: 0.3,
-                    dimensions: null,
-                    isFeatured: true),
-                relatedProducts: [
-                  ProductEntity(
-                      id: "64a7c3be9f1b2a001b0c7b93",
-                      title: "Smart Watch",
-                      price: 100,
-                      images: [
-                        "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      ],
-                      category: "Electronics",
-                      description:
-                          "Fitness tracker with heart rate monitor, GPS, and waterproof design.",
-                      discount: null,
-                      stockQuantity: 50,
-                      weight: 0.3,
-                      dimensions: null,
-                      isFeatured: true),
-                  ProductEntity(
-                      id: "64a7c3be9f1b2a001b0c7b93",
-                      title: "Smart Watch",
-                      price: 100,
-                      images: [
-                        "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      ],
-                      category: "Electronics",
-                      description:
-                          "Fitness tracker with heart rate monitor, GPS, and waterproof design.",
-                      discount: null,
-                      stockQuantity: 50,
-                      weight: 0.3,
-                      dimensions: null,
-                      isFeatured: true),
-                ]);
-          } else if (state is ProductDetailLoaded) {
-            final product = state.product;
-            return ProductDetailContent(
-                product: product, relatedProducts: state.relatedProducts);
-          } else if (state is ProductDetailError) {
-            return Center(child: Text(state.message));
-          }
-          return const SizedBox.shrink();
-        },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50),
+          child: BlocBuilder<ProductDetailBloc, ProductDetailState>(
+            builder: (context, state) {
+              if (state is ProductDetailLoading) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Product App Bar
+                    ProductAppBar(),
+
+                    // Product Images
+                    ProductImagesShimmer(),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Product Info
+                          ProductInfoShimmer(),
+
+                          SizedBox(height: 20),
+
+                          // Sizes
+                          ProductSizesShimmer(),
+
+                          SizedBox(height: 20),
+
+                          // Description
+                          ProductDescriptionShimmer(),
+
+                          SizedBox(height: 20),
+
+                          // Related Products
+                          RelatedProductsShimmer(),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              } else if (state is ProductDetailLoaded) {
+                final product = state.product;
+                final relatedProducts = state.relatedProducts;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Product App Bar
+                    ProductAppBar(),
+
+                    // Product Images
+                    ProductImages(images: product.images),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Product Info
+                          ProductInfo(product),
+
+                          SizedBox(height: 20),
+
+                          // Sizes
+                          ProductSizes(
+                              sizes: ["1", "2", "3", "4", "5"],
+                              selectedCategory: "1",
+                              onSizeSelected: (size) {}),
+
+                          SizedBox(height: 20),
+
+                          // Description
+                          ProductDescription(product.description ?? ""),
+
+                          SizedBox(height: 20),
+
+                          // Related Products
+                          RelatedProducts(relatedProducts),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              } else if (state is ProductDetailError) {
+                return Center(child: Text(state.message));
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),

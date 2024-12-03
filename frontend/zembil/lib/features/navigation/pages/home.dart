@@ -10,7 +10,7 @@ import 'package:zembil/features/profile/presentation/pages/profile_page.dart';
 class IndexPage extends StatelessWidget {
   final List<Widget> screens = [
     HomePage(),
-    ProductDetailPage(productId: "1"),
+    ProductDetailPage("1"),
     OrdersPage(),
     SettingsPage(),
     ProfilePage(),

@@ -10,8 +10,8 @@ import 'package:zembil/features/home/presentation/widgets/category.dart';
 import 'package:zembil/features/home/presentation/widgets/category_shimmer.dart';
 import 'package:zembil/features/home/presentation/widgets/feature.dart';
 import 'package:zembil/features/home/presentation/widgets/feature_shimmer.dart';
-import 'package:zembil/features/home/presentation/widgets/product.dart';
 import 'package:zembil/features/home/presentation/widgets/product_shimmer.dart';
+import 'package:zembil/features/home/presentation/widgets/products.dart';
 import 'package:zembil/features/home/presentation/widgets/search.dart';
 
 // ignore: must_be_immutable
@@ -68,9 +68,9 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 30),
               BlocBuilder<ProductsByCategoryBloc, ProductsByCategoryState>(
                 builder: (context, state) {
-                  // if (state is ProductsByCategoryLoading) {
-                  //   return CategoryShimmer();
-                  // } else {
+                  if (state is ProductsByCategoryLoading) {
+                    return CategoryShimmer();
+                  } else {
                     return Category(
                         categories: categories,
                         selectedCategory: selectedCategory,
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                               .read<ProductsByCategoryBloc>()
                               .add(GetProductsByCategoriesEvent(category));
                         });
-                  // }
+                  }
                 },
               ),
               BlocBuilder<ProductsByCategoryBloc, ProductsByCategoryState>(

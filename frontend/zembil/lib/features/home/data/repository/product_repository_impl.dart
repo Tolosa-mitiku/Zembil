@@ -13,4 +13,9 @@ class ProductRepositoryImpl implements ProductRepository {
       Map<String, String>? filters) async {
     return await dataSource.getProducts(filters);
   }
+
+  @override
+  Future<Either<Failure, ProductModel>> getProduct(String productId) async {
+    return await dataSource.getProduct(productId);
+  }
 }

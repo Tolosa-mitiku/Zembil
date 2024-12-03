@@ -6,14 +6,14 @@ import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/
 
 class ProductsByCategoryBloc
     extends Bloc<ProductsByCategoryEvent, ProductsByCategoryState> {
-  final GetAllProducts getProducts;
+  final GetProductsByCategory getProductsByCategory;
 
-  ProductsByCategoryBloc({required this.getProducts})
+  ProductsByCategoryBloc({required this.getProductsByCategory})
       : super(ProductsByCategoryInitial()) {
     on<GetProductsByCategoriesEvent>((event, emit) async {
       emit(ProductsByCategoryLoading());
-      await Future.delayed(Duration(seconds: 10));
-      final categoryProducts = await getProducts.call(event.category);
+      // await Future.delayed(Duration(seconds: 10));
+      final categoryProducts = await getProductsByCategory.call(event.category);
       categoryProducts.fold(
           (failure) =>
               emit(ProductsByCategoryError(mapFailureToMessage(failure))),
