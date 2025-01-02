@@ -2,7 +2,10 @@
 import cors from "cors";
 import express, { Application } from "express";
 import admin from "firebase-admin"; // Firebase Admin SDK for Firestore/Realtime DB
-import serviceAccount from "./firebase-service-account.json";
+// import serviceAccount from "./firebase-service-account.json";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 // Import route files
 import authRoutes from "./routes/auth";
@@ -13,6 +16,10 @@ import orderRoutes from "./routes/order";
 import paymentRoutes from "./routes/payment";
 import productRoutes from "./routes/product";
 import sellerRoutes from "./routes/seller";
+
+const serviceAccount = JSON.parse(
+  process.env.FIREBASE_SERVICE_ACCOUNT as string
+);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
