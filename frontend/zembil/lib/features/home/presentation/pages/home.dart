@@ -84,11 +84,13 @@ class _HomePageState extends State<HomePage> {
                   }
                 },
               ),
+              SizedBox(height: 30),
               BlocBuilder<ProductsByCategoryBloc, ProductsByCategoryState>(
                 builder: (context, state) {
                   if (state is ProductsByCategoryLoading) {
                     return ProductsShimmer();
                   } else if (state is ProductsByCategoryLoaded) {
+                    // return GridScrollEffect();
                     return Products(products: state.products);
                   } else if (state is ProductsByCategoryError) {
                     return Center(child: Text('Error: ${state.message}'));

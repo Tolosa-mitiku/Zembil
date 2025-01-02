@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zembil/features/cart/domain/entity/cart.dart';
+import 'package:zembil/features/cart/presentation/pages/cart.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_event.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_state.dart';
-import 'package:zembil/features/home/presentation/widgets/product_detail/product_appbar.dart';
+import 'package:zembil/features/home/presentation/widgets/product_detail/product_app_bar.dart';
 import 'package:zembil/features/home/presentation/widgets/product_detail/product_description.dart';
 import 'package:zembil/features/home/presentation/widgets/product_detail/product_description_shimmer.dart';
 import 'package:zembil/features/home/presentation/widgets/product_detail/product_images.dart';
@@ -38,7 +40,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 50),
-          child: BlocBuilder<ProductDetailBloc, ProductDetailState>(
+          child: BlocConsumer<ProductDetailBloc, ProductDetailState>(
+            listener: (context, state) => {
+              if (state is CartSuccess)
+                {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartPage()))
+                }
+            },
             builder: (context, state) {
               if (state is ProductDetailLoading) {
                 return Column(
@@ -116,6 +125,29 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
                           // Related Products
                           RelatedProducts(relatedProducts),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.read<ProductDetailBloc>().add(
+                                    AddToCartEvent(
+                                        item: CartEntity(
+                                            productId: product.id,
+                                            title: product.title,
+                                            category: product.category,
+                                            image: product.images[0],
+                                            price: product.price,
+                                            quantity: 1)));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(double.infinity, 45),
+                              ),
+                              child: Text(
+                                'Add to Cart',
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -126,19 +158,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               }
               return const SizedBox.shrink();
             },
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(double.infinity, 45),
-          ),
-          child: Text(
-            'Add to Cart',
-            style: Theme.of(context).textTheme.labelLarge,
           ),
         ),
       ),

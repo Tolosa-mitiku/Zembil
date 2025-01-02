@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zembil/core/failures.dart';
+import 'package:zembil/features/cart/domain/usecase/add_to_cart.dart';
 import 'package:zembil/features/home/domain/usecase/get_all_products.dart';
 import 'package:zembil/features/home/domain/usecase/get_product.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_event.dart';
@@ -8,9 +9,12 @@ import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/produ
 class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
   final GetProduct getProduct;
   final GetProductsByCategory getRelatedProducts;
+  final AddToCart addToCart;
 
   ProductDetailBloc(
-      {required this.getProduct, required this.getRelatedProducts})
+      {required this.getProduct,
+      required this.getRelatedProducts,
+      required this.addToCart})
       : super(ProductDetailInitial()) {
     on<FetchProductDetail>((event, emit) async {
       emit(ProductDetailLoading());
@@ -28,6 +32,13 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
               product: product, relatedProducts: relatedProducts));
         });
       });
+    });
+
+    on<AddToCartEvent>((event, emit) async {
+      print("this is it");
+      await addToCart.call(event.item);
+      print("success");
+      emit(CartSuccess());
     });
   }
   String mapFailureToMessage(Failure failure) {

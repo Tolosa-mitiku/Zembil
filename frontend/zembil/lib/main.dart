@@ -1,12 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:zembil/core/utils.dart';
 import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/pages/signup.dart';
+import 'package:zembil/features/cart/domain/entity/cart.dart';
+import 'package:zembil/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
@@ -21,9 +25,13 @@ void main() async {
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
   //     overlays: [SystemUiOverlay.bottom]);
   setupLocator();
+  await dotenv.load(fileName: '.env');
+  Stripe.publishableKey = dotenv.env["STRIPE_PUBLISHABLE_KEY"] ?? "";
   await Firebase.initializeApp();
   await Hive.initFlutter();
-  await Hive.openBox('appBox');
+  Hive.registerAdapter(CartEntityAdapter());
+  await Hive.openBox('onboarding');
+  await Hive.openBox<CartEntity>('cart');
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => locator<AuthBloc>()),
     BlocProvider(create: (context) => locator<OnboardingBloc>()),
@@ -33,6 +41,7 @@ void main() async {
     BlocProvider(create: (context) => locator<FeaturedProductBloc>()),
     BlocProvider(create: (context) => locator<ProductsByCategoryBloc>()),
     BlocProvider(create: (context) => locator<ProductDetailBloc>()),
+    BlocProvider(create: (context) => locator<CartBloc>()),
   ], child: const MyApp()));
 }
 

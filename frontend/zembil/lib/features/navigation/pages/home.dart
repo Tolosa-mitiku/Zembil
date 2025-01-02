@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zembil/features/cart/presentation/pages/cart.dart';
 import 'package:zembil/features/home/presentation/pages/home.dart';
-import 'package:zembil/features/home/presentation/pages/product_detail.dart';
+import 'package:zembil/features/home/presentation/pages/test.dart';
 import 'package:zembil/features/navigation/bloc/navigation_bloc.dart';
 import 'package:zembil/features/navigation/bloc/navigation_state.dart';
 import 'package:zembil/features/navigation/widgets/navigation.dart';
@@ -10,8 +11,8 @@ import 'package:zembil/features/profile/presentation/pages/profile_page.dart';
 class IndexPage extends StatelessWidget {
   final List<Widget> screens = [
     HomePage(),
-    ProductDetailPage("1"),
-    OrdersPage(),
+    CartPage(),
+    GridScrollEffect(),
     SettingsPage(),
     ProfilePage(),
   ];
@@ -47,27 +48,14 @@ class IndexPage extends StatelessWidget {
 //   }
 // }
 
-class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+// class OrdersPage extends StatelessWidget {
+//   const OrdersPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Text(
-      'Cart Page',
-      style: TextStyle(color: Colors.red),
-    ));
-  }
-}
-
-class OrdersPage extends StatelessWidget {
-  const OrdersPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Orders Page'));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(child: Text('Orders Page'));
+//   }
+// }
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

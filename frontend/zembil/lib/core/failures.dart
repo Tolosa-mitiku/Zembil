@@ -14,3 +14,7 @@ class ServerFailure extends Failure {
 class NetworkFailure extends Failure {
   const NetworkFailure(super.message);
 }
+
+class StripeFailure extends Failure {
+  const StripeFailure(super.message);
+}

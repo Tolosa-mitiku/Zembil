@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
+  final TextStyle? hintStyle;
   final String? errorText;
   final TextEditingController? controller;
   final Function(String?) onChanged;
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     required this.errorText,
     required this.controller,
     required this.onChanged,
+    required this.hintStyle,
   });
 
   @override
@@ -20,7 +22,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         errorText: errorText,
-        hintStyle: Theme.of(context).textTheme.labelMedium,
+        hintStyle: hintStyle,
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.black, // Bottom border color when not focused

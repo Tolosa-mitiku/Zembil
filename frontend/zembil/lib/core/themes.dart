@@ -19,10 +19,20 @@ ThemeData primaryTheme = ThemeData(
         fontWeight: FontWeight.bold,
         fontFamily: 'poppins',
         fontSize: 16),
-    titleMedium: TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.w700,
+    titleLarge: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
       color: Colors.black,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Colors.blueGrey,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+      color: Colors.blueGrey,
     ),
     bodyLarge: TextStyle(
         fontWeight: FontWeight.w300,

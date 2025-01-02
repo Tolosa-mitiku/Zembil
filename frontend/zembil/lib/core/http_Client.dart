@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:zembil/core/secure_storage.dart';
 
@@ -103,12 +104,13 @@ class HttpClient {
     String endpoint,
     Map<String, dynamic> body, {
     Map<String, String>? additionalHeaders,
+    String? customToken,
   }) async {
     final token = await secureStorageHelper.getToken();
 
     final headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${customToken ?? token}',
       ...?additionalHeaders,
     };
 
@@ -128,4 +130,27 @@ class HttpClient {
   }
 
   // Add other HTTP methods like GET, PUT, DELETE as needed.
+
+  Future<http.Response> postStripe(
+    String endpoint,
+    Map<String, dynamic> body,
+  ) async {
+    final headers = {
+      "Authorization": "Bearer ${dotenv.env['STRIPE_SECRET_KEY']}",
+      "Content-Type": 'application/x-www-form-urlencoded'
+    };
+
+    final url = Uri.parse(endpoint);
+
+    try {
+      final response = await client.post(url, headers: headers, body: body);
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response;
+      } else {
+        throw Exception('HTTP Error: ${response.statusCode}, ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('Network Error: $e');
+    }
+  }
 }

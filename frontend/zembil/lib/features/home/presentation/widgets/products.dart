@@ -8,11 +8,13 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      // color: Colors.black,
+      height: 391,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Two items per row
           crossAxisSpacing: 20,
@@ -64,6 +66,8 @@ class Products extends StatelessWidget {
                         children: [
                           Text(
                             product.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -72,7 +76,7 @@ class Products extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            product.price.toString(),
+                            '\$ ${product.price.toString()}',
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,

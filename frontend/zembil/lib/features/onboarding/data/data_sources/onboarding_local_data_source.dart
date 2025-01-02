@@ -1,12 +1,12 @@
 import 'package:zembil/core/hive.dart';
 import 'package:zembil/core/secure_storage.dart';
-import 'package:zembil/features/onboarding/domain/repository/onboarding.dart';
+import 'package:zembil/features/onboarding/data/data_sources/onboarding_data_source.dart';
 
-class OnboardingRepositoryImpl implements OnboardingRepository {
+class OnboardingLocalDataSource extends OnboardingDataSource {
   final HiveService hiveService;
   final SecureStorageHelper secureStorageHelper;
 
-  OnboardingRepositoryImpl(this.hiveService, this.secureStorageHelper);
+  OnboardingLocalDataSource(this.hiveService, this.secureStorageHelper);
 
   @override
   bool hasSeenOnboarding() {

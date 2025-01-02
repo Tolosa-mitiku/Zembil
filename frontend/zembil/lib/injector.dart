@@ -22,8 +22,17 @@ import 'package:zembil/features/authentication/presentation/bloc/email_verificat
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:zembil/features/home/data/data_sources/product_datasource.dart';
-import 'package:zembil/features/home/data/data_sources/product_remote_datasource.dart';
+import 'package:zembil/features/cart/data/data_sources/cart_data_source.dart';
+import 'package:zembil/features/cart/data/data_sources/cart_local_data_source.dart';
+import 'package:zembil/features/cart/data/repository/cart_repository_impl.dart';
+import 'package:zembil/features/cart/domain/repository/cart_repository.dart';
+import 'package:zembil/features/cart/domain/usecase/add_to_cart.dart';
+import 'package:zembil/features/cart/domain/usecase/get_cart.dart';
+import 'package:zembil/features/cart/domain/usecase/remove_from_cart.dart';
+import 'package:zembil/features/cart/domain/usecase/update_cart.dart';
+import 'package:zembil/features/cart/presentation/bloc/cart_bloc.dart';
+import 'package:zembil/features/home/data/data_sources/product_data_source.dart';
+import 'package:zembil/features/home/data/data_sources/product_remote_data_source.dart';
 import 'package:zembil/features/home/data/repository/product_repository_impl.dart';
 import 'package:zembil/features/home/domain/repository/product_repository.dart';
 import 'package:zembil/features/home/domain/usecase/get_all_products.dart';
@@ -32,15 +41,22 @@ import 'package:zembil/features/home/domain/usecase/get_product.dart';
 import 'package:zembil/features/home/presentation/bloc/featured_product_bloc/featured_product_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_by_category_bloc/products_by_category_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
-import 'package:zembil/features/onboarding/data/repository/onboarding.dart';
-import 'package:zembil/features/onboarding/domain/repository/onboarding.dart';
+import 'package:zembil/features/onboarding/data/data_sources/onboarding_data_source.dart';
+import 'package:zembil/features/onboarding/data/data_sources/onboarding_local_data_source.dart';
+import 'package:zembil/features/onboarding/data/repository/onboarding_impl.dart';
+import 'package:zembil/features/onboarding/domain/repository/onboarding_repository.dart';
 import 'package:zembil/features/onboarding/domain/usecase/check_authenticated.dart';
 import 'package:zembil/features/onboarding/domain/usecase/check_onboarding.dart';
 import 'package:zembil/features/onboarding/domain/usecase/complete_onboarding.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.dart';
+import 'package:zembil/features/payments/data/data_sources/payment_data_sources.dart';
+import 'package:zembil/features/payments/data/data_sources/remote_payment_data_sources.dart';
+import 'package:zembil/features/payments/data/repository/payment_repository_impl.dart';
+import 'package:zembil/features/payments/domain/repository/payment_repository.dart';
+import 'package:zembil/features/payments/domain/usecase/initiate_stripe_payment.dart';
 import 'package:zembil/features/profile/data/data_sources/profile_data_source.dart';
-import 'package:zembil/features/profile/data/data_sources/profile_remote_source.dart';
+import 'package:zembil/features/profile/data/data_sources/profile_remote_data_source.dart';
 import 'package:zembil/features/profile/data/repository/profile_repository_impl.dart';
 import 'package:zembil/features/profile/domain/repository/profile_repository.dart';
 import 'package:zembil/features/profile/domain/usecase/get_profile.dart';
@@ -101,8 +117,17 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => ProductsByCategoryBloc(
         getProductsByCategory: locator(),
       ));
-  locator.registerLazySingleton(() =>
-      ProductDetailBloc(getProduct: locator(), getRelatedProducts: locator()));
+  locator.registerLazySingleton(() => ProductDetailBloc(
+      getProduct: locator(),
+      getRelatedProducts: locator(),
+      addToCart: locator()));
+
+  locator.registerLazySingleton(() => CartBloc(
+      getCart: locator(),
+      addToCart: locator(),
+      removeFromCart: locator(),
+      updateCart: locator(),
+      initiateStripePayment: locator()));
 
 // usecases
   // Authentication
@@ -123,6 +148,11 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => GetProduct(locator()));
   locator.registerLazySingleton(() => GetProductsByCategory(locator()));
   locator.registerLazySingleton(() => GetFeaturedProducts(locator()));
+  locator.registerLazySingleton(() => GetCart(locator()));
+  locator.registerLazySingleton(() => AddToCart(locator()));
+  locator.registerLazySingleton(() => RemoveFromCart(locator()));
+  locator.registerLazySingleton(() => UpdateCart(locator()));
+  locator.registerLazySingleton(() => InitiateStripePayment(locator()));
 
   // Profile
   locator.registerLazySingleton(() => GetProfile(locator()));
@@ -131,27 +161,40 @@ Future<void> setupLocator() async {
   // Authentication
   locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(locator()));
+  // Onboarding
   locator.registerLazySingleton<OnboardingRepository>(
-      () => OnboardingRepositoryImpl(locator(), locator()));
-
+      () => OnboardingRepositoryImpl(locator()));
   // Profile
   locator.registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(locator()));
-
   // Product
   locator.registerLazySingleton<ProductRepository>(
-      () => ProductRepositoryImpl(locator()));
+      () => ProductRepositoryImpl(productDatasource: locator()));
+  // Cart
+  locator.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImpl(locator()));
+  // Patment
+  locator.registerLazySingleton<PaymentRepository>(
+      () => PaymentRepositoryImpl(locator()));
 
 // data sources
-  locator
-      .registerLazySingleton<AuthRemoteDataSource>(() => FirebaseAuthService());
+  // Authentication
+  locator.registerLazySingleton<AuthRemoteDataSource>(() => locator());
+  // Onboarding
+  locator.registerLazySingleton<OnboardingDataSource>(
+      () => OnboardingLocalDataSource(locator(), locator()));
   // Profile
   locator.registerLazySingleton<ProfileDataSource>(
       () => ProfileRemoteSource(locator(), locator()));
-
   // Product
   locator.registerLazySingleton<ProductDatasource>(
       () => ProductRemoteDatasource(locator()));
+  // Cart
+  locator.registerLazySingleton<CartDataSource>(
+      () => CartLocalDataSource(locator()));
+  // Payment
+  locator.registerLazySingleton<PaymentDatasources>(
+      () => RemotePaymentDataSources());
 
   //external
   locator.registerLazySingleton(() => HttpClient(

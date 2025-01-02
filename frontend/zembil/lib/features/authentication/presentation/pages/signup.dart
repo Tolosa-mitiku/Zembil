@@ -72,6 +72,7 @@ class Signup extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Email/Phone',
+                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     errorText: emailError,
                     controller: _emailController,
                     onChanged: (value) {
@@ -83,6 +84,7 @@ class Signup extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Password',
+                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     errorText: passwordError,
                     controller: _passwordController,
                     onChanged: (value) {
@@ -94,6 +96,7 @@ class Signup extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Confirm password',
+                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     errorText: confirmPasswordError,
                     controller: _confirmPasswordController,
                     onChanged: (value) {

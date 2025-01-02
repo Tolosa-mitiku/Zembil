@@ -74,6 +74,7 @@ class Login extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Email/Phone',
+                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     errorText: emailError,
                     controller: _emailController,
                     onChanged: (value) {
@@ -85,6 +86,7 @@ class Login extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Password',
+                    hintStyle: Theme.of(context).textTheme.labelMedium,
                     errorText: passwordError,
                     controller: _passwordController,
                     onChanged: (value) {

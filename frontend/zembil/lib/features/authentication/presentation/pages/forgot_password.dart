@@ -57,6 +57,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   children: [
                     CustomTextField(
                       hintText: 'Please provide the email to your account',
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       errorText: emailError,
                       controller: _emailController,
                       onChanged: (value) {

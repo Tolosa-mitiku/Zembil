@@ -1,4 +1,4 @@
-import 'package:zembil/features/onboarding/domain/repository/onboarding.dart';
+import 'package:zembil/features/onboarding/domain/repository/onboarding_repository.dart';
 
 class CompleteOnboardingUseCase {
   final OnboardingRepository repository;

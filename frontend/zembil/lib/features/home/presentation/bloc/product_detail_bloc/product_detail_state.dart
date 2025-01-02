@@ -13,6 +13,8 @@ class ProductDetailLoaded extends ProductDetailState {
   ProductDetailLoaded({required this.product, required this.relatedProducts});
 }
 
+class CartSuccess extends ProductDetailState {}
+
 class ProductDetailError extends ProductDetailState {
   final String message;
 
