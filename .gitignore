@@ -7,7 +7,6 @@ build/
 
 # TypeScript compiled files
 *.js
-*.d.ts
 *.map
 
 # Environment variables
