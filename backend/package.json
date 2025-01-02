@@ -4,7 +4,9 @@
   "description": "e commerce",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.ts"
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts"
   },
   "author": "",
   "license": "ISC",
