@@ -9,7 +9,9 @@ class HttpClientProvider {
 }
 
 class Urls {
-  static const String baseUrl = "http://192.168.233.70:5000/api/v1";
+  // static const String baseUrl = "http://192.168.233.70:5000/api/v1";
+  // static const String baseUrl = "https://zembil-gfnd.onrender.com/api/v1";
+  static const String baseUrl = "https://zembil.vercel.app/api/v1";
   static const String login = '/login';
   static const String signup = '/signup';
   static const String profile = '/profile';

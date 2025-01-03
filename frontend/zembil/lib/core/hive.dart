@@ -28,9 +28,9 @@ class HiveService {
 
   Future<void> updateQuantity(String productId, int newQuantity) async {
     final updatedItem = _cartBox.get(productId, defaultValue: null);
-    if (updatedItem) {
-      updatedItem.quantity = newQuantity;
-      await _cartBox.put(productId, updatedItem);
+    if (updatedItem != null) {
+      await _cartBox.put(
+          productId, updatedItem.copyWith(quantity: newQuantity));
     }
   }
 }

@@ -27,6 +27,25 @@ class CartEntity extends Equatable {
     required this.quantity,
   });
 
+  // CopyWith method for immutability
+  CartEntity copyWith({
+    String? productId,
+    String? title,
+    String? category,
+    String? image,
+    double? price,
+    int? quantity,
+  }) {
+    return CartEntity(
+      productId: productId ?? this.productId,
+      title: title ?? this.title,
+      category: category ?? this.category,
+      image: image ?? this.image,
+      price: price ?? this.price,
+      quantity: quantity ?? this.quantity,
+    );
+  }
+
   static Map<String, String> toPayPalMap(CartEntity item) {
     return {
       "name": item.title.toString(),
