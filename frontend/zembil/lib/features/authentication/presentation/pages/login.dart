@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_state.dart';
-import 'package:zembil/features/authentication/presentation/pages/email_verification.dart';
-import 'package:zembil/features/authentication/presentation/pages/forgot_password.dart';
-import 'package:zembil/features/authentication/presentation/pages/signup.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_rich_text.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
-import 'package:zembil/features/navigation/pages/home.dart';
 import 'package:zembil/injector.dart';
 
 class Login extends StatelessWidget {
@@ -38,16 +35,9 @@ class Login extends StatelessWidget {
                   state is FirebaseGoogleLogInAuthenticated) {
                 context.read<LogInBloc>().add(ZembilLogInEvent());
               } else if (state is FirebaseEmailVerificationRequired) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EmailVerificationScreen()),
-                );
+                context.go("/email_verification");
               } else if (state is ZembilLogInAuthenticated) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => IndexPage()),
-                );
+                context.go("/index");
               } else if (state is LogInError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
@@ -129,10 +119,7 @@ class Login extends StatelessWidget {
                     text2: 'Register',
                     onPressed: () {
                       // Navigate to the Login Page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Signup()),
-                      );
+                      context.go("/signup");
                     },
                   ),
                   AuthRichText(
@@ -140,11 +127,7 @@ class Login extends StatelessWidget {
                     text2: 'Forgot Password?',
                     onPressed: () {
                       // Navigate to the Login Page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgotPasswordScreen()),
-                      );
+                      context.go("/forgot_password");
                     },
                   ),
                 ],

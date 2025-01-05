@@ -10,7 +10,10 @@ class CartAppBar extends StatelessWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            print(Navigator.of(context));
+            Navigator.of(context).pop();
+          },
         ),
         Text(
           "Cart",

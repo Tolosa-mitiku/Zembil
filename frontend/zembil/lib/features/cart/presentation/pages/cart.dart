@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/cart/domain/entity/cart.dart';
 import 'package:zembil/features/cart/presentation/bloc/cart_bloc.dart';
@@ -80,7 +81,7 @@ class _CartPageState extends State<CartPage> {
                                   TextStyle(color: Colors.black, fontSize: 20),
                             ),
                             Text(
-                              "\$ ${state.total}",
+                              "\$ ${state.total.toStringAsFixed(2)}",
                               style:
                                   TextStyle(color: Colors.black, fontSize: 20),
                             ),
@@ -149,7 +150,7 @@ class _CartPageState extends State<CartPage> {
                                             "Contact us for any questions on your order.",
                                         onSuccess: (Map params) async {
                                           print("onSuccess: $params");
-                                          Navigator.pop(context);
+                                          context.pop();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(
@@ -159,7 +160,7 @@ class _CartPageState extends State<CartPage> {
                                         },
                                         onError: (error) {
                                           print("onError: $error");
-                                          Navigator.pop(context);
+                                          context.pop();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(
@@ -169,7 +170,7 @@ class _CartPageState extends State<CartPage> {
                                         },
                                         onCancel: () {
                                           print('cancelled:');
-                                          Navigator.pop(context);
+                                          context.pop();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(

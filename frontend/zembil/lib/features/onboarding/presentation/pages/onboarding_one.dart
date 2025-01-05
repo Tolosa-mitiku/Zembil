@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zembil/features/onboarding/presentation/pages/onboarding_three.dart';
-import 'package:zembil/features/onboarding/presentation/pages/onboarding_two.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingOne extends StatelessWidget {
   const OnboardingOne({super.key});
@@ -23,7 +22,7 @@ class OnboardingOne extends StatelessWidget {
               child: GestureDetector(
                 child: Icon(Icons.arrow_back),
                 onTap: () {
-                  Navigator.pop(context);
+                  context.pop();
                 },
               ),
             ),
@@ -65,15 +64,11 @@ class OnboardingOne extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child: Text(
-                    "Skip",
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => OnboardingThree())),
-                ),
+                    child: Text(
+                      "Skip",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    onTap: () => context.go("/onboarding/3")),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context)
@@ -82,10 +77,7 @@ class OnboardingOne extends StatelessWidget {
                     shape: const CircleBorder(), // Circular shape
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OnboardingTwo()),
-                    );
+                    context.go("/onboarding/2");
                   },
                   child: Padding(
                     padding: EdgeInsets.all(15),

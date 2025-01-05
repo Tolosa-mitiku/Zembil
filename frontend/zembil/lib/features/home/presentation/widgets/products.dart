@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/home/domain/entity/product.dart';
-import 'package:zembil/features/home/presentation/pages/product_detail.dart';
 
 class Products extends StatelessWidget {
   final List<ProductEntity> products;
@@ -27,10 +27,7 @@ class Products extends StatelessWidget {
           final product = products[index];
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProductDetailPage(product.id)));
+              context.go("/products/${product.id}");
             },
             child: Container(
               decoration: BoxDecoration(

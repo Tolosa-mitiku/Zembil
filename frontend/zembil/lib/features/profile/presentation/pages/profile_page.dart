@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zembil/features/authentication/presentation/pages/login.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/profile/domain/entity/profile.dart';
 import 'package:zembil/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:zembil/features/profile/presentation/bloc/profile_event.dart';
@@ -30,8 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is SignOutSuccess) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Login()));
+              context.go("/login");
             }
             if (state is SignOutError) {
               ScaffoldMessenger.of(context).showSnackBar(

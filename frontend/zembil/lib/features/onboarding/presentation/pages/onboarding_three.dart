@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:zembil/features/authentication/presentation/pages/login.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_event.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/onboarding/onboarding_state.dart';
@@ -16,8 +16,7 @@ class OnboardingThree extends StatelessWidget {
     return BlocListener<OnboardingBloc, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingCompleted) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Login()));
+          context.go("/login");
         }
       },
       child: Scaffold(
@@ -33,7 +32,7 @@ class OnboardingThree extends StatelessWidget {
                 child: GestureDetector(
                   child: Icon(Icons.arrow_back),
                   onTap: () {
-                    Navigator.pop(context);
+                    context.pop();
                   },
                 ),
               ),

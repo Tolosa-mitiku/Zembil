@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/cart/domain/entity/cart.dart';
-import 'package:zembil/features/cart/presentation/pages/cart.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_bloc.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_event.dart';
 import 'package:zembil/features/home/presentation/bloc/product_detail_bloc/product_detail_state.dart';
@@ -42,11 +42,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           padding: const EdgeInsets.only(top: 50),
           child: BlocConsumer<ProductDetailBloc, ProductDetailState>(
             listener: (context, state) => {
-              if (state is CartSuccess)
-                {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CartPage()))
-                }
+              if (state is CartSuccess) {context.go("/cart")}
             },
             builder: (context, state) {
               if (state is ProductDetailLoading) {

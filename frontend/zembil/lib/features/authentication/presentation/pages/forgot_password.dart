@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_state.dart';
-import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/injector.dart';
@@ -37,10 +37,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
                   await Future.delayed(Duration(seconds: 1));
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Login()),
-                  );
+                  context.go("/login");
                 } else if (state is ForgotPasswordError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.message)),

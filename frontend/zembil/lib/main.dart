@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:zembil/core/utils.dart';
+import 'package:zembil/core/themes.dart';
 import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
@@ -19,6 +19,7 @@ import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.
 import 'package:zembil/features/onboarding/presentation/pages/splash.dart';
 import 'package:zembil/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:zembil/injector.dart';
+import 'package:zembil/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,18 +50,31 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       onGenerateRoute: _generateRoute,
+//       initialRoute: "/",
+//       title: "Zembil",
+//       theme: primaryTheme,
+//       themeMode: ThemeMode.system,
+//     );
+//   }
+// }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: _generateRoute,
-      initialRoute: "/",
       title: "Zembil",
       theme: primaryTheme,
       themeMode: ThemeMode.system,
     );
   }
 }
+
 
 Route? _generateRoute(RouteSettings settings) {
   switch (settings.name) {

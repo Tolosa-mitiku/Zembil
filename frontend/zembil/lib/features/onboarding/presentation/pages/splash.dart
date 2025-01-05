@@ -1,12 +1,11 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/pages/login.dart';
-import 'package:zembil/features/navigation/pages/home.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_bloc.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_event.dart';
 import 'package:zembil/features/onboarding/presentation/bloc/splash/splash_state.dart';
-import 'package:zembil/features/onboarding/presentation/pages/onboarding_one.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -34,14 +33,17 @@ class _SplashState extends State<Splash> {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashOnboarding) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => OnboardingOne()));
+          context.go("/onboarding/1");
+          // Navigator.pushReplacement(context,
+          //     MaterialPageRoute(builder: (context) => OnboardingOne()));
         } else if (state is SplashAuthenticated) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => IndexPage()));
+          context.go("/index");
+          // Navigator.pushReplacement(
+          //     context, MaterialPageRoute(builder: (context) => IndexPage()));
         } else if (state is SplashUnAuthenticated) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Login()));
+          context.go("/login");
+          // Navigator.pushReplacement(
+          //     context, MaterialPageRoute(builder: (context) => Login()));
         }
       },
       child: AnimatedSplashScreen(

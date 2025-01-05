@@ -6,7 +6,7 @@ class BottomNavState extends Equatable {
   const BottomNavState({required this.selectedIndex});
 
   factory BottomNavState.initial() {
-    return const BottomNavState(selectedIndex: 4);
+    return const BottomNavState(selectedIndex: 0);
   }
 
   BottomNavState copyWith({int? selectedIndex}) {

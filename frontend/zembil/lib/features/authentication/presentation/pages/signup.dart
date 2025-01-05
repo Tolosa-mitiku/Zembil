@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/sign_up_bloc/sign_up_state.dart';
-import 'package:zembil/features/authentication/presentation/pages/email_verification.dart';
-import 'package:zembil/features/authentication/presentation/pages/login.dart';
 import 'package:zembil/features/authentication/presentation/widgets/auth_rich_text.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_button.dart';
 import 'package:zembil/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
 import 'package:zembil/features/authentication/presentation/widgets/terms_and_privacy.dart';
-import 'package:zembil/features/navigation/pages/home.dart';
 import 'package:zembil/injector.dart';
 
 class Signup extends StatelessWidget {
@@ -33,18 +31,11 @@ class Signup extends StatelessWidget {
             child: BlocConsumer<SignUpBloc, SignUpState>(
                 listener: (context, state) {
               if (state is FirebaseEmailVerificationRequired) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EmailVerificationScreen()),
-                );
+                context.go("/email_verification");
               } else if (state is FirebaseSignUpAuthenticated) {
                 context.read<SignUpBloc>().add(ZembilLogInEvent());
               } else if (state is ZembilLogInAuthenticated) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => IndexPage()),
-                );
+                context.go("/index");
               } else if (state is SignUpError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
@@ -143,10 +134,7 @@ class Signup extends StatelessWidget {
                     text2: 'Log In',
                     onPressed: () {
                       // Navigate to the Login Page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
+                      context.go("/login");
                     },
                   ),
                 ],

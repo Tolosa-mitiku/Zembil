@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_event.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_state.dart';
-import 'package:zembil/features/navigation/pages/home.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
@@ -43,8 +43,7 @@ class _VerifyEmailScreenState extends State<EmailVerificationScreen> {
             } else if (state is EmailVerified) {
               context.read<EmailVerificationBloc>().add(ZembilLogInEvent());
             } else if (state is ZembilLogInAuthenticated) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => IndexPage()));
+              context.go("/index");
             } else if (state is EmailVerificationError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
