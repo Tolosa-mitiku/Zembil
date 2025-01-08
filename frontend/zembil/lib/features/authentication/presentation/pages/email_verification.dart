@@ -43,7 +43,7 @@ class _VerifyEmailScreenState extends State<EmailVerificationScreen> {
             } else if (state is EmailVerified) {
               context.read<EmailVerificationBloc>().add(ZembilLogInEvent());
             } else if (state is ZembilLogInAuthenticated) {
-              context.go("/index");
+              GoRouter.of(context).go("/index");
             } else if (state is EmailVerificationError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),

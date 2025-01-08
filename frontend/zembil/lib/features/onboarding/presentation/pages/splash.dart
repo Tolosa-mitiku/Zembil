@@ -33,15 +33,15 @@ class _SplashState extends State<Splash> {
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is SplashOnboarding) {
-          context.go("/onboarding/1");
+          GoRouter.of(context).push("/onboarding/1");
           // Navigator.pushReplacement(context,
           //     MaterialPageRoute(builder: (context) => OnboardingOne()));
         } else if (state is SplashAuthenticated) {
-          context.go("/index");
+          GoRouter.of(context).go("/index");
           // Navigator.pushReplacement(
           //     context, MaterialPageRoute(builder: (context) => IndexPage()));
         } else if (state is SplashUnAuthenticated) {
-          context.go("/login");
+          GoRouter.of(context).go("/login");
           // Navigator.pushReplacement(
           //     context, MaterialPageRoute(builder: (context) => Login()));
         }

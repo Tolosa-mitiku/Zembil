@@ -12,7 +12,7 @@ class AuthenticationRoutes {
         path: "/forgot_password",
         builder: (context, state) => ForgotPasswordScreen()),
     GoRoute(
-        path: "/email_verificatino",
+        path: "/email_verification",
         builder: (context, state) => EmailVerificationScreen()),
   ];
 }

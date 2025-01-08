@@ -42,7 +42,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           padding: const EdgeInsets.only(top: 50),
           child: BlocConsumer<ProductDetailBloc, ProductDetailState>(
             listener: (context, state) => {
-              if (state is CartSuccess) {context.go("/cart")}
+              if (state is CartSuccess) {GoRouter.of(context).push("/cart")}
             },
             builder: (context, state) {
               if (state is ProductDetailLoading) {

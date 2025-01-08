@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zembil/features/cart/domain/entity/cart.dart';
 import 'package:zembil/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:zembil/features/cart/presentation/bloc/cart_event.dart';
 import 'package:zembil/features/cart/presentation/widgets/cart_product.dart';
 import 'package:zembil/features/cart/presentation/widgets/remove_item_from_cart.dart';
-import 'package:zembil/features/home/presentation/pages/product_detail.dart';
 
 class CartProducts extends StatelessWidget {
   final List<CartEntity> cart;
@@ -34,23 +34,21 @@ class CartProducts extends StatelessWidget {
                           // Perform the removal action
                           context.read<CartBloc>().add(RemoveFromCartEvent(
                               productId: product.productId));
-                          Navigator.of(context).pop(); // Close the dialog
+                          GoRouter.of(context).pop();
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("Item removed from cart!")),
                           );
                         },
                         onCancel: () {
-                          Navigator.of(context).pop(); // Close the dialog
+                          GoRouter.of(context).pop();
                         },
                       );
                     });
               },
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ProductDetailPage(product.productId)));
+                GoRouter.of(context)
+                    .push("/cart/products/${product.productId}");
               },
               child: CartProduct(product),
             );

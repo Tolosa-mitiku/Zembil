@@ -68,7 +68,7 @@ class OnboardingOne extends StatelessWidget {
                       "Skip",
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
-                    onTap: () => context.go("/onboarding/3")),
+                    onTap: () => GoRouter.of(context).push("/onboarding/3")),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context)
@@ -77,7 +77,7 @@ class OnboardingOne extends StatelessWidget {
                     shape: const CircleBorder(), // Circular shape
                   ),
                   onPressed: () {
-                    context.go("/onboarding/2");
+                    GoRouter.of(context).push("/onboarding/2");
                   },
                   child: Padding(
                     padding: EdgeInsets.all(15),

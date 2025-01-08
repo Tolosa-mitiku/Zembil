@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is SignOutSuccess) {
-              context.go("/login");
+              GoRouter.of(context).go("/login");
             }
             if (state is SignOutError) {
               ScaffoldMessenger.of(context).showSnackBar(

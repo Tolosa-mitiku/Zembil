@@ -35,9 +35,9 @@ class Login extends StatelessWidget {
                   state is FirebaseGoogleLogInAuthenticated) {
                 context.read<LogInBloc>().add(ZembilLogInEvent());
               } else if (state is FirebaseEmailVerificationRequired) {
-                context.go("/email_verification");
+                GoRouter.of(context).push("/email_verification");
               } else if (state is ZembilLogInAuthenticated) {
-                context.go("/index");
+                GoRouter.of(context).go("/index");
               } else if (state is LogInError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
@@ -57,8 +57,7 @@ class Login extends StatelessWidget {
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
-                  Text("Sign up",
-                      style: Theme.of(context).textTheme.titleLarge),
+                  Text("Log in", style: Theme.of(context).textTheme.titleLarge),
                   SizedBox(
                     height: screenHeight * 0.1,
                   ),
@@ -119,7 +118,7 @@ class Login extends StatelessWidget {
                     text2: 'Register',
                     onPressed: () {
                       // Navigate to the Login Page
-                      context.go("/signup");
+                      GoRouter.of(context).go("/signup");
                     },
                   ),
                   AuthRichText(
@@ -127,7 +126,7 @@ class Login extends StatelessWidget {
                     text2: 'Forgot Password?',
                     onPressed: () {
                       // Navigate to the Login Page
-                      context.go("/forgot_password");
+                      GoRouter.of(context).push("/forgot_password");
                     },
                   ),
                 ],

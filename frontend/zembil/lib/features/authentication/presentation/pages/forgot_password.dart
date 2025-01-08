@@ -37,7 +37,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
                   await Future.delayed(Duration(seconds: 1));
 
-                  context.go("/login");
+                  GoRouter.of(context).go("/login");
                 } else if (state is ForgotPasswordError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.message)),

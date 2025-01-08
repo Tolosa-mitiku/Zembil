@@ -31,11 +31,11 @@ class Signup extends StatelessWidget {
             child: BlocConsumer<SignUpBloc, SignUpState>(
                 listener: (context, state) {
               if (state is FirebaseEmailVerificationRequired) {
-                context.go("/email_verification");
+                GoRouter.of(context).push("/email_verification");
               } else if (state is FirebaseSignUpAuthenticated) {
                 context.read<SignUpBloc>().add(ZembilLogInEvent());
               } else if (state is ZembilLogInAuthenticated) {
-                context.go("/index");
+                GoRouter.of(context).go("/index");
               } else if (state is SignUpError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.message)),
@@ -134,7 +134,7 @@ class Signup extends StatelessWidget {
                     text2: 'Log In',
                     onPressed: () {
                       // Navigate to the Login Page
-                      context.go("/login");
+                      GoRouter.of(context).go("/login");
                     },
                   ),
                 ],

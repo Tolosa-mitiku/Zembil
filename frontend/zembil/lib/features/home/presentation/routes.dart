@@ -3,17 +3,23 @@ import 'package:zembil/features/home/presentation/pages/home.dart';
 import 'package:zembil/features/home/presentation/pages/product_detail.dart';
 
 class HomeRoutes {
-  static final List<GoRoute> routes = [
-    GoRoute(
-      path: "/",
-      builder: (context, state) => const HomePage(),
+  static final routes = [
+    StatefulShellBranch(
+      routes: [
+        GoRoute(
+          path: '/index',
+          builder: (context, state) => HomePage(),
+          routes: [
+            GoRoute(
+              path: "/products/:productId",
+              builder: (context, state) {
+                final String id = (state).pathParameters['productId'] as String;
+                return ProductDetailPage(id);
+              },
+            )
+          ],
+        ),
+      ],
     ),
-    GoRoute(
-      path: "/product/:productId",
-      builder: (context, state) {
-        final String id = (state).pathParameters['productId'] as String;
-        return ProductDetailPage(id);
-      },
-    )
   ];
 }

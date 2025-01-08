@@ -27,7 +27,7 @@ class Products extends StatelessWidget {
           final product = products[index];
           return GestureDetector(
             onTap: () {
-              context.go("/products/${product.id}");
+              GoRouter.of(context).push("/index/products/${product.id}");
             },
             child: Container(
               decoration: BoxDecoration(

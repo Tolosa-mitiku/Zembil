@@ -11,7 +11,7 @@ class ProductAppBar extends StatelessWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: () => GoRouter.of(context).pop(),
         ),
         IconButton(
           icon: const Icon(Icons.favorite_border),
