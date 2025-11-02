@@ -10,6 +10,7 @@ dotenv.config();
 // Import route files
 import authRoutes from "./routes/auth";
 import buyerRoutes from "./routes/buyer";
+import cartRoutes from "./routes/cart";
 import userRoutes from "./routes/user";
 // import chatRoutes from "./routes/chat";
 import orderRoutes from "./routes/order";
@@ -40,6 +41,7 @@ app.use("/api/v1/gete", (req, res) => {
 });
 app.use("/api/v1/", authRoutes);
 app.use("/api/v1/profile", userRoutes);
+app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/buyers", buyerRoutes);
 app.use("/api/v1/sellers", sellerRoutes);
 app.use("/api/v1/products", productRoutes);

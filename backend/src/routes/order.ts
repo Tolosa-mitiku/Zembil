@@ -3,27 +3,27 @@ import {
   cancelOrder,
   createOrder,
   getOrderById,
-  getOrdersByBuyer,
-  getOrdersBySeller,
-  updateOrderStatus,
+  getUserOrders,
+  updateOrderTracking,
 } from "../controllers/order";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
 
 const router = Router();
+
+// All order routes require authentication
+router.use(verifyFirebaseToken);
 
 // POST /orders - Create a new order
 router.post("/", createOrder);
 
+// GET /orders - Get all orders for current user
+router.get("/", getUserOrders);
+
 // GET /orders/:id - Get order details
 router.get("/:id", getOrderById);
 
-// GET /buyers/:buyerId/orders - Get all orders placed by a buyer
-router.get("/buyers/:buyerId", getOrdersByBuyer);
-
-// GET /sellers/:sellerId/orders - Get all orders received by a seller
-router.get("/sellers/:sellerId", getOrdersBySeller);
-
-// PUT /orders/:id/status - Update the order status (e.g., shipped, delivered)
-router.put("/:id/status", updateOrderStatus);
+// PUT /orders/:id/tracking - Update order tracking location
+router.put("/:id/tracking", updateOrderTracking);
 
 // PUT /orders/:id/cancel - Cancel an order
 router.put("/:id/cancel", cancelOrder);
