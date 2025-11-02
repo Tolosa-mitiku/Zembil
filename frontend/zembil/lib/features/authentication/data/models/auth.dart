@@ -8,9 +8,11 @@ class AuthUserModel extends AuthUser {
   }
 
   factory AuthUserModel.fromJson(Map<String, dynamic> json) {
+    // Handle nested user object from backend response
+    final userData = json['user'] ?? json;
     return AuthUserModel(
-      firebaseUID: json['uid'],
-      role: json['email'],
+      firebaseUID: userData['uid'] ?? userData['_id'],
+      role: userData['role'],
     );
   }
 
