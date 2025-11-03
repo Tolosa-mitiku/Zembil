@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { getUserProfile } from "../controllers/user";
+import { getUserProfile, updateUserProfile } from "../controllers/user";
 import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
 
 const router = Router();
 
-// Define routes for get user profile
-router.get("", verifyFirebaseToken, getUserProfile); // Route for logging in a user
+// Profile routes
+router.get("", verifyFirebaseToken, getUserProfile);
+router.put("", verifyFirebaseToken, updateUserProfile);
 
 export default router;
