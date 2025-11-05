@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final String? errorText;
   final TextEditingController? controller;
   final Function(String?) onChanged;
+  final bool obscureText;
 
   const CustomTextField({
     super.key,
@@ -14,30 +15,52 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.onChanged,
     required this.hintStyle,
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return TextField(
+      obscureText: obscureText,
+      controller: controller,
+      onChanged: onChanged,
+      style: theme.textTheme.bodyLarge,
+      cursorColor: theme.colorScheme.primary,
       decoration: InputDecoration(
         hintText: hintText,
         errorText: errorText,
         hintStyle: hintStyle,
-        enabledBorder: const UnderlineInputBorder(
+        // Use theme's input decoration with custom underline style
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.black, // Bottom border color when not focused
+            color: isDark
+                ? theme.colorScheme.primary.withOpacity(0.3)
+                : theme.colorScheme.outline,
+            width: 1.5,
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.black, // Bottom border color when focused
-            width: 2.0, // Thickness of the focused border
+            color: theme.colorScheme.primary,
+            width: 2.5,
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: theme.colorScheme.error,
+            width: 1.5,
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: theme.colorScheme.error,
+            width: 2.5,
           ),
         ),
       ),
-      cursorColor: Colors.black, // Color of the cursor
-      controller: controller,
-      onChanged: onChanged,
     );
   }
 }
