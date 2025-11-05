@@ -17,19 +17,19 @@ import 'package:zembil/features/home/presentation/widgets/product_detail/product
 import 'package:zembil/features/home/presentation/widgets/product_detail/related_products.dart';
 import 'package:zembil/features/home/presentation/widgets/product_detail/related_products_shimmer.dart';
 
-class ProductDetailPage extends StatefulWidget {
+class ProductDetailRedesign extends StatefulWidget {
   final String productId;
 
-  const ProductDetailPage(this.productId, {super.key});
+  const ProductDetailRedesign(this.productId, {super.key});
 
   @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
+  State<ProductDetailRedesign> createState() => _ProductDetailRedesignState();
 }
 
-class _ProductDetailPageState extends State<ProductDetailPage>
+class _ProductDetailRedesignState extends State<ProductDetailRedesign>
     with TickerProviderStateMixin {
   late AnimationController _fabController;
-  // late Animation<double> _fabScale;
+  late Animation<double> _fabScale;
   final ScrollController _scrollController = ScrollController();
   bool _isFavorite = false;
   int _quantity = 1;
@@ -46,9 +46,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    // _fabScale = Tween<double>(begin: 0.0, end: 1.0).animate(
-    //   CurvedAnimation(parent: _fabController, curve: Curves.easeOutBack),
-    // );
+    _fabScale = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _fabController, curve: Curves.easeOutBack),
+    );
 
     Future.delayed(const Duration(milliseconds: 300), () {
       if (mounted) _fabController.forward();
@@ -157,7 +157,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         CustomScrollView(
           controller: _scrollController,
           slivers: [
-            // 1. Full-screen Image Gallery
+            // 1. Immersive Image Header
             _buildSliverAppBar(context, theme, isDark, product, r),
 
             // 2. Product Details Content
@@ -168,6 +168,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(32),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, -5),
+                    ),
+                  ],
                 ),
                 transform: Matrix4.translationValues(0, -24, 0),
                 child: Column(
@@ -176,7 +183,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                     // Pull handle
                     Center(
                       child: Container(
-                        margin: const EdgeInsets.only(top: 12, bottom: 8),
+                        margin: const EdgeInsets.only(top: 12, bottom: 24),
                         width: 40,
                         height: 4,
                         decoration: BoxDecoration(
@@ -192,11 +199,16 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Header: Title, Price, Rating
-                          _buildProductHeader(theme, isDark, product, r),
+                          _buildModernHeader(theme, isDark, product, r),
 
                           SizedBox(height: r.largeSpace),
 
-                          // Variants: Size/Color
+                          // Divider
+                          Divider(color: theme.dividerColor.withOpacity(0.5)),
+                          
+                          SizedBox(height: r.largeSpace),
+
+                          // Variants: Size
                           _buildVariantsSelector(theme, isDark, r),
 
                           SizedBox(height: r.largeSpace),
@@ -208,14 +220,30 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                           SizedBox(height: r.xLargeSpace),
 
                           // Related Products
-                          Text(
-                            'You might also like',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
+                          if (relatedProducts.isNotEmpty) ...[
+                            Row(
+                              children: [
+                                Container(
+                                  width: 4,
+                                  height: 24,
+                                  decoration: BoxDecoration(
+                                    color: theme.colorScheme.primary,
+                                    borderRadius: BorderRadius.circular(2),
+                                  ),
+                                ),
+                                SizedBox(width: r.smallSpace),
+                                Text(
+                                  'You might also like',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(height: r.mediumSpace),
-                          RelatedProducts(relatedProducts),
+                            SizedBox(height: r.mediumSpace),
+                            RelatedProducts(relatedProducts),
+                          ],
 
                           // Bottom padding for fixed bar
                           SizedBox(height: r.hp(15)),
@@ -243,20 +271,21 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     Responsive r,
   ) {
     return SliverAppBar(
-      expandedHeight: r.hp(55),
+      expandedHeight: r.hp(50),
       pinned: true,
       stretch: true,
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
-      systemOverlayStyle: SystemUiOverlayStyle.dark, // Always dark for image bg
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       leading: IconButton(
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withOpacity(0.3),
             shape: BoxShape.circle,
+            border: Border.all(color: Colors.white.withOpacity(0.2)),
           ),
-          child: const Icon(Icons.arrow_back, color: Colors.white, size: 20),
+          child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 18),
         ),
         onPressed: () => context.pop(),
       ),
@@ -265,8 +294,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withOpacity(0.3),
               shape: BoxShape.circle,
+              border: Border.all(color: Colors.white.withOpacity(0.2)),
             ),
             child: Icon(
               _isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -296,22 +326,25 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         color: theme.iconTheme.color?.withOpacity(0.3)),
                   );
                 }
-                return Image.network(
-                  product.images[index],
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container(
-                    color: isDark ? AppColors.darkGreyLight : AppColors.grey100,
-                    child: const Icon(Icons.error_outline),
+                return Hero(
+                  tag: 'product_image_${product.id}',
+                  child: Image.network(
+                    product.images[index],
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      color: isDark ? AppColors.darkGreyLight : AppColors.grey100,
+                      child: const Icon(Icons.error_outline),
+                    ),
                   ),
                 );
               },
             ),
-            // Gradient Overlay for text visibility
+            // Gradient Overlay for depth
             Positioned(
               bottom: 0,
               left: 0,
               right: 0,
-              height: 100,
+              height: 150,
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -319,13 +352,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.3),
+                      Colors.black.withOpacity(0.5),
                     ],
                   ),
                 ),
               ),
             ),
-            // Pagination Dots
+            // Pagination Indicators
             if (product.images.length > 1)
               Positioned(
                 bottom: 40,
@@ -338,13 +371,20 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                     (index) => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       margin: const EdgeInsets.symmetric(horizontal: 4),
-                      width: _currentImageIndex == index ? 24 : 8,
+                      width: _currentImageIndex == index ? 20 : 8,
                       height: 8,
                       decoration: BoxDecoration(
                         color: _currentImageIndex == index
-                            ? Colors.white
+                            ? theme.colorScheme.primary
                             : Colors.white.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(4),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 4,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -356,23 +396,22 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
   }
 
-  Widget _buildProductHeader(
+  Widget _buildModernHeader(
     ThemeData theme,
     bool isDark,
     ProductEntity product,
     Responsive r,
   ) {
-    final discountedPrice = product.price;
-    final hasDiscount =
-        product.discount != null && product.discount!.percentage > 0;
-    final originalPrice = hasDiscount
-        ? product.price / (1 - product.discount!.percentage / 100)
+    final hasDiscount = product.discount != null && product.discount!.percentage > 0;
+    final originalPrice = hasDiscount 
+        ? product.price / (1 - product.discount!.percentage / 100) 
         : product.price;
+    final discountedPrice = product.price;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Category & Rating
+        // Category & Rating Row
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -381,47 +420,60 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               decoration: BoxDecoration(
                 color: theme.colorScheme.primary.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withOpacity(0.2),
+                ),
               ),
               child: Text(
                 product.category.toUpperCase(),
                 style: AppTextStyles.labelSmall.copyWith(
                   color: theme.colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.2,
                 ),
               ),
             ),
             Row(
               children: [
-                const Icon(Icons.star, color: AppColors.gold, size: 18),
+                const Icon(Icons.star, color: AppColors.gold, size: 20),
                 const SizedBox(width: 4),
-                Text(
-                  '4.8', // Placeholder or real rating
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                RichText(
+                  text: TextSpan(
+                    style: theme.textTheme.bodyMedium,
+                    children: [
+                      TextSpan(
+                        text: '4.8',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: ' (124)',
+                        style: TextStyle(
+                          color: theme.textTheme.bodySmall?.color,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  ' (124 reviews)',
-                  style: theme.textTheme.bodySmall,
                 ),
               ],
             ),
           ],
         ),
+        
         SizedBox(height: r.mediumSpace),
 
         // Title
         Text(
           product.title,
           style: theme.textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
             height: 1.2,
+            fontFamily: 'Poppins', // Or your app's font
           ),
         ),
+        
         SizedBox(height: r.smallSpace),
 
-        // Price & Discount
+        // Price & Discount Badges
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -430,29 +482,44 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               style: theme.textTheme.headlineSmall?.copyWith(
                 color: theme.colorScheme.primary,
                 fontWeight: FontWeight.w900,
+                fontSize: 32,
               ),
             ),
             if (hasDiscount) ...[
               const SizedBox(width: 12),
-              Text(
-                '\$${originalPrice.toStringAsFixed(2)}',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.textTheme.bodySmall?.color,
-                  decoration: TextDecoration.lineThrough,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text(
+                  '\$${originalPrice.toStringAsFixed(2)}',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: theme.textTheme.bodySmall?.color,
+                    decoration: TextDecoration.lineThrough,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                margin: const EdgeInsets.only(bottom: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppColors.error,
+                  gradient: LinearGradient(
+                    colors: [AppColors.error, AppColors.error.withOpacity(0.8)],
+                  ),
                   borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.error.withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
                 child: Text(
-                  '-${product.discount!.percentage}%',
+                  '-${product.discount!.percentage}% OFF',
                   style: AppTextStyles.labelSmall.copyWith(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
@@ -468,13 +535,26 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Select Size',
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Select Size',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Size Guide',
+              style: TextStyle(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: r.smallSpace),
+        SizedBox(height: r.mediumSpace),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -484,14 +564,14 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 onTap: () => setState(() => _selectedSize = size),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  margin: const EdgeInsets.only(right: 12),
-                  width: 50,
-                  height: 50,
+                  margin: const EdgeInsets.only(right: 16),
+                  width: 56,
+                  height: 56,
                   decoration: BoxDecoration(
                     color: isSelected
                         ? theme.colorScheme.primary
                         : theme.cardTheme.color,
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: isSelected
                           ? theme.colorScheme.primary
@@ -502,7 +582,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                         ? [
                             BoxShadow(
                               color: theme.colorScheme.primary.withOpacity(0.3),
-                              blurRadius: 8,
+                              blurRadius: 12,
                               offset: const Offset(0, 4),
                             )
                           ]
@@ -516,6 +596,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                           ? (isDark ? AppColors.darkGreyDark : Colors.white)
                           : theme.textTheme.bodyLarge?.color,
                       fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -543,11 +624,17 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             description,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.bodyMedium?.copyWith(height: 1.6),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.6,
+              color: theme.textTheme.bodyMedium?.color?.withOpacity(0.8),
+            ),
           ),
           secondChild: Text(
             description,
-            style: theme.textTheme.bodyMedium?.copyWith(height: 1.6),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              height: 1.6,
+              color: theme.textTheme.bodyMedium?.color?.withOpacity(0.8),
+            ),
           ),
           crossFadeState: _isDescriptionExpanded
               ? CrossFadeState.showSecond
@@ -559,12 +646,24 @@ class _ProductDetailPageState extends State<ProductDetailPage>
               setState(() => _isDescriptionExpanded = !_isDescriptionExpanded),
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              _isDescriptionExpanded ? 'Read Less' : 'Read More',
-              style: TextStyle(
-                color: theme.colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  _isDescriptionExpanded ? 'Read Less' : 'Read More',
+                  style: TextStyle(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  _isDescriptionExpanded
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
+                  color: theme.colorScheme.primary,
+                  size: 18,
+                ),
+              ],
             ),
           ),
         ),
@@ -598,18 +697,18 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             boxShadow: [
               BoxShadow(
                 color: AppColors.getShadow(isDark),
-                blurRadius: 20,
-                offset: const Offset(0, -5),
+                blurRadius: 30,
+                offset: const Offset(0, -10),
               ),
             ],
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
           ),
           child: Row(
             children: [
               // Quantity Selector
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                 decoration: BoxDecoration(
                   color: theme.scaffoldBackgroundColor,
                   borderRadius: BorderRadius.circular(30),
@@ -617,27 +716,28 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                 ),
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
+                    _buildQtyButton(
+                      theme,
+                      Icons.remove,
+                      () {
                         if (_quantity > 1) setState(() => _quantity--);
                       },
-                      child: Icon(Icons.remove,
-                          size: 20,
-                          color: _quantity > 1
-                              ? theme.iconTheme.color
-                              : theme.disabledColor),
+                      _quantity > 1,
                     ),
-                    SizedBox(width: r.mediumSpace),
-                    Text(
-                      '$_quantity',
-                      style: theme.textTheme.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                    SizedBox(
+                      width: 40,
+                      child: Text(
+                        '$_quantity',
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    SizedBox(width: r.mediumSpace),
-                    GestureDetector(
-                      onTap: () => setState(() => _quantity++),
-                      child: Icon(Icons.add,
-                          size: 20, color: theme.iconTheme.color),
+                    _buildQtyButton(
+                      theme,
+                      Icons.add,
+                      () => setState(() => _quantity++),
+                      true,
                     ),
                   ],
                 ),
@@ -646,52 +746,85 @@ class _ProductDetailPageState extends State<ProductDetailPage>
 
               // Add to Cart Button
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.read<ProductDetailBloc>().add(
-                          AddToCartEvent(
-                            item: CartEntity(
-                              productId: product.id,
-                              title: product.title,
-                              category: product.category,
-                              image: product.images.isNotEmpty
-                                  ? product.images[0]
-                                  : '',
-                              price: product.price,
-                              quantity: _quantity,
+                child: ScaleTransition(
+                  scale: _fabScale,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.read<ProductDetailBloc>().add(
+                            AddToCartEvent(
+                              item: CartEntity(
+                                productId: product.id,
+                                title: product.title,
+                                category: product.category,
+                                image: product.images.isNotEmpty
+                                    ? product.images[0]
+                                    : '',
+                                price: product.price,
+                                quantity: _quantity,
+                              ),
                             ),
-                          ),
-                        );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.primary,
-                    foregroundColor:
-                        isDark ? AppColors.darkGreyDark : Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    elevation: 4,
-                    shadowColor: theme.colorScheme.primary.withOpacity(0.4),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.shopping_bag_outlined),
-                      SizedBox(width: 8),
-                      Text(
-                        'Add to Cart',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                          );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.primary,
+                      foregroundColor:
+                          isDark ? AppColors.darkGreyDark : Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                    ],
+                      elevation: 8,
+                      shadowColor: theme.colorScheme.primary.withOpacity(0.4),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.shopping_bag_outlined),
+                        SizedBox(width: 12),
+                        Text(
+                          'Add to Cart',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQtyButton(
+      ThemeData theme, IconData icon, VoidCallback onTap, bool enabled) {
+    return GestureDetector(
+      onTap: enabled ? onTap : null,
+      child: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: enabled ? theme.cardTheme.color : theme.disabledColor.withOpacity(0.1),
+          shape: BoxShape.circle,
+          boxShadow: enabled
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  )
+                ]
+              : null,
+        ),
+        child: Icon(
+          icon,
+          size: 20,
+          color: enabled ? theme.iconTheme.color : theme.disabledColor,
         ),
       ),
     );
@@ -736,3 +869,4 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     );
   }
 }
+

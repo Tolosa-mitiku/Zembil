@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:zembil/features/home/presentation/pages/home.dart';
-import 'package:zembil/features/home/presentation/pages/product_detail.dart';
+import 'package:zembil/features/home/presentation/pages/product_detail_redesign.dart';
 
 class HomeRoutes {
   static final routes = [
@@ -14,7 +14,7 @@ class HomeRoutes {
               path: "/products/:productId",
               builder: (context, state) {
                 final String id = (state).pathParameters['productId'] as String;
-                return ProductDetailPage(id);
+                return ProductDetailRedesign(id);
               },
             )
           ],
