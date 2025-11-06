@@ -22,6 +22,10 @@ build/
 logs/
 *.log
 
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
 # ==================== Frontend (Flutter/Dart) ====================
 # Flutter/Dart specific files
 .dart_tool/
