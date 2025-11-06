@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:zembil/features/cart/presentation/pages/cart.dart';
-import 'package:zembil/features/home/presentation/pages/product_detail.dart';
+import 'package:zembil/features/cart/presentation/pages/cart_page_redesign.dart';
+import 'package:zembil/features/home/presentation/pages/product_detail_redesign.dart';
 
 class CartRoutes {
   static final routes = [
@@ -8,14 +8,15 @@ class CartRoutes {
       routes: [
         GoRoute(
           path: '/cart',
-          builder: (context, state) => CartPage(),
+          builder: (context, state) => const CartPageRedesign(),
           routes: [
             GoRoute(
-                path: '/products/:productId',
-                builder: (context, state) {
-                  final productId = state.pathParameters['productId'] as String;
-                  return ProductDetailPage(productId);
-                }),
+              path: 'products/:productId',
+              builder: (context, state) {
+                final productId = state.pathParameters['productId'] as String;
+                return ProductDetailRedesign(productId);
+              },
+            ),
           ],
         ),
       ],

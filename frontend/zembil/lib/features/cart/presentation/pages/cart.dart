@@ -28,8 +28,10 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
         child: BlocBuilder<CartBloc, CartState>(builder: (context, state) {
@@ -38,17 +40,22 @@ class _CartPageState extends State<CartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Product App Bar
-                CartAppBar(),
+                const CartAppBar(),
 
                 Expanded(child: CartProducts(state.items)),
 
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
+                    borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(20),
-                      // right: Radius.circular(20),
                     ),
-                    color: Colors.grey,
+                    color: theme.cardTheme.color,
+                    border: Border(
+                      top: BorderSide(
+                        color: theme.colorScheme.primary.withOpacity(0.2),
+                        width: 2,
+                      ),
+                    ),
                   ),
                   height: 200,
                   padding:
