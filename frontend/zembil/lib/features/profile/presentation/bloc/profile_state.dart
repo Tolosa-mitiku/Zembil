@@ -40,3 +40,14 @@ class SignOutError extends ProfileState {
   @override
   List<Object> get props => [message];
 }
+
+class ProfileUpdating extends ProfileState {}
+
+class ProfileUpdated extends ProfileState {
+  final ProfileEntity profile;
+
+  ProfileUpdated(this.profile);
+
+  @override
+  List<Object> get props => [profile];
+}

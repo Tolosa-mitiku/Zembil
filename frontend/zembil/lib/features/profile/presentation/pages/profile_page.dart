@@ -25,8 +25,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final theme = Theme.of(context);
+
     return Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: theme.scaffoldBackgroundColor,
         body: BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
             if (state is SignOutSuccess) {
@@ -37,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
-                  backgroundColor: Colors.red,
+                  backgroundColor: theme.colorScheme.error,
                 ),
               );
             }
@@ -46,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ProfileEntity profile = ProfileEntity();
             if (state is ProfileLoaded) profile = state.profile;
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Center(
                 child: SizedBox(
                   height: height * 0.65,
@@ -55,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 80.0,
                           ),
                           ProfileCard(
