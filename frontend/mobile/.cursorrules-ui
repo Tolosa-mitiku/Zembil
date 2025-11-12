@@ -1,0 +1,877 @@
+# Zembil UI/UX Design Rules - Modern E-Commerce Pattern
+
+## Design Philosophy
+
+Create a **luxurious, modern e-commerce experience** with:
+
+- 🏆 Gold & Grey color palette (premium feel)
+- ✨ Smooth, subtle animations (natural interactions)
+- 🎨 Clean, minimalist design (focus on products)
+- 📱 Mobile-first approach (thumb-friendly)
+- 🌙 Excellent dark mode support
+
+## Color Palette Rules
+
+### Light Mode: Gold + White
+
+```dart
+// Backgrounds
+background: #FFFFFF (pure white)
+surface: #FAFAFA (off-white for cards)
+card: #FFFFFF (white cards with shadows)
+
+// Text
+primary: #212121 (dark grey)
+secondary: #616161 (medium grey)
+tertiary: #9E9E9E (light grey)
+
+// Accents
+gold: #D4AF37 (primary actions, CTAs)
+goldLight: #FFD700 (highlights, active states)
+goldDark: #B8941E (pressed states)
+
+// Borders
+default: #E0E0E0 (light grey)
+focused: #D4AF37 (gold)
+```
+
+### Dark Mode: Gold + Dark Grey
+
+```dart
+// Backgrounds
+background: #121212 (deepest dark)
+surface: #1E1E1E (main dark grey)
+card: #2C2C2C (elevated cards)
+
+// Text
+primary: Gold shades (#FFD700, #D4AF37)
+secondary: #E0E0E0 (light grey)
+tertiary: #9E9E9E (medium grey)
+
+// Borders
+default: Gold with 20-30% opacity
+focused: #D4AF37 (full gold)
+```
+
+## Component Design Patterns
+
+### 1. Cards
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: theme.cardTheme.color, // Theme-aware
+    borderRadius: BorderRadius.circular(16), // Modern rounded corners
+    border: Border.all(
+      color: isDark
+        ? AppColors.gold.withOpacity(0.2) // Subtle gold in dark
+        : AppColors.grey200, // Light grey in light mode
+      width: 1,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: AppColors.getShadow(isDark),
+        blurRadius: 8,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+)
+```
+
+### 2. Buttons
+
+#### Primary Button (Elevated)
+
+```dart
+ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: AppColors.gold, // Always gold
+    foregroundColor: isDark ? AppColors.darkGreyDark : Colors.white,
+    elevation: isDark ? 4 : 2,
+    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+)
+```
+
+#### Secondary Button (Outlined)
+
+```dart
+OutlinedButton(
+  style: OutlinedButton.styleFrom(
+    foregroundColor: AppColors.gold,
+    side: BorderSide(color: AppColors.gold, width: 2),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+)
+```
+
+### 3. Text Fields
+
+```dart
+// Underline style (for auth pages)
+TextField(
+  decoration: InputDecoration(
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: isDark
+          ? theme.colorScheme.primary.withOpacity(0.3)
+          : theme.colorScheme.outline,
+        width: 1.5,
+      ),
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: theme.colorScheme.primary, // Gold
+        width: 2.5,
+      ),
+    ),
+  ),
+)
+
+// Filled style (for search, forms)
+TextField(
+  decoration: InputDecoration(
+    filled: true,
+    fillColor: theme.cardTheme.color,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: BorderSide.none,
+    ),
+    prefixIcon: Icon(Icons.search, color: theme.iconTheme.color),
+  ),
+)
+```
+
+### 4. Interactive Chips/Categories
+
+```dart
+// Animated selection chips
+AnimatedContainer(
+  duration: Duration(milliseconds: 200),
+  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+  decoration: BoxDecoration(
+    color: isSelected ? AppColors.gold : theme.cardTheme.color,
+    border: Border.all(
+      color: isSelected
+        ? AppColors.gold
+        : (isDark ? AppColors.gold.withOpacity(0.3) : AppColors.grey300),
+      width: isSelected ? 2 : 1.5,
+    ),
+    borderRadius: BorderRadius.circular(24), // Pill shape
+    boxShadow: isSelected ? [
+      BoxShadow(
+        color: AppColors.gold.withOpacity(0.3),
+        blurRadius: 8,
+      ),
+    ] : null,
+  ),
+)
+```
+
+### 5. Product Cards
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: theme.cardTheme.color,
+    borderRadius: BorderRadius.circular(16),
+    border: Border.all(
+      color: isDark
+        ? AppColors.gold.withOpacity(0.2)
+        : AppColors.grey200,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: AppColors.getShadow(isDark),
+        blurRadius: 8,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+  child: Column(
+    children: [
+      // Image (60-70% of card height)
+      Expanded(flex: 3, child: ProductImage()),
+      // Info (30-40% of card height)
+      Expanded(flex: 2, child: ProductInfo()),
+    ],
+  ),
+)
+```
+
+### 6. Image Containers
+
+```dart
+ClipRRect(
+  borderRadius: BorderRadius.circular(12),
+  child: Image.network(
+    imageUrl,
+    fit: BoxFit.cover,
+    errorBuilder: (context, error, stackTrace) {
+      return Container(
+        color: isDark ? AppColors.darkGreyLight : AppColors.grey100,
+        child: Icon(
+          Icons.image_not_supported_outlined,
+          color: theme.iconTheme.color?.withOpacity(0.3),
+        ),
+      );
+    },
+  ),
+)
+```
+
+### 7. Badges & Labels
+
+```dart
+// Discount Badge
+Container(
+  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+  decoration: BoxDecoration(
+    color: AppColors.error, // Red for discounts
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: Text(
+    '-20%',
+    style: AppTextStyles.labelSmall.copyWith(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+)
+
+// Feature Badge
+Container(
+  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+  decoration: BoxDecoration(
+    color: Colors.white.withOpacity(0.9),
+    borderRadius: BorderRadius.circular(20),
+  ),
+  child: Row(
+    children: [
+      Icon(Icons.star, size: 14, color: AppColors.gold),
+      SizedBox(width: 4),
+      Text('Featured', style: ...),
+    ],
+  ),
+)
+```
+
+### 8. Carousel/PageView
+
+```dart
+PageView.builder(
+  controller: PageController(viewportFraction: 0.85), // Show edges
+  itemBuilder: (context, index) {
+    final isActive = index == currentPage;
+    return AnimatedScale(
+      scale: isActive ? 1.0 : 0.9, // Scale inactive items
+      duration: Duration(milliseconds: 300),
+      child: CarouselItem(),
+    );
+  },
+)
+
+// Page Indicators
+Row(
+  children: List.generate(count, (index) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      width: currentPage == index ? 24 : 8,
+      height: 8,
+      decoration: BoxDecoration(
+        color: currentPage == index
+          ? AppColors.gold
+          : AppColors.gold.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(4),
+      ),
+    );
+  }),
+)
+```
+
+## Animation Guidelines
+
+### Timing
+
+- **Quick**: 150ms (press feedback, small state changes)
+- **Standard**: 200-300ms (most UI transitions)
+- **Slow**: 400-600ms (page transitions, complex animations)
+
+### Curves
+
+- **Ease Out**: Default for most animations
+- **Ease In Out**: Reversible animations
+- **Elastic Out**: Playful entry animations
+- **Ease Out Back**: Spring-like effects
+
+### Staggered Animations
+
+```dart
+// Grid items should animate in sequence
+Future.delayed(Duration(milliseconds: 50 * index), () {
+  controller.forward();
+});
+```
+
+### Animation Controllers
+
+```dart
+// Always use SingleTickerProviderStateMixin for single animations
+class _MyWidgetState extends State<MyWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      duration: Duration(milliseconds: 300),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // ALWAYS dispose
+    super.dispose();
+  }
+}
+```
+
+## Spacing System
+
+### Vertical Spacing
+
+- xs: 4px (tight spacing)
+- sm: 8px (compact spacing)
+- md: 16px (standard spacing)
+- lg: 24px (section spacing)
+- xl: 32px (major section spacing)
+- xxl: 40px (page sections)
+
+### Horizontal Padding
+
+- Page: 20px
+- Card: 12-16px
+- Button: 24px
+- Chip: 20px
+
+## Border Radius System
+
+- **Small**: 8px (badges, small buttons)
+- **Medium**: 12px (buttons, inputs)
+- **Large**: 16px (cards, large containers)
+- **Extra Large**: 20-24px (modals, dialogs)
+- **Pill**: 24-30px (chips, tags)
+- **Circle**: CircleBorder() or 999px
+
+## Shadow System
+
+### Light Mode
+
+```dart
+BoxShadow(
+  color: Colors.black.withOpacity(0.08),
+  blurRadius: 8,
+  offset: Offset(0, 2),
+)
+```
+
+### Dark Mode
+
+```dart
+BoxShadow(
+  color: Colors.black.withOpacity(0.25),
+  blurRadius: 12,
+  offset: Offset(0, 4),
+)
+```
+
+### Gold Glow (for primary actions)
+
+```dart
+BoxShadow(
+  color: AppColors.gold.withOpacity(0.3),
+  blurRadius: 12,
+  spreadRadius: 2,
+)
+```
+
+## Icon Usage
+
+### Always use outlined variants for inactive states
+
+```dart
+// Inactive
+Icons.home_outlined
+Icons.shopping_cart_outlined
+Icons.favorite_border
+Icons.person_outline
+
+// Active
+Icons.home
+Icons.shopping_cart
+Icons.favorite
+Icons.person
+```
+
+### Icon Colors
+
+```dart
+// Use theme icon color (auto gold-tinted in dark mode)
+Icon(Icons.example, color: theme.iconTheme.color)
+
+// For special states
+Icon(Icons.favorite, color: AppColors.favorite) // Red heart
+Icon(Icons.star, color: AppColors.rating) // Gold star
+```
+
+## Loading States
+
+### Circular Progress Indicator
+
+```dart
+CircularProgressIndicator(
+  valueColor: AlwaysStoppedAnimation<Color>(
+    theme.colorScheme.primary, // Gold
+  ),
+  strokeWidth: 3,
+)
+```
+
+### Shimmer Effect
+
+```dart
+Shimmer.fromColors(
+  baseColor: AppColors.getShimmerBase(isDark),
+  highlightColor: AppColors.getShimmerHighlight(isDark),
+  child: // skeleton widget
+)
+```
+
+## Typography Hierarchy
+
+### Headers
+
+```dart
+// Page Title
+theme.textTheme.headlineSmall (24px, bold)
+
+// Section Title
+theme.textTheme.titleLarge (22px, w600)
+
+// Card Title
+theme.textTheme.titleMedium (16px, w600)
+```
+
+### Body Text
+
+```dart
+// Primary
+theme.textTheme.bodyLarge (16px, regular)
+
+// Secondary
+theme.textTheme.bodyMedium (14px, regular)
+
+// Captions
+theme.textTheme.bodySmall (12px, regular)
+```
+
+### Special
+
+```dart
+// Price
+AppTextStyles.price or titleMedium.copyWith(
+  color: theme.colorScheme.primary, // Gold
+  fontWeight: FontWeight.bold,
+)
+
+// Buttons
+AppTextStyles.button (16px, w600)
+```
+
+## Layout Patterns
+
+### Page Structure
+
+```dart
+Scaffold(
+  backgroundColor: theme.scaffoldBackgroundColor,
+  body: SafeArea(
+    child: CustomScrollView(
+      slivers: [
+        SliverAppBar(floating: true, snap: true, ...),
+        SliverToBoxAdapter(child: PageContent()),
+      ],
+    ),
+  ),
+)
+```
+
+### Grid Layout
+
+```dart
+GridView.builder(
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 16,
+    mainAxisSpacing: 16,
+    childAspectRatio: 0.7, // Portrait cards
+  ),
+)
+```
+
+### Horizontal Scrolling Lists
+
+```dart
+SizedBox(
+  height: 44, // Fixed height
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    padding: EdgeInsets.symmetric(horizontal: 4),
+    itemBuilder: (context, index) => // items with margin
+  ),
+)
+```
+
+## Interactive Elements
+
+### Press Feedback
+
+```dart
+GestureDetector(
+  onTapDown: (_) => _controller.forward(),
+  onTapUp: (_) => _controller.reverse(),
+  onTapCancel: () => _controller.reverse(),
+  child: ScaleTransition(
+    scale: Tween(begin: 1.0, end: 0.95).animate(_controller),
+    child: // widget
+  ),
+)
+```
+
+### Favorite Button Pattern
+
+```dart
+GestureDetector(
+  onTap: () => setState(() => _isFavorite = !_isFavorite),
+  child: AnimatedContainer(
+    duration: Duration(milliseconds: 200),
+    padding: EdgeInsets.all(6),
+    decoration: BoxDecoration(
+      color: Colors.white.withOpacity(0.9),
+      shape: BoxShape.circle,
+    ),
+    child: Icon(
+      _isFavorite ? Icons.favorite : Icons.favorite_border,
+      color: _isFavorite ? AppColors.favorite : AppColors.grey600,
+    ),
+  ),
+)
+```
+
+## Image Handling
+
+### Always provide error builders
+
+```dart
+Image.network(
+  url,
+  fit: BoxFit.cover,
+  errorBuilder: (context, error, stackTrace) {
+    return Container(
+      color: isDark ? AppColors.darkGreyLight : AppColors.grey100,
+      child: Icon(
+        Icons.image_not_supported_outlined,
+        color: theme.iconTheme.color?.withOpacity(0.3),
+      ),
+    );
+  },
+)
+```
+
+### Wrap images in ClipRRect
+
+```dart
+ClipRRect(
+  borderRadius: BorderRadius.circular(12),
+  child: Image.network(...),
+)
+```
+
+## Gradient Usage
+
+### Gold Gradient (for premium elements)
+
+```dart
+decoration: BoxDecoration(
+  gradient: AppColors.goldGradient,
+  borderRadius: BorderRadius.circular(20),
+)
+```
+
+### Overlay Gradients (for images)
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.centerRight,
+      end: Alignment.centerLeft,
+      colors: [
+        Colors.black.withOpacity(0.7),
+        Colors.transparent,
+      ],
+    ),
+  ),
+)
+```
+
+## Stacked Layouts
+
+### Image with Overlays
+
+```dart
+Stack(
+  fit: StackFit.expand,
+  children: [
+    Image.network(...), // Background
+    Container(...), // Gradient overlay
+    Positioned( // Badge
+      top: 12, left: 12,
+      child: Badge(),
+    ),
+    Positioned( // Action button
+      top: 12, right: 12,
+      child: IconButton(),
+    ),
+    Positioned( // Info
+      bottom: 20, left: 20, right: 20,
+      child: ProductInfo(),
+    ),
+  ],
+)
+```
+
+## Best Practices
+
+### Performance
+
+- ✅ Use `const` constructors everywhere possible
+- ✅ Dispose animation controllers in `dispose()`
+- ✅ Stagger animations to prevent jank (50ms delays)
+- ✅ Use `ListView.builder` for scrolling lists
+- ✅ Provide `errorBuilder` for network images
+
+### Responsiveness
+
+- ✅ Use `MediaQuery` sparingly (prefer Flex widgets)
+- ✅ Use `Expanded` and `Flexible` for dynamic sizing
+- ✅ Test on multiple screen sizes
+- ✅ Use `SafeArea` to avoid notches/status bars
+
+### Accessibility
+
+- ✅ Minimum touch target: 44x44
+- ✅ Sufficient color contrast (WCAG AA)
+- ✅ Semantic labels for screen readers
+- ✅ Support both light and dark modes
+
+### Theme Integration
+
+- ✅ NEVER use hardcoded colors (`Colors.black`, `Color(0xFF...)`)
+- ✅ ALWAYS use `theme.textTheme.xxx` for text styles
+- ✅ ALWAYS use `theme.colorScheme.primary` for gold
+- ✅ ALWAYS check `isDark` for conditional styling
+- ✅ Use `AppColors.getSomething(isDark)` helper methods
+
+### Animation
+
+- ✅ Keep animations under 400ms
+- ✅ Use `Curves.easeOut` as default
+- ✅ Provide visual feedback for all interactions
+- ✅ Stagger grid/list animations
+- ✅ Always dispose controllers
+
+## Common Patterns
+
+### Section Header
+
+```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Text(
+      'Section Title',
+      style: theme.textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    TextButton(
+      onPressed: () {},
+      child: Text(
+        'See All',
+        style: AppTextStyles.labelLarge.copyWith(
+          color: theme.colorScheme.primary,
+        ),
+      ),
+    ),
+  ],
+)
+```
+
+### Price Display
+
+```dart
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    // Current Price
+    Text(
+      '\$${price.toStringAsFixed(2)}',
+      style: AppTextStyles.titleMedium.copyWith(
+        color: theme.colorScheme.primary, // Gold
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    // Original Price (if discounted)
+    if (hasDiscount)
+      Text(
+        '\$${originalPrice.toStringAsFixed(2)}',
+        style: AppTextStyles.bodySmall.copyWith(
+          decoration: TextDecoration.lineThrough,
+        ),
+      ),
+  ],
+)
+```
+
+### Loading State
+
+```dart
+if (state is Loading)
+  Center(
+    child: CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(AppColors.gold),
+    ),
+  )
+```
+
+### Error State
+
+```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Icon(
+      Icons.error_outline,
+      size: 48,
+      color: theme.colorScheme.error,
+    ),
+    SizedBox(height: 16),
+    Text(errorMessage, style: theme.textTheme.bodyMedium),
+  ],
+)
+```
+
+## Do's and Don'ts
+
+### ✅ DO
+
+- Use gold for all primary actions and accents
+- Add subtle animations to all interactions
+- Provide visual feedback (scale, color, shadow)
+- Use rounded corners (12-16px for most elements)
+- Add shadows to elevated elements
+- Support both light and dark modes equally
+- Use theme colors exclusively
+- Add error builders to images
+- Stagger grid animations
+
+### ❌ DON'T
+
+- Use hardcoded colors
+- Forget to dispose controllers
+- Over-animate (keep it subtle)
+- Use sharp corners (except for specific design needs)
+- Forget loading/error/empty states
+- Mix animation durations randomly
+- Use heavy animations (keep under 400ms)
+- Forget const constructors
+- Ignore dark mode
+
+## Example: Complete Modern Widget
+
+```dart
+class ModernProductCard extends StatefulWidget {
+  final Product product;
+  const ModernProductCard({required this.product});
+
+  @override
+  State<ModernProductCard> createState() => _ModernProductCardState();
+}
+
+class _ModernProductCardState extends State<ModernProductCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+  bool _isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.cardTheme.color,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark
+              ? AppColors.gold.withOpacity(0.2)
+              : AppColors.grey200,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.getShadow(isDark),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: // Your content
+      ),
+    );
+  }
+}
+```
+
+---
+
+**Follow these rules to maintain a consistent, modern, and luxurious UI throughout the Zembil app** 🏆✨
