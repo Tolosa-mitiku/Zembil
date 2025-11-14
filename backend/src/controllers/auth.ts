@@ -7,24 +7,34 @@ export const loginUser = async (req: CustomRequest, res: Response) => {
   try {
     console.log("🔐 Login request received");
     console.log("👤 User from token:", req.user);
+    console.log("📦 Request body:", req.body);
 
     let user = await User.findOne({ uid: req.user?.uid });
     let isNewUser = false;
 
     if (!user) {
       console.log("✨ Creating new user...");
-      // Create new user
+      
+      // Get role from request body, default to 'buyer' if not specified
+      const role = req.body.role || 'buyer';
+      
+      // Validate role
+      const validRoles = ['buyer', 'seller', 'admin'];
+      const finalRole = validRoles.includes(role) ? role : 'buyer';
+      
+      // Create new user with specified role
       user = new User({
         uid: req.user?.uid,
         email: req.user?.email,
         name: req.user?.name,
         image: req.user?.image,
+        role: finalRole,
       });
       await user.save();
       isNewUser = true;
-      console.log("✅ New user created:", user._id);
+      console.log("✅ New user created:", user._id, "with role:", user.role);
     } else {
-      console.log("✅ Existing user found:", user._id);
+      console.log("✅ Existing user found:", user._id, "with role:", user.role);
     }
 
     // Return user data
