@@ -22,8 +22,11 @@ export const verifyFirebaseToken = async (
     // Verify Firebase token
     const decodedToken = await admin.auth().verifyIdToken(idToken);
 
-    // Check if email is verified
-    if (!decodedToken.email_verified) {
+    // Check if email is verified (skip for Google OAuth sign-ins)
+    // Google sign-ins have firebase.sign_in_provider === 'google.com' and are pre-verified
+    const isGoogleSignIn = decodedToken.firebase?.sign_in_provider === 'google.com';
+    
+    if (!isGoogleSignIn && !decodedToken.email_verified) {
       return res.status(403).send("Email not verified");
     }
 
