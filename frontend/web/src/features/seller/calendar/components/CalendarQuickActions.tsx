@@ -114,3 +114,7 @@ const CalendarQuickActions = ({ onAddEvent }: CalendarQuickActionsProps) => {
 
 export default CalendarQuickActions;
 
+
+
+
+
