@@ -232,3 +232,7 @@ const ReviewCard = ({ review, onResponse, onDeleteResponse, isSellerView = true 
 
 export default ReviewCard;
 
+
+
+
+
