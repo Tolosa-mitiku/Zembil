@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { auth } from '@/core/firebase/config';
 
 // Types
 export interface Message {
@@ -45,10 +46,15 @@ export const messagesApi = createApi({
   reducerPath: 'messagesApi',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:5001/api',
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('firebaseToken');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
+    prepareHeaders: async (headers) => {
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const token = await user.getIdToken();
+          headers.set('authorization', `Bearer ${token}`);
+        }
+      } catch (error) {
+        console.error('Error getting auth token:', error);
       }
       return headers;
     },
