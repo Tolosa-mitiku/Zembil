@@ -16,16 +16,26 @@ class ProductRemoteDatasource extends ProductDatasource {
       Map<String, String>? filters) async {
     try {
       final response = await httpClient.get(Urls.products, filters: filters);
-      final decodedResponse = jsonDecode(response.body) as List<dynamic>;
+      final decodedResponse = jsonDecode(response.body);
 
-      final products = decodedResponse
+      // Handle new backend response format with success/data structure
+      List<dynamic> productsData;
+      if (decodedResponse is Map && decodedResponse.containsKey('data')) {
+        productsData = decodedResponse['data'] as List<dynamic>;
+      } else if (decodedResponse is List) {
+        productsData = decodedResponse;
+      } else {
+        return Left(ServerFailure("Invalid response format"));
+      }
+
+      final products = productsData
           .map((e) => ProductModel.fromJson(e))
           .whereType<ProductModel>()
           .toList();
       return Right(products);
     } catch (e) {
-      print(e);
-      return Left(ServerFailure("Server Error"));
+      print('❌ Get products error: $e');
+      return Left(ServerFailure("Failed to fetch products: ${e.toString()}"));
     }
   }
 
@@ -33,14 +43,23 @@ class ProductRemoteDatasource extends ProductDatasource {
   Future<Either<Failure, ProductModel>> getProduct(String productId) async {
     try {
       final response = await httpClient.get("${Urls.products}/$productId");
-      final decodedResponse = jsonDecode(response.body) as Map<String, dynamic>;
+      final decodedResponse = jsonDecode(response.body);
 
-      final product = ProductModel.fromJson(decodedResponse);
+      // Handle new backend response format
+      Map<String, dynamic> productData;
+      if (decodedResponse is Map && decodedResponse.containsKey('data')) {
+        productData = Map<String, dynamic>.from(decodedResponse['data'] as Map);
+      } else if (decodedResponse is Map) {
+        productData = Map<String, dynamic>.from(decodedResponse);
+      } else {
+        return Left(ServerFailure("Invalid response format"));
+      }
 
+      final product = ProductModel.fromJson(productData);
       return Right(product);
     } catch (e) {
-      print(e);
-      return Left(ServerFailure("Server Error"));
+      print('❌ Get product error: $e');
+      return Left(ServerFailure("Failed to fetch product: ${e.toString()}"));
     }
   }
 }

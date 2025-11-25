@@ -1,0 +1,91 @@
+# ==================== Backend .gitignore ====================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sensitive: Environment variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Sensitive: Firebase Service Account
+firebase-service-account.json
+**/firebase-service-account.json
+
+# Build output
+dist/
+build/
+.vercel/
+.next/
+out/
+
+# TypeScript compiled files (if not needed in repo)
+# *.js
+# *.map
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.iml
+*.ipr
+*.iws
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+*~
+
+# Test coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Database files (if using local DB)
+*.sqlite
+*.sqlite3
+*.db
+
+# Sensitive: SSL certificates and keys
+*.pem
+*.key
+*.cert
+*.crt
+
+# Package manager lock files (optional - uncomment if needed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Deployment
+.vercel/
+.now/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env.development.local
+.env.test.local
+.env.production.local
+

@@ -10,19 +10,39 @@ import 'package:zembil/features/authentication/presentation/widgets/custom_text_
 import 'package:zembil/features/authentication/presentation/widgets/sign_in_with.dart';
 import 'package:zembil/injector.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  late LogInBloc _loginBloc;
 
-  Login({super.key});
+  @override
+  void initState() {
+    super.initState();
+    _loginBloc = locator<LogInBloc>();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _loginBloc.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: BlocProvider(
-        create: (context) => locator<LogInBloc>(),
+      body: BlocProvider.value(
+        value: _loginBloc,
         child: SingleChildScrollView(
           child: Padding(
             padding:
@@ -30,17 +50,22 @@ class Login extends StatelessWidget {
             child:
                 BlocConsumer<LogInBloc, LogInState>(listener: (context, state) {
               if (state is FirebaseLogInAuthenticated) {
-                context.read<LogInBloc>().add(CheckVerificationEmailEvent());
+                _loginBloc.add(CheckVerificationEmailEvent());
               } else if (state is FirebaseEmailVerified ||
                   state is FirebaseGoogleLogInAuthenticated) {
-                context.read<LogInBloc>().add(ZembilLogInEvent());
+                _loginBloc.add(ZembilLogInEvent());
               } else if (state is FirebaseEmailVerificationRequired) {
-                GoRouter.of(context).push("/email_verification");
+                // Use future to ensure navigation happens after current frame
+                Future.microtask(() => context.go("/email_verification"));
               } else if (state is ZembilLogInAuthenticated) {
-                GoRouter.of(context).go("/index");
+                // Use future to ensure navigation happens after current frame
+                Future.microtask(() => context.go("/index"));
               } else if (state is LogInError) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message)),
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.red,
+                  ),
                 );
               }
             }, builder: (context, state) {
@@ -67,7 +92,7 @@ class Login extends StatelessWidget {
                     errorText: emailError,
                     controller: _emailController,
                     onChanged: (value) {
-                      context.read<LogInBloc>().add(LogInEmailChanged(value));
+                      _loginBloc.add(LogInEmailChanged(value));
                     },
                   ),
                   SizedBox(
@@ -79,36 +104,31 @@ class Login extends StatelessWidget {
                     errorText: passwordError,
                     controller: _passwordController,
                     onChanged: (value) {
-                      context
-                          .read<LogInBloc>()
-                          .add(LogInPasswordChanged(value));
+                      _loginBloc.add(LogInPasswordChanged(value));
                     },
                   ),
                   SizedBox(
                     height: screenHeight * 0.05,
                   ),
                   state is LogInWithEmailAndPasswordLoading
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : CustomButton(
                           text: 'Log In',
                           onPressed: () {
-                            context.read<LogInBloc>().add(
-                                FirebaseLogInWithEmailEvent(
-                                    _emailController.text,
-                                    _passwordController.text));
+                            _loginBloc.add(FirebaseLogInWithEmailEvent(
+                                _emailController.text,
+                                _passwordController.text));
                           },
                         ),
                   SizedBox(
                     height: screenHeight * 0.05,
                   ),
                   state is LogInWithGoogleLoading
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : SignInWith(
                           image: 'assets/svgs/google.svg',
                           onPressed: () {
-                            context
-                                .read<LogInBloc>()
-                                .add(FirebaseSignInWithGoogleEvent());
+                            _loginBloc.add(FirebaseSignInWithGoogleEvent());
                           }),
                   SizedBox(
                     height: screenHeight * 0.05,
@@ -117,16 +137,15 @@ class Login extends StatelessWidget {
                     text1: 'Don\'t have an account? ',
                     text2: 'Register',
                     onPressed: () {
-                      // Navigate to the Login Page
-                      GoRouter.of(context).go("/signup");
+                      // Use go instead of push for better navigation stack management
+                      context.go("/signup");
                     },
                   ),
                   AuthRichText(
                     text1: '',
                     text2: 'Forgot Password?',
                     onPressed: () {
-                      // Navigate to the Login Page
-                      GoRouter.of(context).push("/forgot_password");
+                      context.push("/forgot_password");
                     },
                   ),
                 ],
