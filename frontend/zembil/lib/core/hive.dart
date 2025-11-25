@@ -5,7 +5,20 @@ class HiveService {
   final Box _onboarding = Hive.box('onboarding');
   final Box _cartBox = Hive.box<CartEntity>('cart');
 
-// Onboarding
+  // Generic data access methods
+  dynamic getData(String key) {
+    return _onboarding.get(key);
+  }
+
+  Future<void> saveData(String key, dynamic value) async {
+    await _onboarding.put(key, value);
+  }
+
+  Future<void> deleteData(String key) async {
+    await _onboarding.delete(key);
+  }
+
+  // Onboarding
   bool get hasSeenOnboarding =>
       _onboarding.get('hasSeenOnboarding', defaultValue: false);
 
