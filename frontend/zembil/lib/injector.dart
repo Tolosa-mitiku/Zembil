@@ -4,6 +4,7 @@ import 'package:zembil/core/constants.dart';
 import 'package:zembil/core/hive.dart';
 import 'package:zembil/core/http_Client.dart';
 import 'package:zembil/core/secure_storage.dart';
+import 'package:zembil/core/theme/cubit/theme_cubit.dart';
 import 'package:zembil/features/authentication/data/data_sources/auth.dart';
 import 'package:zembil/features/authentication/data/repository/auth.dart';
 import 'package:zembil/features/authentication/domain/repository/auth.dart';
@@ -18,6 +19,7 @@ import 'package:zembil/features/authentication/domain/usecase/sign_up_with_email
 import 'package:zembil/features/authentication/domain/usecase/validate_confirm_password.dart';
 import 'package:zembil/features/authentication/domain/usecase/validate_email.dart';
 import 'package:zembil/features/authentication/domain/usecase/validate_password.dart';
+import 'package:zembil/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/email_verification_bloc/email_verification_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/forgot_password_bloc.dart/forgot_password_bloc.dart';
 import 'package:zembil/features/authentication/presentation/bloc/log_in_bloc/log_in_bloc.dart';
@@ -66,7 +68,15 @@ final locator = GetIt.instance;
 
 Future<void> setupLocator() async {
 // blocs
+  //  Theme
+  locator.registerLazySingleton(() => ThemeCubit(locator()));
+
   //  Authentication
+  locator.registerLazySingleton(() => AuthBloc(
+        secureStorageHelper: locator(),
+        signOut: locator(),
+      ));
+
   locator.registerLazySingleton(() => OnboardingBloc(
         completeOnboardingUseCase: locator(),
       ));

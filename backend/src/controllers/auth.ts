@@ -6,6 +6,8 @@ import { CustomRequest } from "../types/express";
 export const loginUser = async (req: CustomRequest, res: Response) => {
   try {
     let user = await User.findOne({ uid: req.user?.uid });
+    let isNewUser = false;
+
     if (!user) {
       // Create new user
       user = new User({
@@ -15,10 +17,27 @@ export const loginUser = async (req: CustomRequest, res: Response) => {
         image: req.user?.image,
       });
       await user.save();
+      isNewUser = true;
     }
+
     // Return user data
-    return res.status(200).json({ message: "Login successful", user });
+    return res.status(200).json({
+      success: true,
+      message: isNewUser ? "User registered successfully" : "Login successful",
+      user: {
+        _id: user._id,
+        uid: user.uid,
+        email: user.email,
+        name: user.name,
+        image: user.image,
+        role: user.role,
+      },
+    });
   } catch (error) {
-    return res.status(500).json({ message: "Login failed", error });
+    return res.status(500).json({
+      success: false,
+      message: "Login failed",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 };

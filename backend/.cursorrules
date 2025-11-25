@@ -1,0 +1,543 @@
+# Zembil Backend - Node.js/Express Cursor Rules
+
+## Project Overview
+Zembil backend is a Node.js Express API with TypeScript, using MongoDB (Mongoose) for data storage and Firebase Admin SDK for authentication verification.
+
+## Architecture Pattern: Layered Architecture
+
+### Directory Structure
+```
+src/
+├── app.ts              # Express app setup, middleware, routes
+├── server.ts           # Server entry point, DB connection
+├── controllers/        # Request handlers (thin controllers)
+├── services/           # Business logic layer
+├── models/             # Mongoose schemas and models
+├── routes/             # Route definitions
+├── middlewares/        # Custom middleware (auth, validation)
+└── types/              # TypeScript type definitions
+```
+
+## Coding Standards
+
+### 1. File Naming Conventions
+- Use `camelCase` for all TypeScript files
+- Controllers: `[resource].ts` (e.g., `product.ts`, `auth.ts`)
+- Services: `[resource].ts` in services folder
+- Models: `[resource].ts` (singular, e.g., `product.ts`, `user.ts`)
+- Routes: `[resource].ts`
+- Middlewares: `[descriptiveName].ts` (e.g., `verifyFirebaseToken.ts`)
+
+### 2. Controller Pattern
+```typescript
+// Controllers should be thin - delegate business logic to services
+import { Request, Response } from "express";
+import { ProductService } from "../services/product";
+
+export const getProductById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const product = await ProductService.findById(id);
+    
+    if (!product) {
+      return res.status(404).json({ 
+        success: false,
+        message: "Product not found" 
+      });
+    }
+    
+    return res.status(200).json({ 
+      success: true,
+      data: product 
+    });
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return res.status(500).json({ 
+      success: false,
+      message: "Error fetching product",
+      error: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+};
+```
+
+### 3. Response Format
+```typescript
+// Success response
+{
+  success: true,
+  data: { ... },
+  message?: "Optional message"
+}
+
+// Error response
+{
+  success: false,
+  message: "Error description",
+  error?: "Detailed error (only in development)"
+}
+
+// Paginated response
+{
+  success: true,
+  data: [...],
+  pagination: {
+    page: 1,
+    limit: 10,
+    total: 100,
+    totalPages: 10
+  }
+}
+```
+
+### 4. Mongoose Model Pattern
+```typescript
+import { Schema, model, Document } from "mongoose";
+
+// Define interface for type safety
+export interface IProduct extends Document {
+  sellerId: Schema.Types.ObjectId;
+  title: string;
+  description?: string;
+  category: string;
+  price: number;
+  stockQuantity: number;
+  images: string[];
+  isFeatured: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const productSchema = new Schema<IProduct>(
+  {
+    sellerId: { 
+      type: Schema.Types.ObjectId, 
+      ref: "Seller", 
+      required: [true, "Seller ID is required"] 
+    },
+    title: { 
+      type: String, 
+      required: [true, "Title is required"],
+      trim: true,
+      maxlength: [200, "Title cannot exceed 200 characters"]
+    },
+    description: { 
+      type: String,
+      trim: true 
+    },
+    category: { 
+      type: String, 
+      required: [true, "Category is required"],
+      enum: ["Electronics", "Clothing", "Home", "Books", "Other"]
+    },
+    price: { 
+      type: Number, 
+      required: [true, "Price is required"],
+      min: [0, "Price cannot be negative"]
+    },
+    stockQuantity: { 
+      type: Number, 
+      required: true,
+      min: [0, "Stock cannot be negative"],
+      default: 0
+    },
+    images: [{ type: String }],
+    isFeatured: { type: Boolean, default: false },
+  },
+  {
+    timestamps: true, // Automatically manage createdAt and updatedAt
+  }
+);
+
+// Add indexes for common queries
+productSchema.index({ category: 1 });
+productSchema.index({ sellerId: 1 });
+productSchema.index({ isFeatured: 1 });
+productSchema.index({ title: "text", description: "text" }); // Text search
+
+export const Product = model<IProduct>("Product", productSchema);
+```
+
+### 5. Route Pattern
+```typescript
+import { Router } from "express";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { authorizeRole } from "../middlewares/authorizeRole";
+import {
+  createProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+} from "../controllers/product";
+
+const router = Router();
+
+// Public routes
+router.get("/", getAllProducts);
+router.get("/:id", getProductById);
+
+// Protected routes (require authentication)
+router.post("/", verifyFirebaseToken, authorizeRole(["seller", "admin"]), createProduct);
+router.put("/:id", verifyFirebaseToken, authorizeRole(["seller", "admin"]), updateProduct);
+router.delete("/:id", verifyFirebaseToken, authorizeRole(["seller", "admin"]), deleteProduct);
+
+export default router;
+```
+
+### 6. Middleware Pattern
+```typescript
+// Authentication middleware
+import { NextFunction, Response } from "express";
+import admin from "firebase-admin";
+import { CustomRequest } from "../types/express";
+
+export const verifyFirebaseToken = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader?.startsWith("Bearer ")) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Unauthorized: Token not provided" 
+      });
+    }
+
+    const idToken = authHeader.split("Bearer ")[1];
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+
+    // Attach user to request
+    req.user = {
+      uid: decodedToken.uid,
+      email: decodedToken.email ?? null,
+      name: decodedToken.name,
+      image: decodedToken.picture ?? null,
+      role: decodedToken.role,
+    };
+
+    next();
+  } catch (error) {
+    return res.status(401).json({ 
+      success: false,
+      message: "Unauthorized: Invalid token" 
+    });
+  }
+};
+
+// Role authorization middleware
+export const authorizeRole = (allowedRoles: string[]) => {
+  return (req: CustomRequest, res: Response, next: NextFunction) => {
+    if (!req.user?.role || !allowedRoles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        message: "Forbidden: Insufficient permissions"
+      });
+    }
+    next();
+  };
+};
+```
+
+### 7. Service Layer Pattern (Business Logic)
+```typescript
+// services/product.ts
+import { Product, IProduct } from "../models/product";
+import { FilterQuery } from "mongoose";
+
+export class ProductService {
+  static async findById(id: string): Promise<IProduct | null> {
+    return Product.findById(id).populate("sellerId", "name email");
+  }
+
+  static async findAll(
+    filters: FilterQuery<IProduct> = {},
+    options: { page?: number; limit?: number; sort?: string } = {}
+  ) {
+    const { page = 1, limit = 10, sort = "-createdAt" } = options;
+    const skip = (page - 1) * limit;
+
+    const [products, total] = await Promise.all([
+      Product.find(filters)
+        .sort(sort)
+        .skip(skip)
+        .limit(limit)
+        .populate("sellerId", "name"),
+      Product.countDocuments(filters),
+    ]);
+
+    return {
+      products,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
+  static async create(data: Partial<IProduct>): Promise<IProduct> {
+    const product = new Product(data);
+    return product.save();
+  }
+
+  static async update(
+    id: string,
+    data: Partial<IProduct>
+  ): Promise<IProduct | null> {
+    return Product.findByIdAndUpdate(id, data, { 
+      new: true, 
+      runValidators: true 
+    });
+  }
+
+  static async delete(id: string): Promise<IProduct | null> {
+    return Product.findByIdAndDelete(id);
+  }
+}
+```
+
+### 8. Type Definitions
+```typescript
+// types/express.d.ts
+import { Request } from "express";
+
+export interface UserPayload {
+  uid: string;
+  email: string | null;
+  name?: string;
+  image?: string | null;
+  role?: string;
+}
+
+export interface CustomRequest extends Request {
+  user?: UserPayload;
+}
+
+// For query parameters
+export interface PaginationQuery {
+  page?: string;
+  limit?: string;
+  sort?: string;
+}
+
+export interface ProductQuery extends PaginationQuery {
+  category?: string;
+  isFeatured?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  search?: string;
+}
+```
+
+### 9. Error Handling
+```typescript
+// Custom error class
+export class AppError extends Error {
+  statusCode: number;
+  isOperational: boolean;
+
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+    this.isOperational = true;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+// Global error handler middleware
+export const errorHandler = (
+  err: Error | AppError,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const statusCode = "statusCode" in err ? err.statusCode : 500;
+  const message = err.message || "Internal Server Error";
+
+  console.error("Error:", err);
+
+  res.status(statusCode).json({
+    success: false,
+    message,
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+  });
+};
+```
+
+### 10. Environment Configuration
+```typescript
+// config/index.ts
+import dotenv from "dotenv";
+dotenv.config();
+
+export const config = {
+  port: process.env.PORT || 5000,
+  mongoUri: process.env.MONGO_URI || "mongodb://localhost:27017/zembil",
+  nodeEnv: process.env.NODE_ENV || "development",
+  firebase: {
+    serviceAccount: process.env.FIREBASE_SERVICE_ACCOUNT
+      ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+      : null,
+  },
+};
+
+// Validate required env vars
+const requiredEnvVars = ["MONGO_URI", "FIREBASE_SERVICE_ACCOUNT"];
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    throw new Error(`Missing required environment variable: ${envVar}`);
+  }
+}
+```
+
+## API Design Guidelines
+
+### RESTful Conventions
+```
+GET    /api/v1/products          - List all products
+GET    /api/v1/products/:id      - Get single product
+POST   /api/v1/products          - Create product
+PUT    /api/v1/products/:id      - Update product
+DELETE /api/v1/products/:id      - Delete product
+
+GET    /api/v1/users/me          - Get current user profile
+PUT    /api/v1/users/me          - Update current user profile
+```
+
+### Query Parameters for Filtering
+```
+GET /api/v1/products?category=Electronics&minPrice=100&maxPrice=500
+GET /api/v1/products?page=2&limit=20&sort=-price
+GET /api/v1/products?search=laptop&isFeatured=true
+```
+
+### HTTP Status Codes
+- `200` - Success
+- `201` - Created
+- `204` - No Content (successful delete)
+- `400` - Bad Request (validation error)
+- `401` - Unauthorized (not authenticated)
+- `403` - Forbidden (not authorized)
+- `404` - Not Found
+- `409` - Conflict (duplicate resource)
+- `422` - Unprocessable Entity (semantic error)
+- `500` - Internal Server Error
+
+## Security Best Practices
+
+### Input Validation
+```typescript
+// Use express-validator or Joi for input validation
+import { body, validationResult } from "express-validator";
+
+export const validateProduct = [
+  body("title")
+    .trim()
+    .notEmpty()
+    .withMessage("Title is required")
+    .isLength({ max: 200 })
+    .withMessage("Title cannot exceed 200 characters"),
+  body("price")
+    .isFloat({ min: 0 })
+    .withMessage("Price must be a positive number"),
+  body("category")
+    .isIn(["Electronics", "Clothing", "Home", "Books", "Other"])
+    .withMessage("Invalid category"),
+];
+
+export const handleValidationErrors = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      message: "Validation error",
+      errors: errors.array(),
+    });
+  }
+  next();
+};
+```
+
+### Security Headers
+```typescript
+import helmet from "helmet";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+
+app.use(helmet());
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGINS?.split(",") || "*",
+  credentials: true,
+}));
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+app.use("/api/", limiter);
+```
+
+## Database Best Practices
+
+### MongoDB Indexes
+- Add indexes for frequently queried fields
+- Use compound indexes for common query combinations
+- Use text indexes for search functionality
+
+### Mongoose Virtuals and Methods
+```typescript
+// Virtual for computed properties
+productSchema.virtual("discountedPrice").get(function () {
+  if (this.discount?.percentage) {
+    return this.price * (1 - this.discount.percentage / 100);
+  }
+  return this.price;
+});
+
+// Instance methods
+productSchema.methods.isInStock = function () {
+  return this.stockQuantity > 0;
+};
+
+// Static methods
+productSchema.statics.findFeatured = function () {
+  return this.find({ isFeatured: true });
+};
+```
+
+## Code Quality Checklist
+
+### Before committing:
+- [ ] All endpoints return consistent response format
+- [ ] Input validation on all POST/PUT endpoints
+- [ ] Authentication middleware on protected routes
+- [ ] Role-based authorization where needed
+- [ ] Proper error handling with try/catch
+- [ ] TypeScript types for request/response objects
+- [ ] No sensitive data in logs
+- [ ] Environment variables for configuration
+- [ ] Database indexes for common queries
+
+## Testing Guidelines
+- Unit tests for services
+- Integration tests for routes
+- Use `supertest` for HTTP testing
+- Mock external services (Firebase, MongoDB)
+
+## Deployment Checklist
+- [ ] Environment variables configured
+- [ ] MongoDB connection string uses SSL
+- [ ] CORS configured for production origins
+- [ ] Rate limiting enabled
+- [ ] Error stack traces hidden in production
+- [ ] Logging configured for production
+
