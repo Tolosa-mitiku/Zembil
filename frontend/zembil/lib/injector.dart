@@ -95,7 +95,7 @@ Future<void> setupLocator() async {
         zembilLogIn: locator(),
       ));
 
-  locator.registerLazySingleton(() => LogInBloc(
+  locator.registerFactory(() => LogInBloc(
         signInWithGoogle: locator(),
         loginWithEmail: locator(),
         zembilLogIn: locator(),

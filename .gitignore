@@ -1,61 +1,28 @@
-# Node modules
+# ==================== Root .gitignore ====================
+
+# ==================== Backend (Node.js/TypeScript) ====================
+# Dependencies
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Build output
 dist/
 build/
+.vercel/
 
-# TypeScript compiled files
-*.js
-*.map
-
-# Environment variables
+# Environment variables (SENSITIVE)
 .env
+.env.local
+.env.*.local
+*.env
 
 # Logs
 logs/
 *.log
-npm-debug.log*
 
-# IDE and editor files
-.idea/
-.vscode/
-*.sublime-workspace
-*.sublime-project
-
-# Firebase files
-firebase-service-account.json
-google-services.json
-
-# Temporary files
-*.tmp
-*.temp
-
-# MacOS system files
-.DS_Store
-
-# OS generated files
-Thumbs.db
-ehthumbs.db
-
-# Coverage files
-coverage/
-*.lcov
-
-# Test files
-*.test.js
-*.test.ts
-*.spec.js
-*.spec.ts
-
-# Miscellaneous
-*.bak
-*.swp
-*~
-
-
-
-
+# ==================== Frontend (Flutter/Dart) ====================
 # Flutter/Dart specific files
 .dart_tool/
 .flutter-plugins
@@ -66,52 +33,108 @@ coverage/
 /build/
 .svn/
 
-# Flutter specific folders
-ios/
+# Flutter generated files
+**/generated_plugin_registrant.dart
+**/flutter_export_environment.sh
+
+# ==================== Android Build Files ====================
+**/android/app/.cxx/
+**/android/.gradle/
+**/android/app/build/
+**/android/build/
+**/android/captures/
+**/.cxx/
+
+# ==================== Firebase & Google Services (SENSITIVE) ====================
+**/google-services.json
+**/GoogleService-Info.plist
+firebase-service-account.json
+**/firebase-service-account.json
+**/firebase_options.dart
+
+# ==================== Mobile Platform Specific ====================
+# iOS
 ios/Pods/
 ios/.symlinks/
 ios/Flutter/Flutter.framework/
-ios/Flutter/Flutter.podspec
+ios/Flutter/Flutter.podspec/
 ios/Flutter/Generated.xcconfig
-
-# Xcode related files
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/Flutter/flutter_assets/
+ios/ServiceDefinitions.json
 **/xcuserdata/
 **/DerivedData/
-**/.vscode/
-**/test-output/
 
-# Android specific folders
-.android/
+# Android
+.gradle/
 gradle/
 **/local.properties
 **/gradle.properties
-**/gradlew
-**/gradlew.bat
+**/.cxx/
+**/captures/
+*.ap_
+*.aab
 
-# Firebase related files (keep google-services.json if needed)
-**/google-services.json
-**/firebase-service-account.json
-
+# ==================== IDE and Editor Files ====================
 # VS Code
 .vscode/
+*.code-workspace
 
-# Temporary files
-*.swp
-*.tmp
-*.log
-*.bak
-*.orig
-
-# JetBrains IDEs
+# JetBrains IDEs (IntelliJ, Android Studio, WebStorm, etc.)
 .idea/
 *.iml
 *.ipr
 *.iws
+.idea_modules/
+out/
 
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# ==================== OS Generated Files ====================
 # MacOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
 
-# Byte-compiled / optimized / DLL files
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==================== Temporary and Cache Files ====================
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+*.cache
+.cache/
+
+# ==================== Test and Coverage Files ====================
+coverage/
+*.lcov
+test-results/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# ==================== Compiled Files ====================
 *.class
 *.jar
 *.war
@@ -120,3 +143,23 @@ gradle/
 *.exe
 *.o
 *.so
+*.dylib
+
+# ==================== Database Files ====================
+*.sqlite
+*.sqlite3
+*.db
+
+# ==================== Secrets and Keys (SENSITIVE) ====================
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+secrets/
+credentials/
+
+# ==================== Documentation (optional) ====================
+# Uncomment if you don't want to commit generated docs
+# docs/api/
+# api-docs/

@@ -44,6 +44,9 @@ class FirebaseAuthService extends AuthRemoteDataSource {
 
   Future<Either<Failure, void>> signInWithGoogle() async {
     try {
+      // Disconnect any existing session to ensure fresh login
+      await _googleSignIn.signOut();
+
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
         return Left(AuthFailure("Google sign-in canceled"));
@@ -57,10 +60,6 @@ class FirebaseAuthService extends AuthRemoteDataSource {
       );
 
       await _auth.signInWithCredential(credential);
-
-      // if (token != null) {
-      //   await _secureStorageHelper.saveToken(token); // Save token securely
-      // }
 
       return Right(null);
     } catch (e) {
@@ -80,24 +79,40 @@ class FirebaseAuthService extends AuthRemoteDataSource {
   Future<Either<Failure, AuthUserModel?>> zembilLogIn() async {
     try {
       final user = _auth.currentUser;
-      final String? token = await user?.getIdToken();
 
-      if (token != null) {
-        await _secureStorageHelper.saveToken(token); // Save token securely
+      if (user == null) {
+        return Left(AuthFailure("No Firebase user found"));
       }
+
+      final String? token = await user.getIdToken();
+
+      if (token == null) {
+        return Left(AuthFailure("Failed to get Firebase token"));
+      }
+
+      await _secureStorageHelper.saveToken(token);
+
+      print('🔑 Firebase Token: ${token.substring(0, 50)}...');
+      print('📍 API Endpoint: ${Urls.baseUrl}${Urls.login}');
 
       AuthUserModel userData = AuthUserModel(firebaseUID: token);
 
       try {
+        print('📤 Sending login request to backend...');
         final response = await httpClient.post(
           Urls.login,
           userData.toJson(),
         );
+        print('✅ Backend response: ${response.statusCode}');
+        print('📦 Response body: ${response.body}');
+
         return Right(AuthUserModel.fromJson(jsonDecode(response.body)));
       } catch (e) {
+        print('❌ Backend login error: $e');
         return Left(ServerFailure("Server Failure: ${e.toString()}"));
       }
     } catch (e) {
+      print('❌ ZembilLogin error: $e');
       return Left(AuthFailure("Login failed: ${e.toString()}"));
     }
   }
@@ -129,9 +144,19 @@ class FirebaseAuthService extends AuthRemoteDataSource {
 
   Future<Either<Failure, void>> signOut() async {
     try {
+      // Sign out from Firebase
       await _auth.signOut();
-      await _googleSignIn.signOut();
-      await _secureStorageHelper.deleteToken(); // delete token
+
+      // Disconnect Google Sign-In to allow account picker next time
+      try {
+        await _googleSignIn.disconnect();
+      } catch (e) {
+        // If disconnect fails, at least sign out
+        await _googleSignIn.signOut();
+      }
+
+      // Delete stored token
+      await _secureStorageHelper.deleteToken();
 
       return Right(null);
     } catch (e) {

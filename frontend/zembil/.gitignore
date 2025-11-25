@@ -1,3 +1,5 @@
+# ==================== Flutter/Dart .gitignore ====================
+
 # Miscellaneous
 *.class
 *.log
@@ -9,7 +11,11 @@
 .history
 .svn/
 migrate_working_dir/
+
+# Sensitive: Environment variables
 .env
+.env.*
+*.env
 
 # IntelliJ related
 *.iml
@@ -42,3 +48,35 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Sensitive: Firebase and Google Services
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase_options.dart
+firebase-service-account.json
+
+# Sensitive: Android Signing Keys
+**/*.jks
+**/*.keystore
+**/key.properties
+
+# iOS Pods
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Coverage
+coverage/
+*.lcov
+
+# Generated files
+**/generated_plugin_registrant.dart
+**/generated/
+
+# Local configuration
+**/local.properties
+**/gradle.properties
+
+# Cache
+.cache/

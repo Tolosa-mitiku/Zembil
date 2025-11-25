@@ -5,10 +5,14 @@ import { CustomRequest } from "../types/express";
 // Controller to handle login
 export const loginUser = async (req: CustomRequest, res: Response) => {
   try {
+    console.log("🔐 Login request received");
+    console.log("👤 User from token:", req.user);
+
     let user = await User.findOne({ uid: req.user?.uid });
     let isNewUser = false;
 
     if (!user) {
+      console.log("✨ Creating new user...");
       // Create new user
       user = new User({
         uid: req.user?.uid,
@@ -18,6 +22,9 @@ export const loginUser = async (req: CustomRequest, res: Response) => {
       });
       await user.save();
       isNewUser = true;
+      console.log("✅ New user created:", user._id);
+    } else {
+      console.log("✅ Existing user found:", user._id);
     }
 
     // Return user data
@@ -34,6 +41,7 @@ export const loginUser = async (req: CustomRequest, res: Response) => {
       },
     });
   } catch (error) {
+    console.error("❌ Login error:", error);
     return res.status(500).json({
       success: false,
       message: "Login failed",
