@@ -8,6 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   containerClassName?: string;
+  labelClassName?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -19,6 +20,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       leftIcon,
       rightIcon,
       containerClassName,
+      labelClassName,
       className,
       type = 'text',
       ...props
@@ -28,7 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={clsx('w-full', containerClassName)}>
         {label && (
-          <label className="block text-label-large text-grey-900 mb-2">
+          <label className={clsx("block text-label-large text-grey-900 mb-2", labelClassName)}>
             {label}
             {props.required && <span className="text-error ml-1">*</span>}
           </label>
@@ -43,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             type={type}
             className={clsx(
-              'input-base',
+              'w-full bg-white border border-gray-200 text-gray-900 rounded-lg focus:border-gold focus:ring-1 focus:ring-gold block p-2.5 outline-none transition-colors',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',
               error && 'border-error focus:border-error focus:ring-error',

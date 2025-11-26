@@ -28,6 +28,7 @@ import clsx from 'clsx';
 import { useAppDispatch } from '@/store/hooks';
 import { signOut } from '@/features/auth/store/authSlice';
 import { useSidebar } from './SidebarContext';
+import { useNavigate } from 'react-router-dom';
 
 interface SidebarProps {
   role: UserRole;
@@ -66,18 +67,29 @@ const sellerNavItems: NavItem[] = [
 
 const adminNavItems: NavItem[] = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: HomeIcon },
-  { name: 'Users', path: '/admin/users', icon: UsersIcon },
-  { name: 'Customers', path: '/admin/customers', icon: UsersIcon },
-  { name: 'Sellers', path: '/admin/sellers', icon: UserGroupIcon },
-  { name: 'Products', path: '/admin/products', icon: ShoppingBagIcon },
-  { name: 'Orders', path: '/admin/orders', icon: ClipboardDocumentListIcon },
-  { name: 'Categories', path: '/admin/categories', icon: TagIcon },
-  { name: 'Banners', path: '/admin/banners', icon: MegaphoneIcon },
-  { name: 'Analytics', path: '/admin/analytics', icon: ChartBarIcon },
+  {
+    name: 'Platform',
+    icon: ShoppingBagIcon,
+    children: [
+      { name: 'All Order', path: '/admin/orders', icon: ShoppingCartIcon, badge: 0 },
+      { name: 'All Product', path: '/admin/products', icon: ShoppingBagIcon },
+      { name: 'Users', path: '/admin/users', icon: UsersIcon },
+      { name: 'Customers', path: '/admin/customers', icon: UsersIcon },
+      { name: 'Sellers', path: '/admin/sellers', icon: UserGroupIcon },
+      { name: 'Message Center', path: '/admin/messages', icon: ChatBubbleLeftRightIcon },
+    ],
+  },
+  { name: 'Categories', path: '/admin/categories', icon: TagIcon, section: 'Management' },
+  { name: 'Banners', path: '/admin/banners', icon: MegaphoneIcon, section: 'Management' },
+  { name: 'Reviews', path: '/admin/reviews', icon: StarIcon, section: 'Management' },
+  { name: 'Help & Support', path: '/admin/support', icon: QuestionMarkCircleIcon, section: 'Account' },
+  { name: 'Analytics', path: '/admin/analytics', icon: ChartBarIcon, section: 'Account' },
+  { name: 'Settings', path: '/admin/settings', icon: Cog6ToothIcon, section: 'Account' },
 ];
 
 const Sidebar = ({ role }: SidebarProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const navItems = role === 'admin' ? adminNavItems : sellerNavItems;
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const { isCollapsed, setIsHovered, isMobile } = useSidebar();
@@ -90,8 +102,13 @@ const Sidebar = ({ role }: SidebarProps) => {
     );
   };
 
-  const handleLogout = () => {
-    dispatch(signOut());
+  const handleLogout = async () => {
+    try {
+      await dispatch(signOut()).unwrap();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   const renderNavItem = (item: NavItem, depth = 0, index = 0) => {

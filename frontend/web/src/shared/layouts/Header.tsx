@@ -13,8 +13,13 @@ const Header = () => {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
 
-  const handleSignOut = () => {
-    dispatch(signOut());
+  const handleSignOut = async () => {
+    try {
+      await dispatch(signOut()).unwrap();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   const handleProfile = () => {
