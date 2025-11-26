@@ -39,8 +39,10 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: BlocProvider.value(
         value: _loginBloc,
         child: SingleChildScrollView(
@@ -78,17 +80,29 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.shop_2_outlined, size: screenHeight * 0.05),
+                  Icon(
+                    Icons.shopping_bag_rounded,
+                    size: screenHeight * 0.08,
+                    color: theme.colorScheme.primary,
+                  ),
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
-                  Text("Log in", style: Theme.of(context).textTheme.titleLarge),
+                  Text(
+                    "Welcome Back",
+                    style: theme.textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Log in to continue shopping",
+                    style: theme.textTheme.bodyMedium,
+                  ),
                   SizedBox(
                     height: screenHeight * 0.1,
                   ),
                   CustomTextField(
                     hintText: 'Email/Phone',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: theme.textTheme.labelMedium,
                     errorText: emailError,
                     controller: _emailController,
                     onChanged: (value) {
@@ -100,9 +114,10 @@ class _LoginState extends State<Login> {
                   ),
                   CustomTextField(
                     hintText: 'Password',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: theme.textTheme.labelMedium,
                     errorText: passwordError,
                     controller: _passwordController,
+                    obscureText: true,
                     onChanged: (value) {
                       _loginBloc.add(LogInPasswordChanged(value));
                     },
@@ -111,7 +126,11 @@ class _LoginState extends State<Login> {
                     height: screenHeight * 0.05,
                   ),
                   state is LogInWithEmailAndPasswordLoading
-                      ? const CircularProgressIndicator()
+                      ? CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            theme.colorScheme.primary,
+                          ),
+                        )
                       : CustomButton(
                           text: 'Log In',
                           onPressed: () {
@@ -124,7 +143,11 @@ class _LoginState extends State<Login> {
                     height: screenHeight * 0.05,
                   ),
                   state is LogInWithGoogleLoading
-                      ? const CircularProgressIndicator()
+                      ? CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            theme.colorScheme.primary,
+                          ),
+                        )
                       : SignInWith(
                           image: 'assets/svgs/google.svg',
                           onPressed: () {

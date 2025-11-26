@@ -6,7 +6,7 @@ import 'package:zembil/core/theme/cubit/theme_state.dart';
 /// ThemeCubit - Manages theme state and persistence
 class ThemeCubit extends Cubit<ThemeState> {
   final HiveService _hiveService;
-  static const String _themeKey = 'theme_mode';
+  static const String _themeKey = 'app_theme_mode';
 
   ThemeCubit(this._hiveService) : super(ThemeState.initial()) {
     _loadTheme();
@@ -17,72 +17,42 @@ class ThemeCubit extends Cubit<ThemeState> {
     try {
       final savedThemeIndex = _hiveService.getData(_themeKey);
       if (savedThemeIndex != null) {
-        final themeMode = ThemeMode.values[savedThemeIndex as int];
-        _updateTheme(themeMode);
+        final mode = AppThemeMode.values[savedThemeIndex as int];
+        emit(ThemeState(mode: mode));
       }
     } catch (e) {
-      // If loading fails, use system theme
       emit(ThemeState.system());
     }
   }
 
-  /// Set light theme
-  Future<void> setLightTheme() async {
-    await _saveTheme(ThemeMode.light);
-    emit(ThemeState.light());
+  /// Set theme mode
+  Future<void> setTheme(AppThemeMode mode) async {
+    await _saveTheme(mode);
+    emit(ThemeState(mode: mode));
   }
 
-  /// Set dark theme
-  Future<void> setDarkTheme() async {
-    await _saveTheme(ThemeMode.dark);
-    emit(ThemeState.dark());
-  }
-
-  /// Set system theme
-  Future<void> setSystemTheme() async {
-    await _saveTheme(ThemeMode.system);
-    emit(ThemeState.system());
-  }
-
-  /// Toggle between light and dark theme
   Future<void> toggleTheme() async {
-    if (state.themeMode == ThemeMode.light) {
-      await setDarkTheme();
+    if (state.mode == AppThemeMode.light) {
+      await setTheme(AppThemeMode.dark);
     } else {
-      await setLightTheme();
+      await setTheme(AppThemeMode.light);
     }
   }
 
   /// Save theme to storage
-  Future<void> _saveTheme(ThemeMode themeMode) async {
+  Future<void> _saveTheme(AppThemeMode mode) async {
     try {
-      await _hiveService.saveData(_themeKey, themeMode.index);
+      await _hiveService.saveData(_themeKey, mode.index);
     } catch (e) {
       debugPrint('Failed to save theme: $e');
     }
   }
 
-  /// Update theme without saving (for system theme)
-  void _updateTheme(ThemeMode themeMode) {
-    switch (themeMode) {
-      case ThemeMode.light:
-        emit(ThemeState.light());
-        break;
-      case ThemeMode.dark:
-        emit(ThemeState.dark());
-        break;
-      case ThemeMode.system:
-        emit(ThemeState.system());
-        break;
-    }
-  }
-
-  /// Check if current theme is dark (considering system theme)
+  /// Check if current theme is dark
   bool isDarkMode(BuildContext context) {
-    if (state.themeMode == ThemeMode.system) {
+    if (state.mode == AppThemeMode.system) {
       return MediaQuery.of(context).platformBrightness == Brightness.dark;
     }
-    return state.isDarkMode;
+    return state.mode == AppThemeMode.dark;
   }
 }
-

@@ -160,6 +160,10 @@ secrets/
 credentials/
 
 # ==================== Documentation (optional) ====================
+# Markdown documentation files
+*.md
+*.MD
+
 # Uncomment if you don't want to commit generated docs
 # docs/api/
 # api-docs/

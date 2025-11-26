@@ -1,64 +1,69 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+enum AppThemeMode {
+  light,
+  dark,
+  blue,
+  red,
+  system,
+}
+
 /// ThemeState - Represents the current theme mode of the app
 class ThemeState extends Equatable {
-  final ThemeMode themeMode;
-  final bool isDarkMode;
+  final AppThemeMode mode;
+
+  // Helper to get Flutter's ThemeMode
+  ThemeMode get themeMode {
+    switch (mode) {
+      case AppThemeMode.light:
+      case AppThemeMode.blue:
+      case AppThemeMode.red:
+        return ThemeMode.light;
+      case AppThemeMode.dark:
+        return ThemeMode.dark;
+      case AppThemeMode.system:
+        return ThemeMode.system;
+    }
+  }
 
   const ThemeState({
-    required this.themeMode,
-    required this.isDarkMode,
+    required this.mode,
   });
 
   /// Initial state with system theme
   factory ThemeState.initial() {
-    return const ThemeState(
-      themeMode: ThemeMode.system,
-      isDarkMode: false, // Will be determined by system
-    );
+    return const ThemeState(mode: AppThemeMode.system);
   }
 
   /// Light theme state
   factory ThemeState.light() {
-    return const ThemeState(
-      themeMode: ThemeMode.light,
-      isDarkMode: false,
-    );
+    return const ThemeState(mode: AppThemeMode.light);
   }
 
   /// Dark theme state
   factory ThemeState.dark() {
-    return const ThemeState(
-      themeMode: ThemeMode.dark,
-      isDarkMode: true,
-    );
+    return const ThemeState(mode: AppThemeMode.dark);
+  }
+
+  /// Blue theme state
+  factory ThemeState.blue() {
+    return const ThemeState(mode: AppThemeMode.blue);
+  }
+
+  /// Red theme state
+  factory ThemeState.red() {
+    return const ThemeState(mode: AppThemeMode.red);
   }
 
   /// System theme state
   factory ThemeState.system() {
-    return const ThemeState(
-      themeMode: ThemeMode.system,
-      isDarkMode: false, // Will be determined by system
-    );
-  }
-
-  /// Copy with method
-  ThemeState copyWith({
-    ThemeMode? themeMode,
-    bool? isDarkMode,
-  }) {
-    return ThemeState(
-      themeMode: themeMode ?? this.themeMode,
-      isDarkMode: isDarkMode ?? this.isDarkMode,
-    );
+    return const ThemeState(mode: AppThemeMode.system);
   }
 
   @override
-  List<Object?> get props => [themeMode, isDarkMode];
+  List<Object?> get props => [mode];
 
   @override
-  String toString() =>
-      'ThemeState(themeMode: $themeMode, isDarkMode: $isDarkMode)';
+  String toString() => 'ThemeState(mode: $mode)';
 }
-

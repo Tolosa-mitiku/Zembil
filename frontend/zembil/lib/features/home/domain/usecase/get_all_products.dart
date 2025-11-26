@@ -7,8 +7,17 @@ class GetProductsByCategory {
   final ProductRepository repository;
   GetProductsByCategory(this.repository);
 
-  Future<Either<Failure, List<ProductEntity>>> call(String category) async {
-    return await repository
-        .getProducts(category != 'All' ? {'category': category} : null);
+  Future<Either<Failure, List<ProductEntity>>> call(
+      String category, {
+      Map<String, String>? additionalFilters,
+    }) async {
+    final filters = <String, String>{};
+    if (category != 'All') {
+      filters['category'] = category;
+    }
+    if (additionalFilters != null) {
+      filters.addAll(additionalFilters);
+    }
+    return await repository.getProducts(filters.isNotEmpty ? filters : null);
   }
 }

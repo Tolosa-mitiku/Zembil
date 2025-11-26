@@ -9,32 +9,32 @@ class AppTheme {
   // Prevent instantiation
   AppTheme._();
 
-  // ==================== Light Theme ====================
+  // ==================== Light Theme (White + Gold) ====================
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       fontFamily: 'Poppins',
-      
-      // Color scheme
+
+      // Color scheme - White backgrounds with Gold accents
       colorScheme: ColorScheme.light(
-        primary: AppColors.primary,
-        primaryContainer: AppColors.primaryLight,
-        secondary: AppColors.secondary,
-        secondaryContainer: AppColors.secondaryLight,
-        tertiary: AppColors.accent,
-        surface: AppColors.surfaceLight,
-        surfaceContainerHighest: AppColors.surfaceVariantLight,
+        primary: AppColors.gold,
+        primaryContainer: AppColors.goldPale,
+        secondary: AppColors.goldDark,
+        secondaryContainer: AppColors.goldLight,
+        tertiary: AppColors.goldAccent,
+        surface: AppColors.backgroundLight,
+        surfaceContainerHighest: AppColors.surfaceLight,
         error: AppColors.error,
-        onPrimary: AppColors.textPrimaryLight,
+        onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: AppColors.textPrimaryLight,
         onError: Colors.white,
-        outline: AppColors.border,
-        shadow: AppColors.shadow,
+        outline: AppColors.borderLight,
+        shadow: AppColors.shadowLight,
       ),
 
-      // Scaffold
+      // Scaffold - Pure white background
       scaffoldBackgroundColor: AppColors.backgroundLight,
 
       // App Bar
@@ -140,22 +140,23 @@ class AppTheme {
         ),
       ),
 
-      // Input Decoration
+      // Input Decoration - White background, gold focus
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.surfaceLight,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        fillColor: Colors.white,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.border),
+          borderSide: BorderSide(color: AppColors.grey300),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.border),
+          borderSide: BorderSide(color: AppColors.grey300),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: AppColors.gold, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -166,26 +167,26 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
         hintStyle: AppTextStyles.bodyMedium.copyWith(
-          color: AppColors.textTertiaryLight,
+          color: AppColors.grey500,
         ),
         labelStyle: AppTextStyles.bodyMedium.copyWith(
-          color: AppColors.textSecondaryLight,
+          color: AppColors.grey700,
         ),
       ),
 
-      // Card
+      // Card - White with subtle shadow
       cardTheme: CardTheme(
         elevation: 2,
-        shadowColor: AppColors.shadow,
+        shadowColor: AppColors.shadowLight,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        color: AppColors.surfaceLight,
+        color: Colors.white,
       ),
 
       // Divider
-      dividerTheme: const DividerThemeData(
-        color: AppColors.divider,
+      dividerTheme: DividerThemeData(
+        color: AppColors.dividerLight,
         thickness: 1,
         space: 1,
       ),
@@ -196,21 +197,23 @@ class AppTheme {
         size: 24,
       ),
 
-      // Bottom Navigation Bar
+      // Bottom Navigation Bar - White background, gold selected
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: AppColors.backgroundLight,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.textTertiaryLight,
+        backgroundColor: Colors.white,
+        selectedItemColor: AppColors.gold,
+        unselectedItemColor: AppColors.grey600,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
-        selectedLabelStyle: AppTextStyles.labelSmall,
+        selectedLabelStyle: AppTextStyles.labelSmall.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
         unselectedLabelStyle: AppTextStyles.labelSmall,
       ),
 
       // Chip
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.surfaceLight,
-        selectedColor: AppColors.primaryLight,
+        backgroundColor: AppColors.grey100,
+        selectedColor: AppColors.goldPale,
         labelStyle: AppTextStyles.labelMedium,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         shape: RoundedRectangleBorder(
@@ -218,20 +221,21 @@ class AppTheme {
         ),
       ),
 
-      // Dialog
+      // Dialog - White background
       dialogTheme: DialogTheme(
-        backgroundColor: AppColors.backgroundLight,
+        backgroundColor: Colors.white,
         elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
 
-      // Snackbar
+      // Snackbar - Gold background
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppColors.secondary,
+        backgroundColor: AppColors.gold,
         contentTextStyle: AppTextStyles.bodyMedium.copyWith(
           color: Colors.white,
+          fontWeight: FontWeight.w500,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -241,120 +245,123 @@ class AppTheme {
     );
   }
 
-  // ==================== Dark Theme ====================
+  // ==================== Dark Theme (Dark Grey + Gold) ====================
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       fontFamily: 'Poppins',
-      
-      // Color scheme
+
+      // Color scheme - Dark grey backgrounds with Gold accents
       colorScheme: ColorScheme.dark(
-        primary: AppColors.primary,
-        primaryContainer: AppColors.primaryDark,
-        secondary: AppColors.secondaryLight,
-        secondaryContainer: AppColors.secondary,
-        tertiary: AppColors.accent,
+        primary: AppColors.gold,
+        primaryContainer: AppColors.goldDark,
+        secondary: AppColors.goldLight,
+        secondaryContainer: AppColors.goldAccent,
+        tertiary: AppColors.goldPale,
         surface: AppColors.surfaceDark,
         surfaceContainerHighest: AppColors.surfaceVariantDark,
         error: AppColors.error,
-        onPrimary: AppColors.textPrimaryLight,
-        onSecondary: Colors.white,
+        onPrimary: AppColors.darkGreyDark,
+        onSecondary: AppColors.darkGreyDark,
         onSurface: AppColors.textPrimaryDark,
         onError: Colors.white,
         outline: AppColors.borderDark,
         shadow: AppColors.shadowDark,
       ),
 
-      // Scaffold
+      // Scaffold - Dark grey background
       scaffoldBackgroundColor: AppColors.backgroundDark,
 
-      // App Bar
+      // App Bar - Dark background with gold text
       appBarTheme: AppBarTheme(
         elevation: 0,
         centerTitle: false,
         backgroundColor: AppColors.backgroundDark,
-        foregroundColor: AppColors.textPrimaryDark,
+        foregroundColor: AppColors.gold,
         surfaceTintColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.light,
         titleTextStyle: AppTextStyles.titleLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldLight,
+          fontWeight: FontWeight.w600,
         ),
-        iconTheme: const IconThemeData(
-          color: AppColors.textPrimaryDark,
+        iconTheme: IconThemeData(
+          color: AppColors.gold.withOpacity(0.9),
           size: 24,
         ),
       ),
 
-      // Text Theme
+      // Text Theme - Gold tinted text for dark mode
       textTheme: TextTheme(
         displayLarge: AppTextStyles.displayLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldLight,
         ),
         displayMedium: AppTextStyles.displayMedium.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldLight,
         ),
         displaySmall: AppTextStyles.displaySmall.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.gold,
         ),
         headlineLarge: AppTextStyles.headlineLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.gold,
         ),
         headlineMedium: AppTextStyles.headlineMedium.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.gold,
         ),
         headlineSmall: AppTextStyles.headlineSmall.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.gold,
         ),
         titleLarge: AppTextStyles.titleLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldLight,
         ),
         titleMedium: AppTextStyles.titleMedium.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldAccent,
         ),
         titleSmall: AppTextStyles.titleSmall.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldAccent,
         ),
         bodyLarge: AppTextStyles.bodyLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.grey300,
         ),
         bodyMedium: AppTextStyles.bodyMedium.copyWith(
-          color: AppColors.textSecondaryDark,
+          color: AppColors.grey400,
         ),
         bodySmall: AppTextStyles.bodySmall.copyWith(
-          color: AppColors.textTertiaryDark,
+          color: AppColors.grey500,
         ),
         labelLarge: AppTextStyles.labelLarge.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldAccent,
         ),
         labelMedium: AppTextStyles.labelMedium.copyWith(
-          color: AppColors.textSecondaryDark,
+          color: AppColors.grey400,
         ),
         labelSmall: AppTextStyles.labelSmall.copyWith(
-          color: AppColors.textTertiaryDark,
+          color: AppColors.grey500,
         ),
       ),
 
-      // Elevated Button
+      // Elevated Button - Gold background, dark grey text
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.textPrimaryLight,
-          elevation: 0,
-          shadowColor: Colors.transparent,
+          backgroundColor: AppColors.gold,
+          foregroundColor: AppColors.darkGreyDark,
+          elevation: 4,
+          shadowColor: AppColors.gold.withOpacity(0.4),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: AppTextStyles.button,
+          textStyle: AppTextStyles.button.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
 
-      // Outlined Button
+      // Outlined Button - Gold border and text
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary,
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          foregroundColor: AppColors.gold,
+          side: const BorderSide(color: AppColors.gold, width: 2),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -366,28 +373,29 @@ class AppTheme {
       // Text Button
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: AppColors.gold,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           textStyle: AppTextStyles.button,
         ),
       ),
 
-      // Input Decoration
+      // Input Decoration - Dark grey background, gold focus
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.surfaceDark,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        fillColor: AppColors.darkGreyCard,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.borderDark),
+          borderSide: BorderSide(color: AppColors.darkGreyBorder),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.borderDark),
+          borderSide: BorderSide(color: AppColors.darkGreyBorder),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: AppColors.gold, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -398,74 +406,84 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
         hintStyle: AppTextStyles.bodyMedium.copyWith(
-          color: AppColors.textTertiaryDark,
+          color: AppColors.grey600,
         ),
         labelStyle: AppTextStyles.bodyMedium.copyWith(
-          color: AppColors.textSecondaryDark,
+          color: AppColors.grey400,
         ),
       ),
 
-      // Card
+      // Card - Dark grey card with subtle gold border
       cardTheme: CardTheme(
-        elevation: 2,
+        elevation: 4,
         shadowColor: AppColors.shadowDark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: AppColors.gold.withOpacity(0.1), width: 1),
         ),
-        color: AppColors.surfaceDark,
+        color: AppColors.cardDark,
       ),
 
-      // Divider
-      dividerTheme: const DividerThemeData(
-        color: AppColors.dividerDark,
+      // Divider - Gold tinted
+      dividerTheme: DividerThemeData(
+        color: AppColors.gold.withOpacity(0.2),
         thickness: 1,
         space: 1,
       ),
 
-      // Icon
-      iconTheme: const IconThemeData(
-        color: AppColors.textPrimaryDark,
+      // Icon - Gold tinted
+      iconTheme: IconThemeData(
+        color: AppColors.gold.withOpacity(0.9),
         size: 24,
       ),
 
-      // Bottom Navigation Bar
+      // Bottom Navigation Bar - Dark grey background, gold selected
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: AppColors.surfaceDark,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.textTertiaryDark,
+        backgroundColor: AppColors.darkGreyCard,
+        selectedItemColor: AppColors.goldLight,
+        unselectedItemColor: AppColors.gold.withOpacity(0.4),
         type: BottomNavigationBarType.fixed,
         elevation: 8,
-        selectedLabelStyle: AppTextStyles.labelSmall,
-        unselectedLabelStyle: AppTextStyles.labelSmall,
+        selectedLabelStyle: AppTextStyles.labelSmall.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.goldLight,
+        ),
+        unselectedLabelStyle: AppTextStyles.labelSmall.copyWith(
+          color: AppColors.gold.withOpacity(0.4),
+        ),
       ),
 
-      // Chip
+      // Chip - Gold borders and text
       chipTheme: ChipThemeData(
-        backgroundColor: AppColors.surfaceDark,
-        selectedColor: AppColors.primaryDark,
+        backgroundColor: AppColors.darkGreyCard,
+        selectedColor: AppColors.goldDark.withOpacity(0.3),
+        side: BorderSide(color: AppColors.gold.withOpacity(0.3)),
         labelStyle: AppTextStyles.labelMedium.copyWith(
-          color: AppColors.textPrimaryDark,
+          color: AppColors.goldAccent,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: AppColors.gold.withOpacity(0.3)),
         ),
       ),
 
-      // Dialog
+      // Dialog - Dark grey background with gold border
       dialogTheme: DialogTheme(
-        backgroundColor: AppColors.surfaceDark,
+        backgroundColor: AppColors.darkGreyLight,
         elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
+          side: BorderSide(color: AppColors.gold.withOpacity(0.2)),
         ),
       ),
 
-      // Snackbar
+      // Snackbar - Gold background
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppColors.secondaryLight,
+        backgroundColor: AppColors.gold,
         contentTextStyle: AppTextStyles.bodyMedium.copyWith(
-          color: Colors.white,
+          color: AppColors.darkGreyDark,
+          fontWeight: FontWeight.w600,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -474,5 +492,64 @@ class AppTheme {
       ),
     );
   }
-}
 
+  // ==================== Blue Theme (Ocean) ====================
+  static ThemeData get blueTheme {
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.light,
+      fontFamily: 'Poppins',
+      colorScheme: ColorScheme.light(
+        primary: AppColors.bluePrimary,
+        secondary: AppColors.blueDark,
+        tertiary: AppColors.blueAccent,
+        surface: AppColors.blueBackground,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+      ),
+      scaffoldBackgroundColor: AppColors.blueBackground,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.blueBackground,
+        foregroundColor: AppColors.blueDark,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.bluePrimary,
+          foregroundColor: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      ),
+    );
+  }
+
+  // ==================== Red Theme (Crimson) ====================
+  static ThemeData get redTheme {
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.light,
+      fontFamily: 'Poppins',
+      colorScheme: ColorScheme.light(
+        primary: AppColors.redPrimary,
+        secondary: AppColors.redDark,
+        tertiary: AppColors.redAccent,
+        surface: AppColors.redBackground,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+      ),
+      scaffoldBackgroundColor: AppColors.redBackground,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.redBackground,
+        foregroundColor: AppColors.redDark,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.redPrimary,
+          foregroundColor: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      ),
+    );
+  }
+}

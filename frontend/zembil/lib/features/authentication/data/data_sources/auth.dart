@@ -14,11 +14,13 @@ abstract class AuthRemoteDataSource {}
 class FirebaseAuthService extends AuthRemoteDataSource {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final SecureStorageHelper _secureStorageHelper = SecureStorageHelper();
-  final HttpClient httpClient = HttpClient(
-      baseUrl: Urls.baseUrl,
-      client: HttpClientProvider.getInstance(),
-      secureStorageHelper: SecureStorageHelper());
+  final SecureStorageHelper _secureStorageHelper;
+  final HttpClient httpClient;
+
+  FirebaseAuthService({
+    required this.httpClient,
+    required SecureStorageHelper secureStorageHelper,
+  }) : _secureStorageHelper = secureStorageHelper;
 
   Future<Either<Failure, void>> signUpWithEmail(
       String email, String password) async {
@@ -107,6 +109,15 @@ class FirebaseAuthService extends AuthRemoteDataSource {
         print('📦 Response body: ${response.body}');
 
         return Right(AuthUserModel.fromJson(jsonDecode(response.body)));
+      } on NetworkFailure catch (e) {
+        print('❌ Network error during login: $e');
+        return Left(e);
+      } on ServerFailure catch (e) {
+        print('❌ Server error during login: $e');
+        return Left(e);
+      } on AuthFailure catch (e) {
+        print('❌ Auth error during login: $e');
+        return Left(e);
       } catch (e) {
         print('❌ Backend login error: $e');
         return Left(ServerFailure("Server Failure: ${e.toString()}"));

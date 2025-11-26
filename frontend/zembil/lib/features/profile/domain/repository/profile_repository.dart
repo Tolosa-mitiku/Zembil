@@ -7,5 +7,5 @@ import 'package:zembil/features/profile/domain/entity/profile.dart';
 abstract class ProfileRepository {
   Future<Either<Failure, ProfileEntity>> getProfile();
 
-  Future<Either<Failure, ProfileEntity?>> updateProfile();
+  Future<Either<Failure, ProfileEntity>> updateProfile(ProfileEntity profile);
 }

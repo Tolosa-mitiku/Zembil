@@ -10,8 +10,7 @@ class FeaturedProductBloc
   FeaturedProductBloc({required this.getFeaturedProducts})
       : super(FeaturedProductInitial()) {
     on<GetFeaturedProductsEvent>((event, emit) async {
-      emit(FeaturedProductInitial());
-      // await Future.delayed(Duration(seconds: 5));
+      emit(FeaturedProductLoading());
       final featuredProducts = await getFeaturedProducts.call();
 
       featuredProducts.fold((failure) {

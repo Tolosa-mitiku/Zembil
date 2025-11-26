@@ -20,8 +20,10 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: BlocProvider(
         create: (context) => locator<SignUpBloc>(),
         child: SingleChildScrollView(
@@ -52,18 +54,29 @@ class Signup extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(Icons.shop_2_outlined, size: screenHeight * 0.05),
+                  Icon(
+                    Icons.shopping_bag_rounded,
+                    size: screenHeight * 0.08,
+                    color: theme.colorScheme.primary,
+                  ),
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
-                  Text("Sign up",
-                      style: Theme.of(context).textTheme.titleLarge),
+                  Text(
+                    "Create Account",
+                    style: theme.textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Sign up to start shopping",
+                    style: theme.textTheme.bodyMedium,
+                  ),
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
                   CustomTextField(
                     hintText: 'Email/Phone',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: theme.textTheme.labelMedium,
                     errorText: emailError,
                     controller: _emailController,
                     onChanged: (value) {
@@ -75,9 +88,10 @@ class Signup extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Password',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: theme.textTheme.labelMedium,
                     errorText: passwordError,
                     controller: _passwordController,
+                    obscureText: true,
                     onChanged: (value) {
                       context.read<SignUpBloc>().add(PasswordChanged(value));
                     },
@@ -87,9 +101,10 @@ class Signup extends StatelessWidget {
                   ),
                   CustomTextField(
                     hintText: 'Confirm password',
-                    hintStyle: Theme.of(context).textTheme.labelMedium,
+                    hintStyle: theme.textTheme.labelMedium,
                     errorText: confirmPasswordError,
                     controller: _confirmPasswordController,
+                    obscureText: true,
                     onChanged: (value) {
                       context
                           .read<SignUpBloc>()
@@ -100,7 +115,11 @@ class Signup extends StatelessWidget {
                     height: screenHeight * 0.05,
                   ),
                   state is SignUpWithEmailAndPasswordLoading
-                      ? CircularProgressIndicator()
+                      ? CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            theme.colorScheme.primary,
+                          ),
+                        )
                       : CustomButton(
                           text: 'Sign Up',
                           onPressed: () {
@@ -113,12 +132,16 @@ class Signup extends StatelessWidget {
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
-                  TermsAndPrivacy(),
+                  const TermsAndPrivacy(),
                   SizedBox(
                     height: screenHeight * 0.025,
                   ),
                   state is SignUpWithGoogleLoading
-                      ? CircularProgressIndicator()
+                      ? CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            theme.colorScheme.primary,
+                          ),
+                        )
                       : SignInWith(
                           image: 'assets/svgs/google.svg',
                           onPressed: () {
@@ -133,8 +156,7 @@ class Signup extends StatelessWidget {
                     text1: 'Already have an account? ',
                     text2: 'Log In',
                     onPressed: () {
-                      // Navigate to the Login Page
-                      GoRouter.of(context).go("/login");
+                      context.go("/login");
                     },
                   ),
                 ],

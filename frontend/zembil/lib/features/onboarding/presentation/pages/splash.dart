@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -143,22 +144,22 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
           children: [
             // Animated background circles
             _buildBackgroundCircles(size, isDark),
-            
+
             // Main content
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Animated logo
-                  _buildAnimatedLogo(size),
-                  
+                  _buildAnimatedLogo(size, isDark),
+
                   const SizedBox(height: 32),
-                  
+
                   // Animated text
                   _buildAnimatedText(isDark),
-                  
+
                   const SizedBox(height: 8),
-                  
+
                   // Tagline
                   _buildTagline(isDark),
                 ],
@@ -179,7 +180,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       builder: (context, child) {
         return Stack(
           children: [
-            // Top-right circle
+            // Top-right circle - Gold gradient
             Positioned(
               top: -size.width * 0.3,
               right: -size.width * 0.3,
@@ -192,15 +193,15 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.primary.withOpacity(0.15),
-                        AppColors.primary.withOpacity(0.0),
+                        AppColors.gold.withOpacity(isDark ? 0.2 : 0.15),
+                        AppColors.gold.withOpacity(0.0),
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            // Bottom-left circle
+            // Bottom-left circle - Gold accent gradient
             Positioned(
               bottom: -size.width * 0.3,
               left: -size.width * 0.3,
@@ -213,8 +214,8 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.secondaryLight.withOpacity(0.15),
-                        AppColors.secondaryLight.withOpacity(0.0),
+                        AppColors.goldAccent.withOpacity(isDark ? 0.15 : 0.1),
+                        AppColors.goldAccent.withOpacity(0.0),
                       ],
                     ),
                   ),
@@ -227,7 +228,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildAnimatedLogo(Size size) {
+  Widget _buildAnimatedLogo(Size size, bool isDark) {
     return AnimatedBuilder(
       animation: _logoController,
       builder: (context, child) {
@@ -239,20 +240,20 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
               width: size.width * 0.35,
               height: size.width * 0.35,
               decoration: BoxDecoration(
-                gradient: AppColors.primaryGradient,
+                gradient: AppColors.goldGradient,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.primary.withOpacity(0.3),
+                    color: AppColors.gold.withOpacity(0.4),
                     blurRadius: 30,
                     spreadRadius: 5,
                   ),
                 ],
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.shopping_bag_rounded,
                 size: 80,
-                color: Colors.white,
+                color: isDark ? AppColors.darkGreyDark : Colors.white,
               ),
             ),
           ),
@@ -305,8 +306,8 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
           height: 40,
           child: CircularProgressIndicator(
             strokeWidth: 3,
-            valueColor: AlwaysStoppedAnimation<Color>(
-              AppColors.primary.withOpacity(0.8),
+            valueColor: const AlwaysStoppedAnimation<Color>(
+              AppColors.gold,
             ),
           ),
         ),
