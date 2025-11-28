@@ -19,7 +19,7 @@ export const getAllCategories = async (req: Request, res: Response) => {
     // Update product counts (could be cached)
     for (const category of categories) {
       const count = await Product.countDocuments({
-        category: category.name,
+        category: category._id, // Use ObjectId instead of name
         status: "active",
       });
       category.productsCount = count;
@@ -77,11 +77,3 @@ export const getCategoryBySlug = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-
-
-
-

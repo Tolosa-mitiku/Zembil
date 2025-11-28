@@ -4,6 +4,7 @@ const bannerSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String },
   image: { type: String, required: true }, // Banner image URL
+  
   link: { type: String }, // Link to product/category/external URL
   linkType: {
     type: String,
@@ -11,6 +12,7 @@ const bannerSchema = new Schema({
     default: "none",
   },
   linkId: { type: String }, // Product ID or Category ID
+  
   targetAudience: {
     type: String,
     enum: ["all", "buyers", "sellers"],
@@ -21,16 +23,26 @@ const bannerSchema = new Schema({
     enum: ["home_top", "home_middle", "category", "product", "checkout"],
     default: "home_top",
   },
+  
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   isActive: { type: Boolean, default: true },
+  
   // Analytics
   impressions: { type: Number, default: 0 }, // Number of times shown
   clicks: { type: Number, default: 0 }, // Number of clicks
   clickThroughRate: { type: Number, default: 0 }, // CTR percentage
+  
   displayOrder: { type: Number, default: 0 }, // For sorting multiple banners
+  
+  // Metadata
+  metadata: { type: Map, of: Schema.Types.Mixed },
+  schemaVersion: { type: Number, default: 1 },
+  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
 });
 
 // Method to check if banner is currently active
@@ -49,6 +61,7 @@ bannerSchema.index({ placement: 1 });
 bannerSchema.index({ targetAudience: 1 });
 
 export const Banner = model("Banner", bannerSchema);
+
 
 
 
