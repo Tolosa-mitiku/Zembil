@@ -1,0 +1,125 @@
+import { Router } from "express";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { authorizeRole } from "../middlewares/authorizeRole";
+
+// User Management
+import {
+  getAllUsers,
+  getUserDetails,
+  updateUserRole,
+  updateUserStatus,
+  getUserStats,
+} from "../controllers/adminUser";
+
+// Seller Management
+import {
+  getAllSellers,
+  getPendingVerifications,
+  getSellerDetails,
+  verifySeller,
+  rejectSeller,
+  suspendSeller,
+  getSellerStats,
+} from "../controllers/adminSeller";
+
+// Product Management
+import {
+  getAllProducts as adminGetAllProducts,
+  featureProduct,
+  approveProduct,
+  rejectProduct,
+  deleteProduct as adminDeleteProduct,
+} from "../controllers/adminProduct";
+
+// Order Management
+import {
+  getAllOrders as adminGetAllOrders,
+  getOrderDetails as adminGetOrderDetails,
+  processRefund,
+  getOrderStats,
+} from "../controllers/adminOrder";
+
+// Analytics
+import {
+  getDashboardOverview,
+  getRevenueAnalytics,
+  getSalesAnalytics,
+  getUserAnalytics,
+} from "../controllers/adminAnalytics";
+
+// Category Management
+import {
+  getAllCategories as adminGetAllCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+} from "../controllers/adminCategory";
+
+// Banner Management
+import {
+  getAllBanners as adminGetAllBanners,
+  createBanner,
+  updateBanner,
+  deleteBanner,
+  toggleBannerStatus,
+} from "../controllers/adminBanner";
+
+const router = Router();
+
+// All admin routes require authentication and admin role
+router.use(verifyFirebaseToken);
+router.use(authorizeRole(["admin"]));
+
+// ============= USER MANAGEMENT =============
+router.get("/users", getAllUsers);
+router.get("/users/stats", getUserStats);
+router.get("/users/:id", getUserDetails);
+router.put("/users/:id/role", updateUserRole);
+router.put("/users/:id/status", updateUserStatus);
+
+// ============= SELLER MANAGEMENT =============
+router.get("/sellers", getAllSellers);
+router.get("/sellers/stats", getSellerStats);
+router.get("/sellers/pending", getPendingVerifications);
+router.get("/sellers/:id", getSellerDetails);
+router.put("/sellers/:id/verify", verifySeller);
+router.put("/sellers/:id/reject", rejectSeller);
+router.put("/sellers/:id/suspend", suspendSeller);
+
+// ============= PRODUCT MANAGEMENT =============
+router.get("/products", adminGetAllProducts);
+router.put("/products/:id/feature", featureProduct);
+router.put("/products/:id/approve", approveProduct);
+router.put("/products/:id/reject", rejectProduct);
+router.delete("/products/:id", adminDeleteProduct);
+
+// ============= ORDER MANAGEMENT =============
+router.get("/orders", adminGetAllOrders);
+router.get("/orders/stats", getOrderStats);
+router.get("/orders/:id", adminGetOrderDetails);
+router.put("/orders/:id/refund", processRefund);
+
+// ============= ANALYTICS =============
+router.get("/dashboard", getDashboardOverview);
+router.get("/analytics/revenue", getRevenueAnalytics);
+router.get("/analytics/sales", getSalesAnalytics);
+router.get("/analytics/users", getUserAnalytics);
+
+// ============= CATEGORY MANAGEMENT =============
+router.get("/categories", adminGetAllCategories);
+router.post("/categories", createCategory);
+router.put("/categories/:id", updateCategory);
+router.delete("/categories/:id", deleteCategory);
+
+// ============= BANNER MANAGEMENT =============
+router.get("/banners", adminGetAllBanners);
+router.post("/banners", createBanner);
+router.put("/banners/:id", updateBanner);
+router.put("/banners/:id/toggle", toggleBannerStatus);
+router.delete("/banners/:id", deleteBanner);
+
+export default router;
+
+
+
+

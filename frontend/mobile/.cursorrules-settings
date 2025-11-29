@@ -1,0 +1,577 @@
+# Cursor Rules - Settings Page Design Pattern
+
+## 🎨 Settings Page UI Design Standards
+
+### Core Principles
+1. **Consistency** - Match the app's gold & grey luxury aesthetic
+2. **Organization** - Group related settings into clear sections
+3. **Feedback** - Provide instant visual feedback for all interactions
+4. **Safety** - Confirm destructive actions with dialogs
+5. **Accessibility** - Clear labels, high contrast, large touch targets
+
+---
+
+## 📋 Settings Page Structure
+
+### Required Components
+```dart
+CustomScrollView
+├── SliverAppBar (Gold Gradient Header)
+│   - Settings icon in circular container
+│   - Page title
+│   - Descriptive subtitle
+│   - Expandable height: 200
+│   - Pinned: true
+└── SliverList (Settings Content)
+    ├── Section 1: Appearance
+    ├── Section 2: Notifications
+    ├── Section 3: Privacy & Security
+    ├── Section 4: Help & Support
+    ├── Section 5: About
+    └── Logout Button
+```
+
+### Header Design
+```dart
+SliverAppBar(
+  expandedHeight: 200,
+  pinned: true,
+  flexibleSpace: FlexibleSpaceBar(
+    background: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColors.gold, AppColors.goldDark, AppColors.goldAccent],
+        ),
+      ),
+      child: // Icon + Title + Subtitle
+    ),
+  ),
+)
+```
+
+---
+
+## 🎯 Section Design Pattern
+
+### Section Container
+```dart
+Widget _buildSection({
+  required String title,
+  required IconData icon,
+  required bool isDark,
+  required List<Widget> children,
+}) {
+  return Column(
+    children: [
+      // Section header with icon + title
+      Padding(
+        child: Row(
+          children: [
+            Icon(icon, color: AppColors.gold),
+            SizedBox(width: 8),
+            Text(title, style: bold 18px),
+          ],
+        ),
+      ),
+      // Card container
+      Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDark ? AppColors.darkGreyCard : AppColors.backgroundLight,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.getBorder(isDark)),
+          boxShadow: [subtle shadow],
+        ),
+        child: Column(children: children),
+      ),
+    ],
+  );
+}
+```
+
+---
+
+## 🎨 Setting Item Types
+
+### 1. Switch Tile (for toggles)
+**Use for:** Boolean settings that need instant toggle
+
+```dart
+Widget _buildSwitchTile({
+  required String title,
+  required String subtitle,
+  required IconData icon,
+  required bool value,
+  required bool isDark,
+  required ValueChanged<bool> onChanged,
+}) {
+  return Row(
+    children: [
+      // Icon in gold circular background
+      Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: AppColors.gold.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(icon, color: AppColors.gold, size: 22),
+      ),
+      SizedBox(width: 16),
+      // Title + Subtitle
+      Expanded(
+        child: Column(
+          children: [
+            Text(title, style: 16px bold),
+            Text(subtitle, style: 13px secondary),
+          ],
+        ),
+      ),
+      // Switch
+      Switch(
+        value: value,
+        onChanged: onChanged,
+        activeColor: AppColors.gold,
+        activeTrackColor: AppColors.goldLight,
+      ),
+    ],
+  );
+}
+```
+
+**Design Features:**
+- Icon in gold circular background (10px padding)
+- Title (16px, bold) + Subtitle (13px, secondary color)
+- Modern switch with gold accent when ON
+- Grey when OFF
+
+### 2. Action Tile (for navigation)
+**Use for:** Settings that navigate to detail pages or trigger actions
+
+```dart
+Widget _buildActionTile({
+  required String title,
+  required String subtitle,
+  required IconData icon,
+  required bool isDark,
+  required VoidCallback onTap,
+}) {
+  return InkWell(
+    onTap: onTap,
+    borderRadius: BorderRadius.circular(12),
+    child: Row(
+      children: [
+        // Icon in gold circular background
+        Container(...),
+        SizedBox(width: 16),
+        // Title + Subtitle
+        Expanded(
+          child: Column(...),
+        ),
+        // Chevron arrow
+        Icon(Icons.chevron_right, color: grey),
+      ],
+    ),
+  );
+}
+```
+
+**Design Features:**
+- Same icon style as switch tile
+- Chevron right arrow indicator
+- InkWell tap feedback
+- Navigates or triggers action
+
+### 3. Info Tile (display only)
+**Use for:** Static information (version, etc.)
+
+```dart
+Widget _buildInfoTile({
+  required String title,
+  required String subtitle,
+  required IconData icon,
+  required bool isDark,
+}) {
+  return Row(
+    children: [
+      // Icon in gold circular background
+      Container(...),
+      SizedBox(width: 16),
+      // Title + Subtitle
+      Expanded(
+        child: Column(...),
+      ),
+      // No trailing widget
+    ],
+  );
+}
+```
+
+**Design Features:**
+- Same icon style
+- No interaction
+- No trailing arrow or switch
+
+---
+
+## 🎨 Theme Selector Pattern
+
+### Visual Selection
+**Requirements:**
+- Show all 3 options (Light, Dark, System)
+- Highlight selected option
+- Instant theme switching
+- Persist choice
+
+```dart
+Widget _buildThemeOption({
+  required String title,
+  required IconData icon,
+  required bool isSelected,
+  required bool isDark,
+  required VoidCallback onTap,
+}) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        // Gold background when selected
+        color: isSelected ? AppColors.gold.withOpacity(0.15) : transparent,
+        borderRadius: BorderRadius.circular(12),
+        // Thicker gold border when selected
+        border: Border.all(
+          color: isSelected ? AppColors.gold : AppColors.getBorder(isDark),
+          width: isSelected ? 2 : 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: isSelected ? gold : grey),
+          SizedBox(width: 16),
+          Text(title, style: bold if selected),
+          if (isSelected) Icon(Icons.check_circle, color: gold),
+        ],
+      ),
+    ),
+  );
+}
+```
+
+**Visual States:**
+- **Selected:** Gold border (2px), gold background (15% opacity), check icon
+- **Unselected:** Grey border (1px), transparent background, no check
+
+---
+
+## 🔔 Notification Cascading Logic
+
+### Master Toggle Pattern
+When implementing multi-level toggles:
+
+```dart
+bool _notificationsEnabled = true;  // Master toggle
+bool _emailNotifications = true;    // Sub-option
+bool _orderUpdates = true;          // Sub-option
+bool _promotionalEmails = false;    // Sub-option
+
+// Master toggle handler
+onChanged: (value) {
+  setState(() {
+    _notificationsEnabled = value;
+    if (!value) {
+      // Disable all sub-options when master is OFF
+      _emailNotifications = false;
+      _orderUpdates = false;
+      _promotionalEmails = false;
+      _soundEnabled = false;
+    }
+  });
+}
+
+// Conditional rendering
+if (_notificationsEnabled) ...[
+  // Show sub-options only when master is ON
+  _buildSwitchTile(...),
+]
+```
+
+**UX Benefits:**
+- Prevents invalid states
+- Clear hierarchy
+- Less cognitive load
+- Industry standard pattern
+
+---
+
+## ⚠️ Confirmation Dialogs
+
+### When to Use
+- Logout
+- Delete/clear data
+- Any destructive action
+
+### Dialog Design
+```dart
+AlertDialog(
+  backgroundColor: isDark ? AppColors.darkGreyCard : AppColors.backgroundLight,
+  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  title: Row(
+    children: [
+      // Icon in colored background
+      Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: iconColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(icon, color: iconColor),
+      ),
+      SizedBox(width: 12),
+      Text(title, style: bold),
+    ],
+  ),
+  content: Text(message, style: secondary),
+  actions: [
+    TextButton(onPressed: cancel, child: Text('Cancel')),
+    ElevatedButton(
+      onPressed: confirm,
+      style: colored button,
+      child: Text('Confirm'),
+    ),
+  ],
+)
+```
+
+**Design Features:**
+- Icon with colored background in title
+- Clear message
+- Cancel (text button) + Confirm (elevated button)
+- Color coding: Red for logout, Yellow for warning, Gold for info
+
+---
+
+## 🎬 Animation Standards
+
+### Page Entrance
+```dart
+AnimationController(duration: 800ms)
+
+FadeAnimation: 0.0 → 1.0 (0-600ms, easeOut)
+SlideAnimation: Offset(0, 0.1) → Offset.zero (0-800ms, easeOut)
+```
+
+### Switch Animations
+- Use Material Switch default animation
+- Gold accent when ON
+- Smooth transition (200ms)
+
+### Theme Change
+- Instant application
+- Flutter's implicit theme transition (automatic)
+
+---
+
+## 🎨 Color & Typography
+
+### Section Titles
+- **Font size:** 18px
+- **Weight:** Bold
+- **Color:** Primary text color
+- **Icon:** Gold, 20px
+
+### Setting Titles
+- **Font size:** 16px
+- **Weight:** 600 (semibold)
+- **Color:** Primary text color
+
+### Setting Subtitles
+- **Font size:** 13px
+- **Weight:** Normal
+- **Color:** Secondary text color
+
+### Icons
+- **Size:** 22px (in tiles), 20px (in section headers)
+- **Color:** Gold for all icons
+- **Background:** Gold with 10% opacity, 10px padding, rounded corners
+
+---
+
+## 🔧 Integration Points
+
+### ThemeCubit Integration
+```dart
+BlocBuilder<ThemeCubit, dynamic>(
+  builder: (context, state) {
+    final themeMode = state.themeMode ?? ThemeMode.system;
+    // Build theme options with isSelected based on themeMode
+  },
+)
+
+// Change theme
+context.read<ThemeCubit>().setLightTheme();
+context.read<ThemeCubit>().setDarkTheme();
+context.read<ThemeCubit>().setSystemTheme();
+```
+
+### AuthBloc Integration
+```dart
+// Logout
+context.read<AuthBloc>().add(SignOutEvent());
+context.go('/login'); // Navigate after logout
+```
+
+### Navigation
+```dart
+// Use GoRouter for navigation
+context.go('/path');
+
+// Or for nested routes
+context.push('/path');
+```
+
+---
+
+## 📱 Spacing Standards
+
+### Between Sections
+- 20px gap between major sections
+
+### Within Sections
+- 12px gap between setting items
+- 16px padding inside section cards
+
+### Section Header
+- 4px left padding
+- 12px bottom margin
+
+### Setting Items
+- 8px vertical padding for action/info tiles
+- 12px horizontal padding for theme options
+- 16px icon-to-text spacing
+
+---
+
+## 🚀 What's New Dialog
+
+### Purpose
+Show users recent app improvements and features
+
+### Design
+```dart
+AlertDialog(
+  title: Icon + "What's New",
+  content: SingleChildScrollView(
+    child: Column(
+      children: [
+        _buildWhatsNewItem('✨ Feature 1', 'Description', isDark),
+        _buildWhatsNewItem('🎨 Feature 2', 'Description', isDark),
+        // ... more features
+      ],
+    ),
+  ),
+  actions: [
+    ElevatedButton(
+      child: Text('Got it!'),
+      style: Gold button,
+    ),
+  ],
+)
+```
+
+### Item Design
+- Emoji + Title (bold, 15px)
+- Description (13px, secondary)
+- Gold bullet point
+- 16px bottom spacing
+
+---
+
+## ✅ Best Practices
+
+### DO
+✅ Group related settings together
+✅ Use clear, descriptive labels
+✅ Provide subtitle explanations
+✅ Show immediate visual feedback
+✅ Confirm destructive actions
+✅ Use consistent spacing
+✅ Match app's design language
+✅ Make touch targets 44x44+ pixels
+✅ Use theme-aware colors
+✅ Animate page entrance
+
+### DON'T
+❌ Mix different visual styles
+❌ Use generic labels ("Option 1", "Setting 2")
+❌ Skip confirmation on logout/delete
+❌ Hardcode colors
+❌ Make touch targets too small
+❌ Forget loading states
+❌ Ignore accessibility
+❌ Overload with too many options
+
+---
+
+## 🎯 File Organization
+
+```
+features/
+└── settings/
+    └── presentation/
+        └── pages/
+            └── settings_page.dart  (main settings page)
+        └── widgets/              (if creating sub-pages)
+            └── ... (future widgets)
+```
+
+---
+
+## 🔮 Future Enhancement Structure
+
+### When Adding New Settings
+1. Identify the appropriate section (or create new)
+2. Choose the right tile type (switch/action/info)
+3. Follow spacing standards
+4. Add animations if interactive
+5. Include confirmation if destructive
+6. Update backend if needed
+
+### When Adding Sub-Pages
+1. Create in `features/settings/presentation/pages/`
+2. Add route in `navigation/routes.dart`
+3. Use action tile to navigate
+4. Match design language
+5. Include back navigation
+
+---
+
+## 📊 Metrics
+
+### Current Settings Count
+- **Appearance:** 3 options
+- **Notifications:** 5 toggles
+- **Privacy:** 4 actions
+- **Support:** 4 actions
+- **About:** 3 items
+- **Total:** 19 settings + 1 logout
+
+### Performance
+- ✅ Instant theme switching
+- ✅ Smooth animations (60fps)
+- ✅ No unnecessary rebuilds
+- ✅ Efficient state management
+
+---
+
+## 🎊 Result
+
+A **professional settings page** that:
+- Provides comprehensive app control
+- Matches luxury gold & grey aesthetic
+- Offers intuitive organization
+- Ensures safe interactions
+- Supports future extensibility
+- Follows Material Design 3 guidelines
+
+**Use this pattern for all settings-related pages!** 🏆
+
