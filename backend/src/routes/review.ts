@@ -1,44 +1,78 @@
 import { Router } from "express";
 import {
   addProductReview,
-  getProductReviews,
-  updateReview,
   deleteReview,
-  markReviewHelpful,
+  getProductReviews,
   getSellerReviews,
+  markReviewHelpful,
+  updateReview,
 } from "../controllers/review";
+import { validateBody, validateQuery } from "../middlewares/validate";
 import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { verifyReviewOwnership } from "../middlewares/verifyOwnership";
+import { validateObjectIdMiddleware } from "../utils/validation";
+import {
+  createReviewSchema,
+  reviewQuerySchema,
+  updateReviewSchema,
+} from "../validations/review.validation";
 
 const router = Router();
 
-// Public routes (no auth required)
-// GET /reviews/products/:id - Get product reviews
-router.get("/products/:id", getProductReviews);
+// ============= PUBLIC ROUTES =============
 
-// GET /reviews/sellers/:id - Get seller reviews
-router.get("/sellers/:id", getSellerReviews);
+// GET /reviews/:id - Get product reviews (public)
+router.get(
+  "/:id",
+  validateObjectIdMiddleware("id"),
+  validateQuery(reviewQuerySchema),
+  getProductReviews
+);
 
-// Protected routes (auth required)
-router.use(verifyFirebaseToken);
+// GET /reviews/seller/:id - Get seller reviews (public)
+router.get(
+  "/seller/:id",
+  validateObjectIdMiddleware("id"),
+  validateQuery(reviewQuerySchema),
+  getSellerReviews
+);
 
-// POST /reviews/products/:id - Add product review
-router.post("/products/:id", addProductReview);
+// ============= PROTECTED ROUTES =============
 
-// PUT /reviews/:id - Update review
-router.put("/:id", updateReview);
+// POST /reviews/:id - Add product review (authenticated users only)
+router.post(
+  "/:id",
+  verifyFirebaseToken,
+  validateObjectIdMiddleware("id"),
+  validateBody(createReviewSchema),
+  addProductReview
+);
 
-// DELETE /reviews/:id - Delete review
-router.delete("/:id", deleteReview);
+// PUT /reviews/:id - Update review (owner only)
+router.put(
+  "/:id",
+  verifyFirebaseToken,
+  validateObjectIdMiddleware("id"),
+  verifyReviewOwnership,
+  validateBody(updateReviewSchema),
+  updateReview
+);
 
-// POST /reviews/:id/helpful - Mark review as helpful
-router.post("/:id/helpful", markReviewHelpful);
+// DELETE /reviews/:id - Delete review (owner only)
+router.delete(
+  "/:id",
+  verifyFirebaseToken,
+  validateObjectIdMiddleware("id"),
+  verifyReviewOwnership,
+  deleteReview
+);
+
+// POST /reviews/:id/helpful - Mark review as helpful (authenticated users)
+router.post(
+  "/:id/helpful",
+  verifyFirebaseToken,
+  validateObjectIdMiddleware("id"),
+  markReviewHelpful
+);
 
 export default router;
-
-
-
-
-
-
-
-
