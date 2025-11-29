@@ -1,9 +1,11 @@
 import { Response } from "express";
-import { Order } from "../models/order";
-import { User } from "../models/users";
+import { Order, User, Cart, Payment, SellerEarnings } from "../models";
 import { CustomRequest } from "../types/express";
+import { InventoryService, AnalyticsService, LoyaltyService } from "../services";
 
-// Create a new order
+/**
+ * Create a new order
+ */
 export const createOrder = async (req: CustomRequest, res: Response) => {
   try {
     const { items, totalPrice, shippingAddress, paymentMethod, paymentId } =
@@ -18,14 +20,15 @@ export const createOrder = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Create order
     const order = new Order({
-      buyerId: user._id, // Use MongoDB ObjectId
+      buyerId: user._id,
       items,
       totalPrice,
       shippingAddress,
       paymentMethod,
       paymentId,
-      paymentStatus: "paid", // Assume paid if creating order
+      paymentStatus: paymentId ? "paid" : "pending",
       tracking: {
         status: "confirmed",
         statusHistory: [
@@ -35,11 +38,101 @@ export const createOrder = async (req: CustomRequest, res: Response) => {
             location: shippingAddress.city,
           },
         ],
-        estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+        estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
 
     await order.save();
+
+    // Commit inventory (deduct from stock)
+    try {
+      await InventoryService.commitInventory(
+        items.map((item: any) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+        }))
+      );
+    } catch (error) {
+      console.error("Failed to commit inventory:", error);
+      // Continue anyway - will be handled manually if needed
+    }
+
+    // Create payment record if paid
+    if (paymentId && paymentMethod) {
+      try {
+        const platformFee = totalPrice * 0.1; // 10% platform fee
+        const sellerEarnings = totalPrice - platformFee;
+
+        await Payment.create({
+          orderId: order._id,
+          buyerId: user._id,
+          amount: totalPrice,
+          method: paymentMethod,
+          paymentStatus: "paid",
+          transactionId: paymentId,
+          platformFee,
+          sellerEarnings: items.map((item: any) => ({
+            sellerId: item.sellerId,
+            amount: item.subtotal,
+            platformFeeAmount: item.subtotal * 0.1,
+            netAmount: item.subtotal * 0.9,
+          })),
+        });
+
+        // Create seller earnings records
+        for (const item of items) {
+          if (item.sellerId) {
+            await SellerEarnings.create({
+              sellerId: item.sellerId,
+              orderId: order._id,
+              orderNumber: order.orderNumber,
+              totalAmount: item.subtotal,
+              platformFee: item.subtotal * 0.1,
+              platformFeePercentage: 10,
+              sellerAmount: item.subtotal * 0.9,
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Failed to create payment/earnings records:", error);
+      }
+    }
+
+    // Clear cart after order
+    try {
+      await Cart.updateOne(
+        { userId: user._id },
+        {
+          $set: {
+            items: [],
+            convertedToOrder: true,
+            orderId: order._id,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+    }
+
+    // Update buyer analytics
+    try {
+      await AnalyticsService.updateBuyerAnalytics(user._id);
+    } catch (error) {
+      console.error("Failed to update buyer analytics:", error);
+    }
+
+    // Award loyalty points (if order is paid)
+    if (paymentId) {
+      try {
+        await LoyaltyService.awardOrderPoints(
+          user._id,
+          totalPrice,
+          order.orderNumber || order._id.toString()
+        );
+      } catch (error) {
+        console.error("Failed to award loyalty points:", error);
+      }
+    }
 
     return res.status(201).json({
       success: true,
@@ -55,7 +148,9 @@ export const createOrder = async (req: CustomRequest, res: Response) => {
   }
 };
 
-// Get all orders for current user with pagination
+/**
+ * Get all orders for current user with pagination
+ */
 export const getUserOrders = async (req: CustomRequest, res: Response) => {
   try {
     const { status, page = "1", limit = "20", startDate, endDate } = req.query;
@@ -84,7 +179,6 @@ export const getUserOrders = async (req: CustomRequest, res: Response) => {
         filter.createdAt.$gte = new Date(startDate as string);
       }
       if (endDate) {
-        // Set time to end of day for endDate
         const end = new Date(endDate as string);
         end.setHours(23, 59, 59, 999);
         filter.createdAt.$lte = end;
@@ -99,12 +193,13 @@ export const getUserOrders = async (req: CustomRequest, res: Response) => {
     // Get total count for pagination
     const total = await Order.countDocuments(filter);
 
-    // Get paginated orders
+    // Get orders with population
     const orders = await Order.find(filter)
-      .populate("items.productId", "title images category")
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limitNum);
+      .limit(limitNum)
+      .populate("items.productId", "title images pricing")
+      .lean();
 
     return res.status(200).json({
       success: true,
@@ -114,7 +209,6 @@ export const getUserOrders = async (req: CustomRequest, res: Response) => {
         limit: limitNum,
         total,
         totalPages: Math.ceil(total / limitNum),
-        hasMore: pageNum * limitNum < total,
       },
     });
   } catch (error) {
@@ -126,10 +220,14 @@ export const getUserOrders = async (req: CustomRequest, res: Response) => {
   }
 };
 
-// Get order by ID with tracking
+/**
+ * Get order by ID
+ */
 export const getOrderById = async (req: CustomRequest, res: Response) => {
   try {
-    // Get user's MongoDB _id from Firebase UID
+    const { id } = req.params;
+
+    // Get user's MongoDB _id
     const user = await User.findOne({ uid: req.user?.uid });
     if (!user) {
       return res.status(404).json({
@@ -138,23 +236,17 @@ export const getOrderById = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    const order = await Order.findById(req.params.id).populate(
-      "items.productId",
-      "title images category"
-    );
+    const order = await Order.findOne({
+      _id: id,
+      buyerId: user._id,
+    })
+      .populate("items.productId", "title images pricing")
+      .populate("items.sellerId", "businessName");
 
     if (!order) {
       return res.status(404).json({
         success: false,
         message: "Order not found",
-      });
-    }
-
-    // Verify order belongs to user
-    if (order.buyerId.toString() !== user._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        message: "Unauthorized to view this order",
       });
     }
 
@@ -171,16 +263,15 @@ export const getOrderById = async (req: CustomRequest, res: Response) => {
   }
 };
 
-// Update order tracking location (for delivery tracking)
-export const updateOrderTracking = async (
-  req: CustomRequest,
-  res: Response
-) => {
+/**
+ * Update order tracking
+ */
+export const updateTracking = async (req: CustomRequest, res: Response) => {
   try {
-    const { latitude, longitude, address, status } = req.body;
+    const { id } = req.params;
+    const { status, location, note, trackingNumber, carrier } = req.body;
 
-    const order = await Order.findById(req.params.id);
-
+    const order = await Order.findById(id);
     if (!order) {
       return res.status(404).json({
         success: false,
@@ -188,27 +279,27 @@ export const updateOrderTracking = async (
       });
     }
 
-    // Update current location
-    if (order.tracking) {
-      order.tracking.currentLocation = {
-        latitude,
-        longitude,
-        address,
-        updatedAt: new Date(),
-      };
+    // Update tracking status
+    if (status && order.tracking) {
+      order.tracking.status = status;
+      
+      // Add to status history
+      order.tracking.statusHistory = order.tracking.statusHistory || [];
+      order.tracking.statusHistory.push({
+        status,
+        timestamp: new Date(),
+        location: location || "",
+        note: note || "",
+      } as any);
 
-      // Update status if provided
-      if (status) {
-        order.tracking.status = status;
-        order.tracking.statusHistory.push({
-          status,
-          timestamp: new Date(),
-          location: address,
-        });
+      if (trackingNumber) {
+        order.tracking.trackingNumber = trackingNumber;
+      }
+      if (carrier) {
+        order.tracking.carrier = carrier;
       }
     }
 
-    order.updatedAt = new Date();
     await order.save();
 
     return res.status(200).json({
@@ -225,10 +316,14 @@ export const updateOrderTracking = async (
   }
 };
 
-// Cancel an order
+/**
+ * Cancel order
+ */
 export const cancelOrder = async (req: CustomRequest, res: Response) => {
   try {
-    // Get user's MongoDB _id from Firebase UID
+    const { id } = req.params;
+
+    // Get user
     const user = await User.findOne({ uid: req.user?.uid });
     if (!user) {
       return res.status(404).json({
@@ -237,7 +332,10 @@ export const cancelOrder = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findOne({
+      _id: id,
+      buyerId: user._id,
+    });
 
     if (!order) {
       return res.status(404).json({
@@ -246,37 +344,38 @@ export const cancelOrder = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    // Verify order belongs to user
-    if (order.buyerId.toString() !== user._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        message: "Unauthorized to cancel this order",
-      });
-    }
-
-    // Only allow cancellation if not shipped yet
-    if (
-      order.tracking &&
-      ["shipped", "out_for_delivery", "delivered"].includes(
-        order.tracking.status
-      )
-    ) {
+    // Check if order can be canceled
+    if (order.tracking?.status === "delivered" || order.tracking?.status === "shipped") {
       return res.status(400).json({
         success: false,
-        message: "Cannot cancel order that is already shipped",
+        message: "Cannot cancel order that has been shipped or delivered",
       });
     }
 
+    // Update order status
     if (order.tracking) {
       order.tracking.status = "canceled";
+      order.tracking.statusHistory = order.tracking.statusHistory || [];
       order.tracking.statusHistory.push({
         status: "canceled",
         timestamp: new Date(),
-        location: "Customer request",
-      });
+        note: "Canceled by user",
+      } as any);
     }
-    order.updatedAt = new Date();
+
     await order.save();
+
+    // Restore inventory
+    try {
+      await InventoryService.restoreInventory(
+        order.items.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+        }))
+      );
+    } catch (error) {
+      console.error("Failed to restore inventory:", error);
+    }
 
     return res.status(200).json({
       success: true,

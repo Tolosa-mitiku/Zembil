@@ -1,38 +1,50 @@
 import { Schema, model } from "mongoose";
 
 const orderSchema = new Schema({
-  orderNumber: { type: String, unique: true }, // Human-readable order number
+  orderNumber: { type: String, unique: true }, // Auto-generated: ZMB-YYYYMMDD-XXXX
   buyerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  
+  // Line Items
   items: [
     {
-      productId: {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
-      sellerId: { type: Schema.Types.ObjectId, ref: "Seller" }, // Track which seller owns this item
-      title: { type: String, required: true },
+      productId: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+      sellerId: { type: Schema.Types.ObjectId, ref: "Seller" },
+      title: { type: String, required: true }, // Cached
       image: { type: String },
-      price: { type: Number, required: true },
+      price: { type: Number, required: true }, // Price at purchase time
       quantity: { type: Number, required: true },
       subtotal: { type: Number, required: true }, // price * quantity
-    },
+      variant: {
+        name: { type: String },
+        options: { type: Map, of: Schema.Types.Mixed },
+      },
+    }
   ],
+  
+  // Pricing Breakdown
   totalPrice: { type: Number, required: true },
-  platformFee: { type: Number, default: 0 }, // Platform commission
-  sellerEarnings: { type: Number, default: 0 }, // Total earnings for sellers
+  platformFee: { type: Number, default: 0 },
+  sellerEarnings: { type: Number, default: 0 },
+  tax: { type: Number, default: 0 },
+  shippingCost: { type: Number, default: 0 },
+  discount: { type: Number, default: 0 },
+  
+  // Shipping Address
   shippingAddress: {
+    fullName: { type: String, required: true },
+    phoneNumber: { type: String },
     addressLine1: { type: String, required: true },
     addressLine2: { type: String },
     city: { type: String, required: true },
     postalCode: { type: String, required: true },
     country: { type: String, required: true },
-    phoneNumber: { type: String },
     geolocation: {
       latitude: { type: Number },
       longitude: { type: Number },
     },
   },
+  
+  // Tracking Information
   tracking: {
     currentLocation: {
       latitude: { type: Number },
@@ -49,7 +61,7 @@ const orderSchema = new Schema({
         "shipped",
         "out_for_delivery",
         "delivered",
-        "canceled",
+        "canceled"
       ],
       default: "pending",
     },
@@ -59,12 +71,14 @@ const orderSchema = new Schema({
         timestamp: { type: Date, default: Date.now },
         location: { type: String },
         note: { type: String },
-      },
+      }
     ],
     estimatedDelivery: { type: Date },
     trackingNumber: { type: String },
-    carrier: { type: String }, // Shipping carrier name
+    carrier: { type: String }, // 'USPS', 'FedEx', 'UPS', 'DHL'
   },
+  
+  // Payment Information
   paymentStatus: {
     type: String,
     enum: ["paid", "pending", "failed", "refunded"],
@@ -76,6 +90,8 @@ const orderSchema = new Schema({
     default: "stripe",
   },
   paymentId: { type: String }, // Payment transaction ID
+  
+  // Refund Information
   refund: {
     status: {
       type: String,
@@ -87,9 +103,21 @@ const orderSchema = new Schema({
     requestedAt: { type: Date },
     processedAt: { type: Date },
   },
-  notes: { type: String }, // Order notes/instructions from buyer
+  
+  // Order Notes
+  customerNote: { type: String }, // Special instructions from customer
+  sellerNote: { type: String }, // Internal note from seller
+  adminNote: { type: String }, // Admin notes for disputes, etc.
+  notes: { type: String }, // Legacy field
+  
+  // Metadata
+  metadata: { type: Map, of: Schema.Types.Mixed },
+  schemaVersion: { type: Number, default: 1 },
+  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
 });
 
 // Pre-save hook to generate order number
@@ -101,14 +129,18 @@ orderSchema.pre("save", async function (next) {
     const random = Math.floor(1000 + Math.random() * 9000);
     this.orderNumber = `ZMB-${dateStr}-${random}`;
   }
+  
+  this.updatedAt = new Date();
   next();
 });
 
-// Indexes for efficient querying
+// Indexes
 orderSchema.index({ buyerId: 1, createdAt: -1 });
 orderSchema.index({ "tracking.status": 1 });
 orderSchema.index({ "tracking.trackingNumber": 1 });
-orderSchema.index({ orderNumber: 1 });
-orderSchema.index({ "items.sellerId": 1 }); // For seller order queries
+orderSchema.index({ orderNumber: 1 }, { unique: true });
+orderSchema.index({ "items.sellerId": 1 });
+orderSchema.index({ paymentStatus: 1 });
+orderSchema.index({ createdAt: -1 });
 
 export const Order = model("Order", orderSchema);

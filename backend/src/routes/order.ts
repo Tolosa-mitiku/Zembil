@@ -1,31 +1,54 @@
 import { Router } from "express";
 import {
-  cancelOrder,
   createOrder,
-  getOrderById,
   getUserOrders,
-  updateOrderTracking,
+  getOrderById,
+  updateTracking,
+  cancelOrder,
 } from "../controllers/order";
 import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { verifyOrderOwnership } from "../middlewares/verifyOwnership";
+import { validateBody, validateQuery } from "../middlewares/validate";
+import { validateObjectIdMiddleware } from "../utils/validation";
+import {
+  createOrderSchema,
+  updateTrackingSchema,
+  orderQuerySchema,
+} from "../validations/order.validation";
 
 const router = Router();
 
-// All order routes require authentication
+// ============= ALL ROUTES REQUIRE AUTHENTICATION =============
 router.use(verifyFirebaseToken);
 
-// POST /orders - Create a new order
-router.post("/", createOrder);
+// POST /orders - Create new order
+router.post("/", validateBody(createOrderSchema), createOrder);
 
-// GET /orders - Get all orders for current user
-router.get("/", getUserOrders);
+// GET /orders - Get user's orders with filters
+router.get("/", validateQuery(orderQuerySchema), getUserOrders);
 
-// GET /orders/:id - Get order details
-router.get("/:id", getOrderById);
+// GET /orders/:id - Get specific order (with ownership check)
+router.get(
+  "/:id",
+  validateObjectIdMiddleware("id"),
+  verifyOrderOwnership,
+  getOrderById
+);
 
-// PUT /orders/:id/tracking - Update order tracking location
-router.put("/:id/tracking", updateOrderTracking);
+// PUT /orders/:id/tracking - Update order tracking
+router.put(
+  "/:id/tracking",
+  validateObjectIdMiddleware("id"),
+  validateBody(updateTrackingSchema),
+  updateTracking
+);
 
-// PUT /orders/:id/cancel - Cancel an order
-router.put("/:id/cancel", cancelOrder);
+// PUT /orders/:id/cancel - Cancel order (with ownership check)
+router.put(
+  "/:id/cancel",
+  validateObjectIdMiddleware("id"),
+  verifyOrderOwnership,
+  cancelOrder
+);
 
 export default router;
