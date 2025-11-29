@@ -5,19 +5,39 @@ import {
   getPaymentsByBuyer,
   getPaymentsBySeller,
 } from "../controllers/payment";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { authorizeRole } from "../middlewares/authorizeRole";
+import { validateObjectIdMiddleware } from "../utils/validation";
 
 const router = Router();
 
-// POST /payments - Create a new payment (after order creation)
-router.post("/", createPayment);
+// ============= ALL ROUTES REQUIRE AUTHENTICATION =============
+router.use(verifyFirebaseToken);
 
-// GET /payments/orders/:orderId - Get payment details by order ID
-router.get("/orders/:orderId", getPaymentByOrderId);
+// POST /payments - Create payment (Buyer/Admin only)
+router.post("/", authorizeRole(["buyer", "admin"]), createPayment);
 
-// GET /buyers/:buyerId/payments - Get all payments made by a buyer
-router.get("/buyers/:buyerId", getPaymentsByBuyer);
+// GET /payments/orders/:orderId - Get payment by order ID
+router.get(
+  "/orders/:orderId",
+  validateObjectIdMiddleware("orderId"),
+  getPaymentByOrderId
+);
 
-// GET /sellers/:sellerId/payments - Get all payments received by a seller
-router.get("/sellers/:sellerId", getPaymentsBySeller);
+// GET /payments/buyers/:buyerId - Get payments by buyer (Admin only)
+router.get(
+  "/buyers/:buyerId",
+  validateObjectIdMiddleware("buyerId"),
+  authorizeRole(["admin"]),
+  getPaymentsByBuyer
+);
+
+// GET /payments/sellers/:sellerId - Get payments by seller (Seller/Admin)
+router.get(
+  "/sellers/:sellerId",
+  validateObjectIdMiddleware("sellerId"),
+  authorizeRole(["seller", "admin"]),
+  getPaymentsBySeller
+);
 
 export default router;
