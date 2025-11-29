@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const notificationSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  
   type: {
     type: String,
     enum: [
@@ -21,22 +22,34 @@ const notificationSchema = new Schema({
     ],
     required: true,
   },
+  
   title: { type: String, required: true },
   message: { type: String, required: true },
-  data: { type: Schema.Types.Mixed }, // Additional data (orderId, productId, etc.)
+  
+  data: { type: Map, of: Schema.Types.Mixed }, // Additional data (orderId, productId, etc.)
   image: { type: String }, // Optional notification image
   actionUrl: { type: String }, // Deep link or URL to navigate to
+  
   isRead: { type: Boolean, default: false },
   readAt: { type: Date },
+  
   isSent: { type: Boolean, default: false }, // For push notifications
   sentAt: { type: Date },
+  
   priority: {
     type: String,
     enum: ["low", "medium", "high"],
     default: "medium",
   },
+  
+  // Metadata
+  metadata: { type: Map, of: Schema.Types.Mixed },
+  schemaVersion: { type: Number, default: 1 },
+  
   createdAt: { type: Date, default: Date.now },
   expiresAt: { type: Date }, // Optional expiration for promotions
+}, {
+  timestamps: true,
 });
 
 // Indexes
@@ -46,6 +59,7 @@ notificationSchema.index({ type: 1 });
 notificationSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 }); // Auto-delete expired
 
 export const Notification = model("Notification", notificationSchema);
+
 
 
 
