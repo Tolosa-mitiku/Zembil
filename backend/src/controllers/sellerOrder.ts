@@ -170,7 +170,7 @@ export const updateOrderStatus = async (req: CustomRequest, res: Response) => {
       order.tracking.statusHistory.push({
         status,
         timestamp: new Date(),
-        location: seller.address.city,
+        location: seller.address?.city || "Unknown",
         note: note || `Status updated by seller`,
       });
     }
@@ -246,7 +246,7 @@ export const shipOrder = async (req: CustomRequest, res: Response) => {
       order.tracking.statusHistory.push({
         status: "shipped",
         timestamp: new Date(),
-        location: seller.address.city,
+        location: seller.address?.city || "Unknown",
         note: `Shipped via ${carrier} - Tracking: ${trackingNumber}`,
       });
     }
@@ -322,7 +322,7 @@ export const deliverOrder = async (req: CustomRequest, res: Response) => {
       order.tracking.statusHistory.push({
         status: "delivered",
         timestamp: new Date(),
-        location: order.shippingAddress.city,
+        location: order.shippingAddress?.city || "Unknown",
         note: "Order delivered successfully",
       });
     }
@@ -353,6 +353,8 @@ export const deliverOrder = async (req: CustomRequest, res: Response) => {
     });
   }
 };
+
+
 
 
 
