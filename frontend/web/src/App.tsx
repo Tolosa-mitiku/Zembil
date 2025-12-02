@@ -63,23 +63,32 @@ const BuyerLanguagePage = lazy(() => import('./features/buyer/profile/pages/Lang
 
 function App() {
   const dispatch = useAppDispatch();
-  const { isInitialized, user } = useAppSelector((state) => state.auth);
+  const { isInitialized, isAuthenticated, user } = useAppSelector((state) => state.auth);
 
-  console.log('=== App Component ===');
-  console.log('isInitialized:', isInitialized);
-  console.log('user:', user);
+  // Enhanced auth state logging
+  console.log('=== 🚀 App Component Render ===');
+  console.log(`   Auth Initialized: ${isInitialized}`);
+  console.log(`   Is Authenticated: ${isAuthenticated}`);
+  console.log(`   User: ${user ? `${user.email} (${user.role})` : 'none'}`);
 
   useEffect(() => {
-    console.log('Initializing auth...');
-    dispatch(initializeAuth());
+    console.log('🔐 Starting auth initialization...');
+    dispatch(initializeAuth())
+      .then(() => {
+        console.log('✅ Auth initialization completed');
+      })
+      .catch((error) => {
+        console.error('❌ Auth initialization failed:', error);
+      });
   }, [dispatch]);
 
+  // Wait for Firebase auth to fully initialize before rendering routes
   if (!isInitialized) {
-    console.log('Showing loading screen...');
+    console.log('⏳ Waiting for auth to initialize...');
     return <LoadingScreen />;
   }
 
-  console.log('App initialized, rendering routes...');
+  console.log('✅ App initialized, rendering routes...');
 
   return (
     <Routes>

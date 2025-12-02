@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import App from './App';
 import { store } from './store';
 import ErrorBoundary from './shared/components/ErrorBoundary';
+import { SocketProvider } from './core/socket/SocketContext';
 import './index.css';
 import { disableCachingInDev } from './core/utils/cache-buster';
 
@@ -51,31 +52,33 @@ ReactDOM.createRoot(rootElement).render(
   <ErrorBoundary>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#D4AF37',
-              color: '#fff',
-              fontWeight: '500',
-              borderRadius: '12px',
-            },
-            success: {
-              iconTheme: {
-                primary: '#4CAF50',
-                secondary: '#fff',
+        <SocketProvider>
+          <App />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#D4AF37',
+                color: '#fff',
+                fontWeight: '500',
+                borderRadius: '12px',
               },
-            },
-            error: {
-              iconTheme: {
-                primary: '#E53935',
-                secondary: '#fff',
+              success: {
+                iconTheme: {
+                  primary: '#4CAF50',
+                  secondary: '#fff',
+                },
               },
-            },
-          }}
-        />
+              error: {
+                iconTheme: {
+                  primary: '#E53935',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
+        </SocketProvider>
       </BrowserRouter>
     </Provider>
   </ErrorBoundary>
