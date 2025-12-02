@@ -39,10 +39,16 @@ export function disableCachingInDev() {
   if (import.meta.env.DEV) {
     // Prevent browser from caching XHR requests
     if (typeof window !== 'undefined') {
-      // Override fetch to add no-cache headers
+      // Override fetch to add no-cache headers (only for static resources, not API calls)
       const originalFetch = window.fetch;
       window.fetch = function(...args) {
         const [resource, config] = args;
+        
+        // Skip cache-busting for API calls (they handle their own caching)
+        const url = typeof resource === 'string' ? resource : resource.url;
+        if (url.includes('/api/')) {
+          return originalFetch(resource, config);
+        }
         
         return originalFetch(resource, {
           ...config,
@@ -55,7 +61,7 @@ export function disableCachingInDev() {
         });
       };
 
-      console.log('🚫 Cache disabled for development');
+      console.log('🚫 Cache disabled for development (excluding API calls)');
     }
   }
 }
@@ -86,5 +92,8 @@ if (import.meta.env.DEV) {
     }
   });
 }
+
+
+
 
 
