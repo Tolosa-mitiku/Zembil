@@ -1,0 +1,267 @@
+[
+  {
+    "_id": {
+      "$oid": "b49fed2f9c242581c0542855"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "products": [
+      {
+        "productId": {
+          "$oid": "f6908bbfc2d01ddf59bc5c12"
+        },
+        "addedAt": {
+          "$date": "2025-10-14T11:49:19.457987"
+        },
+        "priceAtAdd": 159.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "421e520c8305d8b048069e48"
+        },
+        "addedAt": {
+          "$date": "2025-11-17T11:49:19.457987"
+        },
+        "priceAtAdd": 59.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "04df86f41947fae8a2a13b9c"
+        },
+        "addedAt": {
+          "$date": "2025-10-25T11:49:19.457987"
+        },
+        "priceAtAdd": 27.0,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e003"
+        },
+        "addedAt": {
+          "$date": "2025-11-06T11:49:19.457987"
+        },
+        "priceAtAdd": 3499.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "73166f2122ebb8cc5d3dc8a0"
+        },
+        "addedAt": {
+          "$date": "2025-11-27T11:49:19.457987"
+        },
+        "priceAtAdd": 139.0,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "fa6af16c1ecea8b5c8e57610"
+        },
+        "addedAt": {
+          "$date": "2025-11-19T11:49:19.457987"
+        },
+        "priceAtAdd": 329.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "41d7dcf9ea10d27a9079b13c"
+        },
+        "addedAt": {
+          "$date": "2025-10-11T11:49:19.457987"
+        },
+        "priceAtAdd": 79.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-08T11:49:19.457987"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.457987"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "50df0b32cffc042df7a97e66"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "products": [
+      {
+        "productId": {
+          "$oid": "3e8f3f9ba34494b06d378045"
+        },
+        "addedAt": {
+          "$date": "2025-11-01T11:49:19.457987"
+        },
+        "priceAtAdd": 65.0,
+        "notifyOnSale": true,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "17343bec74120a5777738ee2"
+        },
+        "addedAt": {
+          "$date": "2025-10-18T11:49:19.457987"
+        },
+        "priceAtAdd": 22.0,
+        "notifyOnSale": false,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "04df86f41947fae8a2a13b9c"
+        },
+        "addedAt": {
+          "$date": "2025-10-19T11:49:19.457987"
+        },
+        "priceAtAdd": 27.0,
+        "notifyOnSale": true,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "1f52556c493e8b43b8df2baf"
+        },
+        "addedAt": {
+          "$date": "2025-11-17T11:49:19.457987"
+        },
+        "priceAtAdd": 169.95,
+        "notifyOnSale": false,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "a0c02b13e1bddf94888d3074"
+        },
+        "addedAt": {
+          "$date": "2025-10-23T11:49:19.457987"
+        },
+        "priceAtAdd": 109.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "81559ffaaaaf3eeb333eac6d"
+        },
+        "addedAt": {
+          "$date": "2025-11-17T11:49:19.457987"
+        },
+        "priceAtAdd": 379.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e006"
+        },
+        "addedAt": {
+          "$date": "2025-12-05T11:49:19.457987"
+        },
+        "priceAtAdd": 249.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "22d59b9a5ba906903ee81f4f"
+        },
+        "addedAt": {
+          "$date": "2025-11-23T11:49:19.457987"
+        },
+        "priceAtAdd": 1299.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "a5649bb63fa92b8c60d6c95a"
+        },
+        "addedAt": {
+          "$date": "2025-11-21T11:49:19.457987"
+        },
+        "priceAtAdd": 799.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "046a6a89b7fee1f9369e6930"
+        },
+        "addedAt": {
+          "$date": "2025-11-06T11:49:19.457987"
+        },
+        "priceAtAdd": 399.0,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "99ff482b96ef8a16209f5339"
+        },
+        "addedAt": {
+          "$date": "2025-11-29T11:49:19.457987"
+        },
+        "priceAtAdd": 179.0,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "3f81a65b8160287c8b201fab"
+        },
+        "addedAt": {
+          "$date": "2025-10-12T11:49:19.457987"
+        },
+        "priceAtAdd": 249.99,
+        "notifyOnSale": false,
+        "notifyBackInStock": false
+      },
+      {
+        "productId": {
+          "$oid": "5c4880e12ded3fe65d673152"
+        },
+        "addedAt": {
+          "$date": "2025-11-22T11:49:19.457987"
+        },
+        "priceAtAdd": 69.9,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e001"
+        },
+        "addedAt": {
+          "$date": "2025-10-12T11:49:19.457987"
+        },
+        "priceAtAdd": 1199.99,
+        "notifyOnSale": true,
+        "notifyBackInStock": true
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-08T11:49:19.457987"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.457987"
+    }
+  }
+]

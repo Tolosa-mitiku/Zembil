@@ -1,0 +1,131 @@
+[
+  {
+    "_id": {
+      "$oid": "62ba15c3b4be9c9d1c79f8cd"
+    },
+    "orderId": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "paymentId": {
+      "$oid": "6c9b0b3c1e8ce7bba0225dcf"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 407.15,
+    "refundMethod": "original",
+    "reason": "Product not as described",
+    "type": "full",
+    "status": "pending",
+    "refundId": "rfnd_69212f47f925e9763b7d",
+    "processedAt": {
+      "$date": "2025-10-19T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    },
+    "approvedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "approvedAt": {
+      "$date": "2025-10-18T23:47:49.395657"
+    },
+    "notes": "Refund approved and processed",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-18T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "681c6fe5f3383f8edf447671"
+    },
+    "orderId": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "paymentId": {
+      "$oid": "df2fe123372555ee20ff6917"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 4384.53,
+    "refundMethod": "original",
+    "reason": "Product not as described",
+    "type": "full",
+    "status": "pending",
+    "refundId": "rfnd_25c5e353a6064d81901d",
+    "processedAt": {
+      "$date": "2025-12-11T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-12-13T11:47:49.395657"
+    },
+    "approvedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "approvedAt": {
+      "$date": "2025-12-10T23:47:49.395657"
+    },
+    "notes": "Refund approved and processed",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-10T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-13T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a6ec9386ab17ddea5bc78d5a"
+    },
+    "orderId": {
+      "$oid": "7d6e10692db98954500c026c"
+    },
+    "paymentId": {
+      "$oid": "1fa7c80369693693cf24c85e"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 268.92,
+    "refundMethod": "original",
+    "reason": "Changed my mind",
+    "type": "full",
+    "status": "processing",
+    "refundId": "rfnd_87e5ff386b08266d1eb7",
+    "processedAt": {
+      "$date": "2025-10-20T11:47:49.393422"
+    },
+    "completedAt": {
+      "$date": "2025-10-22T11:47:49.393422"
+    },
+    "approvedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "approvedAt": {
+      "$date": "2025-10-19T23:47:49.393422"
+    },
+    "notes": "Refund approved and processed",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-19T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-22T11:47:49.393422"
+    }
+  }
+]

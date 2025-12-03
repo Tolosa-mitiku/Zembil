@@ -1,0 +1,95 @@
+[
+  {
+    "_id": {
+      "$oid": "167947d76e22fca0243b63e8"
+    },
+    "title": "Holiday Sale - Up to 50% Off",
+    "description": "Massive discounts on electronics and gadgets",
+    "image": "https://images.unsplash.com/photo-1607082350899-7e105aa886ae",
+    "link": "/category/674a03d139f1f85510c3d7aa",
+    "linkType": "category",
+    "linkId": "674a03d139f1f85510c3d7aa",
+    "targetAudience": "all",
+    "placement": "home_top",
+    "startDate": {
+      "$date": "2025-11-22T11:50:14.836565"
+    },
+    "endDate": {
+      "$date": "2025-12-22T11:50:14.836565"
+    },
+    "isActive": true,
+    "impressions": 6813,
+    "clicks": 54,
+    "clickThroughRate": 2.38,
+    "displayOrder": 0,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:50:14.836565"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:50:14.836565"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "beba8f1241636fd6e3e29f49"
+    },
+    "title": "New Arrivals - Latest Tech",
+    "description": "Check out the newest gadgets and devices",
+    "image": "https://images.unsplash.com/photo-1550009158-9ebf69173e03",
+    "link": "/category/674a03d139f1f85510c3d7aa",
+    "linkType": "category",
+    "linkId": "674a03d139f1f85510c3d7aa",
+    "targetAudience": "buyers",
+    "placement": "home_middle",
+    "startDate": {
+      "$date": "2025-12-05T11:50:14.836565"
+    },
+    "endDate": {
+      "$date": "2026-01-04T11:50:14.836565"
+    },
+    "isActive": true,
+    "impressions": 2721,
+    "clicks": 316,
+    "clickThroughRate": 4.52,
+    "displayOrder": 1,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-05T11:50:14.836565"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:50:14.836565"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ac9975b8621f3ca2a31cf205"
+    },
+    "title": "Fashion Week Special",
+    "description": "Trendy styles at unbeatable prices",
+    "image": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04",
+    "link": "/category/674a03d139f1f85510c3d7ae",
+    "linkType": "category",
+    "linkId": "674a03d139f1f85510c3d7ae",
+    "targetAudience": "buyers",
+    "placement": "home_top",
+    "startDate": {
+      "$date": "2025-11-26T11:50:14.836565"
+    },
+    "endDate": {
+      "$date": "2025-12-26T11:50:14.836565"
+    },
+    "isActive": true,
+    "impressions": 8673,
+    "clicks": 499,
+    "clickThroughRate": 7.77,
+    "displayOrder": 2,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:50:14.836565"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:50:14.836565"
+    }
+  }
+]

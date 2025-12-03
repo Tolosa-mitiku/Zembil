@@ -1,0 +1,144 @@
+================================================================================
+  MONGODB SAMPLE DATA - QUICK IMPORT GUIDE FOR COMPASS
+================================================================================
+
+STEP 1: Open MongoDB Compass
+-----------------------------
+1. Launch MongoDB Compass
+2. Connect to your MongoDB instance
+3. Select or create your database (e.g., "zembil")
+
+
+STEP 2: Import Collections (One by One)
+----------------------------------------
+For each JSON file in this folder, follow these steps:
+
+1. In Compass, click on your database name
+2. Click "CREATE COLLECTION" or select existing collection
+3. Name it exactly as the file name (without .json):
+   - users
+   - buyers
+   - sellers
+   - categories
+   - products
+   - orders
+   - payments
+   - sellerearnings
+   - payoutrequests
+   - reviews
+   - wishlists
+   - carts
+   - addresses
+   - notifications
+   - promotions
+   - banners
+   - refunds
+   - chats
+   - messages
+   - disputes
+   - supporttickets
+
+4. Click "ADD DATA" → "Import JSON or CSV file"
+5. Select the corresponding JSON file
+6. Ensure "JSON" format is selected
+7. Click "Import"
+8. Wait for import to complete
+
+
+RECOMMENDED IMPORT ORDER
+------------------------
+Import in this order to avoid reference errors:
+
+1. users.json                  (Base user accounts)
+2. buyers.json                 (Buyer profiles)
+3. sellers.json                (Seller profiles)
+4. categories.json             (Product categories)
+5. products.json               (Product catalog)
+6. addresses.json              (Delivery addresses)
+7. orders.json                 (Customer orders)
+8. payments.json               (Payment transactions)
+9. sellerearnings.json         (Seller earnings)
+10. payoutrequests.json        (Payout requests)
+11. reviews.json               (Product reviews)
+12. wishlists.json             (User wishlists)
+13. carts.json                 (Shopping carts)
+14. notifications.json         (User notifications)
+15. promotions.json            (Seller promotions)
+16. banners.json               (Marketing banners)
+17. refunds.json               (Refund requests)
+18. chats.json                 (Chat conversations)
+19. messages.json              (Chat messages)
+20. disputes.json              (Order disputes)
+21. supporttickets.json        (Support tickets)
+
+
+VERIFICATION
+------------
+After importing all collections:
+
+1. Check document counts in each collection
+2. Expected totals:
+   - users: 5
+   - buyers: 2
+   - sellers: 2
+   - categories: 12
+   - products: 82
+   - orders: 40
+   - payments: 40
+   - sellerearnings: 63
+   - payoutrequests: 10
+   - reviews: 25
+   - wishlists: 2
+   - carts: 2
+   - addresses: 5
+   - notifications: 88
+   - promotions: 2
+   - banners: 3
+   - refunds: 3
+   - chats: 4
+   - messages: 27
+   - disputes: 4
+   - supporttickets: 8
+
+3. Total: 427 documents across 21 collections
+
+
+TROUBLESHOOTING
+---------------
+If import fails:
+- Ensure JSON format is valid
+- Check that collection names match exactly
+- Verify MongoDB Compass version is up to date
+- Try importing with smaller batch sizes
+- Check MongoDB connection is stable
+
+
+SAMPLE USER ACCOUNTS
+--------------------
+After importing, you can test with these accounts:
+
+BUYER:
+  Email: wonexmitex@gmail.com
+  ID: 674a03d139f1f85510c3d4ba
+
+SELLER:
+  Email: tolosa.mitiku2015@gmail.com
+  ID: 6748a7bd64f0a6a1c3822fe6
+
+ADMIN:
+  Email: se.tolosa.mitiku@gmail.com
+  ID: 67473229996f899c73e4f44a
+
+
+NOTES
+-----
+- All data is interconnected with proper foreign keys
+- Dates are in ISO 8601 format
+- All prices are in USD
+- Images use placeholder URLs
+- This data is for testing purposes only
+
+
+For detailed information, see README.md
+================================================================================
+

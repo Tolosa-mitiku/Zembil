@@ -1,0 +1,624 @@
+[
+  {
+    "_id": {
+      "$oid": "5f03e6072c429d938bb16dc4"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Hi, I have a question about the product.",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-03T12:39:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "360343cb864b8de9b92f5d54"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "Hello! I'd be happy to help. What would you like to know?",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-03T13:35:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T12:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6c0b121f129ac3b95c4d0588"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Is this item in stock?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T13:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6f28eff6114c6c8b8b8efd69"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "Yes, it's currently in stock and ready to ship!",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-03T15:17:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T14:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fa0f925d45744495f078c9a5"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Hi, I have a question about the product.",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eab08cb7c8873d3ed2062b23"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "Hello! I'd be happy to help. What would you like to know?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T12:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ac1c805d08e45ec29593eb05"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Is this item in stock?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T13:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "771829bbbc5ae9268da2da11"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "Yes, it's currently in stock and ready to ship!",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T14:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bdd3becb8e17d76988d07776"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Great! When can I expect delivery?",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-31T16:13:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T15:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d2db6fadef10c9c1ed2c31f0"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "Standard shipping takes 3-5 business days.",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-31T17:23:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T16:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b389e3b588f72e9787d98cb3"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Perfect, thank you!",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T17:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e8b37e788ea04610cb9a784f"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "text",
+    "content": "You're welcome! Let me know if you need anything else.",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T18:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5c1783c575f3eb88a54707f1"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Thank you for your help!",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T19:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cca096f38589af42e1496308"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Hi, I have a question about the product.",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-02T12:08:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "00901805dc2e9614e2591577"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Hello! I'd be happy to help. What would you like to know?",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-02T13:22:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T12:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "929dbade68105d76acf68ba0"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Is this item in stock?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T13:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "21b83f772dbdc5e1b9c01b32"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Yes, it's currently in stock and ready to ship!",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-02T15:39:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T14:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "356e2b0e66882c2fe45bf949"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Great! When can I expect delivery?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T15:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9d6364216d5c0f6d40f22202"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Standard shipping takes 3-5 business days.",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-02T16:59:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T16:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "36feb7bea2e67af6e09fd408"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "type": "text",
+    "content": "Perfect, thank you!",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-02T18:00:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T17:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "17c9bed0cd97c86f4e5922a4"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Hi, I have a question about the product.",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-07T12:44:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eae8580c10eb5bb0cc390ea4"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Hello! I'd be happy to help. What would you like to know?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T12:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8bf9fc72984d1eb79137b773"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Is this item in stock?",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-07T14:47:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T13:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "621a915abf50e5c06924d5cf"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Yes, it's currently in stock and ready to ship!",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-07T15:32:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T14:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d90fae405e0d5f69be92f1ff"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Great! When can I expect delivery?",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T15:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "91943ebdf294b7afa2d1910a"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "senderRole": "seller",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "text",
+    "content": "Standard shipping takes 3-5 business days.",
+    "isRead": true,
+    "readAt": null,
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T16:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f66678297161b158a2591945"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "senderId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "senderRole": "buyer",
+    "recipientId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "type": "text",
+    "content": "Perfect, thank you!",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-11-07T18:38:06.441330"
+    },
+    "isSystem": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T17:51:06.441330"
+    }
+  }
+]

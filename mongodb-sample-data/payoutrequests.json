@@ -1,0 +1,1057 @@
+[
+  {
+    "_id": {
+      "$oid": "012862cda1c122e688c63680"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 3913.16,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-03T11:47:49.392420"
+    },
+    "earningIds": [
+      {
+        "$oid": "8ea300f87e6593c6fb55e1c7"
+      },
+      {
+        "$oid": "559843c618417865e9625c4c"
+      },
+      {
+        "$oid": "534ab7657a586eaa9cd409cc"
+      },
+      {
+        "$oid": "8e01a950523cf0766f43eb7d"
+      },
+      {
+        "$oid": "7f478587464225829ec33f9c"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountNumber": "****1234",
+      "bankName": "Chase Bank",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-04T11:47:49.392420"
+    },
+    "approvedAt": {
+      "$date": "2025-11-04T11:47:49.392420"
+    },
+    "transactionId": "txn_268de27037207e93cc05",
+    "processedAt": {
+      "$date": "2025-11-05T11:47:49.392420"
+    },
+    "completedAt": {
+      "$date": "2025-11-06T11:47:49.392420"
+    },
+    "processingFee": 39.13,
+    "netAmount": 3874.03,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "changedAt": {
+          "$date": "2025-11-03T11:47:49.392420"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-04T11:47:49.392420"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-05T11:47:49.392420"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-06T11:47:49.392420"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-06T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f691f223560092728c454f78"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 4275.16,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "earningIds": [
+      {
+        "$oid": "18acf3b0a12c2029979b99cc"
+      },
+      {
+        "$oid": "5165fd2939453f369508f6d7"
+      },
+      {
+        "$oid": "3442464c0acf8ba5dbd6bf2d"
+      },
+      {
+        "$oid": "cfed23fb8680b3a03e28a6f6"
+      },
+      {
+        "$oid": "757e67deee1c5f7d6f68dbfe"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountNumber": "****1234",
+      "bankName": "Chase Bank",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-05T11:47:49.393422"
+    },
+    "approvedAt": {
+      "$date": "2025-11-05T11:47:49.393422"
+    },
+    "transactionId": "txn_c375f9db69d4b196e0ba",
+    "processedAt": {
+      "$date": "2025-11-06T11:47:49.393422"
+    },
+    "completedAt": {
+      "$date": "2025-11-07T11:47:49.393422"
+    },
+    "processingFee": 42.75,
+    "netAmount": 4232.41,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "changedAt": {
+          "$date": "2025-11-04T11:47:49.393422"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-05T11:47:49.393422"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-06T11:47:49.393422"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-07T11:47:49.393422"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "906f924207ae7c73fab113c5"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 4982.32,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-13T11:47:49.394430"
+    },
+    "earningIds": [
+      {
+        "$oid": "2dca2ddf716a5fbac41b7ab7"
+      },
+      {
+        "$oid": "6285bcbf79f1dc74d3dacb04"
+      },
+      {
+        "$oid": "04715f982147fcecc5460995"
+      },
+      {
+        "$oid": "ebdeede4ce8d37468aa3aac6"
+      },
+      {
+        "$oid": "3a3105423a2168e43dae4d54"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountNumber": "****1234",
+      "bankName": "Chase Bank",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-14T11:47:49.394430"
+    },
+    "approvedAt": {
+      "$date": "2025-11-14T11:47:49.394430"
+    },
+    "transactionId": "txn_55a0071ec5de7398736a",
+    "processedAt": {
+      "$date": "2025-11-15T11:47:49.394430"
+    },
+    "completedAt": {
+      "$date": "2025-11-16T11:47:49.394430"
+    },
+    "processingFee": 49.82,
+    "netAmount": 4932.5,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "changedAt": {
+          "$date": "2025-11-13T11:47:49.394430"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-14T11:47:49.394430"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-15T11:47:49.394430"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-16T11:47:49.394430"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-13T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-16T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ca18be7643396d3c0c98176e"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 3717.23,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "earningIds": [
+      {
+        "$oid": "543d616deab5261d1492dbaa"
+      },
+      {
+        "$oid": "4ccd66888f84bf91f5e5e271"
+      },
+      {
+        "$oid": "176f5bab0e06cb059d9f0a1c"
+      },
+      {
+        "$oid": "796693b1cdfe8a057e483626"
+      },
+      {
+        "$oid": "1131417e7e9e29c4268059b9"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountNumber": "****1234",
+      "bankName": "Chase Bank",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-10-29T11:47:49.395657"
+    },
+    "approvedAt": {
+      "$date": "2025-10-29T11:47:49.395657"
+    },
+    "transactionId": "txn_da2212f733b6927b8fc7",
+    "processedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    },
+    "processingFee": 37.17,
+    "netAmount": 3680.06,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "changedAt": {
+          "$date": "2025-10-28T11:47:49.395657"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-29T11:47:49.395657"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-30T11:47:49.395657"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-31T11:47:49.395657"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "28ee2ab891cc42ac5bfbf271"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "amount": 2320.18,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "earningIds": [
+      {
+        "$oid": "8f888a2cdee263d1b9ececfa"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountNumber": "****1234",
+      "bankName": "Chase Bank",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-09T11:47:49.395657"
+    },
+    "approvedAt": {
+      "$date": "2025-11-09T11:47:49.395657"
+    },
+    "transactionId": "txn_3384e0901e854353457e",
+    "processedAt": {
+      "$date": "2025-11-10T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-11-11T11:47:49.395657"
+    },
+    "processingFee": 23.2,
+    "netAmount": 2296.98,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "changedAt": {
+          "$date": "2025-11-08T11:47:49.395657"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-09T11:47:49.395657"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-10T11:47:49.395657"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-11T11:47:49.395657"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-11T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1827762fb5440bcad75477ec"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 5290.71,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-10-31T11:47:49.392420"
+    },
+    "earningIds": [
+      {
+        "$oid": "2caf05a02028225d59489527"
+      },
+      {
+        "$oid": "8eb5b9129bffcfec20ee5e1e"
+      },
+      {
+        "$oid": "d6655bde1ad1e3a6f1661a7f"
+      },
+      {
+        "$oid": "b1e2e64fd70fc27effa41297"
+      },
+      {
+        "$oid": "a12015551c5f8a65cbf73581"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountNumber": "****5678",
+      "bankName": "Bank of America",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-01T11:47:49.392420"
+    },
+    "approvedAt": {
+      "$date": "2025-11-01T11:47:49.392420"
+    },
+    "transactionId": "txn_e4b8001ad9143e3926bb",
+    "processedAt": {
+      "$date": "2025-11-02T11:47:49.392420"
+    },
+    "completedAt": {
+      "$date": "2025-11-03T11:47:49.392420"
+    },
+    "processingFee": 52.91,
+    "netAmount": 5237.8,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "changedAt": {
+          "$date": "2025-10-31T11:47:49.392420"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-01T11:47:49.392420"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-02T11:47:49.392420"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-03T11:47:49.392420"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-03T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1a2295a97f75764fa8f83237"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 4675.68,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "earningIds": [
+      {
+        "$oid": "801eee10631c4c113d7218ea"
+      },
+      {
+        "$oid": "7a10844758f30c872ca270c4"
+      },
+      {
+        "$oid": "fed3ffc379895f43b3c0fbb7"
+      },
+      {
+        "$oid": "e92a0276f742cffbafd271c8"
+      },
+      {
+        "$oid": "e10d57dadb651a5a1184d835"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountNumber": "****5678",
+      "bankName": "Bank of America",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-05T11:47:49.393422"
+    },
+    "approvedAt": {
+      "$date": "2025-11-05T11:47:49.393422"
+    },
+    "transactionId": "txn_5533561d73da157931e7",
+    "processedAt": {
+      "$date": "2025-11-06T11:47:49.393422"
+    },
+    "completedAt": {
+      "$date": "2025-11-07T11:47:49.393422"
+    },
+    "processingFee": 46.76,
+    "netAmount": 4628.92,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "changedAt": {
+          "$date": "2025-11-04T11:47:49.393422"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-05T11:47:49.393422"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-06T11:47:49.393422"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-07T11:47:49.393422"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "378daf3b1d8c66e6ce56272f"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 3327.6,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "earningIds": [
+      {
+        "$oid": "5193b30c64e1ba08eeebd513"
+      },
+      {
+        "$oid": "c777acb19c639b035e8a0e15"
+      },
+      {
+        "$oid": "d7bcaa209c93c5dd18c7911c"
+      },
+      {
+        "$oid": "896437c5a0ba10e814fdbe52"
+      },
+      {
+        "$oid": "1843ba207512e3a207c539ce"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountNumber": "****5678",
+      "bankName": "Bank of America",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    },
+    "approvedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    },
+    "transactionId": "txn_6df322fda2099f6ac4ef",
+    "processedAt": {
+      "$date": "2025-11-01T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-11-02T11:47:49.395657"
+    },
+    "processingFee": 33.28,
+    "netAmount": 3294.32,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "changedAt": {
+          "$date": "2025-10-30T11:47:49.395657"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-31T11:47:49.395657"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-01T11:47:49.395657"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-02T11:47:49.395657"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6bed5423fb16f04c39522f34"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 1560.32,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "earningIds": [
+      {
+        "$oid": "d3a80b64caf551ad1a7e191d"
+      },
+      {
+        "$oid": "c1445b196953c4aee0d3cbf6"
+      },
+      {
+        "$oid": "348bc8feeaa234400d67bbfd"
+      },
+      {
+        "$oid": "0475bc9a5cedac15174167a2"
+      },
+      {
+        "$oid": "e64a05a5cc970178f8a84613"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountNumber": "****5678",
+      "bankName": "Bank of America",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-10-29T11:47:49.395657"
+    },
+    "approvedAt": {
+      "$date": "2025-10-29T11:47:49.395657"
+    },
+    "transactionId": "txn_2c9a785ed488c13b820c",
+    "processedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    },
+    "processingFee": 15.6,
+    "netAmount": 1544.72,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "changedAt": {
+          "$date": "2025-10-28T11:47:49.395657"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-29T11:47:49.395657"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-30T11:47:49.395657"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-10-31T11:47:49.395657"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-31T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9b7a84c8018d2d7593a12075"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "amount": 6182.69,
+    "currency": "USD",
+    "requestedAt": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "earningIds": [
+      {
+        "$oid": "f0b7b49d626336b13ecaaa2f"
+      },
+      {
+        "$oid": "cc6780622886af527edca760"
+      },
+      {
+        "$oid": "a9368dd89afb0898af34ad85"
+      },
+      {
+        "$oid": "c96ac06d50008e673263deac"
+      }
+    ],
+    "payoutMethod": "bank_transfer",
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountNumber": "****5678",
+      "bankName": "Bank of America",
+      "accountType": "checking"
+    },
+    "status": "completed",
+    "reviewedBy": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "reviewedAt": {
+      "$date": "2025-11-09T11:47:49.395657"
+    },
+    "approvedAt": {
+      "$date": "2025-11-09T11:47:49.395657"
+    },
+    "transactionId": "txn_9062bdc1ddfd8faeda7f",
+    "processedAt": {
+      "$date": "2025-11-10T11:47:49.395657"
+    },
+    "completedAt": {
+      "$date": "2025-11-11T11:47:49.395657"
+    },
+    "processingFee": 61.83,
+    "netAmount": 6120.86,
+    "statusHistory": [
+      {
+        "status": "pending",
+        "changedBy": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "changedAt": {
+          "$date": "2025-11-08T11:47:49.395657"
+        },
+        "note": "Payout requested"
+      },
+      {
+        "status": "approved",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-09T11:47:49.395657"
+        },
+        "note": "Approved by admin"
+      },
+      {
+        "status": "processing",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-10T11:47:49.395657"
+        },
+        "note": "Processing payment"
+      },
+      {
+        "status": "completed",
+        "changedBy": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "changedAt": {
+          "$date": "2025-11-11T11:47:49.395657"
+        },
+        "note": "Payment completed"
+      }
+    ],
+    "sellerNote": "Regular payout request",
+    "adminNote": "Approved and processed successfully",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-11T11:47:49.395657"
+    }
+  }
+]

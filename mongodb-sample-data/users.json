@@ -1,0 +1,435 @@
+[
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d4ba"},
+    "uid": "dGfgu91dCHNA9s2fSCEbYfgFHhG2",
+    "email": "wonexmitex@gmail.com",
+    "name": "Tolosa Mitiku",
+    "image": "https://lh3.googleusercontent.com/a/ACg8ocIrJq_prj-5msOxrm-eFZ4sjgvuP78SKMvJ3shoBa40xIGDueii=s96-c",
+    "phoneNumber": "+12125551001",
+    "phoneCountryCode": "+1",
+    "role": "buyer",
+    "fcmTokens": [
+      {
+        "token": "fcm_token_buyer_web_001",
+        "device": "web",
+        "deviceId": "web-device-001",
+        "lastUsed": {"$date": "2025-12-07T10:00:00.000Z"},
+        "createdAt": {"$date": "2024-11-29T18:11:29.830Z"}
+      }
+    ],
+    "isEmailVerified": true,
+    "isPhoneVerified": true,
+    "emailVerifiedAt": {"$date": "2024-11-29T19:00:00.000Z"},
+    "phoneVerifiedAt": {"$date": "2024-11-30T10:00:00.000Z"},
+    "accountStatus": "active",
+    "lastLogin": {"$date": "2025-12-07T09:00:00.000Z"},
+    "lastLoginIp": "192.168.1.100",
+    "lastLoginLocation": {
+      "country": "United States",
+      "city": "New York",
+      "coordinates": {
+        "latitude": 40.7128,
+        "longitude": -74.0060
+      }
+    },
+    "loginCount": 45,
+    "consecutiveLoginDays": 5,
+    "longestStreak": 15,
+    "failedLoginAttempts": 0,
+    "preferences": {
+      "language": "en",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "dateFormat": "MM/DD/YYYY",
+      "notifications": {
+        "email": true,
+        "push": true,
+        "sms": false,
+        "orderUpdates": true,
+        "promotions": true,
+        "priceAlerts": true,
+        "newsletter": false
+      },
+      "emailDigest": {
+        "enabled": true,
+        "frequency": "weekly",
+        "preferredDay": 1,
+        "preferredTime": "09:00"
+      },
+      "theme": "light",
+      "accessibility": {
+        "fontSize": "medium",
+        "reducedMotion": false,
+        "highContrast": false
+      }
+    },
+    "referralCode": "TOLOSA-BUYER",
+    "referralCount": 3,
+    "marketingConsent": true,
+    "analyticsConsent": true,
+    "cookieConsent": true,
+    "termsAcceptedAt": {"$date": "2024-11-29T18:11:29.830Z"},
+    "privacyPolicyAcceptedAt": {"$date": "2024-11-29T18:11:29.830Z"},
+    "stats": {
+      "totalOrders": 12,
+      "totalSpent": 2450.00,
+      "totalReviews": 8,
+      "accountAge": 373
+    },
+    "activeSessions": [
+      {
+        "sessionId": {"$oid": "674a03d139f1f85510c3d4bb"},
+        "device": "Chrome on Windows",
+        "lastActivity": {"$date": "2025-12-07T09:30:00.000Z"}
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-11-29T18:11:29.830Z"},
+    "updatedAt": {"$date": "2025-12-07T09:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "6748a7bd64f0a6a1c3822fe6"},
+    "uid": "AMsBgBToVUUUYT9RtOuRjqpmA9v2",
+    "email": "tolosa.mitiku2015@gmail.com",
+    "name": "Tolosa Mitiku",
+    "image": "https://lh3.googleusercontent.com/a/ACg8ocKtQL5V5zkZX8hE1aYFCxSjwyaiQznoQED_fD1CsMVDGdQzVssu=s96-c",
+    "phoneNumber": "+12125551002",
+    "phoneCountryCode": "+1",
+    "role": "seller",
+    "fcmTokens": [
+      {
+        "token": "fcm_token_seller_android_001",
+        "device": "android",
+        "deviceId": "android-device-001",
+        "lastUsed": {"$date": "2025-12-07T08:00:00.000Z"},
+        "createdAt": {"$date": "2024-11-28T17:26:21.104Z"}
+      }
+    ],
+    "isEmailVerified": true,
+    "isPhoneVerified": true,
+    "emailVerifiedAt": {"$date": "2024-11-28T18:00:00.000Z"},
+    "phoneVerifiedAt": {"$date": "2024-11-29T10:00:00.000Z"},
+    "accountStatus": "active",
+    "lastLogin": {"$date": "2025-12-07T08:00:00.000Z"},
+    "lastLoginIp": "192.168.1.101",
+    "lastLoginLocation": {
+      "country": "United States",
+      "city": "Los Angeles",
+      "coordinates": {
+        "latitude": 34.0522,
+        "longitude": -118.2437
+      }
+    },
+    "loginCount": 89,
+    "consecutiveLoginDays": 12,
+    "longestStreak": 28,
+    "failedLoginAttempts": 0,
+    "preferences": {
+      "language": "en",
+      "currency": "USD",
+      "timezone": "America/Los_Angeles",
+      "dateFormat": "MM/DD/YYYY",
+      "notifications": {
+        "email": true,
+        "push": true,
+        "sms": true,
+        "orderUpdates": true,
+        "promotions": false,
+        "priceAlerts": false,
+        "newsletter": true
+      },
+      "emailDigest": {
+        "enabled": true,
+        "frequency": "daily",
+        "preferredDay": 0,
+        "preferredTime": "07:00"
+      },
+      "theme": "dark",
+      "accessibility": {
+        "fontSize": "medium",
+        "reducedMotion": false,
+        "highContrast": false
+      }
+    },
+    "referralCode": "TOLOSA-SELLER",
+    "referralCount": 0,
+    "marketingConsent": true,
+    "analyticsConsent": true,
+    "cookieConsent": true,
+    "termsAcceptedAt": {"$date": "2024-11-28T17:26:21.104Z"},
+    "privacyPolicyAcceptedAt": {"$date": "2024-11-28T17:26:21.104Z"},
+    "stats": {
+      "totalOrders": 0,
+      "totalSpent": 0,
+      "totalReviews": 0,
+      "accountAge": 374
+    },
+    "activeSessions": [
+      {
+        "sessionId": {"$oid": "6748a7bd64f0a6a1c3822fe7"},
+        "device": "Android App",
+        "lastActivity": {"$date": "2025-12-07T08:30:00.000Z"}
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-11-28T17:26:21.104Z"},
+    "updatedAt": {"$date": "2025-12-07T08:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "67473229996f899c73e4f44a"},
+    "uid": "8A3vy83oCQZcscIJPICRziyIRFM2",
+    "email": "se.tolosa.mitiku@gmail.com",
+    "name": "Tolosa Mitiku Admin",
+    "image": null,
+    "phoneNumber": "+12125551000",
+    "phoneCountryCode": "+1",
+    "role": "admin",
+    "fcmTokens": [
+      {
+        "token": "fcm_token_admin_web_001",
+        "device": "web",
+        "deviceId": "web-admin-001",
+        "lastUsed": {"$date": "2025-12-07T07:00:00.000Z"},
+        "createdAt": {"$date": "2024-11-27T14:52:25.538Z"}
+      }
+    ],
+    "isEmailVerified": true,
+    "isPhoneVerified": true,
+    "emailVerifiedAt": {"$date": "2024-11-27T15:00:00.000Z"},
+    "phoneVerifiedAt": {"$date": "2024-11-27T16:00:00.000Z"},
+    "accountStatus": "active",
+    "lastLogin": {"$date": "2025-12-07T07:00:00.000Z"},
+    "lastLoginIp": "192.168.1.50",
+    "lastLoginLocation": {
+      "country": "United States",
+      "city": "San Francisco",
+      "coordinates": {
+        "latitude": 37.7749,
+        "longitude": -122.4194
+      }
+    },
+    "loginCount": 120,
+    "consecutiveLoginDays": 30,
+    "longestStreak": 60,
+    "failedLoginAttempts": 0,
+    "preferences": {
+      "language": "en",
+      "currency": "USD",
+      "timezone": "America/Los_Angeles",
+      "dateFormat": "YYYY-MM-DD",
+      "notifications": {
+        "email": true,
+        "push": true,
+        "sms": true,
+        "orderUpdates": true,
+        "promotions": false,
+        "priceAlerts": false,
+        "newsletter": false
+      },
+      "emailDigest": {
+        "enabled": false,
+        "frequency": "weekly",
+        "preferredTime": "09:00"
+      },
+      "theme": "auto",
+      "accessibility": {
+        "fontSize": "medium",
+        "reducedMotion": false,
+        "highContrast": false
+      }
+    },
+    "referralCode": "ADMIN-TM",
+    "referralCount": 0,
+    "marketingConsent": false,
+    "analyticsConsent": true,
+    "cookieConsent": true,
+    "termsAcceptedAt": {"$date": "2024-11-27T14:52:25.538Z"},
+    "privacyPolicyAcceptedAt": {"$date": "2024-11-27T14:52:25.538Z"},
+    "stats": {
+      "totalOrders": 0,
+      "totalSpent": 0,
+      "totalReviews": 0,
+      "accountAge": 375
+    },
+    "activeSessions": [
+      {
+        "sessionId": {"$oid": "67473229996f899c73e4f44b"},
+        "device": "Chrome on Mac",
+        "lastActivity": {"$date": "2025-12-07T07:45:00.000Z"}
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-11-27T14:52:25.538Z"},
+    "updatedAt": {"$date": "2025-12-07T07:45:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d4bc"},
+    "uid": "buyer2uid123456789",
+    "email": "sarah.johnson@email.com",
+    "name": "Sarah Johnson",
+    "image": "https://i.pravatar.cc/150?img=1",
+    "phoneNumber": "+12125552001",
+    "phoneCountryCode": "+1",
+    "role": "buyer",
+    "fcmTokens": [
+      {
+        "token": "fcm_token_buyer2_ios_001",
+        "device": "ios",
+        "deviceId": "ios-device-002",
+        "lastUsed": {"$date": "2025-12-06T14:00:00.000Z"},
+        "createdAt": {"$date": "2024-10-15T10:00:00.000Z"}
+      }
+    ],
+    "isEmailVerified": true,
+    "isPhoneVerified": true,
+    "emailVerifiedAt": {"$date": "2024-10-15T11:00:00.000Z"},
+    "phoneVerifiedAt": {"$date": "2024-10-15T12:00:00.000Z"},
+    "accountStatus": "active",
+    "lastLogin": {"$date": "2025-12-06T14:00:00.000Z"},
+    "lastLoginIp": "192.168.2.100",
+    "lastLoginLocation": {
+      "country": "United States",
+      "city": "Chicago",
+      "coordinates": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "loginCount": 67,
+    "consecutiveLoginDays": 8,
+    "longestStreak": 20,
+    "failedLoginAttempts": 0,
+    "preferences": {
+      "language": "en",
+      "currency": "USD",
+      "timezone": "America/Chicago",
+      "dateFormat": "MM/DD/YYYY",
+      "notifications": {
+        "email": true,
+        "push": true,
+        "sms": false,
+        "orderUpdates": true,
+        "promotions": true,
+        "priceAlerts": true,
+        "newsletter": true
+      },
+      "emailDigest": {
+        "enabled": true,
+        "frequency": "weekly",
+        "preferredDay": 5,
+        "preferredTime": "10:00"
+      },
+      "theme": "light",
+      "accessibility": {
+        "fontSize": "medium",
+        "reducedMotion": false,
+        "highContrast": false
+      }
+    },
+    "referralCode": "SARAH-REF",
+    "referralCount": 5,
+    "marketingConsent": true,
+    "analyticsConsent": true,
+    "cookieConsent": true,
+    "termsAcceptedAt": {"$date": "2024-10-15T10:00:00.000Z"},
+    "privacyPolicyAcceptedAt": {"$date": "2024-10-15T10:00:00.000Z"},
+    "stats": {
+      "totalOrders": 23,
+      "totalSpent": 4280.50,
+      "totalReviews": 15,
+      "accountAge": 418
+    },
+    "activeSessions": [],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-10-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-06T14:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d4bd"},
+    "uid": "seller2uid987654321",
+    "email": "tech.gadgets.store@business.com",
+    "name": "Tech Gadgets Store",
+    "image": "https://i.pravatar.cc/150?img=8",
+    "phoneNumber": "+12125553001",
+    "phoneCountryCode": "+1",
+    "role": "seller",
+    "fcmTokens": [
+      {
+        "token": "fcm_token_seller2_web_001",
+        "device": "web",
+        "deviceId": "web-seller2-001",
+        "lastUsed": {"$date": "2025-12-07T06:00:00.000Z"},
+        "createdAt": {"$date": "2024-09-10T08:00:00.000Z"}
+      }
+    ],
+    "isEmailVerified": true,
+    "isPhoneVerified": true,
+    "emailVerifiedAt": {"$date": "2024-09-10T09:00:00.000Z"},
+    "phoneVerifiedAt": {"$date": "2024-09-10T10:00:00.000Z"},
+    "accountStatus": "active",
+    "lastLogin": {"$date": "2025-12-07T06:00:00.000Z"},
+    "lastLoginIp": "192.168.3.100",
+    "lastLoginLocation": {
+      "country": "United States",
+      "city": "Seattle",
+      "coordinates": {
+        "latitude": 47.6062,
+        "longitude": -122.3321
+      }
+    },
+    "loginCount": 145,
+    "consecutiveLoginDays": 20,
+    "longestStreak": 45,
+    "failedLoginAttempts": 0,
+    "preferences": {
+      "language": "en",
+      "currency": "USD",
+      "timezone": "America/Los_Angeles",
+      "dateFormat": "MM/DD/YYYY",
+      "notifications": {
+        "email": true,
+        "push": true,
+        "sms": true,
+        "orderUpdates": true,
+        "promotions": false,
+        "priceAlerts": false,
+        "newsletter": false
+      },
+      "emailDigest": {
+        "enabled": true,
+        "frequency": "daily",
+        "preferredTime": "08:00"
+      },
+      "theme": "dark",
+      "accessibility": {
+        "fontSize": "medium",
+        "reducedMotion": false,
+        "highContrast": false
+      }
+    },
+    "referralCode": "TECHGADGET",
+    "referralCount": 2,
+    "marketingConsent": true,
+    "analyticsConsent": true,
+    "cookieConsent": true,
+    "termsAcceptedAt": {"$date": "2024-09-10T08:00:00.000Z"},
+    "privacyPolicyAcceptedAt": {"$date": "2024-09-10T08:00:00.000Z"},
+    "stats": {
+      "totalOrders": 0,
+      "totalSpent": 0,
+      "totalReviews": 0,
+      "accountAge": 453
+    },
+    "activeSessions": [
+      {
+        "sessionId": {"$oid": "674a03d139f1f85510c3d4be"},
+        "device": "Chrome on Windows",
+        "lastActivity": {"$date": "2025-12-07T06:30:00.000Z"}
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-09-10T08:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T06:30:00.000Z"}
+  }
+]
+

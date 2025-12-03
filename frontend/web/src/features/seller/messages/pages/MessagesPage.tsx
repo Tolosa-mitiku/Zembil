@@ -1,4 +1,9 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+/**
+ * Seller Messages Page
+ * Real-time messaging with Socket.IO integration
+ */
+
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MagnifyingGlassIcon, 
@@ -7,269 +12,372 @@ import {
   PaperClipIcon,
   EllipsisVerticalIcon,
   UserCircleIcon,
-  XMarkIcon,
   InboxIcon,
   ChatBubbleLeftRightIcon,
-  CheckIcon,
+  WifiIcon,
+  ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
 import { CheckIcon as CheckIconSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import toast from 'react-hot-toast';
+
+// API and Socket imports
+import {
+  useGetSellerChatsQuery,
+  useGetSellerMessagesQuery,
+  useSendSellerMessageMutation,
+  Chat,
+  Message,
+  getChatDisplayInfo,
+} from '../api/messagesApi';
+import { useSocket } from '@/core/socket/SocketContext';
 import MessagesSkeleton from '../components/MessagesSkeleton';
 
-// Mock data - Replace with actual Firebase/API integration
-interface Message {
-  id: string;
-  senderId: string;
-  text: string;
-  timestamp: Date;
-  read: boolean;
-  type?: 'text' | 'image' | 'file';
-}
+// ============= COMPONENTS =============
 
-interface Conversation {
-  id: string;
-  userId: string;
-  userName: string;
-  userAvatar?: string;
-  lastMessage: string;
-  lastMessageTime: Date;
-  unreadCount: number;
-  online: boolean;
-  typing?: boolean;
-}
+// Connection status indicator
+const ConnectionStatus: React.FC<{ isConnected: boolean; isConnecting: boolean }> = ({ 
+  isConnected, 
+  isConnecting 
+}) => {
+  if (isConnecting) {
+    return (
+      <div className="flex items-center gap-2 px-3 py-1.5 bg-yellow-50 border border-yellow-200 rounded-full">
+        <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+        <span className="text-xs font-medium text-yellow-700">Connecting...</span>
+      </div>
+    );
+  }
 
-// Mock conversations data
-const mockConversations: Conversation[] = [
-  {
-    id: '1',
-    userId: 'user1',
-    userName: 'Sarah Johnson',
-    userAvatar: 'https://i.pravatar.cc/150?u=sarah',
-    lastMessage: 'Hi! Is this item still available?',
-    lastMessageTime: new Date(Date.now() - 300000), // 5 mins ago
-    unreadCount: 2,
-    online: true,
-  },
-  {
-    id: '2',
-    userId: 'user2',
-    userName: 'Michael Chen',
-    userAvatar: 'https://i.pravatar.cc/150?u=michael',
-    lastMessage: 'Thank you for the quick response!',
-    lastMessageTime: new Date(Date.now() - 3600000), // 1 hour ago
-    unreadCount: 0,
-    online: true,
-    typing: false,
-  },
-  {
-    id: '3',
-    userId: 'user3',
-    userName: 'Emma Williams',
-    userAvatar: 'https://i.pravatar.cc/150?u=emma',
-    lastMessage: 'Can I get a discount on bulk orders?',
-    lastMessageTime: new Date(Date.now() - 7200000), // 2 hours ago
-    unreadCount: 1,
-    online: false,
-  },
-  {
-    id: '4',
-    userId: 'user4',
-    userName: 'James Rodriguez',
-    userAvatar: 'https://i.pravatar.cc/150?u=james',
-    lastMessage: 'Perfect! I\'ll place the order soon.',
-    lastMessageTime: new Date(Date.now() - 86400000), // 1 day ago
-    unreadCount: 0,
-    online: false,
-  },
-  {
-    id: '5',
-    userId: 'user5',
-    userName: 'Olivia Taylor',
-    userAvatar: 'https://i.pravatar.cc/150?u=olivia',
-    lastMessage: 'When will the item be shipped?',
-    lastMessageTime: new Date(Date.now() - 172800000), // 2 days ago
-    unreadCount: 3,
-    online: true,
-  },
-];
+  if (!isConnected) {
+    return (
+      <div className="flex items-center gap-2 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full">
+        <ExclamationCircleIcon className="w-4 h-4 text-red-500" />
+        <span className="text-xs font-medium text-red-700">Offline</span>
+      </div>
+    );
+  }
 
-// Mock messages for selected conversation
-const mockMessages: Record<string, Message[]> = {
-  '1': [
-    {
-      id: 'm1',
-      senderId: 'user1',
-      text: 'Hello! I\'m interested in your leather jacket.',
-      timestamp: new Date(Date.now() - 600000),
-      read: true,
-    },
-    {
-      id: 'm2',
-      senderId: 'seller',
-      text: 'Hi Sarah! Yes, it\'s available. Which size are you looking for?',
-      timestamp: new Date(Date.now() - 540000),
-      read: true,
-    },
-    {
-      id: 'm3',
-      senderId: 'user1',
-      text: 'I need a medium. Do you have it in stock?',
-      timestamp: new Date(Date.now() - 480000),
-      read: true,
-    },
-    {
-      id: 'm4',
-      senderId: 'seller',
-      text: 'Yes, we have medium in stock! Would you like me to reserve it for you?',
-      timestamp: new Date(Date.now() - 420000),
-      read: true,
-    },
-    {
-      id: 'm5',
-      senderId: 'user1',
-      text: 'Hi! Is this item still available?',
-      timestamp: new Date(Date.now() - 300000),
-      read: false,
-    },
-  ],
-  '2': [
-    {
-      id: 'm6',
-      senderId: 'user2',
-      text: 'Hi, I received my order yesterday.',
-      timestamp: new Date(Date.now() - 7200000),
-      read: true,
-    },
-    {
-      id: 'm7',
-      senderId: 'seller',
-      text: 'That\'s great! How do you like it?',
-      timestamp: new Date(Date.now() - 7140000),
-      read: true,
-    },
-    {
-      id: 'm8',
-      senderId: 'user2',
-      text: 'Thank you for the quick response!',
-      timestamp: new Date(Date.now() - 3600000),
-      read: true,
-    },
-  ],
-  '3': [
-    {
-      id: 'm9',
-      senderId: 'user3',
-      text: 'Can I get a discount on bulk orders?',
-      timestamp: new Date(Date.now() - 7200000),
-      read: false,
-    },
-  ],
+  return (
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
+      <WifiIcon className="w-4 h-4 text-green-500" />
+      <span className="text-xs font-medium text-green-700">Connected</span>
+    </div>
+  );
 };
 
+// Message bubble component
+const MessageBubble: React.FC<{
+  message: Message;
+  isOwn: boolean;
+  showAvatar: boolean;
+}> = ({ message, isOwn, showAvatar }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      className={clsx(
+        'flex gap-3 items-end',
+        isOwn ? 'flex-row-reverse' : 'flex-row'
+      )}
+    >
+      {/* Avatar */}
+      <div className="w-8 h-8 flex-shrink-0">
+        {showAvatar && !isOwn && (
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-grey-300 to-grey-400 flex items-center justify-center">
+            <UserCircleIcon className="w-6 h-6 text-white" />
+          </div>
+        )}
+      </div>
+
+      {/* Message Bubble */}
+      <div
+        className={clsx(
+          'max-w-md px-4 py-2.5 rounded-2xl shadow-sm',
+          isOwn
+            ? 'bg-gradient-to-br from-gold to-gold-dark text-white rounded-br-sm'
+            : 'bg-white border border-grey-200 text-grey-900 rounded-bl-sm'
+        )}
+      >
+        <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+        
+        {/* Attachment */}
+        {message.attachment && (
+          <div className="mt-2 p-2 bg-white/10 rounded-lg">
+            <a 
+              href={message.attachment.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs underline"
+            >
+              {message.attachment.fileName || 'Attachment'}
+            </a>
+          </div>
+        )}
+        
+        <div className={clsx(
+          'flex items-center gap-1 mt-1',
+          isOwn ? 'justify-end' : 'justify-start'
+        )}>
+          <span className={clsx(
+            'text-xs',
+            isOwn ? 'text-white/70' : 'text-grey-500'
+          )}>
+            {formatDistanceToNow(new Date(message.createdAt), { addSuffix: true })}
+          </span>
+          {isOwn && (
+            <CheckIconSolid className={clsx(
+              'w-3.5 h-3.5',
+              message.isRead ? 'text-blue-300' : 'text-white/70'
+            )} />
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Typing indicator component
+const TypingIndicator: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 10 }}
+    className="flex items-center gap-3"
+  >
+    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-grey-300 to-grey-400 flex items-center justify-center">
+      <UserCircleIcon className="w-6 h-6 text-white" />
+    </div>
+    <div className="bg-white border border-grey-200 px-4 py-3 rounded-2xl rounded-bl-sm">
+      <div className="flex gap-1">
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.2 }}
+            className="w-2 h-2 bg-grey-400 rounded-full"
+          />
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+// ============= MAIN COMPONENT =============
+
 const MessagesPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout>();
+  
+  // Socket connection
+  const { 
+    isConnected, 
+    isConnecting, 
+    joinChat, 
+    leaveChat, 
+    sendMessage: socketSendMessage,
+    sendTyping,
+    markAsRead,
+    setOnNewMessage,
+    setOnChatUpdated,
+    setOnUserTyping,
+    setOnMessagesRead,
+  } = useSocket();
+  
+  // Local state
+  const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [messageInput, setMessageInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
+  const [typingUsers, setTypingUsers] = useState<Record<string, boolean>>({});
+  const [localMessages, setLocalMessages] = useState<Message[]>([]);
+  
+  // API hooks
+  const { 
+    data: chats = [], 
+    isLoading: chatsLoading,
+    refetch: refetchChats,
+  } = useGetSellerChatsQuery();
+  
+  const { 
+    data: messagesData,
+    isLoading: messagesLoading,
+    refetch: refetchMessages,
+  } = useGetSellerMessagesQuery(
+    { chatId: selectedChatId! },
+    { skip: !selectedChatId }
+  );
+  
+  const [sendMessageMutation] = useSendSellerMessageMutation();
 
-  // Simulate loading data
-  useEffect(() => {
-    const loadData = async () => {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setConversations(mockConversations);
-      setIsLoading(false);
-    };
-    
-    loadData();
-  }, []);
+  // Get selected chat info
+  const selectedChat = useMemo(() => 
+    chats.find(c => c._id === selectedChatId),
+    [chats, selectedChatId]
+  );
 
-  // Load messages for selected conversation
+  // Combined messages (API + local optimistic)
+  const messages = useMemo(() => {
+    const apiMessages = messagesData?.data || [];
+    // Merge and sort by date, removing duplicates
+    const allMessages = [...apiMessages, ...localMessages];
+    const uniqueMessages = allMessages.filter((msg, index, self) => 
+      index === self.findIndex(m => m._id === msg._id)
+    );
+    return uniqueMessages.sort((a, b) => 
+      new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    );
+  }, [messagesData, localMessages]);
+
+  // Set up socket event handlers
   useEffect(() => {
-    if (selectedConversation) {
-      // Simulate loading messages
-      const conversationMessages = mockMessages[selectedConversation.id] || [];
-      setMessages(conversationMessages);
-      
-      // Mark messages as read
-      if (selectedConversation.unreadCount > 0) {
-        setConversations(prev => 
-          prev.map(conv => 
-            conv.id === selectedConversation.id 
-              ? { ...conv, unreadCount: 0 } 
-              : conv
-          )
-        );
+    setOnNewMessage((data) => {
+      if (data.chatId === selectedChatId) {
+        // Add new message to local state for instant display
+        setLocalMessages(prev => {
+          // Check if message already exists
+          if (prev.some(m => m._id === data.message._id)) {
+            return prev;
+          }
+          return [...prev, data.message];
+        });
+        
+        // Scroll to bottom
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
+      
+      // Refetch chats to update unread counts
+      refetchChats();
+    });
+
+    setOnChatUpdated(() => {
+      refetchChats();
+    });
+
+    setOnUserTyping((data) => {
+      if (data.chatId === selectedChatId) {
+        setTypingUsers(prev => ({
+          ...prev,
+          [data.userId]: data.isTyping,
+        }));
+      }
+    });
+
+    setOnMessagesRead((data) => {
+      if (data.chatId === selectedChatId) {
+        // Update read status in local messages
+        setLocalMessages(prev => 
+          prev.map(m => ({ ...m, isRead: true }))
+        );
+        refetchMessages();
+      }
+    });
+
+    return () => {
+      setOnNewMessage(null);
+      setOnChatUpdated(null);
+      setOnUserTyping(null);
+      setOnMessagesRead(null);
+    };
+  }, [selectedChatId, refetchChats, refetchMessages, setOnNewMessage, setOnChatUpdated, setOnUserTyping, setOnMessagesRead]);
+
+  // Join/leave chat room when selection changes
+  useEffect(() => {
+    if (selectedChatId && isConnected) {
+      joinChat(selectedChatId);
+      markAsRead(selectedChatId);
+      setLocalMessages([]); // Clear local messages when switching chats
     }
-  }, [selectedConversation]);
+
+    return () => {
+      if (selectedChatId && isConnected) {
+        leaveChat(selectedChatId);
+      }
+    };
+  }, [selectedChatId, isConnected, joinChat, leaveChat, markAsRead]);
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   // Filter conversations
-  const filteredConversations = useMemo(() => {
-    let filtered = conversations;
+  const filteredChats = useMemo(() => {
+    let filtered = chats;
 
-    // Filter by search
     if (searchQuery) {
-      filtered = filtered.filter(conv => 
-        conv.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        conv.lastMessage.toLowerCase().includes(searchQuery.toLowerCase())
+      filtered = filtered.filter(chat => {
+        const info = getChatDisplayInfo(chat, 'seller');
+        return info.name.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+    }
+
+    if (filter === 'unread') {
+      filtered = filtered.filter(chat => 
+        (chat.unreadMessagesCount?.seller || 0) > 0
       );
     }
 
-    // Filter by unread
-    if (filter === 'unread') {
-      filtered = filtered.filter(conv => conv.unreadCount > 0);
-    }
-
     return filtered;
-  }, [conversations, searchQuery, filter]);
+  }, [chats, searchQuery, filter]);
 
-  // Total unread count
   const totalUnreadCount = useMemo(() => 
-    conversations.reduce((sum, conv) => sum + conv.unreadCount, 0),
-    [conversations]
+    chats.reduce((sum, chat) => sum + (chat.unreadMessagesCount?.seller || 0), 0),
+    [chats]
   );
 
-  // Send message
-  const handleSendMessage = useCallback(() => {
-    if (!messageInput.trim() || !selectedConversation) return;
+  // Handle sending message
+  const handleSendMessage = useCallback(async () => {
+    if (!messageInput.trim() || !selectedChatId) return;
 
-    const newMessage: Message = {
-      id: `m${Date.now()}`,
-      senderId: 'seller',
-      text: messageInput,
-      timestamp: new Date(),
-      read: true,
-    };
-
-    setMessages(prev => [...prev, newMessage]);
+    const content = messageInput.trim();
     setMessageInput('');
 
-    // Update conversation last message
-    setConversations(prev => 
-      prev.map(conv => 
-        conv.id === selectedConversation.id 
-          ? { 
-              ...conv, 
-              lastMessage: messageInput, 
-              lastMessageTime: new Date(),
-              typing: false,
-            } 
-          : conv
-      )
-    );
+    // Stop typing indicator
+    sendTyping(selectedChatId, false);
 
-    toast.success('Message sent!');
-  }, [messageInput, selectedConversation]);
+    if (isConnected) {
+      // Send via socket for real-time delivery
+      socketSendMessage(selectedChatId, content);
+    } else {
+      // Fallback to HTTP
+      try {
+        await sendMessageMutation({ chatId: selectedChatId, content }).unwrap();
+        refetchMessages();
+      } catch {
+        toast.error('Failed to send message');
+        setMessageInput(content); // Restore message on error
+      }
+    }
+  }, [messageInput, selectedChatId, isConnected, socketSendMessage, sendMessageMutation, sendTyping, refetchMessages]);
 
-  // Handle key press
+  // Handle typing
+  const handleTyping = useCallback((value: string) => {
+    setMessageInput(value);
+
+    if (!selectedChatId || !isConnected) return;
+
+    // Clear existing timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    // Send typing indicator
+    if (value.trim()) {
+      sendTyping(selectedChatId, true);
+      
+      // Stop typing after 2 seconds of inactivity
+      typingTimeoutRef.current = setTimeout(() => {
+        sendTyping(selectedChatId, false);
+      }, 2000);
+    } else {
+      sendTyping(selectedChatId, false);
+    }
+  }, [selectedChatId, isConnected, sendTyping]);
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -277,18 +385,11 @@ const MessagesPage = () => {
     }
   };
 
-  // Simulate typing indicator
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (messageInput && selectedConversation) {
-      setIsTyping(true);
-      timeout = setTimeout(() => setIsTyping(false), 1000);
-    }
-    return () => clearTimeout(timeout);
-  }, [messageInput, selectedConversation]);
+  // Check if someone is typing
+  const isOtherTyping = Object.values(typingUsers).some(Boolean);
 
-  // Show loading skeleton
-  if (isLoading) {
+  // Loading state
+  if (chatsLoading) {
     return <MessagesSkeleton />;
   }
 
@@ -320,35 +421,39 @@ const MessagesPage = () => {
             </p>
           </div>
 
-          {/* Filter tabs */}
-          <div className="flex items-center gap-2 bg-grey-100 rounded-xl p-1">
-            <button
-              onClick={() => setFilter('all')}
-              className={clsx(
-                'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-                filter === 'all'
-                  ? 'bg-white text-gold shadow-sm'
-                  : 'text-grey-600 hover:text-grey-900'
-              )}
-            >
-              All Messages
-            </button>
-            <button
-              onClick={() => setFilter('unread')}
-              className={clsx(
-                'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2',
-                filter === 'unread'
-                  ? 'bg-white text-gold shadow-sm'
-                  : 'text-grey-600 hover:text-grey-900'
-              )}
-            >
-              Unread
-              {totalUnreadCount > 0 && (
-                <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                  {totalUnreadCount}
-                </span>
-              )}
-            </button>
+          <div className="flex items-center gap-4">
+            <ConnectionStatus isConnected={isConnected} isConnecting={isConnecting} />
+            
+            {/* Filter tabs */}
+            <div className="flex items-center gap-2 bg-grey-100 rounded-xl p-1">
+              <button
+                onClick={() => setFilter('all')}
+                className={clsx(
+                  'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+                  filter === 'all'
+                    ? 'bg-white text-gold shadow-sm'
+                    : 'text-grey-600 hover:text-grey-900'
+                )}
+              >
+                All Messages
+              </button>
+              <button
+                onClick={() => setFilter('unread')}
+                className={clsx(
+                  'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2',
+                  filter === 'unread'
+                    ? 'bg-white text-gold shadow-sm'
+                    : 'text-grey-600 hover:text-grey-900'
+                )}
+              >
+                Unread
+                {totalUnreadCount > 0 && (
+                  <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                    {totalUnreadCount}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -363,7 +468,7 @@ const MessagesPage = () => {
               <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-grey-400" />
               <input
                 type="text"
-                placeholder="Search conversations..."
+                placeholder="Search customers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2.5 bg-grey-50 border border-grey-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
@@ -373,87 +478,94 @@ const MessagesPage = () => {
 
           {/* Conversations */}
           <div className="flex-1 overflow-y-auto">
-            {filteredConversations.length === 0 ? (
+            {filteredChats.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-grey-400 p-8">
                 <InboxIcon className="w-16 h-16 mb-4" />
-                <p className="text-sm">No conversations found</p>
+                <p className="text-sm text-center">
+                  {searchQuery ? 'No conversations found' : 'No conversations yet'}
+                </p>
+                <p className="text-xs text-grey-400 mt-2 text-center">
+                  Customers will appear here when they message you
+                </p>
               </div>
             ) : (
               <AnimatePresence mode="popLayout">
-                {filteredConversations.map((conversation, index) => (
-                  <motion.div
-                    key={conversation.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ delay: index * 0.05 }}
-                    onClick={() => setSelectedConversation(conversation)}
-                    className={clsx(
-                      'p-4 border-b border-grey-100 cursor-pointer transition-all hover:bg-grey-50',
-                      selectedConversation?.id === conversation.id && 'bg-gold/5 border-l-4 border-l-gold'
-                    )}
-                  >
-                    <div className="flex items-start gap-3">
-                      {/* Avatar */}
-                      <div className="relative flex-shrink-0">
-                        {conversation.userAvatar ? (
-                          <img 
-                            src={conversation.userAvatar} 
-                            alt={conversation.userName}
-                            className="w-12 h-12 rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-dark to-gold flex items-center justify-center">
-                            <UserCircleIcon className="w-8 h-8 text-white" />
-                          </div>
-                        )}
-                        {conversation.online && (
-                          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                        )}
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <h3 className="font-semibold text-grey-900 truncate">
-                            {conversation.userName}
-                          </h3>
-                          <span className="text-xs text-grey-500 flex-shrink-0 ml-2">
-                            {formatDistanceToNow(conversation.lastMessageTime, { addSuffix: true })}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <p className={clsx(
-                            'text-sm truncate',
-                            conversation.unreadCount > 0 ? 'text-grey-900 font-medium' : 'text-grey-500'
-                          )}>
-                            {conversation.typing ? (
-                              <span className="text-gold italic">Typing...</span>
-                            ) : (
-                              conversation.lastMessage
-                            )}
-                          </p>
-                          {conversation.unreadCount > 0 && (
-                            <motion.span
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              className="flex-shrink-0 ml-2 bg-gold text-white text-xs font-bold px-2 py-1 rounded-full"
-                            >
-                              {conversation.unreadCount}
-                            </motion.span>
+                {filteredChats.map((chat, index) => {
+                  const displayInfo = getChatDisplayInfo(chat, 'seller');
+                  const isSelected = selectedChatId === chat._id;
+                  
+                  return (
+                    <motion.div
+                      key={chat._id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ delay: index * 0.05 }}
+                      onClick={() => setSelectedChatId(chat._id)}
+                      className={clsx(
+                        'p-4 border-b border-grey-100 cursor-pointer transition-all hover:bg-grey-50',
+                        isSelected && 'bg-gold/5 border-l-4 border-l-gold'
+                      )}
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* Avatar */}
+                        <div className="relative flex-shrink-0">
+                          {displayInfo.avatar ? (
+                            <img 
+                              src={displayInfo.avatar} 
+                              alt={displayInfo.name}
+                              className="w-12 h-12 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-dark to-gold flex items-center justify-center">
+                              <UserCircleIcon className="w-8 h-8 text-white" />
+                            </div>
                           )}
                         </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <h3 className="font-semibold text-grey-900 truncate">
+                              {displayInfo.name}
+                            </h3>
+                            <span className="text-xs text-grey-500 flex-shrink-0 ml-2">
+                              {chat.lastMessageAt && formatDistanceToNow(new Date(chat.lastMessageAt), { addSuffix: true })}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <p className={clsx(
+                              'text-sm truncate',
+                              displayInfo.unreadCount > 0 ? 'text-grey-900 font-medium' : 'text-grey-500'
+                            )}>
+                              {typingUsers[chat._id] ? (
+                                <span className="text-gold italic">Typing...</span>
+                              ) : (
+                                chat.lastMessage || 'No messages yet'
+                              )}
+                            </p>
+                            {displayInfo.unreadCount > 0 && (
+                              <motion.span
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                className="flex-shrink-0 ml-2 bg-gold text-white text-xs font-bold px-2 py-1 rounded-full"
+                              >
+                                {displayInfo.unreadCount}
+                              </motion.span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </AnimatePresence>
             )}
           </div>
         </div>
 
         {/* Chat Area */}
-        {selectedConversation ? (
+        {selectedChat ? (
           <div className="flex-1 flex flex-col bg-white">
             {/* Chat Header */}
             <div className="px-6 py-4 border-b border-grey-200 bg-gradient-to-r from-white to-gold/5">
@@ -461,33 +573,32 @@ const MessagesPage = () => {
                 <div className="flex items-center gap-4">
                   {/* Avatar */}
                   <div className="relative">
-                    {selectedConversation.userAvatar ? (
-                      <img 
-                        src={selectedConversation.userAvatar} 
-                        alt={selectedConversation.userName}
-                        className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/20"
-                      />
-                    ) : (
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-dark to-gold flex items-center justify-center">
-                        <UserCircleIcon className="w-8 h-8 text-white" />
-                      </div>
-                    )}
-                    {selectedConversation.online && (
-                      <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                    )}
+                    {(() => {
+                      const info = getChatDisplayInfo(selectedChat, 'seller');
+                      return info.avatar ? (
+                        <img 
+                          src={info.avatar} 
+                          alt={info.name}
+                          className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/20"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-dark to-gold flex items-center justify-center">
+                          <UserCircleIcon className="w-8 h-8 text-white" />
+                        </div>
+                      );
+                    })()}
                   </div>
 
                   {/* Info */}
                   <div>
-                    <h2 className="font-semibold text-grey-900">{selectedConversation.userName}</h2>
+                    <h2 className="font-semibold text-grey-900">
+                      {getChatDisplayInfo(selectedChat, 'seller').name}
+                    </h2>
                     <p className="text-sm text-grey-500">
-                      {selectedConversation.online ? (
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-2 h-2 rounded-full bg-green-500" />
-                          Active now
-                        </span>
+                      {isOtherTyping ? (
+                        <span className="text-gold">Typing...</span>
                       ) : (
-                        `Last seen ${formatDistanceToNow(selectedConversation.lastMessageTime, { addSuffix: true })}`
+                        'Customer'
                       )}
                     </p>
                   </div>
@@ -502,94 +613,46 @@ const MessagesPage = () => {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-grey-50/50 to-white">
-              <AnimatePresence mode="popLayout">
-                {messages.map((message, index) => {
-                  const isFromSeller = message.senderId === 'seller';
-                  const showAvatar = index === 0 || messages[index - 1].senderId !== message.senderId;
-                  
-                  return (
-                    <motion.div
-                      key={message.id}
-                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ delay: index * 0.05 }}
-                      className={clsx(
-                        'flex gap-3 items-end',
-                        isFromSeller ? 'flex-row-reverse' : 'flex-row'
-                      )}
-                    >
-                      {/* Avatar */}
-                      <div className="w-8 h-8 flex-shrink-0">
-                        {showAvatar && !isFromSeller && (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-grey-300 to-grey-400 flex items-center justify-center">
-                            <UserCircleIcon className="w-6 h-6 text-white" />
-                          </div>
-                        )}
-                      </div>
+              {messagesLoading ? (
+                <div className="flex items-center justify-center h-full">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gold" />
+                </div>
+              ) : messages.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full text-center">
+                  <ChatBubbleLeftRightIcon className="w-16 h-16 text-grey-300 mb-4" />
+                  <p className="text-grey-500">No messages yet</p>
+                  <p className="text-sm text-grey-400 mt-1">Send a message to start the conversation</p>
+                </div>
+              ) : (
+                <>
+                  {messages.map((message, index) => {
+                    const isOwn = message.senderRole === 'seller';
+                    const senderId = typeof message.senderId === 'string' 
+                      ? message.senderId 
+                      : message.senderId._id;
+                    const showAvatar = index === 0 || 
+                      (typeof messages[index - 1].senderId === 'string' 
+                        ? messages[index - 1].senderId 
+                        : messages[index - 1].senderId._id) !== senderId;
+                    
+                    return (
+                      <MessageBubble
+                        key={message._id}
+                        message={message}
+                        isOwn={isOwn}
+                        showAvatar={showAvatar}
+                      />
+                    );
+                  })}
 
-                      {/* Message Bubble */}
-                      <motion.div
-                        whileHover={{ scale: 1.02 }}
-                        className={clsx(
-                          'max-w-md px-4 py-2.5 rounded-2xl shadow-sm',
-                          isFromSeller
-                            ? 'bg-gradient-to-br from-gold to-gold-dark text-white rounded-br-sm'
-                            : 'bg-white border border-grey-200 text-grey-900 rounded-bl-sm'
-                        )}
-                      >
-                        <p className="text-sm leading-relaxed">{message.text}</p>
-                        <div className={clsx(
-                          'flex items-center gap-1 mt-1',
-                          isFromSeller ? 'justify-end' : 'justify-start'
-                        )}>
-                          <span className={clsx(
-                            'text-xs',
-                            isFromSeller ? 'text-white/70' : 'text-grey-500'
-                          )}>
-                            {formatDistanceToNow(message.timestamp, { addSuffix: true })}
-                          </span>
-                          {isFromSeller && message.read && (
-                            <CheckIconSolid className="w-3.5 h-3.5 text-white/70" />
-                          )}
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
-
-              {/* Typing Indicator */}
-              {selectedConversation.typing && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-grey-300 to-grey-400 flex items-center justify-center">
-                    <UserCircleIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="bg-white border border-grey-200 px-4 py-3 rounded-2xl rounded-bl-sm">
-                    <div className="flex gap-1">
-                      <motion.div
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.6, delay: 0 }}
-                        className="w-2 h-2 bg-grey-400 rounded-full"
-                      />
-                      <motion.div
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }}
-                        className="w-2 h-2 bg-grey-400 rounded-full"
-                      />
-                      <motion.div
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }}
-                        className="w-2 h-2 bg-grey-400 rounded-full"
-                      />
-                    </div>
-                  </div>
-                </motion.div>
+                  {/* Typing Indicator */}
+                  <AnimatePresence>
+                    {isOtherTyping && <TypingIndicator />}
+                  </AnimatePresence>
+                </>
               )}
+              
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Message Input */}
@@ -604,7 +667,7 @@ const MessagesPage = () => {
                 <div className="flex-1 relative">
                   <textarea
                     value={messageInput}
-                    onChange={(e) => setMessageInput(e.target.value)}
+                    onChange={(e) => handleTyping(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Type your message..."
                     rows={1}
@@ -613,10 +676,7 @@ const MessagesPage = () => {
                   />
                   
                   {/* Emoji Button */}
-                  <button 
-                    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-grey-200 rounded-lg transition-colors"
-                  >
+                  <button className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-grey-200 rounded-lg transition-colors">
                     <FaceSmileIcon className="w-5 h-5 text-grey-600" />
                   </button>
                 </div>

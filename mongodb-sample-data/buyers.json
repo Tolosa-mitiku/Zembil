@@ -1,0 +1,167 @@
+[
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d5ba"},
+    "userId": {"$oid": "674a03d139f1f85510c3d4ba"},
+    "firebaseUID": "dGfgu91dCHNA9s2fSCEbYfgFHhG2",
+    "firstName": "Tolosa",
+    "lastName": "Mitiku",
+    "displayName": "Tolosa Mitiku",
+    "dateOfBirth": {"$date": "1995-05-15T00:00:00.000Z"},
+    "gender": "male",
+    "email": "wonexmitex@gmail.com",
+    "phoneNumber": "+12125551001",
+    "profileImage": "https://lh3.googleusercontent.com/a/ACg8ocIrJq_prj-5msOxrm-eFZ4sjgvuP78SKMvJ3shoBa40xIGDueii=s96-c",
+    "preferences": {
+      "favoriteCategories": ["Electronics", "Clothing", "Books"],
+      "preferredBrands": ["Apple", "Nike", "Samsung"],
+      "sizePreferences": {
+        "clothing": "L",
+        "shoes": "10"
+      },
+      "priceRange": {
+        "min": 20,
+        "max": 500
+      },
+      "notifyWhenBackInStock": true,
+      "saveForLater": true
+    },
+    "loyalty": {
+      "tier": "gold",
+      "points": 1850,
+      "pointsLifetime": 2450,
+      "tierUpgradeDate": {"$date": "2025-06-15T00:00:00.000Z"},
+      "nextTierRequirement": 3000
+    },
+    "analytics": {
+      "averageOrderValue": 204.17,
+      "totalOrders": 12,
+      "totalSpent": 2450.00,
+      "lastOrderDate": {"$date": "2025-11-25T10:00:00.000Z"},
+      "favoritePaymentMethod": "stripe",
+      "mostOrderedCategory": "Electronics",
+      "viewedProducts": [],
+      "searchHistory": [
+        {
+          "query": "wireless headphones",
+          "timestamp": {"$date": "2025-12-06T10:00:00.000Z"},
+          "resultsCount": 15
+        },
+        {
+          "query": "laptop stand",
+          "timestamp": {"$date": "2025-12-05T14:30:00.000Z"},
+          "resultsCount": 8
+        }
+      ],
+      "abandonedCarts": 2
+    },
+    "communicationPreferences": {
+      "preferredContactMethod": "email",
+      "bestTimeToContact": {
+        "start": "09:00",
+        "end": "18:00",
+        "timezone": "America/New_York"
+      }
+    },
+    "savedPaymentMethods": [],
+    "social": {
+      "followedSellers": [],
+      "followedBy": 0,
+      "publicProfile": false,
+      "allowReviews": true
+    },
+    "trust": {
+      "trustScore": 85,
+      "fraudAlerts": 0,
+      "lastFraudCheck": {"$date": "2025-12-01T00:00:00.000Z"},
+      "verifiedPurchaser": true,
+      "verifiedReviewer": true
+    },
+    "deliveryAddresses": [],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-11-29T18:11:29.830Z"},
+    "updatedAt": {"$date": "2025-12-07T09:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d5bc"},
+    "userId": {"$oid": "674a03d139f1f85510c3d4bc"},
+    "firebaseUID": "buyer2uid123456789",
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "displayName": "Sarah Johnson",
+    "dateOfBirth": {"$date": "1990-08-22T00:00:00.000Z"},
+    "gender": "female",
+    "email": "sarah.johnson@email.com",
+    "phoneNumber": "+12125552001",
+    "profileImage": "https://i.pravatar.cc/150?img=1",
+    "preferences": {
+      "favoriteCategories": ["Fashion", "Beauty", "Home & Garden"],
+      "preferredBrands": ["Zara", "H&M", "IKEA"],
+      "sizePreferences": {
+        "clothing": "M",
+        "shoes": "8"
+      },
+      "priceRange": {
+        "min": 15,
+        "max": 300
+      },
+      "notifyWhenBackInStock": true,
+      "saveForLater": true
+    },
+    "loyalty": {
+      "tier": "platinum",
+      "points": 3200,
+      "pointsLifetime": 4280,
+      "tierUpgradeDate": {"$date": "2025-03-10T00:00:00.000Z"},
+      "nextTierRequirement": 5000
+    },
+    "analytics": {
+      "averageOrderValue": 186.11,
+      "totalOrders": 23,
+      "totalSpent": 4280.50,
+      "lastOrderDate": {"$date": "2025-12-04T15:30:00.000Z"},
+      "favoritePaymentMethod": "paypal",
+      "mostOrderedCategory": "Fashion",
+      "viewedProducts": [],
+      "searchHistory": [
+        {
+          "query": "summer dress",
+          "timestamp": {"$date": "2025-12-05T11:00:00.000Z"},
+          "resultsCount": 24
+        },
+        {
+          "query": "sandals",
+          "timestamp": {"$date": "2025-12-04T16:00:00.000Z"},
+          "resultsCount": 18
+        }
+      ],
+      "abandonedCarts": 1
+    },
+    "communicationPreferences": {
+      "preferredContactMethod": "email",
+      "bestTimeToContact": {
+        "start": "10:00",
+        "end": "20:00",
+        "timezone": "America/Chicago"
+      }
+    },
+    "savedPaymentMethods": [],
+    "social": {
+      "followedSellers": [],
+      "followedBy": 0,
+      "publicProfile": true,
+      "allowReviews": true
+    },
+    "trust": {
+      "trustScore": 92,
+      "fraudAlerts": 0,
+      "lastFraudCheck": {"$date": "2025-12-01T00:00:00.000Z"},
+      "verifiedPurchaser": true,
+      "verifiedReviewer": true
+    },
+    "deliveryAddresses": [],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-10-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-06T14:00:00.000Z"}
+  }
+]
+

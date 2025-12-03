@@ -575,3 +575,26 @@ A **professional settings page** that:
 
 **Use this pattern for all settings-related pages!** 🏆
 
+---
+
+## AI Assistant Guidelines
+
+### Documentation Files
+- **NEVER** proactively create documentation files (*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a file exceeds 1000 lines:
+  - **MUST** refactor into smaller, reusable widgets
+  - Extract dialog components into separate widget files
+  - Split section builders into separate widget files
+  - Create separate files for tile widgets (switch tiles, action tiles, etc.)
+  - Extract helper methods into utility files
+- Settings page refactoring strategy:
+  - Extract each section into separate widget files
+  - Create dedicated files for dialogs (logout, what's new, etc.)
+  - Move reusable tiles into a widgets folder
+  - Keep main settings page focused on layout and coordination
+

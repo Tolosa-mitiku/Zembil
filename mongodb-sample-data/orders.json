@@ -1,0 +1,5591 @@
+[
+  {
+    "_id": {
+      "$oid": "4b6cbb75ec9d6f3bb1725d54"
+    },
+    "orderNumber": "ZMB-20250901-1000",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "fa7ec5a6f73cc19a927ac947"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Peloton Bike+ with Auto-Follow Resistance",
+        "image": "https://images.unsplash.com/photo-1598928680261",
+        "price": 2495.0,
+        "quantity": 1,
+        "subtotal": 2495.0
+      }
+    ],
+    "totalPrice": 2694.6,
+    "platformFee": 249.5,
+    "sellerEarnings": 2245.5,
+    "tax": 199.6,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "4531 Maple Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-11-29T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-25T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-25T13:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-29T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-30T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-02T11:47:49.392420"
+      },
+      "trackingNumber": "TRK818718608",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_b44def91806e5d482917",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b94fe20e4bd43b241b49bfa5"
+    },
+    "orderNumber": "ZMB-20250831-1001",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e002"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Samsung Galaxy S24 Ultra 512GB - Phantom Black",
+        "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c",
+        "price": 1419.99,
+        "quantity": 2,
+        "subtotal": 2839.98
+      },
+      {
+        "productId": {
+          "$oid": "04df86f41947fae8a2a13b9c"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Atomic Habits by James Clear - Hardcover",
+        "image": "https://images.unsplash.com/photo-1601196091170",
+        "price": 27.0,
+        "quantity": 1,
+        "subtotal": 27.0
+      },
+      {
+        "productId": {
+          "$oid": "f09f78d8b57dd6ae954f6f75"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "August Smart Lock Pro 3rd Gen",
+        "image": "https://images.unsplash.com/photo-1594939687421",
+        "price": 279.99,
+        "quantity": 2,
+        "subtotal": 559.98
+      }
+    ],
+    "totalPrice": 3701.12,
+    "platformFee": 342.7,
+    "sellerEarnings": 3084.26,
+    "tax": 274.16,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "5358 Park Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-21T11:47:49.392420"
+        }
+      },
+      "status": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-17T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-17T13:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-18T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-19T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-24T11:47:49.392420"
+      },
+      "trackingNumber": "TRK943522099",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_5039b3c8ffbdb50a2102",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "04fda1efbb334a1e76555105"
+    },
+    "orderNumber": "ZMB-20250814-1002",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "182548ac552ea2b2103e2df3"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "JBL Flip 6 Portable Bluetooth Speaker",
+        "image": "https://images.unsplash.com/photo-1667749401421",
+        "price": 129.99,
+        "quantity": 1,
+        "subtotal": 129.99
+      },
+      {
+        "productId": {
+          "$oid": "4d71154bb9b5f6949662987e"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung Galaxy Buds2 Pro",
+        "image": "https://images.unsplash.com/photo-1591465019236",
+        "price": 195.49,
+        "quantity": 2,
+        "subtotal": 390.98
+      },
+      {
+        "productId": {
+          "$oid": "3f81a65b8160287c8b201fab"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung T7 Shield 2TB Portable SSD",
+        "image": "https://images.unsplash.com/photo-1638512922671",
+        "price": 212.49,
+        "quantity": 1,
+        "subtotal": 212.49
+      }
+    ],
+    "totalPrice": 792.14,
+    "platformFee": 73.35,
+    "sellerEarnings": 660.11,
+    "tax": 58.68,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "1858 Park Street",
+      "addressLine2": "Apt 49",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-09-04T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-31T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-31T13:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-01T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-09-02T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-09-04T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-09-05T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-09-07T11:47:49.392420"
+      },
+      "trackingNumber": "TRK749715056",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_9ca29d5d78833cdacaa0",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-31T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-09-05T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b43458ab03643d5d540af5ca"
+    },
+    "orderNumber": "ZMB-20251006-1003",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "2b28da1ad666b74bbea80a80"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Philips Hue White & Color 4-Pack Bulbs",
+        "image": "https://images.unsplash.com/photo-1532817545318",
+        "price": 199.99,
+        "quantity": 1,
+        "subtotal": 199.99
+      }
+    ],
+    "totalPrice": 215.99,
+    "platformFee": 20.0,
+    "sellerEarnings": 179.99,
+    "tax": 16.0,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "8885 Maple Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-24T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-20T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-20T13:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-21T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-22T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-24T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-25T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-27T11:47:49.392420"
+      },
+      "trackingNumber": "TRK699818775",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_8e08c54f25b8d3d247c4",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-25T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bade12737053547f83eec337"
+    },
+    "orderNumber": "ZMB-20251110-1004",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "47f0c68e05f90c9292f50d1a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Champion Reverse Weave Hoodie",
+        "image": "https://images.unsplash.com/photo-1614167677892",
+        "price": 65.0,
+        "quantity": 2,
+        "subtotal": 130.0
+      },
+      {
+        "productId": {
+          "$oid": "eb8984316c5e2bd60768cf34"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Google Pixel 8 Pro 256GB - Obsidian",
+        "image": "https://images.unsplash.com/photo-1672447427493",
+        "price": 999.99,
+        "quantity": 1,
+        "subtotal": 999.99
+      }
+    ],
+    "totalPrice": 1220.39,
+    "platformFee": 113.0,
+    "sellerEarnings": 1016.99,
+    "tax": 90.4,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "4814 Oak Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-20T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-16T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-16T13:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-17T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-18T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-20T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-21T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-23T11:47:49.392420"
+      },
+      "trackingNumber": "TRK908120284",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_1cdee90939ee11d68d23",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4da5dc058afce1aef2db63c9"
+    },
+    "orderNumber": "ZMB-20250814-1005",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e004"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Dell XPS 15 Intel i9 32GB RAM 1TB SSD",
+        "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45",
+        "price": 2149.99,
+        "quantity": 1,
+        "subtotal": 2149.99
+      },
+      {
+        "productId": {
+          "$oid": "59c658f17d9a984f2921bc7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Zara Textured Knit Sweater",
+        "image": "https://images.unsplash.com/photo-1587155337728",
+        "price": 49.9,
+        "quantity": 2,
+        "subtotal": 99.8
+      },
+      {
+        "productId": {
+          "$oid": "a5649bb63fa92b8c60d6c95a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "iRobot Roomba j7+ Robot Vacuum",
+        "image": "https://images.unsplash.com/photo-1608595944622",
+        "price": 799.99,
+        "quantity": 2,
+        "subtotal": 1599.98
+      },
+      {
+        "productId": {
+          "$oid": "6ef8e8def862a801265cf023"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Educated: A Memoir by Tara Westover",
+        "image": "https://images.unsplash.com/photo-1562624841349",
+        "price": 16.0,
+        "quantity": 2,
+        "subtotal": 32.0
+      }
+    ],
+    "totalPrice": 4192.31,
+    "platformFee": 388.18,
+    "sellerEarnings": 3493.59,
+    "tax": 310.54,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "4767 Oak Street",
+      "addressLine2": "Apt 46",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-08-13T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-09T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-09T13:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-10T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-11T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-13T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-08-14T11:47:49.392420"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-16T11:47:49.392420"
+      },
+      "trackingNumber": "TRK870788041",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_d71373c097e9858b9644",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-08-14T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cb7873ceae09c39c5a13a64e"
+    },
+    "orderNumber": "ZMB-20251016-1006",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e003"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "MacBook Pro 16-inch M3 Max 1TB - Space Black",
+        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+        "price": 3499.99,
+        "quantity": 1,
+        "subtotal": 3499.99
+      },
+      {
+        "productId": {
+          "$oid": "2cea09ee9fad67ade4001c34"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Coleman Sundome 4-Person Tent",
+        "image": "https://images.unsplash.com/photo-1696284085498",
+        "price": 67.99,
+        "quantity": 2,
+        "subtotal": 135.98
+      }
+    ],
+    "totalPrice": 3926.85,
+    "platformFee": 363.6,
+    "sellerEarnings": 3272.37,
+    "tax": 290.88,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "4603 Maple Street",
+      "addressLine2": "Apt 16",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-12-10T11:47:49.392420"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-12-06T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-12-06T13:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-12-07T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-12-08T11:47:49.392420"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-12-10T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-12-11T11:47:49.392420"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-13T11:47:49.392420"
+      },
+      "trackingNumber": "TRK856938797",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_f18e0125586ebfc80eca",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-11T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f10b64452c5a20541a72c070"
+    },
+    "orderNumber": "ZMB-20250826-1007",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "17343bec74120a5777738ee2"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Sapiens by Yuval Noah Harari",
+        "image": "https://images.unsplash.com/photo-1660942108030",
+        "price": 18.7,
+        "quantity": 2,
+        "subtotal": 37.4
+      },
+      {
+        "productId": {
+          "$oid": "bc47fe8e2ecd03718e28bf28"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Ring Video Doorbell Pro 2",
+        "image": "https://images.unsplash.com/photo-1544422487856",
+        "price": 249.99,
+        "quantity": 2,
+        "subtotal": 499.98
+      },
+      {
+        "productId": {
+          "$oid": "1e72e7b3315c3c4437b335d2"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Waterpik Aquarius Water Flosser",
+        "image": "https://images.unsplash.com/photo-1691888316417",
+        "price": 67.99,
+        "quantity": 1,
+        "subtotal": 67.99
+      }
+    ],
+    "totalPrice": 653.8,
+    "platformFee": 60.54,
+    "sellerEarnings": 544.83,
+    "tax": 48.43,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "730 Maple Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-08-19T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-15T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-15T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-16T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-17T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-19T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-08-20T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-22T11:47:49.393422"
+      },
+      "trackingNumber": "TRK844925680",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_29899c7220a05e8e59d5",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "orderNumber": "ZMB-20250916-1008",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "09638d9cf1e5ce2449ce87b0"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Lenovo ThinkPad X1 Carbon Gen 11",
+        "image": "https://images.unsplash.com/photo-1614572733905",
+        "price": 1899.99,
+        "quantity": 1,
+        "subtotal": 1899.99
+      },
+      {
+        "productId": {
+          "$oid": "421e520c8305d8b048069e48"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Revlon One-Step Volumizer Hair Dryer",
+        "image": "https://images.unsplash.com/photo-1634131463196",
+        "price": 59.99,
+        "quantity": 1,
+        "subtotal": 59.99
+      }
+    ],
+    "totalPrice": 2116.78,
+    "platformFee": 196.0,
+    "sellerEarnings": 1763.98,
+    "tax": 156.8,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "9203 Elm Street",
+      "addressLine2": "Apt 44",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-11-29T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-25T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-25T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-29T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-30T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-02T11:47:49.393422"
+      },
+      "trackingNumber": "TRK136476861",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_d3b602a6152fbbf290d3",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7d6e10692db98954500c026c"
+    },
+    "orderNumber": "ZMB-20250822-1009",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "0e16624ea25375044ad9cb7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Nest Learning Thermostat 3rd Gen",
+        "image": "https://images.unsplash.com/photo-1545340326183",
+        "price": 249.0,
+        "quantity": 1,
+        "subtotal": 249.0
+      }
+    ],
+    "totalPrice": 268.92,
+    "platformFee": 24.9,
+    "sellerEarnings": 224.1,
+    "tax": 19.92,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "9064 Main Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-11T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-07T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-07T13:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-08T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-09T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-11T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-12T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-14T11:47:49.393422"
+      },
+      "trackingNumber": "TRK535140330",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_541c9360b7b44a9b7264",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-12T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "420b150ddf83bac67f11d49c"
+    },
+    "orderNumber": "ZMB-20251004-1010",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "352308bf13fcc403da763e55"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "KitchenAid Artisan Series Stand Mixer",
+        "image": "https://images.unsplash.com/photo-1572580399246",
+        "price": 449.99,
+        "quantity": 2,
+        "subtotal": 899.98
+      },
+      {
+        "productId": {
+          "$oid": "81559ffaaaaf3eeb333eac6d"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sennheiser Momentum 4 Wireless",
+        "image": "https://images.unsplash.com/photo-1512147131592",
+        "price": 322.99,
+        "quantity": 1,
+        "subtotal": 322.99
+      },
+      {
+        "productId": {
+          "$oid": "2b28da1ad666b74bbea80a80"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Philips Hue White & Color 4-Pack Bulbs",
+        "image": "https://images.unsplash.com/photo-1532817545318",
+        "price": 199.99,
+        "quantity": 2,
+        "subtotal": 399.98
+      }
+    ],
+    "totalPrice": 1752.79,
+    "platformFee": 162.3,
+    "sellerEarnings": 1460.65,
+    "tax": 129.84,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "2490 Maple Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-11-26T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-22T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-22T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-23T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-24T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-29T11:47:49.393422"
+      },
+      "trackingNumber": "TRK955718436",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_1f89273fc4b9aba2c1ae",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "06b6fa3ed8eac751bc3a2edb"
+    },
+    "orderNumber": "ZMB-20251023-1011",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "39cd33e5fa89d19f4330acea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Ninja Foodi 10-in-1 XL Pressure Cooker",
+        "image": "https://images.unsplash.com/photo-1673806727467",
+        "price": 195.49,
+        "quantity": 2,
+        "subtotal": 390.98
+      }
+    ],
+    "totalPrice": 422.26,
+    "platformFee": 39.1,
+    "sellerEarnings": 351.88,
+    "tax": 31.28,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "8826 Park Street",
+      "addressLine2": "Apt 12",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-11-28T11:47:49.393422"
+        }
+      },
+      "status": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-24T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-24T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-25T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-01T11:47:49.393422"
+      },
+      "trackingNumber": "TRK314399069",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_237ab93f5380543c6e9c",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4163a1571900816a746c1d58"
+    },
+    "orderNumber": "ZMB-20250809-1012",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "fa6af16c1ecea8b5c8e57610"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Philips Norelco 9000 Series Shaver",
+        "image": "https://images.unsplash.com/photo-1562079235441",
+        "price": 329.99,
+        "quantity": 1,
+        "subtotal": 329.99
+      },
+      {
+        "productId": {
+          "$oid": "6dfda8a2ffd55b20223fc00f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "YETI Tundra 45 Cooler",
+        "image": "https://images.unsplash.com/photo-1684345102765",
+        "price": 276.25,
+        "quantity": 1,
+        "subtotal": 276.25
+      },
+      {
+        "productId": {
+          "$oid": "a5649bb63fa92b8c60d6c95a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "iRobot Roomba j7+ Robot Vacuum",
+        "image": "https://images.unsplash.com/photo-1608595944622",
+        "price": 799.99,
+        "quantity": 1,
+        "subtotal": 799.99
+      },
+      {
+        "productId": {
+          "$oid": "bc47fe8e2ecd03718e28bf28"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Ring Video Doorbell Pro 2",
+        "image": "https://images.unsplash.com/photo-1544422487856",
+        "price": 249.99,
+        "quantity": 1,
+        "subtotal": 249.99
+      }
+    ],
+    "totalPrice": 1788.72,
+    "platformFee": 165.62,
+    "sellerEarnings": 1490.6,
+    "tax": 132.5,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "9071 Main Street",
+      "addressLine2": "Apt 48",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-09-20T11:47:49.393422"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-09-16T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-09-16T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-17T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-09-18T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-09-20T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-09-23T11:47:49.393422"
+      },
+      "trackingNumber": "TRK954580436",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_8c17d4d25f2656382f77",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-09-21T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d0b661c97dddd69da4f5d2dd"
+    },
+    "orderNumber": "ZMB-20251021-1013",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "874cacd1d3ba9be01cc0d7fe"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The Psychology of Money by Morgan Housel",
+        "image": "https://images.unsplash.com/photo-1557188517524",
+        "price": 18.0,
+        "quantity": 1,
+        "subtotal": 18.0
+      }
+    ],
+    "totalPrice": 25.43,
+    "platformFee": 1.8,
+    "sellerEarnings": 16.2,
+    "tax": 1.44,
+    "shippingCost": 5.99,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "7194 Maple Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-07T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-03T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-03T13:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-04T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-05T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-07T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-08T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-10T11:47:49.393422"
+      },
+      "trackingNumber": "TRK902514309",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_0cae93d7981b3d31ab32",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-03T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1d3909a3e90fe27aa6416575"
+    },
+    "orderNumber": "ZMB-20251012-1014",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "65c3ebdddf1800c42de6a80c"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Athleta Salutation Stash Pocket II Tight",
+        "image": "https://images.unsplash.com/photo-1518298233040",
+        "price": 75.65,
+        "quantity": 2,
+        "subtotal": 151.3
+      },
+      {
+        "productId": {
+          "$oid": "395cf37491011514f3f8aaea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sony WF-1000XM5 Wireless Earbuds",
+        "image": "https://images.unsplash.com/photo-1640321579355",
+        "price": 299.99,
+        "quantity": 1,
+        "subtotal": 299.99
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e006"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "AirPods Pro 2nd Generation with USB-C",
+        "image": "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb",
+        "price": 249.99,
+        "quantity": 1,
+        "subtotal": 249.99
+      }
+    ],
+    "totalPrice": 757.38,
+    "platformFee": 70.13,
+    "sellerEarnings": 631.15,
+    "tax": 56.1,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "1508 Maple Street",
+      "addressLine2": "Apt 24",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-25T11:47:49.393422"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-21T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-21T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-22T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-23T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-25T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-26T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-28T11:47:49.393422"
+      },
+      "trackingNumber": "TRK686090494",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_c9ede5d59a7f1393eb6c",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "11ad635925783dd07f37439a"
+    },
+    "orderNumber": "ZMB-20250830-1015",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "352308bf13fcc403da763e55"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "KitchenAid Artisan Series Stand Mixer",
+        "image": "https://images.unsplash.com/photo-1572580399246",
+        "price": 449.99,
+        "quantity": 1,
+        "subtotal": 449.99
+      },
+      {
+        "productId": {
+          "$oid": "ca14eabd8ca97035be47d11f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Oral-B iO Series 9 Electric Toothbrush",
+        "image": "https://images.unsplash.com/photo-1624430902426",
+        "price": 254.99,
+        "quantity": 2,
+        "subtotal": 509.98
+      },
+      {
+        "productId": {
+          "$oid": "423134f1ec47bffe3712aaf3"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Dyson V15 Detect Cordless Vacuum",
+        "image": "https://images.unsplash.com/photo-1699835613583",
+        "price": 749.99,
+        "quantity": 2,
+        "subtotal": 1499.98
+      },
+      {
+        "productId": {
+          "$oid": "0c5cff8af3ffa1d81c4b991c"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "ASUS ROG Zephyrus G16 Gaming Laptop",
+        "image": "https://images.unsplash.com/photo-1629952972629",
+        "price": 2499.99,
+        "quantity": 1,
+        "subtotal": 2499.99
+      }
+    ],
+    "totalPrice": 5356.74,
+    "platformFee": 495.99,
+    "sellerEarnings": 4463.95,
+    "tax": 396.8,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "2696 Oak Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-10T11:47:49.393422"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-06T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-06T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-07T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-08T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-10T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-13T11:47:49.393422"
+      },
+      "trackingNumber": "TRK157349092",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_099f39716576853839d6",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "598199e2119f1a1691e52ac4"
+    },
+    "orderNumber": "ZMB-20250809-1016",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "1e72e7b3315c3c4437b335d2"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Waterpik Aquarius Water Flosser",
+        "image": "https://images.unsplash.com/photo-1691888316417",
+        "price": 67.99,
+        "quantity": 2,
+        "subtotal": 135.98
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e005"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones - Black",
+        "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b",
+        "price": 348.0,
+        "quantity": 1,
+        "subtotal": 348.0
+      },
+      {
+        "productId": {
+          "$oid": "39cd33e5fa89d19f4330acea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Ninja Foodi 10-in-1 XL Pressure Cooker",
+        "image": "https://images.unsplash.com/photo-1673806727467",
+        "price": 195.49,
+        "quantity": 2,
+        "subtotal": 390.98
+      },
+      {
+        "productId": {
+          "$oid": "3e8f3f9ba34494b06d378045"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Vans Old Skool Classic Skateboard Shoes",
+        "image": "https://images.unsplash.com/photo-1699467216562",
+        "price": 65.0,
+        "quantity": 2,
+        "subtotal": 130.0
+      }
+    ],
+    "totalPrice": 1085.36,
+    "platformFee": 100.5,
+    "sellerEarnings": 904.46,
+    "tax": 80.4,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "5751 Maple Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-08-28T11:47:49.393422"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-24T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-24T13:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-25T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-26T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-28T11:47:49.393422"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-31T11:47:49.393422"
+      },
+      "trackingNumber": "TRK520329496",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_32b15f69e1b7d99fee1f",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c0b9bd0541242266e972b273"
+    },
+    "orderNumber": "ZMB-20250910-1017",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "5c4880e12ded3fe65d673152"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Uniqlo Ultra Light Down Jacket",
+        "image": "https://images.unsplash.com/photo-1661285281033",
+        "price": 59.42,
+        "quantity": 1,
+        "subtotal": 59.42
+      }
+    ],
+    "totalPrice": 64.17,
+    "platformFee": 5.94,
+    "sellerEarnings": 53.48,
+    "tax": 4.75,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "732 Oak Street",
+      "addressLine2": "Apt 18",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-12-01T11:47:49.393422"
+        }
+      },
+      "status": "processing",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-27T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-28T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-04T11:47:49.393422"
+      },
+      "trackingNumber": "TRK252865321",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_dec7330dc671aef8d465",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e928cf2c755502adeb09d1f5"
+    },
+    "orderNumber": "ZMB-20250827-1018",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "3f81a65b8160287c8b201fab"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung T7 Shield 2TB Portable SSD",
+        "image": "https://images.unsplash.com/photo-1638512922671",
+        "price": 212.49,
+        "quantity": 2,
+        "subtotal": 424.98
+      },
+      {
+        "productId": {
+          "$oid": "91fbfa98d616fc79bcbc076a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Razer DeathAdder V3 Pro Wireless Mouse",
+        "image": "https://images.unsplash.com/photo-1593547138462",
+        "price": 149.99,
+        "quantity": 1,
+        "subtotal": 149.99
+      }
+    ],
+    "totalPrice": 620.97,
+    "platformFee": 57.5,
+    "sellerEarnings": 517.47,
+    "tax": 46.0,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "8422 Oak Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-12-06T11:47:49.393422"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-12-02T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-12-02T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-12-03T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-12-04T11:47:49.393422"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-12-06T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-09T11:47:49.393422"
+      },
+      "trackingNumber": "TRK106973170",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_8c7bf8b30a2dd55dd326",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "24e743af38f28fd8b84cf077"
+    },
+    "orderNumber": "ZMB-20250924-1019",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "59c658f17d9a984f2921bc7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Zara Textured Knit Sweater",
+        "image": "https://images.unsplash.com/photo-1587155337728",
+        "price": 49.9,
+        "quantity": 1,
+        "subtotal": 49.9
+      },
+      {
+        "productId": {
+          "$oid": "dfe73698c1b15e3702e79382"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "New Balance 990v6 Made in USA",
+        "image": "https://images.unsplash.com/photo-1606488816851",
+        "price": 185.0,
+        "quantity": 1,
+        "subtotal": 185.0
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e002"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Samsung Galaxy S24 Ultra 512GB - Phantom Black",
+        "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c",
+        "price": 1419.99,
+        "quantity": 1,
+        "subtotal": 1419.99
+      }
+    ],
+    "totalPrice": 1787.28,
+    "platformFee": 165.49,
+    "sellerEarnings": 1489.4,
+    "tax": 132.39,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "1148 Oak Street",
+      "addressLine2": "Apt 49",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-12T11:47:49.393422"
+        }
+      },
+      "status": "processing",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-08T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-08T13:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-09T11:47:49.393422"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-15T11:47:49.393422"
+      },
+      "trackingNumber": "TRK824331518",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_bd61dcc4628ae23eb659",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2b365a2de59cf4f5b3655beb"
+    },
+    "orderNumber": "ZMB-20251103-1020",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "39cd33e5fa89d19f4330acea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Ninja Foodi 10-in-1 XL Pressure Cooker",
+        "image": "https://images.unsplash.com/photo-1673806727467",
+        "price": 195.49,
+        "quantity": 2,
+        "subtotal": 390.98
+      }
+    ],
+    "totalPrice": 422.26,
+    "platformFee": 39.1,
+    "sellerEarnings": 351.88,
+    "tax": 31.28,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "5543 Main Street",
+      "addressLine2": "Apt 12",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-11-02T11:47:49.394430"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-29T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-29T13:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-30T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-31T11:47:49.394430"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-02T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-03T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-05T11:47:49.394430"
+      },
+      "trackingNumber": "TRK840615526",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_ba54ef1d9ca9efa3ac5c",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-03T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a1c26afbac7d91440a42fdce"
+    },
+    "orderNumber": "ZMB-20250909-1021",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "99ff482b96ef8a16209f5339"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The North Face Denali Fleece Jacket",
+        "image": "https://images.unsplash.com/photo-1597644296642",
+        "price": 179.0,
+        "quantity": 2,
+        "subtotal": 358.0
+      },
+      {
+        "productId": {
+          "$oid": "0e16624ea25375044ad9cb7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Nest Learning Thermostat 3rd Gen",
+        "image": "https://images.unsplash.com/photo-1545340326183",
+        "price": 249.0,
+        "quantity": 2,
+        "subtotal": 498.0
+      },
+      {
+        "productId": {
+          "$oid": "dfe73698c1b15e3702e79382"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "New Balance 990v6 Made in USA",
+        "image": "https://images.unsplash.com/photo-1606488816851",
+        "price": 185.0,
+        "quantity": 1,
+        "subtotal": 185.0
+      }
+    ],
+    "totalPrice": 1124.28,
+    "platformFee": 104.1,
+    "sellerEarnings": 936.9,
+    "tax": 83.28,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "2220 Elm Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-08-18T11:47:49.394430"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-14T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-14T13:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-15T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-16T11:47:49.394430"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-18T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-08-19T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-21T11:47:49.394430"
+      },
+      "trackingNumber": "TRK982743780",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_c5a01437b52ade02f013",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-19T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4621caeb016293b6820066fa"
+    },
+    "orderNumber": "ZMB-20250828-1022",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "2cea09ee9fad67ade4001c34"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Coleman Sundome 4-Person Tent",
+        "image": "https://images.unsplash.com/photo-1696284085498",
+        "price": 67.99,
+        "quantity": 1,
+        "subtotal": 67.99
+      }
+    ],
+    "totalPrice": 73.43,
+    "platformFee": 6.8,
+    "sellerEarnings": 61.19,
+    "tax": 5.44,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "3763 Main Street",
+      "addressLine2": "Apt 20",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-11-15T11:47:49.394430"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-11T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-11T13:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-12T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-13T11:47:49.394430"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-15T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-16T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-18T11:47:49.394430"
+      },
+      "trackingNumber": "TRK235780861",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_079e3340882873df9c83",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-11T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-16T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "337f92fb0f6ff13df4aa859c"
+    },
+    "orderNumber": "ZMB-20250921-1023",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "09638d9cf1e5ce2449ce87b0"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Lenovo ThinkPad X1 Carbon Gen 11",
+        "image": "https://images.unsplash.com/photo-1614572733905",
+        "price": 1899.99,
+        "quantity": 2,
+        "subtotal": 3799.98
+      }
+    ],
+    "totalPrice": 4103.98,
+    "platformFee": 380.0,
+    "sellerEarnings": 3419.98,
+    "tax": 304.0,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "3241 Oak Street",
+      "addressLine2": "Apt 39",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-11-03T11:47:49.394430"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-30T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-30T13:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-31T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-01T11:47:49.394430"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-03T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-11-04T11:47:49.394430"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-06T11:47:49.394430"
+      },
+      "trackingNumber": "TRK796563095",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_2c1aeaed163f51505e5b",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-04T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9918d149250860bdbb19cb1b"
+    },
+    "orderNumber": "ZMB-20251010-1024",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "f618437148418ff1dab3ad65"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Levi's 501 Original Fit Jeans - Men's",
+        "image": "https://images.unsplash.com/photo-1646806754350",
+        "price": 59.49,
+        "quantity": 1,
+        "subtotal": 59.49
+      },
+      {
+        "productId": {
+          "$oid": "4d71154bb9b5f6949662987e"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung Galaxy Buds2 Pro",
+        "image": "https://images.unsplash.com/photo-1591465019236",
+        "price": 195.49,
+        "quantity": 2,
+        "subtotal": 390.98
+      },
+      {
+        "productId": {
+          "$oid": "2b28da1ad666b74bbea80a80"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Philips Hue White & Color 4-Pack Bulbs",
+        "image": "https://images.unsplash.com/photo-1532817545318",
+        "price": 199.99,
+        "quantity": 2,
+        "subtotal": 399.98
+      }
+    ],
+    "totalPrice": 918.49,
+    "platformFee": 85.05,
+    "sellerEarnings": 765.4,
+    "tax": 68.04,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "7483 Maple Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-10T11:47:49.394430"
+        }
+      },
+      "status": "confirmed",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-06T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-06T13:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-13T11:47:49.394430"
+      },
+      "trackingNumber": "TRK925358546",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_2b24b5a784fc6a67b449",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "87590ae22f5328fb2aca3e82"
+    },
+    "orderNumber": "ZMB-20251030-1025",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "5864c5f271a3a479bc150ca3"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Razer Blade 15 Gaming Laptop",
+        "image": "https://images.unsplash.com/photo-1526749191549",
+        "price": 2379.99,
+        "quantity": 1,
+        "subtotal": 2379.99
+      }
+    ],
+    "totalPrice": 2570.39,
+    "platformFee": 238.0,
+    "sellerEarnings": 2141.99,
+    "tax": 190.4,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "8691 Main Street",
+      "addressLine2": "Apt 27",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-08-19T11:47:49.394430"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-15T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-15T13:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-16T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-17T11:47:49.394430"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-19T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-08-20T11:47:49.394430"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-22T11:47:49.394430"
+      },
+      "trackingNumber": "TRK459119674",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_6525156f7671fc769174",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "406d9e21accf67378342e7f9"
+    },
+    "orderNumber": "ZMB-20250830-1026",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "b4a3e03661c883dc18a3990a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Converse Chuck Taylor All Star High Top",
+        "image": "https://images.unsplash.com/photo-1608228006941",
+        "price": 51.0,
+        "quantity": 2,
+        "subtotal": 102.0
+      },
+      {
+        "productId": {
+          "$oid": "c774ca11a63ede6487c45872"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Project Hail Mary by Andy Weir",
+        "image": "https://images.unsplash.com/photo-1517092949302",
+        "price": 17.0,
+        "quantity": 2,
+        "subtotal": 34.0
+      },
+      {
+        "productId": {
+          "$oid": "3f81a65b8160287c8b201fab"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung T7 Shield 2TB Portable SSD",
+        "image": "https://images.unsplash.com/photo-1638512922671",
+        "price": 212.49,
+        "quantity": 2,
+        "subtotal": 424.98
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e009"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Logitech MX Master 3S Wireless Mouse - Graphite",
+        "image": "https://images.unsplash.com/photo-1527814050087-3793815479db",
+        "price": 79.99,
+        "quantity": 2,
+        "subtotal": 159.98
+      }
+    ],
+    "totalPrice": 778.64,
+    "platformFee": 72.1,
+    "sellerEarnings": 648.86,
+    "tax": 57.68,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "3492 Park Street",
+      "addressLine2": "",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-20T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-16T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-16T13:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-17T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-18T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-20T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-21T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-23T11:47:49.395657"
+      },
+      "trackingNumber": "TRK844609117",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_c5dcd455346070f04232",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "185ea166a73baf86e3702050"
+    },
+    "orderNumber": "ZMB-20250911-1027",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "59c658f17d9a984f2921bc7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Zara Textured Knit Sweater",
+        "image": "https://images.unsplash.com/photo-1587155337728",
+        "price": 49.9,
+        "quantity": 2,
+        "subtotal": 99.8
+      },
+      {
+        "productId": {
+          "$oid": "4ada18bb62a8af4e2dc02dfd"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Nespresso Vertuo Next Coffee Maker",
+        "image": "https://images.unsplash.com/photo-1544284908331",
+        "price": 152.99,
+        "quantity": 2,
+        "subtotal": 305.98
+      }
+    ],
+    "totalPrice": 438.24,
+    "platformFee": 40.58,
+    "sellerEarnings": 365.2,
+    "tax": 32.46,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "2958 Main Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-09-25T11:47:49.395657"
+        }
+      },
+      "status": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-09-21T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-09-21T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-22T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-09-23T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-09-28T11:47:49.395657"
+      },
+      "trackingNumber": "TRK282576935",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_ad28bef7e12a86f6c135",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-26T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d62b564ee3c37fb55b0a3d83"
+    },
+    "orderNumber": "ZMB-20250826-1028",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "874cacd1d3ba9be01cc0d7fe"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The Psychology of Money by Morgan Housel",
+        "image": "https://images.unsplash.com/photo-1557188517524",
+        "price": 18.0,
+        "quantity": 2,
+        "subtotal": 36.0
+      }
+    ],
+    "totalPrice": 44.87,
+    "platformFee": 3.6,
+    "sellerEarnings": 32.4,
+    "tax": 2.88,
+    "shippingCost": 5.99,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "8329 Elm Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-09-15T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-09-11T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-09-11T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-12T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-09-13T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-09-15T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-09-16T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-09-18T11:47:49.395657"
+      },
+      "trackingNumber": "TRK566488170",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_35a3a8de0c9e962c339f",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-11T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-16T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "07b84a9968aa5da110cedfbd"
+    },
+    "orderNumber": "ZMB-20250905-1029",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "13feb468ca3ade83c6559c94"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Free People We The Free Tee",
+        "image": "https://images.unsplash.com/photo-1621896007366",
+        "price": 48.0,
+        "quantity": 1,
+        "subtotal": 48.0
+      }
+    ],
+    "totalPrice": 57.83,
+    "platformFee": 4.8,
+    "sellerEarnings": 43.2,
+    "tax": 3.84,
+    "shippingCost": 5.99,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "6127 Elm Street",
+      "addressLine2": "Apt 40",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-08T11:47:49.395657"
+        }
+      },
+      "status": "processing",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-04T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-04T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-05T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-11T11:47:49.395657"
+      },
+      "trackingNumber": "TRK225265960",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_4103cec2a71fcff2cae0",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e0756704e95238db28a3d819"
+    },
+    "orderNumber": "ZMB-20251108-1030",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "395cf37491011514f3f8aaea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sony WF-1000XM5 Wireless Earbuds",
+        "image": "https://images.unsplash.com/photo-1640321579355",
+        "price": 299.99,
+        "quantity": 2,
+        "subtotal": 599.98
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e008"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung 49\" Odyssey G9 Gaming Monitor - Curved QLED",
+        "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf",
+        "price": 1499.99,
+        "quantity": 1,
+        "subtotal": 1499.99
+      },
+      {
+        "productId": {
+          "$oid": "eb8984316c5e2bd60768cf34"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Google Pixel 8 Pro 256GB - Obsidian",
+        "image": "https://images.unsplash.com/photo-1672447427493",
+        "price": 999.99,
+        "quantity": 2,
+        "subtotal": 1999.98
+      }
+    ],
+    "totalPrice": 4427.95,
+    "platformFee": 410.0,
+    "sellerEarnings": 3689.95,
+    "tax": 328.0,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "5130 Park Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-18T11:47:49.395657"
+        }
+      },
+      "status": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-14T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-14T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-15T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-16T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-21T11:47:49.395657"
+      },
+      "trackingNumber": "TRK854269318",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_31785511baf6df4f4e61",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-14T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-19T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "97376c56f714cc34f0818fc4"
+    },
+    "orderNumber": "ZMB-20250915-1031",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "59c658f17d9a984f2921bc7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Zara Textured Knit Sweater",
+        "image": "https://images.unsplash.com/photo-1587155337728",
+        "price": 49.9,
+        "quantity": 1,
+        "subtotal": 49.9
+      }
+    ],
+    "totalPrice": 59.88,
+    "platformFee": 4.99,
+    "sellerEarnings": 44.91,
+    "tax": 3.99,
+    "shippingCost": 5.99,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "1762 Maple Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-09-12T11:47:49.395657"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-09-08T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-09-08T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-09T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-09-10T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-09-12T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-09-15T11:47:49.395657"
+      },
+      "trackingNumber": "TRK628092505",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_3de06f093ccb39e7c234",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-08T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-13T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "orderNumber": "ZMB-20250821-1032",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "39cd33e5fa89d19f4330acea"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Ninja Foodi 10-in-1 XL Pressure Cooker",
+        "image": "https://images.unsplash.com/photo-1673806727467",
+        "price": 195.49,
+        "quantity": 1,
+        "subtotal": 195.49
+      },
+      {
+        "productId": {
+          "$oid": "5c4880e12ded3fe65d673152"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Uniqlo Ultra Light Down Jacket",
+        "image": "https://images.unsplash.com/photo-1661285281033",
+        "price": 59.42,
+        "quantity": 2,
+        "subtotal": 118.84
+      },
+      {
+        "productId": {
+          "$oid": "1b7d8795586f6ad14fc56b92"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Hydro Flask 32 oz Wide Mouth Bottle",
+        "image": "https://images.unsplash.com/photo-1687813566159",
+        "price": 38.21,
+        "quantity": 1,
+        "subtotal": 38.21
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e004"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Dell XPS 15 Intel i9 32GB RAM 1TB SSD",
+        "image": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45",
+        "price": 2149.99,
+        "quantity": 2,
+        "subtotal": 4299.98
+      }
+    ],
+    "totalPrice": 5024.72,
+    "platformFee": 465.25,
+    "sellerEarnings": 4187.27,
+    "tax": 372.2,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "5607 Maple Street",
+      "addressLine2": "Apt 43",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-08-21T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-08-17T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-08-17T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-08-18T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-08-19T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-08-21T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-08-22T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-08-24T11:47:49.395657"
+      },
+      "trackingNumber": "TRK569638473",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_a525e14b769c552b75d2",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-08-22T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bd64c4c78359667e8128f563"
+    },
+    "orderNumber": "ZMB-20250918-1033",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "b4a3e03661c883dc18a3990a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Converse Chuck Taylor All Star High Top",
+        "image": "https://images.unsplash.com/photo-1608228006941",
+        "price": 51.0,
+        "quantity": 2,
+        "subtotal": 102.0
+      },
+      {
+        "productId": {
+          "$oid": "52063997c11e05fbcb646504"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Corsair K70 RGB PRO Mechanical Keyboard",
+        "image": "https://images.unsplash.com/photo-1533358045045",
+        "price": 152.99,
+        "quantity": 1,
+        "subtotal": 152.99
+      }
+    ],
+    "totalPrice": 275.39,
+    "platformFee": 25.5,
+    "sellerEarnings": 229.49,
+    "tax": 20.4,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "2520 Maple Street",
+      "addressLine2": "Apt 25",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-11-28T11:47:49.395657"
+        }
+      },
+      "status": "out_for_delivery",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-24T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-24T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-25T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-28T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-01T11:47:49.395657"
+      },
+      "trackingNumber": "TRK138102386",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_cfa350663b2db3db0cda",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Ring doorbell",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "85e901a43b39edb8cbcee6c2"
+    },
+    "orderNumber": "ZMB-20251115-1034",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "91fbfa98d616fc79bcbc076a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Razer DeathAdder V3 Pro Wireless Mouse",
+        "image": "https://images.unsplash.com/photo-1593547138462",
+        "price": 149.99,
+        "quantity": 2,
+        "subtotal": 299.98
+      },
+      {
+        "productId": {
+          "$oid": "6a0f053d767434e7514f492a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Beats Studio Pro Wireless Headphones",
+        "image": "https://images.unsplash.com/photo-1568469590265",
+        "price": 297.49,
+        "quantity": 2,
+        "subtotal": 594.98
+      },
+      {
+        "productId": {
+          "$oid": "81559ffaaaaf3eeb333eac6d"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sennheiser Momentum 4 Wireless",
+        "image": "https://images.unsplash.com/photo-1512147131592",
+        "price": 322.99,
+        "quantity": 1,
+        "subtotal": 322.99
+      }
+    ],
+    "totalPrice": 1315.39,
+    "platformFee": 121.8,
+    "sellerEarnings": 1096.15,
+    "tax": 97.44,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "1271 Elm Street",
+      "addressLine2": "Apt 49",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-11-11T11:47:49.395657"
+        }
+      },
+      "status": "shipped",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-07T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-07T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-08T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-09T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-14T11:47:49.395657"
+      },
+      "trackingNumber": "TRK250242002",
+      "carrier": "USPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_c3cab3b65acedb3bc757",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-12T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "orderNumber": "ZMB-20250825-1035",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "41d7dcf9ea10d27a9079b13c"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Mango Flowy Midi Dress - Floral Print",
+        "image": "https://images.unsplash.com/photo-1640038993383",
+        "price": 67.99,
+        "quantity": 1,
+        "subtotal": 67.99
+      },
+      {
+        "productId": {
+          "$oid": "99ff482b96ef8a16209f5339"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The North Face Denali Fleece Jacket",
+        "image": "https://images.unsplash.com/photo-1597644296642",
+        "price": 179.0,
+        "quantity": 1,
+        "subtotal": 179.0
+      },
+      {
+        "productId": {
+          "$oid": "d37323da9eef38457007b2e5"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The Lean Startup by Eric Ries",
+        "image": "https://images.unsplash.com/photo-1658080363299",
+        "price": 16.0,
+        "quantity": 2,
+        "subtotal": 32.0
+      },
+      {
+        "productId": {
+          "$oid": "0daab480e4fd3a55a2c5854e"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Lululemon Align High-Rise Pant 25\"",
+        "image": "https://images.unsplash.com/photo-1591336666633",
+        "price": 98.0,
+        "quantity": 1,
+        "subtotal": 98.0
+      }
+    ],
+    "totalPrice": 407.15,
+    "platformFee": 37.7,
+    "sellerEarnings": 339.29,
+    "tax": 30.16,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "4257 Oak Street",
+      "addressLine2": "Apt 19",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-08T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-04T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-04T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-05T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-06T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-08T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-09T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-11T11:47:49.395657"
+      },
+      "trackingNumber": "TRK193009010",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_38ad7a637718a2764b3f",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "32e4af291506746aac14ffec"
+    },
+    "orderNumber": "ZMB-20251031-1036",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "38ff93feadef8b63c105ebe1"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Reformation Petites Carina Linen Dress",
+        "image": "https://images.unsplash.com/photo-1519659907638",
+        "price": 198.0,
+        "quantity": 2,
+        "subtotal": 396.0
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e005"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Sony WH-1000XM5 Wireless Noise Cancelling Headphones - Black",
+        "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b",
+        "price": 348.0,
+        "quantity": 1,
+        "subtotal": 348.0
+      },
+      {
+        "productId": {
+          "$oid": "7b31f8f1ca6d63a534c8db4f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "OnePlus 12 512GB - Marble Green",
+        "image": "https://images.unsplash.com/photo-1542319596377",
+        "price": 764.99,
+        "quantity": 1,
+        "subtotal": 764.99
+      }
+    ],
+    "totalPrice": 1629.71,
+    "platformFee": 150.9,
+    "sellerEarnings": 1358.09,
+    "tax": 120.72,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "7236 Oak Street",
+      "addressLine2": "",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-10-03T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-09-29T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-09-29T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-09-30T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-01T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-03T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-04T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-10-06T11:47:49.395657"
+      },
+      "trackingNumber": "TRK198930638",
+      "carrier": "FedEx"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_7f7b0c6ca00c01a925f8",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-29T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "370387a460f9b31b486d74a3"
+    },
+    "orderNumber": "ZMB-20250825-1037",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "d37323da9eef38457007b2e5"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The Lean Startup by Eric Ries",
+        "image": "https://images.unsplash.com/photo-1658080363299",
+        "price": 16.0,
+        "quantity": 2,
+        "subtotal": 32.0
+      },
+      {
+        "productId": {
+          "$oid": "6f46ba6e9a4d86538e4e680b"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Bose QuietComfort Ultra Headphones",
+        "image": "https://images.unsplash.com/photo-1524523092602",
+        "price": 429.99,
+        "quantity": 1,
+        "subtotal": 429.99
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e009"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Logitech MX Master 3S Wireless Mouse - Graphite",
+        "image": "https://images.unsplash.com/photo-1527814050087-3793815479db",
+        "price": 79.99,
+        "quantity": 2,
+        "subtotal": 159.98
+      }
+    ],
+    "totalPrice": 671.73,
+    "platformFee": 62.2,
+    "sellerEarnings": 559.77,
+    "tax": 49.76,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Tolosa Mitiku",
+      "phoneNumber": "+12125551001",
+      "addressLine1": "895 Oak Street",
+      "addressLine2": "Apt 17",
+      "city": "New York",
+      "postalCode": "10001",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 40.7128,
+        "longitude": -74.006,
+        "address": "New York",
+        "updatedAt": {
+          "$date": "2025-11-30T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-26T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-26T13:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-28T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-11-30T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-12-01T11:47:49.395657"
+          },
+          "location": "New York",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-03T11:47:49.395657"
+      },
+      "trackingNumber": "TRK468663158",
+      "carrier": "DHL"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_e206222e96e9a0ec2774",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "orderNumber": "ZMB-20251119-1038",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "7b31f8f1ca6d63a534c8db4f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "OnePlus 12 512GB - Marble Green",
+        "image": "https://images.unsplash.com/photo-1542319596377",
+        "price": 764.99,
+        "quantity": 2,
+        "subtotal": 1529.98
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e001"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "iPhone 15 Pro Max 256GB - Titanium Blue",
+        "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569",
+        "price": 1149.99,
+        "quantity": 2,
+        "subtotal": 2299.98
+      },
+      {
+        "productId": {
+          "$oid": "182548ac552ea2b2103e2df3"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "JBL Flip 6 Portable Bluetooth Speaker",
+        "image": "https://images.unsplash.com/photo-1667749401421",
+        "price": 129.99,
+        "quantity": 1,
+        "subtotal": 129.99
+      },
+      {
+        "productId": {
+          "$oid": "59c658f17d9a984f2921bc7f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Zara Textured Knit Sweater",
+        "image": "https://images.unsplash.com/photo-1587155337728",
+        "price": 49.9,
+        "quantity": 2,
+        "subtotal": 99.8
+      }
+    ],
+    "totalPrice": 4384.53,
+    "platformFee": 405.98,
+    "sellerEarnings": 3653.77,
+    "tax": 324.78,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "3921 Elm Street",
+      "addressLine2": "Apt 48",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-12-01T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-11-27T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-11-27T13:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-11-28T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-11-29T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-12-01T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-12-02T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-12-04T11:47:49.395657"
+      },
+      "trackingNumber": "TRK735028789",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "paypal",
+    "paymentId": "pay_42b152b46d2c2ad47fad",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "64b5e98545078a7faeef7140"
+    },
+    "orderNumber": "ZMB-20250910-1039",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "bf68d7e077b0be83fa7754fd"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "HP Spectre x360 14-inch 2-in-1",
+        "image": "https://images.unsplash.com/photo-1613820082560",
+        "price": 1359.99,
+        "quantity": 1,
+        "subtotal": 1359.99
+      },
+      {
+        "productId": {
+          "$oid": "73166f2122ebb8cc5d3dc8a0"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Patagonia Better Sweater Fleece Jacket",
+        "image": "https://images.unsplash.com/photo-1666562525819",
+        "price": 139.0,
+        "quantity": 2,
+        "subtotal": 278.0
+      },
+      {
+        "productId": {
+          "$oid": "4d71154bb9b5f6949662987e"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Samsung Galaxy Buds2 Pro",
+        "image": "https://images.unsplash.com/photo-1591465019236",
+        "price": 195.49,
+        "quantity": 1,
+        "subtotal": 195.49
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e001"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "iPhone 15 Pro Max 256GB - Titanium Blue",
+        "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569",
+        "price": 1149.99,
+        "quantity": 2,
+        "subtotal": 2299.98
+      }
+    ],
+    "totalPrice": 4464.14,
+    "platformFee": 413.35,
+    "sellerEarnings": 3720.11,
+    "tax": 330.68,
+    "shippingCost": 0,
+    "discount": 0,
+    "shippingAddress": {
+      "fullName": "Sarah Johnson",
+      "phoneNumber": "+12125552001",
+      "addressLine1": "669 Maple Street",
+      "addressLine2": "Apt 40",
+      "city": "Chicago",
+      "postalCode": "60601",
+      "country": "United States",
+      "geolocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298
+      }
+    },
+    "tracking": {
+      "currentLocation": {
+        "latitude": 41.8781,
+        "longitude": -87.6298,
+        "address": "Chicago",
+        "updatedAt": {
+          "$date": "2025-10-29T11:47:49.395657"
+        }
+      },
+      "status": "delivered",
+      "statusHistory": [
+        {
+          "status": "pending",
+          "timestamp": {
+            "$date": "2025-10-25T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order placed"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": {
+            "$date": "2025-10-25T13:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order confirmed by seller"
+        },
+        {
+          "status": "processing",
+          "timestamp": {
+            "$date": "2025-10-26T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Order is being prepared"
+        },
+        {
+          "status": "shipped",
+          "timestamp": {
+            "$date": "2025-10-27T11:47:49.395657"
+          },
+          "location": "Distribution Center",
+          "note": "Package shipped"
+        },
+        {
+          "status": "out_for_delivery",
+          "timestamp": {
+            "$date": "2025-10-29T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Out for delivery"
+        },
+        {
+          "status": "delivered",
+          "timestamp": {
+            "$date": "2025-10-30T11:47:49.395657"
+          },
+          "location": "Chicago",
+          "note": "Package delivered"
+        }
+      ],
+      "estimatedDelivery": {
+        "$date": "2025-11-01T11:47:49.395657"
+      },
+      "trackingNumber": "TRK952873291",
+      "carrier": "UPS"
+    },
+    "paymentStatus": "paid",
+    "paymentMethod": "stripe",
+    "paymentId": "pay_8efc7543dff2f3f24ade",
+    "refund": {
+      "status": "none",
+      "amount": 0
+    },
+    "customerNote": "Please leave at door",
+    "sellerNote": "",
+    "adminNote": "",
+    "notes": "",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-25T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    }
+  }
+]

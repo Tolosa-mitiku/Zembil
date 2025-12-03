@@ -1,0 +1,902 @@
+[
+  {
+    "_id": {
+      "$oid": "8979062acf401159547b01e4"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "fa7ec5a6f73cc19a927ac947"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4b6cbb75ec9d6f3bb1725d54"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Satisfied with my purchase.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 4,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-12-13T11:47:49.392420"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-11T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-11T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9416755ceef6661646721274"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "182548ac552ea2b2103e2df3"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "04fda1efbb334a1e76555105"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Very good, minor issues but still happy.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 8,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-20T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-09-20T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c9d749b968ed6b09d63c697e"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "2b28da1ad666b74bbea80a80"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "b43458ab03643d5d540af5ca"
+    },
+    "rating": 3,
+    "title": "Could be better",
+    "comment": "Average product, nothing special.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 7,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "We're sorry to hear this. Please contact us.",
+      "respondedAt": {
+        "$date": "2025-11-10T11:47:49.392420"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-08T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-08T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "176b4e5b09ea409228dece22"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "47f0c68e05f90c9292f50d1a"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "bade12737053547f83eec337"
+    },
+    "rating": 3,
+    "title": "Could be better",
+    "comment": "It's okay, meets basic expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 8,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-29T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "294194dcf0a1368d1adb1dae"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "674b03d139f1f85510c3e004"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4da5dc058afce1aef2db63c9"
+    },
+    "rating": 2,
+    "title": "Could be better",
+    "comment": "Below expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 9,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "We're sorry to hear this. Please contact us.",
+      "respondedAt": {
+        "$date": "2025-08-21T11:47:49.392420"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-19T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-08-19T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dec30197080029cfb68d0e8a"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "674b03d139f1f85510c3e003"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "cb7873ceae09c39c5a13a64e"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Love it! Exceeded my expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 7,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-24T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-24T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "15bc92efa508edb388e57435"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "17343bec74120a5777738ee2"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "f10b64452c5a20541a72c070"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 0,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-08-27T11:47:49.393422"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-25T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-25T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eddf59b272820b4123998133"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "09638d9cf1e5ce2449ce87b0"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Satisfied with my purchase.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 11,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-12T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-12T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "acf5cf784790aa633721c293"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "0e16624ea25375044ad9cb7f"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "7d6e10692db98954500c026c"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Excellent product! Highly recommended.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 6,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-10-22T11:47:49.393422"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-20T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e34989e114ceaecf81c204c0"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "352308bf13fcc403da763e55"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "420b150ddf83bac67f11d49c"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Very good, minor issues but still happy.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 3,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-12-03T11:47:49.393422"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-01T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-01T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c32d34db254556fcfa0e9d4a"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "874cacd1d3ba9be01cc0d7fe"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "d0b661c97dddd69da4f5d2dd"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Love it! Exceeded my expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 4,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-10-19T11:47:49.393422"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-17T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a01117867546976e4722d210"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "65c3ebdddf1800c42de6a80c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "1d3909a3e90fe27aa6416575"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 11,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-11-10T11:47:49.393422"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-08T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "64ec26f5b30d20c8d97d2b69"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "39cd33e5fa89d19f4330acea"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "2b365a2de59cf4f5b3655beb"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 12,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-09T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-09T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c027b9399013f231828a158b"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "99ff482b96ef8a16209f5339"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "a1c26afbac7d91440a42fdce"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 2,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-08-27T11:47:49.394430"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-25T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-25T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "346741b2e9560cd0c0598afb"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "2cea09ee9fad67ade4001c34"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4621caeb016293b6820066fa"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Satisfied with my purchase.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 13,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-11-23T11:47:49.394430"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-21T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-21T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "74f74cd4f525b43a69748518"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "09638d9cf1e5ce2449ce87b0"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "337f92fb0f6ff13df4aa859c"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Love it! Exceeded my expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 15,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-09T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-09T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "be53f078f4721709f5b0289f"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "5864c5f271a3a479bc150ca3"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "87590ae22f5328fb2aca3e82"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Perfect! Exactly what I needed.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 7,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-08-25T11:47:49.394430"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-23T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-23T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fa5c2cd8737c99f544164e24"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "b4a3e03661c883dc18a3990a"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "406d9e21accf67378342e7f9"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Satisfied with my purchase.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 7,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-03T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3fbf5bebfaa544236613d78e"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "874cacd1d3ba9be01cc0d7fe"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "d62b564ee3c37fb55b0a3d83"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Good quality for the price.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 15,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-09-30T11:47:49.395657"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-28T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-28T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "80bfbb256d9cb61717e1fc19"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "39cd33e5fa89d19f4330acea"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Satisfied with my purchase.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 8,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-09-07T11:47:49.395657"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-05T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-05T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "085069968f9f6265f3b41e90"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "41d7dcf9ea10d27a9079b13c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 15,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-15T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-15T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "69cb14560a7982ec72f3b2f7"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "38ff93feadef8b63c105ebe1"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "32e4af291506746aac14ffec"
+    },
+    "rating": 4,
+    "title": "4 Stars",
+    "comment": "Good quality for the price.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 3,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-07T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b8b1a149a28c3c8d0dd813fc"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "productId": {
+      "$oid": "d37323da9eef38457007b2e5"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "370387a460f9b31b486d74a3"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Love it! Exceeded my expectations.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 13,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "Thank you for your feedback!",
+      "respondedAt": {
+        "$date": "2025-12-07T11:47:49.395657"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-05T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-05T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2359fc421b4b61eb67c3ae2e"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "7b31f8f1ca6d63a534c8db4f"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "rating": 3,
+    "title": "Could be better",
+    "comment": "Average product, nothing special.",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 9,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {
+      "message": "We're sorry to hear this. Please contact us.",
+      "respondedAt": {
+        "$date": "2025-12-06T11:47:49.395657"
+      }
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9d257a055f3a4b170f267791"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "productId": {
+      "$oid": "bf68d7e077b0be83fa7754fd"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "64b5e98545078a7faeef7140"
+    },
+    "rating": 5,
+    "title": "5 Stars",
+    "comment": "Amazing quality and fast shipping!",
+    "images": [],
+    "verifiedPurchase": true,
+    "helpful": 5,
+    "helpfulBy": [],
+    "status": "approved",
+    "sellerResponse": {},
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-04T11:47:49.395657"
+    }
+  }
+]
