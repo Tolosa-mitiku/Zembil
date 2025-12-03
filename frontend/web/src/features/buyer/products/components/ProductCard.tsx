@@ -146,11 +146,11 @@ const ProductCard = ({
           <div className="p-4 flex-1 flex flex-col">
             {/* Category */}
             <p className="text-xs text-grey-600 mb-1 uppercase tracking-wide">
-              {product.category}
+              {product.categoryNames?.[0] || 'General'}
             </p>
 
             {/* Title */}
-            <h3 className="text-base font-semibold text-grey-900 mb-2 line-clamp-2 flex-1">
+            <h3 className="text-base font-semibold text-grey-900 mb-2 line-clamp-2">
               {product.title}
             </h3>
 
