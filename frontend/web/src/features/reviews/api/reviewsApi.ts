@@ -24,7 +24,7 @@ export const reviewsApi = api.injectEndpoints({
           params.append('rating', rating.toString());
         }
 
-        return `/reviews/products/${productId}?${params.toString()}`;
+        return `/reviews/${productId}?${params.toString()}`;
       },
       providesTags: (result, error, { productId }) => [
         { type: 'Reviews' as const, id: productId },
@@ -42,7 +42,7 @@ export const reviewsApi = api.injectEndpoints({
           limit: limit.toString(),
         });
 
-        return `/reviews/sellers/${sellerId}?${params.toString()}`;
+        return `/reviews/seller/${sellerId}?${params.toString()}`;
       },
       providesTags: (result, error, { sellerId }) => [
         { type: 'SellerReviews' as const, id: sellerId },
@@ -55,7 +55,7 @@ export const reviewsApi = api.injectEndpoints({
       { productId: string; review: AddReviewRequest }
     >({
       query: ({ productId, review }) => ({
-        url: `/reviews/products/${productId}`,
+        url: `/reviews/${productId}`,
         method: 'POST',
         body: review,
       }),
@@ -116,6 +116,12 @@ export const {
   useDeleteReviewMutation,
   useMarkReviewHelpfulMutation,
 } = reviewsApi;
+
+
+
+
+
+
 
 
 
