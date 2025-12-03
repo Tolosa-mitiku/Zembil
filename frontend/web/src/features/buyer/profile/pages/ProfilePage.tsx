@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/store/hooks';
 import {
@@ -20,51 +20,13 @@ import {
   ArrowRightIcon,
   SparklesIcon,
 } from '@heroicons/react/24/outline';
-import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
-
-// Mock user data
-const MOCK_USER = {
-  name: 'Alex Thompson',
-  email: 'alex.thompson@example.com',
-  phone: '+1 (555) 123-4567',
-  image: 'https://i.pravatar.cc/300?img=68',
-  coverImage: 'https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2029&auto=format&fit=crop',
-  joinedDate: '2024-01-15',
-  totalOrders: 47,
-  totalSpent: 3245.50,
-  favoriteCategories: ['Electronics', 'Fashion', 'Home'],
-  rewardPoints: 1250,
-  membershipTier: 'Gold',
-};
-
-const RECENT_ORDERS = [
-  {
-    id: '1',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100',
-    name: 'Premium Wireless Headphones',
-    price: 299.99,
-    date: new Date(Date.now() - 172800000), // 2 days ago
-    status: 'delivered',
-  },
-  {
-    id: '2',
-    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=100',
-    name: 'Handcrafted Leather Bag',
-    price: 189.00,
-    date: new Date(Date.now() - 604800000), // 1 week ago
-    status: 'delivered',
-  },
-  {
-    id: '3',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100',
-    name: 'Smart Watch Pro',
-    price: 349.99,
-    date: new Date(Date.now() - 1209600000), // 2 weeks ago
-    status: 'in-transit',
-  },
-];
+import { useGetMyBuyerProfileQuery } from '../api/profileApi';
+import { useGetRecentOrdersQuery } from '../../orders/api/ordersApi';
+import ProfilePageSkeleton from '../components/ProfilePageSkeleton';
+import ProfileErrorState from '../components/ProfileErrorState';
+import EmptyOrdersState from '../components/EmptyOrdersState';
 
 const ACHIEVEMENTS = [
   { icon: ShoppingBagIcon, label: 'Verified Buyer', color: 'from-blue-500 to-blue-600' },
@@ -79,22 +41,51 @@ const BuyerProfilePage = () => {
   const [isEditingCover, setIsEditingCover] = useState(false);
   const [isEditingAvatar, setIsEditingAvatar] = useState(false);
 
+  // Fetch buyer profile data
+  const { 
+    data: buyerProfile, 
+    isLoading: profileLoading, 
+    isError: profileError,
+    refetch: refetchProfile
+  } = useGetMyBuyerProfileQuery();
+
+  // Fetch recent orders
+  const { 
+    data: recentOrders = [], 
+    isLoading: ordersLoading,
+    isError: ordersError 
+  } = useGetRecentOrdersQuery({ limit: 3 });
+
+  // Loading state
+  if (profileLoading) {
+    return <ProfilePageSkeleton />;
+  }
+
+  // Error state
+  if (profileError || !buyerProfile) {
+    return (
+      <ProfileErrorState 
+        error="Unable to load your profile. Please try again later."
+        onRetry={refetchProfile}
+      />
+    );
+  }
+
+  // Prepare display data with safety checks
+  const displayName = buyerProfile.displayName || `${buyerProfile.firstName || ''} ${buyerProfile.lastName || ''}`.trim() || 'User';
+  const profileImage = buyerProfile.profileImage || user?.image;
+  const totalOrders = buyerProfile.analytics?.totalOrders ?? 0;
+  const totalSpent = buyerProfile.analytics?.totalSpent ?? 0;
+  const rewardPoints = buyerProfile.loyalty?.points ?? 0;
+  const membershipTier = buyerProfile.loyalty?.tier || 'bronze';
+  const favoriteCategories = buyerProfile.preferences?.favoriteCategories || [];
+  const joinedDate = buyerProfile.createdAt;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pb-20">
       {/* Cover Image Section */}
       <div className="relative h-80 bg-gradient-to-r from-gold/20 via-purple-500/20 to-pink-500/20 overflow-hidden group">
-        {MOCK_USER.coverImage ? (
-          <>
-            <img
-              src={MOCK_USER.coverImage}
-              alt="Cover"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-gold/30 via-purple-500/30 to-pink-500/30" />
-        )}
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/30 via-purple-500/30 to-pink-500/30" />
         
         {/* Edit Cover Button */}
         <button
@@ -118,10 +109,10 @@ const BuyerProfilePage = () => {
               className="relative group/avatar"
             >
               <div className="w-40 h-40 rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-white">
-                {MOCK_USER.image ? (
+                {profileImage ? (
                   <img
-                    src={MOCK_USER.image}
-                    alt={MOCK_USER.name}
+                    src={profileImage}
+                    alt={displayName}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -145,28 +136,30 @@ const BuyerProfilePage = () => {
                 transition={{ delay: 0.2 }}
               >
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <h1 className="text-4xl font-extrabold text-gray-900">{MOCK_USER.name}</h1>
-                  <CheckBadgeIcon className="w-8 h-8 text-blue-500" title="Verified Account" />
+                  <h1 className="text-4xl font-extrabold text-gray-900">{displayName}</h1>
+                  {buyerProfile.trust?.verifiedPurchaser && (
+                    <CheckBadgeIcon className="w-8 h-8 text-blue-500" title="Verified Buyer" />
+                  )}
                 </div>
-                <p className="text-gray-600 mb-4">{MOCK_USER.email}</p>
+                <p className="text-gray-600 mb-4">{buyerProfile.email || user?.email || 'No email'}</p>
                 
                 {/* Quick Stats */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-6">
                   <div className="flex items-center gap-2">
                     <ShoppingBagIcon className="w-5 h-5 text-gold" />
                     <span className="text-sm font-semibold text-gray-700">
-                      {MOCK_USER.totalOrders} Orders
+                      {totalOrders} {totalOrders === 1 ? 'Order' : 'Orders'}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CalendarIcon className="w-5 h-5 text-gold" />
                     <span className="text-sm font-semibold text-gray-700">
-                      Joined {formatDistanceToNow(new Date(MOCK_USER.joinedDate), { addSuffix: true })}
+                      Joined {formatDistanceToNow(new Date(joinedDate), { addSuffix: true })}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 px-3 py-1 bg-gold/10 rounded-full border border-gold/30">
                     <SparklesIcon className="w-4 h-4 text-gold" />
-                    <span className="text-sm font-bold text-gold">{MOCK_USER.membershipTier} Member</span>
+                    <span className="text-sm font-bold text-gold capitalize">{membershipTier} Member</span>
                   </div>
                 </div>
               </motion.div>
@@ -204,7 +197,7 @@ const BuyerProfilePage = () => {
                   <span className="text-sm font-medium text-white/80">Total Spent</span>
                   <ShoppingBagIcon className="w-6 h-6 text-white/90" />
                 </div>
-                <p className="text-4xl font-extrabold mb-1">${MOCK_USER.totalSpent.toLocaleString()}</p>
+                <p className="text-4xl font-extrabold mb-1">${totalSpent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p className="text-xs text-white/70">Lifetime purchases</p>
               </div>
 
@@ -214,18 +207,18 @@ const BuyerProfilePage = () => {
                   <span className="text-sm font-medium text-white/80">Reward Points</span>
                   <SparklesIcon className="w-6 h-6 text-white/90" />
                 </div>
-                <p className="text-4xl font-extrabold mb-1">{MOCK_USER.rewardPoints.toLocaleString()}</p>
-                <p className="text-xs text-white/70">= ${(MOCK_USER.rewardPoints / 100).toFixed(2)} in rewards</p>
+                <p className="text-4xl font-extrabold mb-1">{rewardPoints.toLocaleString()}</p>
+                <p className="text-xs text-white/70">= ${(rewardPoints / 100).toFixed(2)} in rewards</p>
               </div>
 
-              {/* Orders This Month */}
+              {/* Total Orders */}
               <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl p-6 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-white/80">Orders This Month</span>
+                  <span className="text-sm font-medium text-white/80">Total Orders</span>
                   <TruckIcon className="w-6 h-6 text-white/90" />
                 </div>
-                <p className="text-4xl font-extrabold mb-1">12</p>
-                <p className="text-xs text-white/70">+3 from last month</p>
+                <p className="text-4xl font-extrabold mb-1">{totalOrders}</p>
+                <p className="text-xs text-white/70">All time orders</p>
               </div>
             </motion.div>
 
@@ -346,7 +339,7 @@ const BuyerProfilePage = () => {
                     <UserCircleIcon className="w-5 h-5 text-gray-400" />
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</span>
                   </div>
-                  <p className="text-base font-bold text-gray-900">{MOCK_USER.name}</p>
+                  <p className="text-base font-bold text-gray-900">{displayName}</p>
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
@@ -354,7 +347,9 @@ const BuyerProfilePage = () => {
                     <EnvelopeIcon className="w-5 h-5 text-gray-400" />
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Email</span>
                   </div>
-                  <p className="text-base font-bold text-gray-900 truncate">{MOCK_USER.email}</p>
+                  <p className="text-base font-bold text-gray-900 truncate">
+                    {buyerProfile.email || user?.email || 'Not provided'}
+                  </p>
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
@@ -362,7 +357,9 @@ const BuyerProfilePage = () => {
                     <PhoneIcon className="w-5 h-5 text-gray-400" />
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</span>
                   </div>
-                  <p className="text-base font-bold text-gray-900">{MOCK_USER.phone}</p>
+                  <p className="text-base font-bold text-gray-900">
+                    {buyerProfile.phoneNumber || 'Not provided'}
+                  </p>
                 </div>
 
                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
@@ -371,7 +368,7 @@ const BuyerProfilePage = () => {
                     <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Member Since</span>
                   </div>
                   <p className="text-base font-bold text-gray-900">
-                    {new Date(MOCK_USER.joinedDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                    {new Date(joinedDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                   </p>
                 </div>
               </div>
@@ -389,81 +386,128 @@ const BuyerProfilePage = () => {
                   <ClockIcon className="w-6 h-6 text-gold" />
                   Recent Orders
                 </h2>
-                <button
-                  onClick={() => navigate('/orders')}
-                  className="text-gold font-semibold text-sm hover:text-gold-dark flex items-center gap-1 group"
-                >
-                  View All
-                  <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-
-              <div className="space-y-4">
-                {RECENT_ORDERS.map((order, idx) => (
-                  <motion.div
-                    key={order.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 + idx * 0.1 }}
-                    onClick={() => navigate(`/orders/${order.id}`)}
-                    className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all cursor-pointer border border-gray-100 hover:border-gold group"
+                {totalOrders > 0 && (
+                  <button
+                    onClick={() => navigate('/orders')}
+                    className="text-gold font-semibold text-sm hover:text-gold-dark flex items-center gap-1 group"
                   >
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                      <img
-                        src={order.image}
-                        alt={order.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-sm text-gray-900 truncate group-hover:text-gold transition-colors">
-                        {order.name}
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        {formatDistanceToNow(order.date, { addSuffix: true })}
-                      </p>
-                    </div>
-
-                    <div className="text-right">
-                      <p className="font-bold text-gray-900">${order.price}</p>
-                      <span className={clsx(
-                        'text-xs font-semibold px-2 py-0.5 rounded-full',
-                        order.status === 'delivered' 
-                          ? 'bg-green-100 text-green-700'
-                          : 'bg-blue-100 text-blue-700'
-                      )}>
-                        {order.status}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+                    View All
+                    <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </div>
+
+              {ordersLoading ? (
+                <div className="space-y-4">
+                  {[...Array(3)].map((_, idx) => (
+                    <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 animate-pulse">
+                      <div className="w-16 h-16 rounded-xl bg-gray-200" />
+                      <div className="flex-1">
+                        <div className="h-4 bg-gray-200 rounded w-48 mb-2" />
+                        <div className="h-3 bg-gray-100 rounded w-24" />
+                      </div>
+                      <div className="text-right">
+                        <div className="h-4 bg-gray-200 rounded w-16 mb-1" />
+                        <div className="h-4 bg-gray-100 rounded w-20" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : recentOrders.length === 0 ? (
+                <EmptyOrdersState />
+              ) : (
+                <div className="space-y-4">
+                  {recentOrders.map((order, idx) => {
+                    // Safety checks for order data
+                    if (!order || !order.items || order.items.length === 0) {
+                      return null;
+                    }
+
+                    const firstItem = order.items[0];
+                    const productImage = firstItem?.productId?.images?.find(img => img.isMain)?.url || 
+                                       firstItem?.productId?.images?.[0]?.url || 
+                                       'https://via.placeholder.com/100';
+                    const productTitle = firstItem?.productId?.title || 'Product';
+                    const orderTotal = order.total ?? 0;
+                    const orderStatus = order.tracking?.status || 'pending';
+                    
+                    return (
+                      <motion.div
+                        key={order._id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.6 + idx * 0.1 }}
+                        onClick={() => navigate(`/orders/${order._id}`)}
+                        className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all cursor-pointer border border-gray-100 hover:border-gold group"
+                      >
+                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                          <img
+                            src={productImage}
+                            alt={productTitle}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = 'https://via.placeholder.com/100';
+                            }}
+                          />
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-sm text-gray-900 truncate group-hover:text-gold transition-colors">
+                            {order.items.length > 1 
+                              ? `${productTitle} +${order.items.length - 1} more` 
+                              : productTitle}
+                          </h4>
+                          <p className="text-xs text-gray-500">
+                            {formatDistanceToNow(new Date(order.createdAt), { addSuffix: true })}
+                          </p>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="font-bold text-gray-900">${orderTotal.toFixed(2)}</p>
+                          <span className={clsx(
+                            'text-xs font-semibold px-2 py-0.5 rounded-full capitalize',
+                            orderStatus === 'delivered' 
+                              ? 'bg-green-100 text-green-700'
+                              : orderStatus === 'cancelled' || orderStatus === 'refunded'
+                              ? 'bg-red-100 text-red-700'
+                              : 'bg-blue-100 text-blue-700'
+                          )}>
+                            {orderStatus.replace('-', ' ')}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  }).filter(Boolean)}
+                </div>
+              )}
             </motion.div>
 
             {/* Favorite Categories */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"
-            >
-              <h2 className="text-xl font-extrabold text-gray-900 mb-4">Favorite Categories</h2>
-              <div className="flex flex-wrap gap-2">
-                {MOCK_USER.favoriteCategories.map((category, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + idx * 0.1 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-4 py-2 bg-gradient-to-r from-gold/10 to-gold/20 border border-gold/30 rounded-full text-sm font-semibold text-gold hover:from-gold hover:to-gold-dark hover:text-white transition-all cursor-pointer"
-                  >
-                    {category}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+            {favoriteCategories.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"
+              >
+                <h2 className="text-xl font-extrabold text-gray-900 mb-4">Favorite Categories</h2>
+                <div className="flex flex-wrap gap-2">
+                  {favoriteCategories.map((category, idx) => (
+                    <motion.span
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.8 + idx * 0.1 }}
+                      whileHover={{ scale: 1.1 }}
+                      onClick={() => navigate(`/shop?category=${encodeURIComponent(category)}`)}
+                      className="px-4 py-2 bg-gradient-to-r from-gold/10 to-gold/20 border border-gold/30 rounded-full text-sm font-semibold text-gold hover:from-gold hover:to-gold-dark hover:text-white transition-all cursor-pointer"
+                    >
+                      {category}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

@@ -15,12 +15,16 @@ import {
   TagIcon,
   ChevronRightIcon,
   CubeIcon,
+  ExclamationTriangleIcon,
+  ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon as CheckCircleSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
+import { useGetUserOrdersQuery, Order as ApiOrder } from '../api/ordersApi';
+import OrdersSkeleton from '../components/OrdersSkeleton';
 
-interface Order {
+interface UIOrder {
   id: string;
   orderNumber: string;
   items: {
@@ -31,7 +35,7 @@ interface Order {
     quantity: number;
     seller: string;
   }[];
-  status: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  status: string; // Flexible to accept any status from API
   totalAmount: number;
   createdAt: Date;
   estimatedDelivery?: Date;
@@ -39,93 +43,33 @@ interface Order {
   shippingAddress: string;
 }
 
-const MOCK_ORDERS: Order[] = [
-  {
-    id: '1',
-    orderNumber: 'ORD-2024-001',
-    items: [
-      {
-        id: 'i1',
-        name: 'Premium Wireless Headphones',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200',
-        price: 299.99,
-        quantity: 1,
-        seller: 'AudioTech Store',
-      },
-    ],
-    status: 'shipped',
-    totalAmount: 299.99,
-    createdAt: new Date(Date.now() - 172800000), // 2 days ago
-    estimatedDelivery: new Date(Date.now() + 86400000), // Tomorrow
-    trackingNumber: 'TRK1234567890',
-    shippingAddress: '123 Main St, New York, NY 10001',
-  },
-  {
-    id: '2',
-    orderNumber: 'ORD-2024-002',
-    items: [
-      {
-        id: 'i2',
-        name: 'Handcrafted Leather Bag',
-        image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=200',
-        price: 189.00,
-        quantity: 2,
-        seller: 'Fashion Hub',
-      },
-    ],
-    status: 'delivered',
-    totalAmount: 378.00,
-    createdAt: new Date(Date.now() - 604800000), // 1 week ago
-    shippingAddress: '123 Main St, New York, NY 10001',
-  },
-  {
-    id: '3',
-    orderNumber: 'ORD-2024-003',
-    items: [
-      {
-        id: 'i3',
-        name: 'Smart Watch Pro',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200',
-        price: 349.99,
-        quantity: 1,
-        seller: 'TechMart',
-      },
-      {
-        id: 'i4',
-        name: 'Wireless Earbuds',
-        image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=200',
-        price: 149.99,
-        quantity: 1,
-        seller: 'AudioTech Store',
-      },
-    ],
-    status: 'processing',
-    totalAmount: 499.98,
-    createdAt: new Date(Date.now() - 86400000), // 1 day ago
-    estimatedDelivery: new Date(Date.now() + 259200000), // 3 days
-    shippingAddress: '123 Main St, New York, NY 10001',
-  },
-  {
-    id: '4',
-    orderNumber: 'ORD-2024-004',
-    items: [
-      {
-        id: 'i5',
-        name: 'Desk Lamp',
-        image: 'https://images.unsplash.com/photo-1507473888900-52e1adad5452?w=200',
-        price: 79.99,
-        quantity: 1,
-        seller: 'Home Decor Plus',
-      },
-    ],
-    status: 'cancelled',
-    totalAmount: 79.99,
-    createdAt: new Date(Date.now() - 1209600000), // 2 weeks ago
-    shippingAddress: '123 Main St, New York, NY 10001',
-  },
-];
+// Transform backend order to UI order format
+const transformOrder = (order: ApiOrder): UIOrder => {
+  return {
+    id: order._id,
+    orderNumber: order.orderNumber || 'N/A',
+    items: order.items?.map(item => ({
+      id: item._id,
+      name: item.productId?.title || 'Unknown Product',
+      image: item.productId?.images?.find(img => img.isMain)?.url || 
+             item.productId?.images?.[0]?.url || 
+             'https://via.placeholder.com/200',
+      price: item.price ?? 0,
+      quantity: item.quantity ?? 1,
+      seller: item.sellerId?.businessName || 'Unknown Seller',
+    })) || [],
+    status: order.tracking?.status || 'pending',
+    totalAmount: order.total ?? 0,
+    createdAt: new Date(order.createdAt || Date.now()),
+    estimatedDelivery: order.tracking?.estimatedDelivery ? new Date(order.tracking.estimatedDelivery) : undefined,
+    trackingNumber: order.tracking?.trackingNumber,
+    shippingAddress: order.shippingAddress 
+      ? `${order.shippingAddress.addressLine1 || ''}, ${order.shippingAddress.city || ''}, ${order.shippingAddress.state || ''} ${order.shippingAddress.postalCode || ''}`.trim()
+      : 'Address not available',
+  };
+};
 
-const STATUS_CONFIG = {
+const STATUS_CONFIG: Record<string, { label: string; color: string; icon: typeof ClockIcon; gradient: string }> = {
   pending: { 
     label: 'Pending', 
     color: 'bg-yellow-100 text-yellow-700 border-yellow-300', 
@@ -150,6 +94,12 @@ const STATUS_CONFIG = {
     icon: TruckIcon,
     gradient: 'from-indigo-500 to-purple-600'
   },
+  'in-transit': { 
+    label: 'In Transit', 
+    color: 'bg-cyan-100 text-cyan-700 border-cyan-300', 
+    icon: TruckIcon,
+    gradient: 'from-cyan-500 to-blue-600'
+  },
   delivered: { 
     label: 'Delivered', 
     color: 'bg-green-100 text-green-700 border-green-300', 
@@ -162,29 +112,57 @@ const STATUS_CONFIG = {
     icon: XCircleIcon,
     gradient: 'from-red-500 to-rose-600'
   },
+  refunded: { 
+    label: 'Refunded', 
+    color: 'bg-orange-100 text-orange-700 border-orange-300', 
+    icon: ArrowPathIcon,
+    gradient: 'from-orange-500 to-amber-600'
+  },
+};
+
+// Default config for unknown statuses
+const DEFAULT_STATUS_CONFIG = {
+  label: 'Unknown',
+  color: 'bg-gray-100 text-gray-700 border-gray-300',
+  icon: ClockIcon,
+  gradient: 'from-gray-500 to-slate-600'
 };
 
 const OrdersPage = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState<'active' | 'completed'>('active');
   const [searchQuery, setSearchQuery] = useState('');
+  const [page, setPage] = useState(1);
 
+  // Fetch orders from the backend
+  const { data, isLoading, isError, error, refetch, isFetching } = useGetUserOrdersQuery({
+    page,
+    limit: 50, // Fetch more to have enough for filtering
+  });
+
+  // Transform backend orders to UI format
+  const allOrders = useMemo(() => {
+    if (!data?.data) return [];
+    return data.data.map(transformOrder);
+  }, [data]);
+
+  // Filter orders based on tab and search
   const activeOrders = useMemo(() => 
-    MOCK_ORDERS.filter(order => 
+    allOrders.filter(order => 
       !['delivered', 'cancelled'].includes(order.status) &&
       (order.orderNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
        order.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase())))
     ),
-    [searchQuery]
+    [allOrders, searchQuery]
   );
 
   const completedOrders = useMemo(() => 
-    MOCK_ORDERS.filter(order => 
-      ['delivered', 'cancelled'].includes(order.status) &&
+    allOrders.filter(order => 
+      ['delivered', 'cancelled', 'refunded'].includes(order.status) &&
       (order.orderNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
        order.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase())))
     ),
-    [searchQuery]
+    [allOrders, searchQuery]
   );
 
   const displayOrders = selectedTab === 'active' ? activeOrders : completedOrders;
@@ -217,9 +195,10 @@ const OrdersPage = () => {
                     ? 'bg-white text-gray-900 shadow-md'
                     : 'text-gray-600 hover:text-gray-900'
                 )}
+                disabled={isLoading}
               >
                 Active
-                {activeOrders.length > 0 && (
+                {!isLoading && activeOrders.length > 0 && (
                   <span className="ml-2 px-2 py-0.5 bg-blue-500 text-white text-xs rounded-full font-bold">
                     {activeOrders.length}
                   </span>
@@ -233,6 +212,7 @@ const OrdersPage = () => {
                     ? 'bg-white text-gray-900 shadow-md'
                     : 'text-gray-600 hover:text-gray-900'
                 )}
+                disabled={isLoading}
               >
                 Completed
               </button>
@@ -247,13 +227,41 @@ const OrdersPage = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search orders..."
                 className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-gold focus:ring-4 focus:ring-gold/10 transition-all text-sm bg-white"
+                disabled={isLoading}
               />
             </div>
           </div>
         </motion.div>
 
-        {/* Orders List */}
-        {displayOrders.length === 0 ? (
+        {/* Loading State */}
+        {isLoading && <OrdersSkeleton />}
+
+        {/* Error State */}
+        {isError && !isLoading && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-20"
+          >
+            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center">
+              <ExclamationTriangleIcon className="w-16 h-16 text-red-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Failed to Load Orders</h3>
+            <p className="text-gray-500 mb-6 max-w-md mx-auto">
+              {(error as any)?.data?.message || 'Something went wrong while fetching your orders. Please try again.'}
+            </p>
+            <button
+              onClick={() => refetch()}
+              className="px-6 py-3 bg-gold text-white rounded-xl font-bold hover:bg-gold-dark transition-all shadow-lg flex items-center gap-2 mx-auto"
+            >
+              <ArrowPathIcon className="w-5 h-5" />
+              Try Again
+            </button>
+          </motion.div>
+        )}
+
+        {/* Empty or Filtered Orders */}
+        {!isLoading && !isError && displayOrders.length === 0 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -273,11 +281,20 @@ const OrdersPage = () => {
               Start Shopping
             </button>
           </motion.div>
-        ) : (
+        )}
+
+        {/* Orders List */}
+        {!isLoading && !isError && displayOrders.length > 0 && (
           <div className="space-y-6">
+            {isFetching && !isLoading && (
+              <div className="flex items-center justify-center py-4">
+                <ArrowPathIcon className="w-5 h-5 text-gray-400 animate-spin mr-2" />
+                <span className="text-sm text-gray-500">Refreshing...</span>
+              </div>
+            )}
             <AnimatePresence mode="popLayout">
               {displayOrders.map((order, index) => {
-                const statusConfig = STATUS_CONFIG[order.status];
+                const statusConfig = STATUS_CONFIG[order.status] || DEFAULT_STATUS_CONFIG;
                 const StatusIcon = statusConfig.icon;
 
                 return (
