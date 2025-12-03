@@ -19,6 +19,7 @@ interface FilterPanelProps {
   isOpen: boolean;
   onClose: () => void;
   onApplyFilters: (filters: FilterState) => void;
+  currentFilters?: FilterState;
 }
 
 export interface FilterState {
@@ -58,13 +59,13 @@ const SORT_OPTIONS = [
   { value: 'popular', label: 'Most Popular' },
 ];
 
-const FilterPanel = ({ isOpen, onClose, onApplyFilters }: FilterPanelProps) => {
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [minRating, setMinRating] = useState(0);
-  const [sortBy, setSortBy] = useState('relevance');
-  const [inStockOnly, setInStockOnly] = useState(false);
-  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
+const FilterPanel = ({ isOpen, onClose, onApplyFilters, currentFilters }: FilterPanelProps) => {
+  const [priceRange, setPriceRange] = useState<[number, number]>(currentFilters?.priceRange || [0, 1000]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(currentFilters?.categories || []);
+  const [minRating, setMinRating] = useState(currentFilters?.minRating || 0);
+  const [sortBy, setSortBy] = useState(currentFilters?.sortBy || 'relevance');
+  const [inStockOnly, setInStockOnly] = useState(currentFilters?.inStockOnly || false);
+  const [selectedConditions, setSelectedConditions] = useState<string[]>(currentFilters?.conditions || []);
   const [categorySearch, setCategorySearch] = useState('');
   const [conditionSearch, setConditionSearch] = useState('');
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);

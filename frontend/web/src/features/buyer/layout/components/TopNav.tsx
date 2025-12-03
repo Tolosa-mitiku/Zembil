@@ -26,6 +26,7 @@ import Dropdown from '@/shared/components/Dropdown';
 import FilterPanel, { FilterState } from '@/features/buyer/search/components/FilterPanel';
 import SearchOverlay from '@/features/buyer/search/components/SearchOverlay';
 import NotificationDropdown from './NotificationDropdown';
+import { useGetCartQuery, useGetCurrentUserQuery } from '@/features/buyer/home/api/userApi';
 
 /**
  * TopNav - Modern navigation bar for buyers
@@ -54,6 +55,23 @@ const TopNav = () => {
   // Get auth state
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
 
+  // Fetch user data from backend (only if authenticated)
+  const { data: backendUser } = useGetCurrentUserQuery(undefined, {
+    skip: !isAuthenticated,
+  });
+
+  // Fetch cart data (only if authenticated)
+  const { data: cartData } = useGetCartQuery(undefined, {
+    skip: !isAuthenticated,
+    pollingInterval: 60000, // Poll every minute to keep cart fresh
+  });
+  
+  // Handle both array format (from userApi) and Cart object format (from cartApi)
+  const cartItems = Array.isArray(cartData) ? cartData : (cartData?.items || []);
+
+  // Use backend user data if available, fallback to Redux user
+  const displayUser = backendUser || user;
+
   const handleSignInSelect = (role: 'buyer' | 'seller') => {
     navigate('/signup', { state: { role, tab: 'signin' } });
     setIsSignInDropdownOpen(false);
@@ -75,10 +93,10 @@ const TopNav = () => {
     setIsFilterOpen(false);
   };
 
-  // Get cart count from Redux (to be implemented)
-  const cartItemCount = 0;
-  const unreadMessages = 3; // Mock - will come from API
-  const unreadNotifications = 5; // Mock - will come from API 
+  // Get cart count from API
+  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const unreadMessages = 0; // TODO: Implement messages API
+  const unreadNotifications = 0; // TODO: Implement notifications API 
 
   // Handle scroll effect
   useEffect(() => {
@@ -298,23 +316,23 @@ const TopNav = () => {
                           whileTap={{ scale: 0.98 }}
                           className="flex items-center space-x-3 pl-1 pr-2 py-1 rounded-full hover:bg-grey-50 border border-transparent hover:border-grey-200 transition-all duration-200"
                         >
-                          {user?.image ? (
+                          {displayUser?.image ? (
                             <img
-                              src={user.image}
-                              alt={user.name}
+                              src={displayUser.image}
+                              alt={displayUser.name}
                               className="w-9 h-9 rounded-full object-cover ring-2 ring-gold/20"
                             />
                           ) : (
                             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center text-white font-bold text-sm shadow-md shadow-gold/20">
-                              {user?.name?.[0]?.toUpperCase() || 'U'}
+                              {displayUser?.name?.[0]?.toUpperCase() || 'U'}
                             </div>
                           )}
                           <div className="text-left hidden lg:block">
                             <p className="text-sm font-bold text-grey-900 leading-none mb-0.5">
-                              {user?.name?.split(' ')[0]}
+                              {displayUser?.name?.split(' ')[0] || 'User'}
                             </p>
                             <p className="text-[10px] font-medium text-grey-500 uppercase tracking-wider">
-                              Buyer
+                              {backendUser?.role || 'Buyer'}
                             </p>
                           </div>
                           <ChevronDownIcon className="w-4 h-4 text-grey-400" />
