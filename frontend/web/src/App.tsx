@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { initializeAuth } from './features/auth/store/authSlice';
 import AuthLayout from './shared/layouts/AuthLayout';
 import DashboardLayout from './shared/layouts/DashboardLayout';
 import ProtectedRoute from './shared/components/ProtectedRoute';
-import LoginPage from './features/auth/pages/LoginPage';
 import SignUpPage from './features/auth/pages/SignUpPage';
 import SellerDashboard from './features/seller/dashboard/pages/DashboardPage';
 import SellerProducts from './features/seller/products/pages/ProductsPage';
@@ -36,7 +35,31 @@ import AdminCategories from './features/admin/categories/pages/CategoriesPage';
 import AdminBanners from './features/admin/banners/pages/BannersPage';
 import AdminAnalytics from './features/admin/analytics/pages/AnalyticsPage';
 import AdminProfile from './features/admin/profile/pages/ProfilePage';
+import AdminSupport from './features/admin/support/pages/SupportPage';
+import AdminSettings from './features/admin/settings/pages/SettingsPage';
 import LoadingScreen from './shared/components/LoadingScreen';
+
+// Buyer Routes - Lazy loaded
+import BuyerLayout from './features/buyer/layout/components/BuyerLayout';
+const BuyerHomePage = lazy(() => import('./features/buyer/home/pages/HomePage'));
+const BuyerSearchPage = lazy(() => import('./features/buyer/search/pages/SearchPage'));
+const BuyerShopPage = lazy(() => import('./features/buyer/products/pages/ProductListPage'));
+const BuyerProductDetailPage = lazy(() => import('./features/buyer/products/pages/ProductDetailPage'));
+const BuyerCartPage = lazy(() => import('./features/buyer/cart/pages/CartPage'));
+const BuyerCheckoutPage = lazy(() => import('./features/buyer/checkout/pages/CheckoutPage'));
+const BuyerOrderSuccessPage = lazy(() => import('./features/buyer/checkout/pages/OrderSuccessPage'));
+const BuyerOrdersPage = lazy(() => import('./features/buyer/orders/pages/OrdersPage'));
+const BuyerOrderDetailPage = lazy(() => import('./features/buyer/orders/pages/OrderDetailPage'));
+const BuyerProfilePage = lazy(() => import('./features/buyer/profile/pages/ProfilePage'));
+const BuyerEditProfilePage = lazy(() => import('./features/buyer/profile/pages/EditProfilePage'));
+const BuyerAddressesPage = lazy(() => import('./features/buyer/profile/pages/AddressesPage'));
+const BuyerSettingsPage = lazy(() => import('./features/buyer/profile/pages/SettingsPage'));
+const BuyerWishlistPage = lazy(() => import('./features/buyer/wishlist/pages/WishlistPage'));
+const BuyerMessagesPage = lazy(() => import('./features/buyer/messages/pages/MessagesPage'));
+const BuyerNotificationsPage = lazy(() => import('./features/buyer/profile/pages/NotificationsPage'));
+const BuyerSecurityPage = lazy(() => import('./features/buyer/profile/pages/SecurityPage'));
+const BuyerAppearancePage = lazy(() => import('./features/buyer/profile/pages/AppearancePage'));
+const BuyerLanguagePage = lazy(() => import('./features/buyer/profile/pages/LanguagePage'));
 
 function App() {
   const dispatch = useAppDispatch();
@@ -61,9 +84,163 @@ function App() {
   return (
     <Routes>
       {/* Auth Routes */}
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/login" element={<Navigate to="/signup" replace state={{ tab: 'signin' }} />} />
+
+      {/* Buyer Routes - PUBLIC (No authentication required for browsing) */}
+      <Route element={<BuyerLayout />}>
+        <Route 
+          index 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerHomePage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="search" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerSearchPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="shop" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerShopPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="product/:id" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerProductDetailPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="cart" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerCartPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="checkout" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerCheckoutPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="checkout/success" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerOrderSuccessPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="orders" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerOrdersPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="orders/:id" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerOrderDetailPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerProfilePage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/edit" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerEditProfilePage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/addresses" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerAddressesPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/settings" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerSettingsPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="wishlist" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerWishlistPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="messages" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerMessagesPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/notifications" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerNotificationsPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/security" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerSecurityPage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/appearance" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerAppearancePage />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="profile/language" 
+          element={
+            <Suspense fallback={<LoadingScreen />}>
+              <BuyerLanguagePage />
+            </Suspense>
+          } 
+        />
       </Route>
 
       {/* Seller Routes */}
@@ -114,27 +291,16 @@ function App() {
         <Route path="orders" element={<AdminOrders />} />
         <Route path="categories" element={<AdminCategories />} />
         <Route path="banners" element={<AdminBanners />} />
+        <Route path="messages" element={<AdminDashboard />} />
+        <Route path="reviews" element={<AdminDashboard />} />
+        <Route path="support" element={<AdminSupport />} />
         <Route path="analytics" element={<AdminAnalytics />} />
+        <Route path="settings" element={<AdminSettings />} />
         <Route path="profile" element={<AdminProfile />} />
       </Route>
 
       {/* Public Routes */}
       <Route path="/products/:productId/reviews" element={<ProductReviewsPage />} />
-
-      {/* Root redirect */}
-      <Route
-        path="/"
-        element={
-          user ? (
-            <Navigate
-              to={user.role === 'admin' ? '/admin/dashboard' : '/seller/dashboard'}
-              replace
-            />
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
 
       {/* 404 */}
       <Route path="*" element={<Navigate to="/" replace />} />

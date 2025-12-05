@@ -321,3 +321,7 @@ const EventModal = ({ isOpen, onClose, onSave, event }: EventModalProps) => {
 
 export default EventModal;
 
+
+
+
+

@@ -48,6 +48,15 @@ app.use(express.json());
 // Enable CORS if your frontend and backend are on different domains
 app.use(cors());
 
+// Disable caching for all API responses
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('Surrogate-Control', 'no-store');
+  next();
+});
+
 // Serve uploaded files statically
 app.use("/api/v1/uploads", express.static(path.join(__dirname, "../uploads")));
 

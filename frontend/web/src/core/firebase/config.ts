@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
+import { getAuth, Auth } from 'firebase/auth';
 import { FIREBASE_CONFIG } from '../constants';
 
 console.log('=== Firebase Configuration ===');
@@ -14,20 +14,46 @@ if (missingKeys.length > 0) {
   console.error('Please check your .env file and ensure all VITE_FIREBASE_* variables are set');
 }
 
-// Initialize Firebase
-let app;
-let auth;
+// Suppress Firebase "read only property" warnings in development
+// This is a known issue with Firebase + Vite HMR
+if (import.meta.env.DEV) {
+  const originalError = console.error;
+  console.error = (...args: any[]) => {
+    const firstArg = typeof args[0] === 'string' ? args[0] : String(args[0]);
+    const secondArg = args[1] ? String(args[1]) : '';
+    const combinedArgs = firstArg + ' ' + secondArg;
+    
+    if (
+      combinedArgs.includes('Cannot assign to read only property') ||
+      combinedArgs.includes('read only property') ||
+      combinedArgs.includes('operations') ||
+      combinedArgs.includes('currentUser') ||
+      combinedArgs.includes('firebase:authUser') ||
+      combinedArgs.includes('IndexedDBLocalPersistence') ||
+      combinedArgs.includes('directlySetCurrentUser') ||
+      combinedArgs.includes('AuthImpl')
+    ) {
+      // Suppress this specific error - it's a Firebase HMR issue
+      return;
+    }
+    originalError.apply(console, args);
+  };
+}
 
-try {
+// Initialize Firebase only if not already initialized
+let app: FirebaseApp;
+let auth: Auth;
+
+const existingApps = getApps();
+
+if (existingApps.length === 0) {
   app = initializeApp(FIREBASE_CONFIG);
-  console.log('Firebase app initialized successfully');
-  
-  // Initialize Firebase Authentication
   auth = getAuth(app);
-  console.log('Firebase auth initialized successfully');
-} catch (error) {
-  console.error('Error initializing Firebase:', error);
-  throw error;
+  console.log('✅ Firebase app initialized successfully');
+} else {
+  app = existingApps[0];
+  auth = getAuth(app);
+  console.log('✅ Using existing Firebase app instance');
 }
 
 export { auth };

@@ -54,7 +54,7 @@
 
   /* Input styles */
   .input-base {
-    @apply w-full px-4 py-3 border border-grey-200 rounded-xl focus:border-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 transition-all bg-white;
+    @apply w-full px-4 py-3 border-b-2 border-grey-200 focus:border-gold outline-none transition-all bg-transparent;
   }
 
   /* Card styles */
@@ -188,6 +188,40 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Custom Range Slider Styles */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #D4AF37;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #D4AF37;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  input[type='range']:focus {
+    outline: none;
   }
 }
 

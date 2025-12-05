@@ -17,6 +17,28 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    // Disable caching in development
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    },
+  },
+  build: {
+    // Generate unique hashes for files to prevent browser caching issues
+    rollupOptions: {
+      output: {
+        // Add hash to filenames
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
+      },
+    },
+    // Ensure source maps are generated for debugging
+    sourcemap: true,
+  },
+  optimizeDeps: {
+    exclude: ['firebase', 'firebase/app', 'firebase/auth'],
   },
 });
 

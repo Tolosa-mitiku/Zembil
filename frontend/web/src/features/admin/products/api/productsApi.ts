@@ -3,31 +3,82 @@ import { ProductStatus } from '@/core/constants';
 
 export interface AdminProduct {
   _id: string;
+  sellerId?: string;
   title: string;
+  description?: string;
   price: number;
+  discountPrice?: number;
   stock: number;
+  stockQuantity?: number;
+  category: string;
+  brand?: string;
+  sku?: string;
+  images: string[];
   status: ProductStatus;
   isFeatured: boolean;
-  seller: {
+  rating?: number;
+  averageRating?: number;
+  reviewCount?: number;
+  totalReviews?: number;
+  sold?: number;
+  totalSold?: number;
+  views?: number;
+  tags?: string[];
+  seller?: {
     _id: string;
     userId: { name: string; email: string };
   };
   createdAt: string;
+  updatedAt?: string;
+}
+
+export interface ProductsResponse {
+  success: boolean;
+  products: AdminProduct[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }
 
 export const adminProductsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAdminProducts: builder.query<{ products: AdminProduct[]; pagination: any }, {
+    getAdminProducts: builder.query<ProductsResponse, {
       page?: number;
       limit?: number;
       status?: string;
+      category?: string;
       search?: string;
+      sort?: string;
     }>({
       query: (params) => ({
         url: '/admin/products',
         params,
       }),
-      transformResponse: (response: any) => response.data || response,
+      transformResponse: (response: any) => {
+        // Normalize the response to ensure consistent field names
+        const products = (response.data?.products || response.products || []).map((product: any) => ({
+          ...product,
+          stock: product.stockQuantity ?? product.stock ?? 0,
+          rating: product.averageRating ?? product.rating,
+          reviewCount: product.totalReviews ?? product.reviewCount ?? 0,
+          sold: product.totalSold ?? product.sold ?? 0,
+          images: product.images || [],
+        }));
+        
+        return {
+          success: response.success ?? true,
+          products,
+          pagination: response.data?.pagination || response.pagination || {
+            page: 1,
+            limit: 20,
+            total: products.length,
+            totalPages: 1,
+          },
+        };
+      },
       providesTags: ['AdminProducts'],
     }),
 

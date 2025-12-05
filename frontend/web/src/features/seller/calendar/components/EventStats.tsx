@@ -143,3 +143,7 @@ const EventStats = ({ events }: EventStatsProps) => {
 
 export default EventStats;
 
+
+
+
+
