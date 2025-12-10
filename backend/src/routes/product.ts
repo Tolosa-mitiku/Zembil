@@ -6,31 +6,69 @@ import {
   getProductById,
   updateProduct,
   searchProducts,
-  getAutocompleteSuggestions,
+  getFeaturedProducts,
+  getProductsByCategory,
 } from "../controllers/product";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
+import { authorizeRole } from "../middlewares/authorizeRole";
+import { verifyProductOwnership } from "../middlewares/verifyOwnership";
+import { validateBody, validateQuery, validateParams, commonSchemas } from "../middlewares/validate";
+import { validateObjectIdMiddleware } from "../utils/validation";
+import {
+  createProductSchema,
+  updateProductSchema,
+  productQuerySchema,
+} from "../validations/product.validation";
 
 const router = Router();
 
-// Search routes (must come before /:id route)
+// ============= PUBLIC ROUTES (No Auth Required) =============
+
 // GET /products/search - Search products
 router.get("/search", searchProducts);
 
-// GET /products/autocomplete - Get search suggestions
-router.get("/autocomplete", getAutocompleteSuggestions);
+// GET /products/featured - Get featured products
+router.get("/featured", getFeaturedProducts);
 
-// GET /products - Get all products (with optional filters)
-router.get("/", getAllProducts);
+// GET /products/category/:category - Get products by category
+router.get("/category/:category", getProductsByCategory);
 
-// POST /products - Create product
-router.post("/", createProduct);
+// GET /products - Get all products (with filters)
+router.get("/", validateQuery(productQuerySchema), getAllProducts);
 
-// GET /products/:id - Get product details
-router.get("/:id", getProductById);
+// GET /products/:id - Get product details (tracks views)
+router.get("/:id", validateObjectIdMiddleware("id"), getProductById);
 
-// PUT /products/:id - Update product details
-router.put("/:id", updateProduct);
+// ============= PROTECTED ROUTES (Auth Required) =============
 
-// DELETE /products/:id - Delete a product
-router.delete("/:id", deleteProduct);
+// POST /products - Create product (Seller only)
+router.post(
+  "/",
+  verifyFirebaseToken,
+  authorizeRole(["seller"]),
+  validateBody(createProductSchema),
+  createProduct
+);
+
+// PUT /products/:id - Update product (Seller/Admin only, with ownership check)
+router.put(
+  "/:id",
+  verifyFirebaseToken,
+  authorizeRole(["seller", "admin"]),
+  validateObjectIdMiddleware("id"),
+  verifyProductOwnership,
+  validateBody(updateProductSchema),
+  updateProduct
+);
+
+// DELETE /products/:id - Delete product (Seller/Admin only, with ownership check)
+router.delete(
+  "/:id",
+  verifyFirebaseToken,
+  authorizeRole(["seller", "admin"]),
+  validateObjectIdMiddleware("id"),
+  verifyProductOwnership,
+  deleteProduct
+);
 
 export default router;

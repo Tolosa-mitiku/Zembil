@@ -1,0 +1,118 @@
+[
+  {
+    "_id": {
+      "$oid": "b9ee6c30ac75b60b5c7e30bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "productIds": [
+      {
+        "$oid": "39cd33e5fa89d19f4330acea"
+      },
+      {
+        "$oid": "674b03d139f1f85510c3e007"
+      },
+      {
+        "$oid": "b4a3e03661c883dc18a3990a"
+      },
+      {
+        "$oid": "2f1dcfad3dc465f66b6dcf43"
+      },
+      {
+        "$oid": "c4806c21c1c929f19dc49d55"
+      },
+      {
+        "$oid": "674b03d139f1f85510c3e005"
+      },
+      {
+        "$oid": "d3855799c12f8447fb72dff3"
+      },
+      {
+        "$oid": "81559ffaaaaf3eeb333eac6d"
+      },
+      {
+        "$oid": "674b03d139f1f85510c3e001"
+      },
+      {
+        "$oid": "41d7dcf9ea10d27a9079b13c"
+      }
+    ],
+    "discountPercentage": 15,
+    "startDate": {
+      "$date": "2025-12-01T11:50:14.836565"
+    },
+    "endDate": {
+      "$date": "2025-12-23T11:50:14.836565"
+    },
+    "isActive": true,
+    "clicks": 55,
+    "sales": 40,
+    "revenue": 4267.14,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-01T11:50:14.836565"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:50:14.836565"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ba08b6a7ebdbaab9f0eaefe7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "productIds": [
+      {
+        "$oid": "d37323da9eef38457007b2e5"
+      },
+      {
+        "$oid": "674b03d139f1f85510c3e003"
+      },
+      {
+        "$oid": "3f81a65b8160287c8b201fab"
+      },
+      {
+        "$oid": "0c5cff8af3ffa1d81c4b991c"
+      },
+      {
+        "$oid": "7b31f8f1ca6d63a534c8db4f"
+      },
+      {
+        "$oid": "52063997c11e05fbcb646504"
+      },
+      {
+        "$oid": "ca14eabd8ca97035be47d11f"
+      },
+      {
+        "$oid": "64594a263cb3bdacd1577399"
+      },
+      {
+        "$oid": "bf68d7e077b0be83fa7754fd"
+      },
+      {
+        "$oid": "421e520c8305d8b048069e48"
+      }
+    ],
+    "discountPercentage": 10,
+    "startDate": {
+      "$date": "2025-12-01T11:50:14.836565"
+    },
+    "endDate": {
+      "$date": "2025-12-15T11:50:14.836565"
+    },
+    "isActive": true,
+    "clicks": 479,
+    "sales": 30,
+    "revenue": 1133.52,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-01T11:50:14.836565"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:50:14.836565"
+    }
+  }
+]

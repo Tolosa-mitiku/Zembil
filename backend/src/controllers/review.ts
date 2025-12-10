@@ -1,10 +1,7 @@
 import { Response } from "express";
-import { Review } from "../models/review";
-import { Product } from "../models/product";
-import { Seller } from "../models/seller";
-import { Order } from "../models/order";
-import { User } from "../models/users";
+import { Review, Product, Seller, Order, User } from "../models";
 import { CustomRequest } from "../types/express";
+import { AnalyticsService } from "../services";
 
 // Add product review
 export const addProductReview = async (req: CustomRequest, res: Response) => {
@@ -68,28 +65,11 @@ export const addProductReview = async (req: CustomRequest, res: Response) => {
 
     await review.save();
 
-    // Update product's average rating and review count
-    const reviews = await Review.find({ productId, status: "approved" });
-    const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
-    product.averageRating = totalRating / reviews.length;
-    product.totalReviews = reviews.length;
-    await product.save();
+    // Update product metrics using analytics service
+    await AnalyticsService.updateProductMetrics(productId);
 
-    // Update seller's average rating
-    const seller = await Seller.findById(product.sellerId);
-    if (seller) {
-      const sellerReviews = await Review.find({
-        sellerId: seller._id,
-        status: "approved",
-      });
-      const sellerTotalRating = sellerReviews.reduce(
-        (sum, r) => sum + r.rating,
-        0
-      );
-      seller.averageRating = sellerTotalRating / sellerReviews.length;
-      seller.totalReviews = sellerReviews.length;
-      await seller.save();
-    }
+    // Update seller metrics using analytics service
+    await AnalyticsService.updateSellerMetrics(product.sellerId);
 
     // Populate user info before returning
     await review.populate("userId", "name image");
@@ -192,17 +172,11 @@ export const updateReview = async (req: CustomRequest, res: Response) => {
 
     await review.save();
 
-    // Recalculate product rating
-    const product = await Product.findById(review.productId);
-    if (product) {
-      const reviews = await Review.find({
-        productId: product._id,
-        status: "approved",
-      });
-      const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
-      product.averageRating = totalRating / reviews.length;
-      await product.save();
-    }
+    // Recalculate product metrics using analytics service
+    await AnalyticsService.updateProductMetrics(review.productId);
+
+    // Update seller metrics
+    await AnalyticsService.updateSellerMetrics(review.sellerId);
 
     await review.populate("userId", "name image");
 
@@ -242,24 +216,12 @@ export const deleteReview = async (req: CustomRequest, res: Response) => {
     }
 
     const productId = review.productId;
+    const sellerId = review.sellerId;
     await review.deleteOne();
 
-    // Recalculate product rating
-    const product = await Product.findById(productId);
-    if (product) {
-      const reviews = await Review.find({
-        productId: product._id,
-        status: "approved",
-      });
-      if (reviews.length > 0) {
-        const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
-        product.averageRating = totalRating / reviews.length;
-      } else {
-        product.averageRating = 0;
-      }
-      product.totalReviews = reviews.length;
-      await product.save();
-    }
+    // Recalculate metrics using analytics service
+    await AnalyticsService.updateProductMetrics(productId);
+    await AnalyticsService.updateSellerMetrics(sellerId);
 
     return res.status(200).json({
       success: true,
@@ -366,6 +328,7 @@ export const getSellerReviews = async (req: CustomRequest, res: Response) => {
     });
   }
 };
+
 
 
 

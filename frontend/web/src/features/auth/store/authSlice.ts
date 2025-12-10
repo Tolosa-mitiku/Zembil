@@ -1,20 +1,15 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { UserRole } from "@/core/constants";
+import { auth } from "@/core/firebase/config";
+import { api } from "@/core/http/api";
+import authService from "@/core/services/authService";
+import { safeToast as toast } from "@/core/utils/toast-wrapper";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-  updateProfile,
-  signOut as firebaseSignOut,
-  onAuthStateChanged,
   User as FirebaseUser,
-  setPersistence,
   browserLocalPersistence,
-} from 'firebase/auth';
-import { auth } from '@/core/firebase/config';
-import { UserRole } from '@/core/constants';
-import { safeToast as toast } from '@/core/utils/toast-wrapper';
-import { api } from '@/core/http/api';
+  onAuthStateChanged,
+  setPersistence,
+} from "firebase/auth";
 
 export interface User {
   uid: string;
@@ -44,106 +39,107 @@ const initialState: AuthState = {
 
 // Async thunks
 export const initializeAuth = createAsyncThunk(
-  'auth/initialize',
+  "auth/initialize",
   async (_, { dispatch }) => {
     return new Promise<FirebaseUser | null>((resolve) => {
-      const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-        if (firebaseUser) {
-          try {
-            // Get the ID token to send to backend
-            const idToken = await firebaseUser.getIdToken();
-            
-            // Call backend /login endpoint to get user info
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://zembil.vercel.app/api/v1'}/login`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${idToken}`,
-              },
-              body: JSON.stringify({ idToken }),
-            });
+      // Small delay to ensure Firebase has fully loaded any persisted state
+      setTimeout(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+          if (firebaseUser) {
+            try {
+              console.log("🔵 Initializing auth for user:", firebaseUser.email);
 
-            if (response.ok) {
-              const data = await response.json();
-              console.log('Init auth - Backend response:', data);
-              
-              const userData = data.data?.user || data.user || data;
-              console.log('Init auth - User data:', userData);
-              console.log('Init auth - User role:', userData?.role);
-              
-              // Set user regardless of role (buyers, sellers, and admins all need auth)
-              if (userData) {
-                dispatch(setUser({
-                  uid: firebaseUser.uid,
-                  email: firebaseUser.email || '',
-                  name: userData?.name || firebaseUser.displayName || '',
-                  role: userData?.role,
-                  image: userData?.image || firebaseUser.photoURL || undefined,
-                }));
+              // Get user data from backend
+              const user = await authService.getCurrentUserFromBackend();
+
+              if (user) {
+                console.log(
+                  "✅ User data retrieved from backend:",
+                  user.email,
+                  "Role:",
+                  user.role
+                );
+                dispatch(setUser(user));
               } else {
-                console.log('No user data, signing out');
-                await firebaseSignOut(auth);
+                console.warn(
+                  "⚠️ No user data from backend, attempting to sync..."
+                );
+
+                // Try to sync with backend (will create user if doesn't exist)
+                try {
+                  const idToken = await firebaseUser.getIdToken();
+                  const syncedUser = await authService.syncWithBackend(idToken);
+
+                  if (syncedUser) {
+                    console.log("✅ User synced with backend:", syncedUser.email);
+                    dispatch(setUser(syncedUser));
+                  } else {
+                    console.error("❌ Failed to sync user with backend - clearing stale Firebase state");
+                    // Clear stale Firebase state and sign out
+                    await authService.signOut();
+                    dispatch(clearUser());
+                  }
+                } catch (syncError) {
+                  console.error("❌ Error syncing with backend:", syncError);
+                  // If sync fails, this might be stale Firebase data - clear it
+                  console.log("🔵 Clearing potentially stale Firebase state...");
+                  await authService.signOut();
+                  dispatch(clearUser());
+                }
+              }
+            } catch (error) {
+              console.error("❌ Error initializing auth:", error);
+              // If we can't get user data, clear potentially stale state
+              try {
+                await authService.signOut();
+                dispatch(clearUser());
+              } catch (e) {
+                console.warn("Could not clean up stale auth state:", e);
               }
             }
-          } catch (error) {
-            console.error('Error initializing auth:', error);
+          } else {
+            console.log("No Firebase user found");
+            // Ensure Redux state is also cleared
+            dispatch(clearUser());
           }
-        }
-        resolve(firebaseUser);
-        unsubscribe();
-      });
+          resolve(firebaseUser);
+          unsubscribe();
+        });
+      }, 50); // Small delay to let Firebase fully initialize
     });
   }
 );
 
 export const login = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
+  "auth/login",
+  async (
+    { email, password }: { email: string; password: string },
+    { rejectWithValue }
+  ) => {
     try {
-      // Sign in with Firebase
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const firebaseUser = userCredential.user;
-      
-      // Get ID token
-      const idToken = await firebaseUser.getIdToken();
-      
-      // Call backend /login endpoint
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://zembil.vercel.app/api/v1'}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`,
-        },
-        body: JSON.stringify({ idToken }),
-      });
+      console.log("🔵 Starting login for:", email);
 
-      if (!response.ok) {
-        throw new Error('Failed to authenticate with backend');
-      }
+      const { user } = await authService.loginWithEmailPassword(
+        email,
+        password
+      );
 
-      const data = await response.json();
-      const userData = data.data?.user || data.user;
-
-      const user: User = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || '',
-        name: userData.name || firebaseUser.displayName || '',
-        role: userData.role,
-        image: userData.image || firebaseUser.photoURL || undefined,
-      };
-
+      console.log("✅ Login successful:", user.email, "Role:", user.role);
       toast.success(`Welcome back, ${user.name}!`);
       return user;
     } catch (error: any) {
-      // Suppress the "Cannot assign to read only property 'operations'" error
-      // This is a known Firebase issue with HMR that doesn't affect functionality
-      if (error.message?.includes('read only property') || error.message?.includes('operations')) {
-        console.log('⚠️ Suppressed Firebase HMR error during login - this is harmless');
-        // Don't show toast for this error, just reject silently
-        return rejectWithValue('SUPPRESSED_ERROR');
+      console.error("❌ Login error:", error);
+
+      // Suppress Firebase HMR errors
+      if (
+        error.message?.includes("read only property") ||
+        error.message?.includes("operations")
+      ) {
+        console.log("⚠️ Suppressed Firebase HMR error during login");
+        return rejectWithValue("SUPPRESSED_ERROR");
       }
-      
-      const message = error.message || 'Failed to login';
+
+      const message = error.message || "Failed to login";
       toast.error(message);
       return rejectWithValue(message);
     }
@@ -151,61 +147,40 @@ export const login = createAsyncThunk(
 );
 
 export const signUp = createAsyncThunk(
-  'auth/signUp',
-  async ({ email, password, name, role }: { email: string; password: string; name?: string; role?: string }, { rejectWithValue }) => {
+  "auth/signUp",
+  async (
+    {
+      email,
+      password,
+      name,
+    }: { email: string; password: string; name?: string },
+    { rejectWithValue }
+  ) => {
     try {
-      // Create user with Firebase
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const firebaseUser = userCredential.user;
-      
-      // Update profile with name if provided
-      if (name) {
-        await updateProfile(firebaseUser, { displayName: name });
-      }
-      
-      // Get ID token
-      const idToken = await firebaseUser.getIdToken();
-      
-      // Call backend /login endpoint (which creates user if not exists)
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://zembil.vercel.app/api/v1'}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`,
-        },
-        body: JSON.stringify({ idToken, role: role || 'seller' }), // Pass role to backend
-      });
+      console.log("🔵 Starting sign up for:", email);
 
-      if (!response.ok) {
-        throw new Error('Failed to create account');
-      }
+      const { user } = await authService.signUpWithEmailPassword(
+        email,
+        password,
+        name
+      );
 
-      const data = await response.json();
-      console.log('SignUp - Backend response:', data);
-      
-      const userData = data.data?.user || data.user || data;
-      console.log('SignUp - User data:', userData);
-
-      const user: User = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || '',
-        name: userData.name || name || firebaseUser.displayName || '',
-        role: userData.role,
-        image: userData.image || firebaseUser.photoURL || undefined,
-      };
-
-      toast.success(`Welcome to Zembil!`);
+      console.log("✅ Sign up successful:", user.email, "Role:", user.role);
+      toast.success(`Welcome to Zembil! Please verify your email.`);
       return user;
     } catch (error: any) {
-      // Suppress the "Cannot assign to read only property 'operations'" error
-      // This is a known Firebase issue with HMR that doesn't affect functionality
-      if (error.message?.includes('read only property') || error.message?.includes('operations')) {
-        console.log('⚠️ Suppressed Firebase HMR error during signup - this is harmless');
-        // Don't show toast for this error, just reject silently
-        return rejectWithValue('SUPPRESSED_ERROR');
+      console.error("❌ Sign up error:", error);
+
+      // Suppress Firebase HMR errors
+      if (
+        error.message?.includes("read only property") ||
+        error.message?.includes("operations")
+      ) {
+        console.log("⚠️ Suppressed Firebase HMR error during sign up");
+        return rejectWithValue("SUPPRESSED_ERROR");
       }
-      
-      const message = error.message || 'Failed to sign up';
+
+      const message = error.message || "Failed to sign up";
       toast.error(message);
       return rejectWithValue(message);
     }
@@ -213,110 +188,46 @@ export const signUp = createAsyncThunk(
 );
 
 export const signInWithGoogle = createAsyncThunk(
-  'auth/signInWithGoogle',
+  "auth/signInWithGoogle",
   async (_, { rejectWithValue }) => {
     try {
-      console.log('🔵 Starting Google sign-in...');
-      
+      console.log("🔵 Starting Google sign-in...");
+
       // Set persistence to LOCAL
       await setPersistence(auth, browserLocalPersistence);
-      
-      const provider = new GoogleAuthProvider();
-      
-      // Add required scopes
-      provider.addScope('profile');
-      provider.addScope('email');
-      
-      // Set custom parameters
-      provider.setCustomParameters({
-        prompt: 'select_account'
-      });
-      
-      // Sign in with Google popup
-      console.log('🔵 Opening Google popup...');
-      const result = await signInWithPopup(auth, provider);
-      const firebaseUser = result.user;
-      console.log('✅ Google popup successful, user:', firebaseUser.email);
-      
-      // Get ID token
-      console.log('🔵 Getting Firebase ID token...');
-      const idToken = await firebaseUser.getIdToken();
-      console.log('✅ Got ID token (length):', idToken.length);
-      
-      // Call backend /login endpoint
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://zembil.vercel.app/api/v1';
-      console.log('🔵 Calling backend API:', `${apiUrl}/login`);
-      
-      const response = await fetch(`${apiUrl}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`,
-        },
-        body: JSON.stringify({ idToken }),
-      });
 
-      console.log('📡 Backend response status:', response.status);
-      
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('❌ Backend error:', errorData);
-        throw new Error(errorData.message || `Backend error: ${response.status} ${response.statusText}`);
-      }
+      const { user } = await authService.signInWithGoogle();
 
-      const data = await response.json();
-      console.log('✅ Google SignIn - Backend response:', data);
-      
-      const userData = data.data?.user || data.user || data;
-      console.log('✅ Google SignIn - User data:', userData);
-
-      const user: User = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || '',
-        name: userData.name || firebaseUser.displayName || '',
-        role: userData.role,
-        image: userData.image || firebaseUser.photoURL || undefined,
-      };
-
-      console.log('✅ Login successful:', user.email, 'Role:', user.role);
+      console.log(
+        "✅ Google sign-in successful:",
+        user.email,
+        "Role:",
+        user.role
+      );
       toast.success(`Welcome, ${user.name}!`);
       return user;
     } catch (error: any) {
-      console.error('❌ Google sign-in error:', error);
-      console.error('Error code:', error.code);
-      console.error('Error message:', error.message);
-      console.error('Full error object:', error);
+      console.error("❌ Google sign-in error:", error);
+
+      // Only suppress true HMR errors (very specific patterns that only occur during Vite hot reload)
+      // These are characterized by "Cannot assign to read only property" with specific object references
+      const isHMRError = 
+        import.meta.env.DEV && 
+        error.message?.includes("Cannot assign to read only property") &&
+        (error.message?.includes("'operations'") || error.message?.includes("'currentUser'"));
       
-      // Suppress the "Cannot assign to read only property 'operations'" error
-      // This is a known Firebase issue with HMR that doesn't affect functionality
-      if (error.message?.includes('read only property') || 
-          error.message?.includes('operations') ||
-          error.message?.includes('currentUser') ||
-          error.message?.includes('firebase:authUser') ||
-          error.message?.includes('IndexedDBLocalPersistence')) {
-        console.log('⚠️ Suppressed Firebase HMR error during Google sign-in - this is harmless');
-        // Don't show toast for this error, just reject silently
-        return rejectWithValue('SUPPRESSED_ERROR');
+      if (isHMRError) {
+        console.log("⚠️ Suppressed Firebase HMR error during Google sign-in - try again");
+        toast.error("Please try signing in again");
+        return rejectWithValue("HMR_ERROR");
       }
-      
-      let message = 'Failed to sign in with Google';
-      
-      // Handle specific Firebase auth errors
-      if (error.code === 'auth/popup-closed-by-user') {
-        message = 'Sign-in cancelled';
-        // Don't show error toast for user cancellation
-        return rejectWithValue(message);
-      } else if (error.code === 'auth/popup-blocked') {
-        message = 'Popup blocked. Please allow popups for this site.';
-      } else if (error.code === 'auth/unauthorized-domain') {
-        message = 'This domain is not authorized for Google sign-in. Please contact support.';
-      } else if (error.code === 'auth/cancelled-popup-request') {
-        message = 'Sign-in cancelled - another popup was already open';
-        return rejectWithValue(message);
-      } else if (error.message) {
-        message = error.message;
+
+      // Don't show toast for user-cancelled sign-ins
+      if (error.message === "Sign-in cancelled") {
+        return rejectWithValue(error.message);
       }
-      
+
+      const message = error.message || "Failed to sign in with Google";
       toast.error(message);
       return rejectWithValue(message);
     }
@@ -324,113 +235,88 @@ export const signInWithGoogle = createAsyncThunk(
 );
 
 export const signOut = createAsyncThunk(
-  'auth/signOut',
+  "auth/signOut",
   async (_, { dispatch }) => {
     try {
-      console.log('🔵 Starting sign out process...');
-      
+      console.log("🔵 Starting sign out process...");
+
       // Step 1: Clear Redux RTK Query cache first
-      console.log('🔵 Clearing RTK Query cache...');
+      console.log("🔵 Clearing RTK Query cache...");
       dispatch(api.util.resetApiState());
-      console.log('✅ RTK Query cache cleared');
-      
+      console.log("✅ RTK Query cache cleared");
+
       // Step 2: Clear Redux state
-      console.log('🔵 Clearing Redux state...');
+      console.log("🔵 Clearing Redux state...");
       dispatch(clearUser());
-      console.log('✅ Redux state cleared');
-      
-      // Step 3: Clear application-specific localStorage (but NOT Firebase keys)
-      console.log('🔵 Clearing application localStorage...');
-      const localStorageKeys = Object.keys(localStorage);
-      localStorageKeys.forEach(key => {
-        // Don't clear Firebase's internal storage keys
-        if (!key.startsWith('firebase:')) {
-          localStorage.removeItem(key);
-          console.log(`  Removed: ${key}`);
-        }
-      });
-      console.log('✅ Application localStorage cleared (Firebase keys preserved)');
-      
+      console.log("✅ Redux state cleared");
+
+      // Step 3: Clear ALL localStorage (including Firebase keys to prevent stale state)
+      console.log("🔵 Clearing all localStorage...");
+      localStorage.clear();
+      console.log("✅ All localStorage cleared");
+
       // Step 4: Clear all sessionStorage
-      console.log('🔵 Clearing sessionStorage...');
+      console.log("🔵 Clearing sessionStorage...");
       sessionStorage.clear();
-      console.log('✅ sessionStorage cleared');
-      
-      // Step 5: Clear non-Firebase cookies
-      console.log('🔵 Clearing application cookies...');
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i];
-        const eqPos = cookie.indexOf('=');
-        const name = eqPos > -1 ? cookie.substring(0, eqPos).trim() : cookie.trim();
-        // Don't clear Firebase cookies
-        if (!name.startsWith('firebase') && !name.startsWith('__firebase')) {
-          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-          document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
-        }
-      }
-      console.log('✅ Application cookies cleared');
-      
-      // Step 6: Sign out from Firebase LAST (let Firebase handle its own cleanup)
-      console.log('🔵 Signing out from Firebase...');
+      console.log("✅ sessionStorage cleared");
+
+      // Step 5: Sign out from Firebase and backend (this also clears IndexedDB)
+      console.log("🔵 Signing out from Firebase and backend...");
       try {
-        await firebaseSignOut(auth);
-        console.log('✅ Firebase sign out successful');
-      } catch (firebaseError: any) {
-        // Check if this is a known Firebase HMR error that should be suppressed
-        const isHMRError = firebaseError.message?.includes('read only property') || 
-                          firebaseError.message?.includes('operations') ||
-                          firebaseError.message?.includes('currentUser') ||
-                          firebaseError.message?.includes('firebase:authUser') ||
-                          firebaseError.message?.includes('IndexedDBLocalPersistence');
-        
+        await authService.signOut();
+        console.log("✅ Sign out successful");
+      } catch (signOutError: any) {
+        // Check if this is a true HMR error (only in dev mode)
+        const isHMRError =
+          import.meta.env.DEV &&
+          signOutError.message?.includes("Cannot assign to read only property");
+
         if (isHMRError) {
-          // Suppress - don't log, this is a harmless development error
-          console.log('⚠️ Suppressed Firebase HMR error during sign-out - this is harmless in development');
+          console.log("⚠️ Suppressed Firebase HMR error during sign-out");
+          // Still try to clear Firebase state manually
+          try {
+            await authService.clearFirebaseAuthState();
+          } catch (e) {
+            console.warn("Could not clear Firebase state:", e);
+          }
         } else {
-          // This is a real error, log it and throw
-          console.error('⚠️ Firebase sign out error:', firebaseError);
-          throw firebaseError;
+          console.error("⚠️ Sign out error:", signOutError);
+          throw signOutError;
         }
       }
-      
-      console.log('✅ Sign out complete - all application data cleared');
-      toast.success('Signed out successfully');
+
+      // Step 6: Small delay to ensure all async cleanup is complete
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      console.log("✅ Sign out complete");
+      toast.success("Signed out successfully");
       return true;
     } catch (error: any) {
-      console.error('❌ Sign out error:', error);
-      
-      // Even if there's an error, still try to clear application state
+      console.error("❌ Sign out error:", error);
+
+      // Even if there's an error, still clear ALL application state
       try {
         dispatch(clearUser());
         dispatch(api.util.resetApiState());
         sessionStorage.clear();
+        localStorage.clear();
         
-        // Try to clear non-Firebase localStorage
-        const localStorageKeys = Object.keys(localStorage);
-        localStorageKeys.forEach(key => {
-          if (!key.startsWith('firebase:')) {
-            try {
-              localStorage.removeItem(key);
-            } catch (e) {
-              console.warn('Could not remove localStorage key:', key);
-            }
-          }
-        });
+        // Also try to clear Firebase IndexedDB state
+        await authService.clearFirebaseAuthState();
       } catch (cleanupError) {
-        console.error('Error during cleanup:', cleanupError);
+        console.error("Error during cleanup:", cleanupError);
       }
-      
-      const message = error.message || 'Failed to sign out';
+
+      const message = error.message || "Failed to sign out";
       toast.error(message);
-      return true; // Return true anyway so the UI can proceed
+      return true;
     }
   }
 );
 
 // Slice
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
@@ -514,4 +400,3 @@ const authSlice = createSlice({
 
 export const { setUser, clearUser, setError } = authSlice.actions;
 export default authSlice.reducer;
-

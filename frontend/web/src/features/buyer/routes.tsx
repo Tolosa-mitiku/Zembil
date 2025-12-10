@@ -8,7 +8,7 @@ import { RouteObject } from 'react-router-dom';
 import BuyerLayout from './layout/components/BuyerLayout';
 
 // Lazy load pages for better performance
-const HomePage = lazy(() => import('./home/pages/HomePage'));
+const HomePage = lazy(() => import('./home/pages/index'));
 const ShopPage = lazy(() => import('./products/pages/ProductListPage'));
 const ProductDetailPage = lazy(() => import('./products/pages/ProductDetailPage'));
 const CartPage = lazy(() => import('./cart/pages/CartPage'));

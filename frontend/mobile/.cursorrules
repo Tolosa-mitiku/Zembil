@@ -1,11 +1,13 @@
 # Zembil Flutter Project - Cursor Rules
 
 ## Project Overview
+
 Zembil is a Flutter e-commerce application using Clean Architecture with Domain-Driven Design (DDD), BLoC for state management, and Firebase for authentication.
 
 ## Architecture Pattern: Clean Architecture + DDD
 
 ### Layer Structure
+
 ```
 lib/
 ├── core/                    # Shared utilities, constants, themes
@@ -32,6 +34,7 @@ lib/
 ## Coding Standards
 
 ### 1. File Naming Conventions
+
 - Use `snake_case` for all Dart files
 - BLoC files: `[feature]_bloc.dart`, `[feature]_event.dart`, `[feature]_state.dart`
 - Use cases: `[action]_[noun].dart` (e.g., `get_product.dart`, `login_with_email.dart`)
@@ -39,6 +42,7 @@ lib/
 - Data sources: `[feature]_data_source.dart` (abstract), `[feature]_remote_data_source.dart` (implementation)
 
 ### 2. Class Naming Conventions
+
 - Entities: `[Name]` (e.g., `Product`, `AuthUser`)
 - Models: `[Name]Model` (e.g., `ProductModel`, `AuthUserModel`)
 - Repositories (abstract): `[Feature]Repository`
@@ -49,6 +53,7 @@ lib/
 - States: `[Feature]State` with subclasses like `[Feature]Initial`, `[Feature]Loading`, `[Feature]Loaded`, `[Feature]Error`
 
 ### 3. Dependency Injection (GetIt)
+
 ```dart
 // Register in order: External → Data Sources → Repositories → Use Cases → BLoCs
 // Use registerLazySingleton for most dependencies
@@ -62,6 +67,7 @@ locator.registerLazySingleton(() => SomeBloc(
 ```
 
 ### 4. BLoC Pattern Rules
+
 ```dart
 // Events - Always extend Equatable
 abstract class FeatureEvent extends Equatable {
@@ -78,11 +84,11 @@ abstract class FeatureState extends Equatable {
 // BLoC - Handle all events with on<Event>
 class FeatureBloc extends Bloc<FeatureEvent, FeatureState> {
   final SomeUseCase useCase;
-  
+
   FeatureBloc({required this.useCase}) : super(FeatureInitial()) {
     on<SomeEvent>(_onSomeEvent);
   }
-  
+
   Future<void> _onSomeEvent(SomeEvent event, Emitter<FeatureState> emit) async {
     emit(FeatureLoading());
     final result = await useCase();
@@ -95,13 +101,14 @@ class FeatureBloc extends Bloc<FeatureEvent, FeatureState> {
 ```
 
 ### 5. Use Case Pattern
+
 ```dart
 // Single responsibility - one use case per action
 class GetProduct {
   final ProductRepository repository;
-  
+
   GetProduct(this.repository);
-  
+
   // Use call() method for cleaner syntax: useCase() instead of useCase.execute()
   Future<Either<Failure, Product>> call(String id) async {
     return await repository.getProduct(id);
@@ -110,6 +117,7 @@ class GetProduct {
 ```
 
 ### 6. Repository Pattern
+
 ```dart
 // Domain layer - Abstract contract
 abstract class FeatureRepository {
@@ -119,9 +127,9 @@ abstract class FeatureRepository {
 // Data layer - Implementation
 class FeatureRepositoryImpl implements FeatureRepository {
   final FeatureDataSource dataSource;
-  
+
   FeatureRepositoryImpl(this.dataSource);
-  
+
   @override
   Future<Either<Failure, Data>> getData() async {
     try {
@@ -135,20 +143,21 @@ class FeatureRepositoryImpl implements FeatureRepository {
 ```
 
 ### 7. Entity and Model Pattern
+
 ```dart
 // Domain Entity - Pure Dart class
 class Product {
   final String id;
   final String title;
   final double price;
-  
+
   Product({required this.id, required this.title, required this.price});
 }
 
 // Data Model - Extends Entity, adds serialization
 class ProductModel extends Product {
   ProductModel({required super.id, required super.title, required super.price});
-  
+
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['_id'] ?? json['id'],
@@ -156,7 +165,7 @@ class ProductModel extends Product {
       price: (json['price'] as num).toDouble(),
     );
   }
-  
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'title': title,
@@ -166,6 +175,7 @@ class ProductModel extends Product {
 ```
 
 ### 8. Error Handling with Either (dartz)
+
 ```dart
 // Always use Either<Failure, Success> for operations that can fail
 // Left = Failure, Right = Success
@@ -186,6 +196,7 @@ class NetworkFailure extends Failure {
 ```
 
 ### 9. Routing with GoRouter
+
 ```dart
 // Feature-specific routes
 class FeatureRoutes {
@@ -215,11 +226,12 @@ class AppRouter {
 ```
 
 ### 10. Widget Best Practices
+
 ```dart
 // Prefer const constructors
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     // Use context.read<Bloc>() for events
@@ -245,12 +257,14 @@ class MyWidget extends StatelessWidget {
 ## Firebase Integration
 
 ### Authentication
+
 - Use `firebase_auth` for authentication
 - Use `google_sign_in` for Google OAuth
 - Store Firebase ID tokens in secure storage for API calls
 - Verify email before allowing full access
 
 ### Push Notifications (to be implemented)
+
 - Use `firebase_messaging` for FCM
 - Store FCM tokens in user profile on backend
 - Handle foreground/background/terminated states
@@ -258,12 +272,14 @@ class MyWidget extends StatelessWidget {
 ## State Management Rules
 
 ### When to use which BLoC pattern:
+
 - **BlocBuilder**: When only rebuilding UI based on state
 - **BlocListener**: When performing side effects (navigation, snackbars)
 - **BlocConsumer**: When needing both (rebuild UI + side effects)
 - **BlocSelector**: When only listening to specific state properties
 
 ### BLoC Scope:
+
 - Global BLoCs (Auth, Profile): Provided at app level in `main.dart`
 - Feature BLoCs: Provided at feature/route level
 - Page-specific BLoCs: Provided in the page itself
@@ -271,6 +287,7 @@ class MyWidget extends StatelessWidget {
 ## Code Quality Checklist
 
 ### Before committing:
+
 - [ ] All use cases have single responsibility
 - [ ] BLoC events and states extend Equatable with proper props
 - [ ] Error handling uses Either pattern
@@ -284,6 +301,7 @@ class MyWidget extends StatelessWidget {
 ## Common Patterns
 
 ### Loading States
+
 ```dart
 // Always show loading indicator while fetching data
 if (state is FeatureLoading) {
@@ -292,6 +310,7 @@ if (state is FeatureLoading) {
 ```
 
 ### Error Handling in UI
+
 ```dart
 BlocListener<FeatureBloc, FeatureState>(
   listener: (context, state) {
@@ -306,6 +325,7 @@ BlocListener<FeatureBloc, FeatureState>(
 ```
 
 ### Navigation after action
+
 ```dart
 BlocListener<AuthBloc, AuthState>(
   listener: (context, state) {
@@ -318,13 +338,78 @@ BlocListener<AuthBloc, AuthState>(
 ```
 
 ## Environment Variables
+
 - Store sensitive keys in `.env` file
 - Access via `flutter_dotenv`: `dotenv.env['KEY_NAME']`
 - Never commit `.env` to version control
 
 ## Testing Guidelines
+
 - Unit tests for use cases and repositories
 - Widget tests for presentation layer
 - Integration tests for critical flows
 - Mock dependencies using `mocktail` or `mockito`
 
+## AI Assistant Guidelines
+
+### Documentation Files
+
+- **NEVER** proactively create documentation files (\*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a file exceeds 1000 lines:
+  - **MUST** refactor into smaller, focused components/widgets
+  - Break large widgets into smaller, reusable sub-widgets
+  - Extract business logic into separate use cases
+  - Split large pages into multiple widget files
+  - Create widget composition files for complex UIs
+  - Extract constants, themes, and utilities
+- Before creating/editing files, check line count and refactor if needed
+- Split large files into:
+  - Pages: Extract sections into separate widget files
+  - Widgets: Create sub-widgets for complex components
+  - BLoCs: Split into multiple smaller BLoCs if too complex
+  - Models: One model per file
+  - Use cases: Keep focused on single responsibility
+  - Data sources: Split by feature/endpoint groups
+
+### Backend Integration - Static Data Removal
+
+- **CRITICAL**: When integrating frontend with backend, **ALWAYS** remove all static/mock data
+- **MUST** ensure all displayed data comes directly from backend API calls
+- Before completing integration:
+  - [ ] Remove all hardcoded/mock data lists
+  - [ ] Remove static JSON assets used for testing
+  - [ ] Delete mock data sources
+  - [ ] Remove dummy data generators
+  - [ ] Verify all data is fetched from actual API endpoints
+  - [ ] Ensure BLoCs trigger real API calls through repositories
+  - [ ] Remove any local fallback data
+- **Pattern for migration**:
+
+  ```dart
+  // BEFORE (BAD - Static data)
+  final products = [
+    Product(id: '1', title: 'Product 1', price: 29.99),
+    Product(id: '2', title: 'Product 2', price: 39.99),
+  ];
+
+  // AFTER (GOOD - Backend data)
+  // In BLoC
+  final result = await getProductsUseCase();
+  result.fold(
+    (failure) => emit(ProductsError(failure.message)),
+    (products) => emit(ProductsLoaded(products)),
+  );
+  ```
+
+- Replace all instances of:
+  - Mock data lists → Repository calls via use cases
+  - Static constants → Environment variables or API configs
+  - Hardcoded values → Backend responses
+  - Local storage defaults → Backend authentication
+  - Dummy models → Models from API responses

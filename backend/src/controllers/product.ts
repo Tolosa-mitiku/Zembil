@@ -1,11 +1,43 @@
 import { Request, Response } from "express";
-import { Product } from "../models/product";
+import { Product, Seller, Category } from "../models";
+import { AnalyticsService } from "../services";
 
-// Create a new product
+/**
+ * Create a new product
+ */
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const product = new Product(req.body);
+    const productData = req.body;
+
+    // If using new schema structure, map it properly
+    if (productData.price && !productData.pricing) {
+      productData.pricing = {
+        basePrice: productData.price,
+        currency: productData.currency || "USD",
+      };
+    }
+
+    if (productData.stockQuantity !== undefined && !productData.inventory) {
+      productData.inventory = {
+        stockQuantity: productData.stockQuantity,
+        trackInventory: true,
+      };
+    }
+
+    const product = new Product(productData);
     await product.save();
+
+    // Update seller's product count
+    if (product.sellerId) {
+      await Seller.updateOne(
+        { _id: product.sellerId },
+        {
+          $inc: { "metrics.totalProducts": 1 },
+          $push: { products: product._id },
+        }
+      );
+    }
+
     return res.status(201).json({
       success: true,
       message: "Product created successfully",
@@ -20,13 +52,19 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-// Get product by ID
+/**
+ * Get product by ID
+ */
 export const getProductById = async (req: Request, res: Response) => {
   try {
-    const product = await Product.findById(req.params.id).populate(
+    const { id } = req.params;
+    const userId = (req as any).user?._id;
+
+    const product = await Product.findById(id).populate(
       "sellerId",
-      "businessName averageRating totalReviews profileImage"
+      "businessName metrics.averageRating metrics.totalReviews profileImage verification.status"
     );
+
     if (!product) {
       return res.status(404).json({
         success: false,
@@ -34,9 +72,8 @@ export const getProductById = async (req: Request, res: Response) => {
       });
     }
 
-    // Increment view count
-    product.views = (product.views || 0) + 1;
-    await product.save();
+    // Track product view
+    await AnalyticsService.trackProductView(id, userId);
 
     return res.status(200).json({
       success: true,
@@ -51,20 +88,39 @@ export const getProductById = async (req: Request, res: Response) => {
   }
 };
 
-// Update product details
+/**
+ * Update product details
+ */
 export const updateProduct = async (req: Request, res: Response) => {
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
+    const { id } = req.params;
+    const updates = req.body;
+
+    // Map legacy fields to new structure
+    if (updates.price && !updates.pricing) {
+      updates.pricing = {
+        basePrice: updates.price,
+      };
+    }
+
+    if (updates.stockQuantity !== undefined && !updates.inventory) {
+      updates.inventory = {
+        stockQuantity: updates.stockQuantity,
+      };
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, updates, {
+      new: true,
+      runValidators: true,
+    });
+
     if (!updatedProduct) {
       return res.status(404).json({
         success: false,
         message: "Product not found",
       });
     }
+
     return res.status(200).json({
       success: true,
       message: "Product updated successfully",
@@ -79,16 +135,36 @@ export const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-// Delete product
+/**
+ * Delete product
+ */
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-    if (!deletedProduct) {
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+    if (!product) {
       return res.status(404).json({
         success: false,
         message: "Product not found",
       });
     }
+
+    // Soft delete - set status to archived instead of deleting
+    product.status = "archived";
+    await product.save();
+
+    // Update seller's product count
+    if (product.sellerId) {
+      await Seller.updateOne(
+        { _id: product.sellerId },
+        {
+          $inc: { "metrics.totalProducts": -1, "metrics.activeProducts": -1 },
+          $pull: { products: product._id },
+        }
+      );
+    }
+
     return res.status(200).json({
       success: true,
       message: "Product deleted successfully",
@@ -102,68 +178,102 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-// Get all products with advanced filtering
+/**
+ * Get all products with filtering and pagination
+ */
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
     const {
       page = "1",
-      limit = "10",
+      limit = "20",
       category,
       minPrice,
       maxPrice,
-      minRating,
-      brand,
+      search,
+      sort = "createdAt",
+      order = "desc",
+      status = "active",
       isFeatured,
-      status,
-      sort = "-createdAt",
-      sellerId,
+      isOnSale,
     } = req.query;
 
     const pageNum = parseInt(page as string, 10);
     const limitNum = parseInt(limit as string, 10);
     const skip = (pageNum - 1) * limitNum;
 
-    // Build filter query
-    const filter: any = { status: "active" }; // Only show active products by default
+    // Build filter
+    const filter: any = {};
 
-    if (category) filter.category = category;
-    if (brand) filter.brand = brand;
-    if (isFeatured !== undefined) filter.isFeatured = isFeatured === "true";
-    if (status) filter.status = status;
-    if (sellerId) filter.sellerId = sellerId;
+    if (status) {
+      filter.status = status;
+    }
 
-    // Price range filter
+    if (category) {
+      filter.category = category;
+    }
+
     if (minPrice || maxPrice) {
-      filter.price = {};
-      if (minPrice) filter.price.$gte = parseFloat(minPrice as string);
-      if (maxPrice) filter.price.$lte = parseFloat(maxPrice as string);
+      filter["pricing.basePrice"] = {};
+      if (minPrice) filter["pricing.basePrice"].$gte = parseFloat(minPrice as string);
+      if (maxPrice) filter["pricing.basePrice"].$lte = parseFloat(maxPrice as string);
     }
 
-    // Rating filter
-    if (minRating) {
-      filter.averageRating = { $gte: parseFloat(minRating as string) };
+    if (search) {
+      filter.$text = { $search: search as string };
     }
 
-    // Determine sort order
-    let sortOption: any = { createdAt: -1 };
-    if (sort === "price_asc") sortOption = { price: 1 };
-    else if (sort === "price_desc") sortOption = { price: -1 };
-    else if (sort === "rating") sortOption = { averageRating: -1 };
-    else if (sort === "popular") sortOption = { totalSold: -1 };
-    else if (sort === "newest") sortOption = { createdAt: -1 };
+    if (isFeatured === "true") {
+      filter.isFeatured = true;
+    }
 
-    const [products, total] = await Promise.all([
-      Product.find(filter)
-        .populate("sellerId", "businessName averageRating")
-        .skip(skip)
-        .limit(limitNum)
-        .sort(sortOption),
-      Product.countDocuments(filter),
-    ]);
+    if (isOnSale === "true") {
+      filter.isOnSale = true;
+    }
+
+    // Build sort
+    const sortField = sort as string;
+    const sortOrder = order === "asc" ? 1 : -1;
+    const sortObj: any = {};
+
+    // Map sort fields to new structure
+    if (sortField === "price") {
+      sortObj["pricing.basePrice"] = sortOrder;
+    } else if (sortField === "rating") {
+      sortObj["analytics.averageRating"] = sortOrder;
+    } else if (sortField === "sold") {
+      sortObj["analytics.totalSold"] = sortOrder;
+    } else {
+      sortObj[sortField] = sortOrder;
+    }
+
+    // Get total count
+    const total = await Product.countDocuments(filter);
+
+    // Get products
+    const products = await Product.find(filter)
+      .sort(sortObj)
+      .skip(skip)
+      .limit(limitNum)
+      .populate("sellerId", "businessName metrics.averageRating verification.status")
+      .populate("category", "name")
+      .lean();
+
+    // Populate categoryNames for each product
+    const productsWithCategoryNames = products.map((product: any) => {
+      let categoryName = 'General';
+      if (product.category && typeof product.category === 'object' && product.category.name) {
+        categoryName = product.category.name;
+      }
+      return {
+        ...product,
+        category: product.category?._id || product.category,
+        categoryNames: [categoryName],
+      };
+    });
 
     return res.status(200).json({
       success: true,
-      data: products,
+      data: productsWithCategoryNames,
       pagination: {
         page: pageNum,
         limit: limitNum,
@@ -180,18 +290,51 @@ export const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-// Search products with text search
+/**
+ * Get featured products
+ */
+export const getFeaturedProducts = async (req: Request, res: Response) => {
+  try {
+    const { limit = "10" } = req.query;
+
+    const products = await Product.find({
+      isFeatured: true,
+      status: "active",
+    })
+      .limit(parseInt(limit as string, 10))
+      .populate("sellerId", "businessName")
+      .lean();
+
+    return res.status(200).json({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error fetching featured products",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
+};
+
+/**
+ * Search products (full-text search with filters)
+ */
 export const searchProducts = async (req: Request, res: Response) => {
   try {
-    const {
-      q,
-      page = "1",
-      limit = "10",
+    const { 
+      q, 
+      page = "1", 
+      limit = "20",
       category,
       minPrice,
       maxPrice,
       minRating,
-      sort = "-createdAt",
+      condition,
+      inStockOnly,
+      sort,
+      order = "desc"
     } = req.query;
 
     if (!q) {
@@ -205,44 +348,89 @@ export const searchProducts = async (req: Request, res: Response) => {
     const limitNum = parseInt(limit as string, 10);
     const skip = (pageNum - 1) * limitNum;
 
-    // Build filter query
+    // Build filter with text search
     const filter: any = {
-      status: "active",
       $text: { $search: q as string },
+      status: "active",
     };
 
-    if (category) filter.category = category;
+    // Add category filter
+    if (category) {
+      filter.category = category;
+    }
 
-    // Price range filter
+    // Add price range filter
     if (minPrice || maxPrice) {
-      filter.price = {};
-      if (minPrice) filter.price.$gte = parseFloat(minPrice as string);
-      if (maxPrice) filter.price.$lte = parseFloat(maxPrice as string);
+      filter["pricing.basePrice"] = {};
+      if (minPrice) filter["pricing.basePrice"].$gte = parseFloat(minPrice as string);
+      if (maxPrice) filter["pricing.basePrice"].$lte = parseFloat(maxPrice as string);
     }
 
-    // Rating filter
+    // Add rating filter
     if (minRating) {
-      filter.averageRating = { $gte: parseFloat(minRating as string) };
+      filter["analytics.averageRating"] = { $gte: parseFloat(minRating as string) };
     }
 
-    // Determine sort order
-    let sortOption: any = { score: { $meta: "textScore" }, createdAt: -1 };
-    if (sort === "price_asc") sortOption = { price: 1 };
-    else if (sort === "price_desc") sortOption = { price: -1 };
-    else if (sort === "rating") sortOption = { averageRating: -1 };
+    // Add condition filter
+    if (condition) {
+      filter.condition = condition;
+    }
 
-    const [products, total] = await Promise.all([
-      Product.find(filter, { score: { $meta: "textScore" } })
-        .populate("sellerId", "businessName averageRating")
-        .skip(skip)
-        .limit(limitNum)
-        .sort(sortOption),
-      Product.countDocuments(filter),
-    ]);
+    // Add stock filter
+    if (inStockOnly === "true") {
+      filter["inventory.stockQuantity"] = { $gt: 0 };
+    }
+
+    // Build sort object
+    let sortObj: any = { score: { $meta: "textScore" } };
+    
+    // Override with custom sort if provided
+    if (sort) {
+      const sortField = sort as string;
+      const sortOrder = order === "asc" ? 1 : -1;
+      
+      if (sortField === "price") {
+        sortObj = { "pricing.basePrice": sortOrder };
+      } else if (sortField === "rating") {
+        sortObj = { "analytics.averageRating": sortOrder };
+      } else if (sortField === "sold") {
+        sortObj = { "analytics.totalSold": sortOrder };
+      } else if (sortField === "createdAt" || sortField === "newest") {
+        sortObj = { createdAt: sortOrder };
+      }
+      // If sort is "relevance" or not specified, use text score
+    }
+
+    // Text search with score and filters
+    const products = await Product.find(
+      filter,
+      { score: { $meta: "textScore" } }
+    )
+      .sort(sortObj)
+      .skip(skip)
+      .limit(limitNum)
+      .populate("sellerId", "businessName metrics.averageRating verification.status")
+      .populate("category", "name")
+      .lean();
+
+    const total = await Product.countDocuments(filter);
+
+    // Populate categoryNames for each product
+    const productsWithCategoryNames = products.map((product: any) => {
+      let categoryName = 'General';
+      if (product.category && typeof product.category === 'object' && product.category.name) {
+        categoryName = product.category.name;
+      }
+      return {
+        ...product,
+        category: product.category?._id || product.category,
+        categoryNames: [categoryName],
+      };
+    });
 
     return res.status(200).json({
       success: true,
-      data: products,
+      data: productsWithCategoryNames,
       pagination: {
         page: pageNum,
         limit: limitNum,
@@ -259,49 +447,43 @@ export const searchProducts = async (req: Request, res: Response) => {
   }
 };
 
-// Get autocomplete suggestions
-export const getAutocompleteSuggestions = async (
-  req: Request,
-  res: Response
-) => {
+/**
+ * Get products by category
+ */
+export const getProductsByCategory = async (req: Request, res: Response) => {
   try {
-    const { q } = req.query;
+    const { category } = req.params;
+    const { page = "1", limit = "20" } = req.query;
 
-    if (!q || (q as string).length < 2) {
-      return res.status(200).json({
-        success: true,
-        data: [],
-      });
-    }
+    const pageNum = parseInt(page as string, 10);
+    const limitNum = parseInt(limit as string, 10);
+    const skip = (pageNum - 1) * limitNum;
 
-    // Search for products matching the query
     const products = await Product.find({
+      category,
       status: "active",
-      $or: [
-        { title: { $regex: q as string, $options: "i" } },
-        { category: { $regex: q as string, $options: "i" } },
-        { brand: { $regex: q as string, $options: "i" } },
-      ],
     })
-      .select("title category brand")
-      .limit(10);
+      .skip(skip)
+      .limit(limitNum)
+      .populate("sellerId", "businessName")
+      .lean();
 
-    // Extract unique suggestions
-    const suggestions = new Set<string>();
-    products.forEach((product) => {
-      suggestions.add(product.title);
-      if (product.category) suggestions.add(product.category);
-      if (product.brand) suggestions.add(product.brand);
-    });
+    const total = await Product.countDocuments({ category, status: "active" });
 
     return res.status(200).json({
       success: true,
-      data: Array.from(suggestions).slice(0, 10),
+      data: products,
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPages: Math.ceil(total / limitNum),
+      },
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Error getting autocomplete suggestions",
+      message: "Error fetching products by category",
       error: error instanceof Error ? error.message : "Unknown error",
     });
   }

@@ -1,0 +1,152 @@
+[
+  {
+    "_id": {
+      "$oid": "55140eba9a3852489ec6942a"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "home",
+    "label": "",
+    "fullName": "Tolosa Mitiku",
+    "phoneNumber": "+12125551001",
+    "addressLine1": "123 Broadway",
+    "addressLine2": "",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10001",
+    "country": "United States",
+    "geolocation": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "isDefault": true,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-06-25T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "17f6a0dc9fa629a7e3cd87be"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "work",
+    "label": "",
+    "fullName": "Tolosa Mitiku",
+    "phoneNumber": "+12125551001",
+    "addressLine1": "456 5th Avenue",
+    "addressLine2": "",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10018",
+    "country": "United States",
+    "geolocation": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "isDefault": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-11T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "45f409f69a257fb72f721304"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "home",
+    "label": "",
+    "fullName": "Sarah Johnson",
+    "phoneNumber": "+12125552001",
+    "addressLine1": "789 Michigan Ave",
+    "addressLine2": "",
+    "city": "Chicago",
+    "state": "IL",
+    "postalCode": "60601",
+    "country": "United States",
+    "geolocation": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "isDefault": true,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "06f918fe069c994aa87687dc"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "work",
+    "label": "",
+    "fullName": "Sarah Johnson",
+    "phoneNumber": "+12125552001",
+    "addressLine1": "321 State Street",
+    "addressLine2": "",
+    "city": "Chicago",
+    "state": "IL",
+    "postalCode": "60605",
+    "country": "United States",
+    "geolocation": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "isDefault": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1fce9b791547970af9a14aeb"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "other",
+    "label": "Parents House",
+    "fullName": "Sarah Johnson",
+    "phoneNumber": "+12125552001",
+    "addressLine1": "555 Oak Street",
+    "addressLine2": "",
+    "city": "Chicago",
+    "state": "IL",
+    "postalCode": "60610",
+    "country": "United States",
+    "geolocation": {
+      "latitude": 41.8781,
+      "longitude": -87.6298
+    },
+    "isDefault": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-20T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    }
+  }
+]

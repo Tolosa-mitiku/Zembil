@@ -124,9 +124,9 @@ export const getSellerDashboard = async (req: CustomRequest, res: Response) => {
         },
         recentOrders,
         sellerInfo: {
-          averageRating: seller.averageRating,
-          totalReviews: seller.totalReviews,
-          verificationStatus: seller.verificationStatus,
+          averageRating: seller.metrics?.averageRating || 0,
+          totalReviews: seller.metrics?.totalReviews || 0,
+          verificationStatus: seller.verification?.status || "pending",
         },
       },
     });
@@ -337,6 +337,8 @@ export const getSellerRevenue = async (req: CustomRequest, res: Response) => {
     });
   }
 };
+
+
 
 
 

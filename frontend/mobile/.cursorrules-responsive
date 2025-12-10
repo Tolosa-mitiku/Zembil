@@ -1241,3 +1241,26 @@ padding: EdgeInsets.symmetric(
 **Apply these rules to ALL Flutter widgets and pages for perfect responsiveness across all devices!** 📱💻🖥️
 
 **Zembil will look amazing on any screen size!** 🏆✨
+
+---
+
+## AI Assistant Guidelines
+
+### Documentation Files
+- **NEVER** proactively create documentation files (*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a file exceeds 1000 lines:
+  - **MUST** refactor into smaller, focused components
+  - Extract responsive helper methods into separate utility files
+  - Split complex responsive widgets into multiple files
+  - Create reusable responsive widget builders
+  - Move device-specific layouts to separate files
+- Responsive design refactoring:
+  - Extract device breakpoint logic into a dedicated utility file
+  - Create separate files for mobile, tablet, and desktop layouts
+  - Move responsive sizing helpers to a centralized file
+  - Keep responsive widgets modular and composable

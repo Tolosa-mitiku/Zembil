@@ -1,0 +1,1506 @@
+[
+  {
+    "_id": {
+      "$oid": "6c9b0b3c1e8ce7bba0225dcf"
+    },
+    "orderId": {
+      "$oid": "4b6cbb75ec9d6f3bb1725d54"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 2694.6,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_bb7fdb4ede6639963091",
+    "platformFee": 249.5,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 2495.0,
+        "platformFeeAmount": 249.5,
+        "netAmount": 2245.5
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "df2fe123372555ee20ff6917"
+    },
+    "orderId": {
+      "$oid": "b94fe20e4bd43b241b49bfa5"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 3701.12,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_ccee31941faa457d380a",
+    "platformFee": 342.7,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 2866.98,
+        "platformFeeAmount": 286.7,
+        "netAmount": 2580.28
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 559.98,
+        "platformFeeAmount": 56.0,
+        "netAmount": 503.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1fa7c80369693693cf24c85e"
+    },
+    "orderId": {
+      "$oid": "04fda1efbb334a1e76555105"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 792.14,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_2d41c74bfab3797cb9d7",
+    "platformFee": 73.35,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 733.46,
+        "platformFeeAmount": 73.35,
+        "netAmount": 660.11
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-31T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-09-05T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "34d024a907774a06bc515b9f"
+    },
+    "orderId": {
+      "$oid": "b43458ab03643d5d540af5ca"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 215.99,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_1c5bb2e459d3d3bddae2",
+    "platformFee": 20.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 199.99,
+        "platformFeeAmount": 20.0,
+        "netAmount": 179.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-25T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b048390d18357bf63b96eb34"
+    },
+    "orderId": {
+      "$oid": "bade12737053547f83eec337"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 1220.39,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_e5b824374b35209a3f54",
+    "platformFee": 113.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 130.0,
+        "platformFeeAmount": 13.0,
+        "netAmount": 117.0
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 999.99,
+        "platformFeeAmount": 100.0,
+        "netAmount": 899.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6286dca54fb133c5c7606810"
+    },
+    "orderId": {
+      "$oid": "4da5dc058afce1aef2db63c9"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 4192.31,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_6a2688c61e44c07292cc",
+    "platformFee": 388.18,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 3849.77,
+        "platformFeeAmount": 384.98,
+        "netAmount": 3464.79
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 32.0,
+        "platformFeeAmount": 3.2,
+        "netAmount": 28.8
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-08-14T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bac8db4de57ba1d8595a1325"
+    },
+    "orderId": {
+      "$oid": "cb7873ceae09c39c5a13a64e"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 3926.85,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_75270c314af1c4bb8003",
+    "platformFee": 363.6,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 3635.97,
+        "platformFeeAmount": 363.6,
+        "netAmount": 3272.37
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-11T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d64ee5ba30ee5532b12b9cfc"
+    },
+    "orderId": {
+      "$oid": "f10b64452c5a20541a72c070"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 653.8,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_7362d11de3126e95ac62",
+    "platformFee": 60.54,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 605.37,
+        "platformFeeAmount": 60.54,
+        "netAmount": 544.8299999999999
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "894e03d34821df8ead4a1e7d"
+    },
+    "orderId": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 2116.78,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_084d292c05f38571b71b",
+    "platformFee": 196.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 1899.99,
+        "platformFeeAmount": 190.0,
+        "netAmount": 1709.99
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 59.99,
+        "platformFeeAmount": 6.0,
+        "netAmount": 53.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7755d34cb4e7ffb22307fc79"
+    },
+    "orderId": {
+      "$oid": "7d6e10692db98954500c026c"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 268.92,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_fdd6562990ab3732f9a7",
+    "platformFee": 24.9,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 249.0,
+        "platformFeeAmount": 24.9,
+        "netAmount": 224.1
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-12T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "79919b07d4feb08545551f10"
+    },
+    "orderId": {
+      "$oid": "420b150ddf83bac67f11d49c"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 1752.79,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_d1484bf272e2be5bca8c",
+    "platformFee": 162.3,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 899.98,
+        "platformFeeAmount": 90.0,
+        "netAmount": 809.98
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 722.97,
+        "platformFeeAmount": 72.3,
+        "netAmount": 650.6700000000001
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e5d85811f5492914161b3225"
+    },
+    "orderId": {
+      "$oid": "06b6fa3ed8eac751bc3a2edb"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 422.26,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_edee171a8d98bcee3abb",
+    "platformFee": 39.1,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 390.98,
+        "platformFeeAmount": 39.1,
+        "netAmount": 351.88
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b3a677b35f726ba029cfafb5"
+    },
+    "orderId": {
+      "$oid": "4163a1571900816a746c1d58"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 1788.72,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_59697083392364368593",
+    "platformFee": 165.62,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 606.24,
+        "platformFeeAmount": 60.620000000000005,
+        "netAmount": 545.62
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 1049.98,
+        "platformFeeAmount": 105.0,
+        "netAmount": 944.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-09-21T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7c8ff7ce6247d31bc48a47eb"
+    },
+    "orderId": {
+      "$oid": "d0b661c97dddd69da4f5d2dd"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 25.43,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_2d9b9606e8c205fe564e",
+    "platformFee": 1.8,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 18.0,
+        "platformFeeAmount": 1.8,
+        "netAmount": 16.2
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-03T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e47a714b569af5fd04056e39"
+    },
+    "orderId": {
+      "$oid": "1d3909a3e90fe27aa6416575"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 757.38,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_4386dca03da745fa3b25",
+    "platformFee": 70.13,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 401.29,
+        "platformFeeAmount": 40.13,
+        "netAmount": 361.15999999999997
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 299.99,
+        "platformFeeAmount": 30.0,
+        "netAmount": 269.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1bc03973b032f5b069b85749"
+    },
+    "orderId": {
+      "$oid": "11ad635925783dd07f37439a"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 5356.74,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_0500ce3bae93b7fd2c4c",
+    "platformFee": 495.99,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 3459.96,
+        "platformFeeAmount": 346.0,
+        "netAmount": 3113.96
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 1499.98,
+        "platformFeeAmount": 150.0,
+        "netAmount": 1349.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dbfd5205b23b467275e34b90"
+    },
+    "orderId": {
+      "$oid": "598199e2119f1a1691e52ac4"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 1085.36,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_232147b18fd67e8bb525",
+    "platformFee": 100.5,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 265.98,
+        "platformFeeAmount": 26.6,
+        "netAmount": 239.38
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 738.98,
+        "platformFeeAmount": 73.9,
+        "netAmount": 665.0799999999999
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1deaf944039a0d23bfedccb1"
+    },
+    "orderId": {
+      "$oid": "c0b9bd0541242266e972b273"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 64.17,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_e6e62ba085fb3a51902f",
+    "platformFee": 5.94,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 59.42,
+        "platformFeeAmount": 5.94,
+        "netAmount": 53.48
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "80c71e1952e8250e22ac0105"
+    },
+    "orderId": {
+      "$oid": "e928cf2c755502adeb09d1f5"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 620.97,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_fe8164b3c94a070e73d5",
+    "platformFee": 57.5,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 574.97,
+        "platformFeeAmount": 57.5,
+        "netAmount": 517.47
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "238175db54758c15d0dc689f"
+    },
+    "orderId": {
+      "$oid": "24e743af38f28fd8b84cf077"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 1787.28,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_7b17759a2b4d2f1404ac",
+    "platformFee": 165.49,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 49.9,
+        "platformFeeAmount": 4.99,
+        "netAmount": 44.91
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 1604.99,
+        "platformFeeAmount": 160.5,
+        "netAmount": 1444.49
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e102e78bb452e5510ef3366b"
+    },
+    "orderId": {
+      "$oid": "2b365a2de59cf4f5b3655beb"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 422.26,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_890c1b124ad52bd9b13e",
+    "platformFee": 39.1,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 390.98,
+        "platformFeeAmount": 39.1,
+        "netAmount": 351.88
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-03T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4dd43c6b0b6df56275e06ae0"
+    },
+    "orderId": {
+      "$oid": "a1c26afbac7d91440a42fdce"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 1124.28,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_8a262e3f4c6c8e1526ff",
+    "platformFee": 104.1,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 358.0,
+        "platformFeeAmount": 35.8,
+        "netAmount": 322.2
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 683.0,
+        "platformFeeAmount": 68.3,
+        "netAmount": 614.7
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-19T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2d93638d36def091e7d7e194"
+    },
+    "orderId": {
+      "$oid": "4621caeb016293b6820066fa"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 73.43,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_dad8af48e69c78ea5f74",
+    "platformFee": 6.8,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 67.99,
+        "platformFeeAmount": 6.8,
+        "netAmount": 61.19
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-11T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-16T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a8d7736f41778f561b895f76"
+    },
+    "orderId": {
+      "$oid": "337f92fb0f6ff13df4aa859c"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 4103.98,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_a521c9f4f288a1319556",
+    "platformFee": 380.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 3799.98,
+        "platformFeeAmount": 380.0,
+        "netAmount": 3419.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-04T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d73348f9f0f27545218c8abf"
+    },
+    "orderId": {
+      "$oid": "9918d149250860bdbb19cb1b"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 918.49,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_398c4e3823735fbbca3c",
+    "platformFee": 85.05,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 450.47,
+        "platformFeeAmount": 45.050000000000004,
+        "netAmount": 405.42
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 399.98,
+        "platformFeeAmount": 40.0,
+        "netAmount": 359.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8f507797c428a5d8bc147c6d"
+    },
+    "orderId": {
+      "$oid": "87590ae22f5328fb2aca3e82"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 2570.39,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_7180d16761e2de5932b2",
+    "platformFee": 238.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 2379.99,
+        "platformFeeAmount": 238.0,
+        "netAmount": 2141.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c807469d9687fd6ae21b4955"
+    },
+    "orderId": {
+      "$oid": "406d9e21accf67378342e7f9"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 778.64,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_de4adf41685daf4e5dac",
+    "platformFee": 72.1,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 261.98,
+        "platformFeeAmount": 26.2,
+        "netAmount": 235.77999999999997
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 458.98,
+        "platformFeeAmount": 45.9,
+        "netAmount": 413.08000000000004
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2754542b6efc4d24367e9b51"
+    },
+    "orderId": {
+      "$oid": "185ea166a73baf86e3702050"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 438.24,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_db01bf20e209905777f4",
+    "platformFee": 40.58,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 99.8,
+        "platformFeeAmount": 9.98,
+        "netAmount": 89.82
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 305.98,
+        "platformFeeAmount": 30.6,
+        "netAmount": 275.38
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-26T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e439ebfc1d1ef8e3c3cf16e"
+    },
+    "orderId": {
+      "$oid": "d62b564ee3c37fb55b0a3d83"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 44.87,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_78f57bc931ce6e833355",
+    "platformFee": 3.6,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 36.0,
+        "platformFeeAmount": 3.6,
+        "netAmount": 32.4
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-11T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-16T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2139d32a103d220b45a2f652"
+    },
+    "orderId": {
+      "$oid": "07b84a9968aa5da110cedfbd"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 57.83,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_1ae04c3d5ea185f106f4",
+    "platformFee": 4.8,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 48.0,
+        "platformFeeAmount": 4.8,
+        "netAmount": 43.2
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a8c21654173e57a8f835a328"
+    },
+    "orderId": {
+      "$oid": "e0756704e95238db28a3d819"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 4427.95,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_07cfaf2d6224b0babfb0",
+    "platformFee": 410.0,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 2599.96,
+        "platformFeeAmount": 260.0,
+        "netAmount": 2339.96
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 1499.99,
+        "platformFeeAmount": 150.0,
+        "netAmount": 1349.99
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-14T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-19T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e8ae7d091363c2de62dba216"
+    },
+    "orderId": {
+      "$oid": "97376c56f714cc34f0818fc4"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 59.88,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_122a2dbaf631d55bc147",
+    "platformFee": 4.99,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 49.9,
+        "platformFeeAmount": 4.99,
+        "netAmount": 44.91
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-08T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-13T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e407f73a331b6fc70b1a73e4"
+    },
+    "orderId": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 5024.72,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_577d3c63558afea87228",
+    "platformFee": 465.25,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 314.33000000000004,
+        "platformFeeAmount": 31.43,
+        "netAmount": 282.9
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 4338.19,
+        "platformFeeAmount": 433.82,
+        "netAmount": 3904.37
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-08-22T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c3d71b66a2a195c168f9b72b"
+    },
+    "orderId": {
+      "$oid": "bd64c4c78359667e8128f563"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 275.39,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_40705c08dfe2bae19bc2",
+    "platformFee": 25.5,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 102.0,
+        "platformFeeAmount": 10.2,
+        "netAmount": 91.8
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 152.99,
+        "platformFeeAmount": 15.3,
+        "netAmount": 137.69
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "01dbaa92fa40be836f655c51"
+    },
+    "orderId": {
+      "$oid": "85e901a43b39edb8cbcee6c2"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 1315.39,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_6ea0ad5c1095403d158a",
+    "platformFee": 121.8,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 894.96,
+        "platformFeeAmount": 89.5,
+        "netAmount": 805.46
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 322.99,
+        "platformFeeAmount": 32.3,
+        "netAmount": 290.69
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-12T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fac8491ff618fb31faf18f58"
+    },
+    "orderId": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 407.15,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_e8771ff2db5e4f73071f",
+    "platformFee": 37.7,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 165.99,
+        "platformFeeAmount": 16.6,
+        "netAmount": 149.39
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 211.0,
+        "platformFeeAmount": 21.099999999999998,
+        "netAmount": 189.9
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d0e8f25e89afd261364202c7"
+    },
+    "orderId": {
+      "$oid": "32e4af291506746aac14ffec"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 1629.71,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_e73b65c18fcaa6cd304b",
+    "platformFee": 150.9,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 744.0,
+        "platformFeeAmount": 74.4,
+        "netAmount": 669.5999999999999
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 764.99,
+        "platformFeeAmount": 76.5,
+        "netAmount": 688.49
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-29T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e880f3fc1600c0a2f293e421"
+    },
+    "orderId": {
+      "$oid": "370387a460f9b31b486d74a3"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "amount": 671.73,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_dd4b4180070c032d6178",
+    "platformFee": 62.2,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 32.0,
+        "platformFeeAmount": 3.2,
+        "netAmount": 28.8
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 589.97,
+        "platformFeeAmount": 59.0,
+        "netAmount": 530.97
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "378676bc2fd5002d6de23420"
+    },
+    "orderId": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 4384.53,
+    "method": "paypal",
+    "paymentStatus": "paid",
+    "transactionId": "txn_c9223b79721de7582fa0",
+    "platformFee": 405.98,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 1759.77,
+        "platformFeeAmount": 175.98,
+        "netAmount": 1583.79
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 2299.98,
+        "platformFeeAmount": 230.0,
+        "netAmount": 2069.98
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0da2075a2f21acae5255fb84"
+    },
+    "orderId": {
+      "$oid": "64b5e98545078a7faeef7140"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "amount": 4464.14,
+    "method": "stripe",
+    "paymentStatus": "paid",
+    "transactionId": "txn_5966948a27ee3cae2e55",
+    "platformFee": 413.35,
+    "sellerEarnings": [
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "amount": 1555.48,
+        "platformFeeAmount": 155.55,
+        "netAmount": 1399.93
+      },
+      {
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "amount": 2577.98,
+        "platformFeeAmount": 257.8,
+        "netAmount": 2320.18
+      }
+    ],
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-25T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    }
+  }
+]

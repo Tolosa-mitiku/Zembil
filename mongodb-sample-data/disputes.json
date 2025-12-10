@@ -1,0 +1,137 @@
+[
+  {
+    "_id": {
+      "$oid": "f72aa0b0940d24eb7e3c4244"
+    },
+    "orderId": {
+      "$oid": "cb7873ceae09c39c5a13a64e"
+    },
+    "orderNumber": "ZMB-20251016-1006",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "reason": "wrong_item",
+    "description": "I received a different product than what I ordered.",
+    "images": [],
+    "status": "open",
+    "priority": "medium",
+    "resolution": {},
+    "adminNotes": [],
+    "sellerResponse": {},
+    "assignedTo": null,
+    "closedAt": null,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-18T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-21T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "919357f703f4681e3a638b38"
+    },
+    "orderId": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "orderNumber": "ZMB-20250821-1032",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "reason": "wrong_item",
+    "description": "I received a different product than what I ordered.",
+    "images": [],
+    "status": "investigating",
+    "priority": "medium",
+    "resolution": {},
+    "adminNotes": [],
+    "sellerResponse": {
+      "message": "We apologize for the inconvenience. We'll investigate this immediately.",
+      "respondedAt": {
+        "$date": "2025-08-30T17:47:49.395657"
+      }
+    },
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "closedAt": null,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-30T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e6a97fba75b31496cfb9321"
+    },
+    "orderId": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "orderNumber": "ZMB-20250916-1008",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "reason": "item_not_received",
+    "description": "I haven't received my package yet and it's been over 2 weeks.",
+    "images": [],
+    "status": "open",
+    "priority": "medium",
+    "resolution": {},
+    "adminNotes": [],
+    "sellerResponse": {},
+    "assignedTo": null,
+    "closedAt": null,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-09T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f4ffef3fd77eccf966404ede"
+    },
+    "orderId": {
+      "$oid": "06b6fa3ed8eac751bc3a2edb"
+    },
+    "orderNumber": "ZMB-20251023-1011",
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "reason": "item_not_received",
+    "description": "I haven't received my package yet and it's been over 2 weeks.",
+    "images": [],
+    "status": "open",
+    "priority": "high",
+    "resolution": {},
+    "adminNotes": [],
+    "sellerResponse": {},
+    "assignedTo": null,
+    "closedAt": null,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-07T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-10T11:47:49.393422"
+    }
+  }
+]

@@ -42,6 +42,8 @@ export interface ISupportTicket extends Document {
   isEscalated: boolean;
   escalatedAt?: Date;
   escalationReason?: string;
+  metadata?: Map<string, any>;
+  schemaVersion?: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -171,6 +173,14 @@ const SupportTicketSchema = new Schema<ISupportTicket>(
     },
     escalatedAt: Date,
     escalationReason: String,
+    metadata: {
+      type: Map,
+      of: Schema.Types.Mixed,
+    },
+    schemaVersion: {
+      type: Number,
+      default: 1,
+    },
   },
   {
     timestamps: true,
@@ -179,15 +189,17 @@ const SupportTicketSchema = new Schema<ISupportTicket>(
 
 // Indexes for better query performance
 SupportTicketSchema.index({ userId: 1, status: 1 });
+SupportTicketSchema.index({ ticketNumber: 1 }, { unique: true });
 SupportTicketSchema.index({ createdAt: -1 });
 SupportTicketSchema.index({ priority: 1, status: 1 });
 SupportTicketSchema.index({ assignedTo: 1 });
 
 // Generate unique ticket number
 SupportTicketSchema.pre("save", async function (next) {
-  if (this.isNew && !this.ticketNumber) {
+  const doc = this as any;
+  if (this.isNew && !doc.ticketNumber) {
     const count = await mongoose.model("SupportTicket").countDocuments();
-    this.ticketNumber = `TKT-${String(count + 1).padStart(6, "0")}`;
+    doc.ticketNumber = `TKT-${String(count + 1).padStart(6, "0")}`;
   }
   next();
 });
@@ -196,6 +208,7 @@ export const SupportTicket = mongoose.model<ISupportTicket>(
   "SupportTicket",
   SupportTicketSchema
 );
+
 
 
 

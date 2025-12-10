@@ -37,7 +37,7 @@ export const getUserProfile = async (req: CustomRequest, res: Response) => {
 // Update user profile
 export const updateUserProfile = async (req: CustomRequest, res: Response) => {
   try {
-    const { name, image } = req.body;
+    const { name, image, phoneNumber } = req.body;
 
     // Find and update user
     const user = await User.findOneAndUpdate(
@@ -45,6 +45,7 @@ export const updateUserProfile = async (req: CustomRequest, res: Response) => {
       {
         ...(name && { name }),
         ...(image && { image }),
+        ...(phoneNumber !== undefined && { phoneNumber }),
         updatedAt: new Date(),
       },
       { new: true, runValidators: true }
@@ -57,6 +58,8 @@ export const updateUserProfile = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Note: Sync to role-specific profiles happens automatically via post-save hook
+
     return res.status(200).json({
       success: true,
       message: "Profile updated successfully",
@@ -66,6 +69,7 @@ export const updateUserProfile = async (req: CustomRequest, res: Response) => {
         email: user.email,
         name: user.name,
         image: user.image,
+        phoneNumber: user.phoneNumber,
         role: user.role,
         updatedAt: user.updatedAt,
       },

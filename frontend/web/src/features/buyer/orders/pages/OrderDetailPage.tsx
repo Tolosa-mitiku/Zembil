@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
@@ -17,77 +17,126 @@ import {
   StarIcon,
   PrinterIcon,
   ArrowPathIcon,
+  ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
 import { CheckCircleIcon as CheckCircleSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
+import { useGetOrderByIdQuery } from '../api/ordersApi';
+import OrderDetailSkeleton from '../components/OrderDetailSkeleton';
 
-// Mock order data
-const MOCK_ORDER = {
-  id: '1',
-  orderNumber: 'ORD-2024-001',
-  status: 'shipped' as const,
-  createdAt: new Date(Date.now() - 172800000), // 2 days ago
-  estimatedDelivery: new Date(Date.now() + 86400000), // Tomorrow
-  trackingNumber: 'TRK1234567890',
-  items: [
-    {
-      id: 'i1',
-      productId: '1',
-      name: 'Premium Wireless Headphones',
-      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300',
-      price: 299.99,
-      quantity: 1,
-      seller: 'AudioTech Store',
-      sellerAvatar: 'https://i.pravatar.cc/150?u=audiotech',
-      rating: 4.9,
-    },
-  ],
-  shippingAddress: {
-    name: 'Alex Thompson',
-    street: '123 Main Street',
-    city: 'New York',
-    state: 'NY',
-    zip: '10001',
-    country: 'United States',
-    phone: '+1 (555) 123-4567',
-  },
-  payment: {
-    method: 'Credit Card',
-    last4: '4242',
-    brand: 'Visa',
-  },
-  pricing: {
-    subtotal: 299.99,
-    shipping: 0,
-    tax: 24.00,
-    total: 323.99,
-  },
-  timeline: [
-    { status: 'pending', label: 'Order Placed', date: new Date(Date.now() - 172800000), completed: true },
-    { status: 'confirmed', label: 'Order Confirmed', date: new Date(Date.now() - 172000000), completed: true },
-    { status: 'processing', label: 'Processing', date: new Date(Date.now() - 100000000), completed: true },
-    { status: 'shipped', label: 'Shipped', date: new Date(Date.now() - 86400000), completed: true },
-    { status: 'delivered', label: 'Delivered', date: null, completed: false },
-  ],
+interface TimelineStep {
+  status: string;
+  label: string;
+  date: Date | null;
+  completed: boolean;
+}
+
+// Generate timeline from tracking history
+const generateTimeline = (order: any): TimelineStep[] => {
+  const statusMap: Record<string, string> = {
+    'pending': 'Order Placed',
+    'processing': 'Processing',
+    'shipped': 'Shipped',
+    'in-transit': 'In Transit',
+    'delivered': 'Delivered',
+    'cancelled': 'Cancelled',
+    'refunded': 'Refunded',
+  };
+
+  const standardStatuses = ['pending', 'processing', 'shipped', 'delivered'];
+  const currentStatus = order.tracking?.status || 'pending';
+  const currentStatusIndex = standardStatuses.indexOf(currentStatus);
+
+  // Build timeline from tracking history if available
+  if (order.tracking?.history && order.tracking.history.length > 0) {
+    return order.tracking.history.map((event: any, index: number) => ({
+      status: event.status,
+      label: statusMap[event.status] || event.description || event.status,
+      date: event.timestamp ? new Date(event.timestamp) : null,
+      completed: true,
+    }));
+  }
+
+  // Fallback to standard timeline
+  return standardStatuses.map((status, index) => ({
+    status,
+    label: statusMap[status] || status,
+    date: index <= currentStatusIndex ? new Date(order.createdAt) : null,
+    completed: index <= currentStatusIndex,
+  }));
 };
 
-const STATUS_GRADIENT = {
+const STATUS_GRADIENT: Record<string, string> = {
   pending: 'from-yellow-500 to-amber-600',
   confirmed: 'from-blue-500 to-cyan-600',
   processing: 'from-purple-500 to-pink-600',
   shipped: 'from-indigo-500 to-purple-600',
+  'in-transit': 'from-cyan-500 to-blue-600',
   delivered: 'from-green-500 to-emerald-600',
   cancelled: 'from-red-500 to-rose-600',
+  refunded: 'from-orange-500 to-amber-600',
 };
 
+const DEFAULT_GRADIENT = 'from-gray-500 to-slate-600';
+
 const OrderDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
 
-  const order = MOCK_ORDER;
-  const currentStatusIndex = order.timeline.findIndex(t => !t.completed);
+  // Fetch order from backend
+  const { data: orderData, isLoading, isError, error, refetch } = useGetOrderByIdQuery(id || '', {
+    skip: !id,
+  });
+
+  // Generate timeline from order data
+  const timeline = useMemo(() => {
+    if (!orderData) return [];
+    return generateTimeline(orderData);
+  }, [orderData]);
+
+  const currentStatusIndex = timeline.findIndex(t => !t.completed);
+
+  // Loading state
+  if (isLoading) {
+    return <OrderDetailSkeleton />;
+  }
+
+  // Error state
+  if (isError || !orderData) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center">
+        <div className="text-center px-4">
+          <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center">
+            <ExclamationTriangleIcon className="w-16 h-16 text-red-500" />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Not Found</h3>
+          <p className="text-gray-500 mb-6 max-w-md mx-auto">
+            {(error as any)?.data?.message || 'The order you are looking for does not exist or you do not have permission to view it.'}
+          </p>
+          <div className="flex gap-3 justify-center">
+            <button
+              onClick={() => navigate('/orders')}
+              className="px-6 py-3 bg-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-300 transition-all"
+            >
+              Back to Orders
+            </button>
+            <button
+              onClick={() => refetch()}
+              className="px-6 py-3 bg-gold text-white rounded-xl font-bold hover:bg-gold-dark transition-all shadow-lg flex items-center gap-2"
+            >
+              <ArrowPathIcon className="w-5 h-5" />
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const order = orderData;
+  const orderStatus = order.tracking?.status || 'pending';
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 pb-20">
@@ -111,7 +160,7 @@ const OrderDetailPage = () => {
               <div>
                 <h1 className="text-xl font-bold text-gray-900">{order.orderNumber}</h1>
                 <p className="text-xs text-gray-500">
-                  Placed {formatDistanceToNow(order.createdAt, { addSuffix: true })}
+                  Placed {formatDistanceToNow(new Date(order.createdAt), { addSuffix: true })}
                 </p>
               </div>
             </div>
@@ -136,10 +185,10 @@ const OrderDetailPage = () => {
               className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200 overflow-hidden relative"
             >
               {/* Gradient Background */}
-              <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${STATUS_GRADIENT[order.status]}`} />
+              <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${STATUS_GRADIENT[orderStatus] || DEFAULT_GRADIENT}`} />
 
               <h2 className="text-xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <div className={`p-2.5 rounded-xl bg-gradient-to-br ${STATUS_GRADIENT[order.status]} shadow-lg`}>
+                <div className={`p-2.5 rounded-xl bg-gradient-to-br ${STATUS_GRADIENT[orderStatus] || DEFAULT_GRADIENT} shadow-lg`}>
                   <TruckIcon className="w-5 h-5 text-white" />
                 </div>
                 Order Tracking
@@ -147,7 +196,7 @@ const OrderDetailPage = () => {
 
               {/* Timeline */}
               <div className="relative">
-                {order.timeline.map((step, index) => {
+                {timeline.map((step, index) => {
                   const isCompleted = step.completed;
                   const isCurrent = index === currentStatusIndex;
                   const isPast = index < currentStatusIndex;
@@ -161,7 +210,7 @@ const OrderDetailPage = () => {
                       className="relative flex gap-6 pb-8 last:pb-0"
                     >
                       {/* Timeline Line */}
-                      {index < order.timeline.length - 1 && (
+                      {index < timeline.length - 1 && (
                         <div className="absolute left-6 top-14 w-0.5 h-full -translate-x-1/2">
                           <div className={clsx(
                             'h-full w-full transition-all duration-1000',
@@ -226,12 +275,12 @@ const OrderDetailPage = () => {
               </div>
 
               {/* Tracking Number */}
-              {order.trackingNumber && (
+              {order.tracking?.trackingNumber && (
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs font-medium text-gray-600 mb-1">Tracking Number</p>
-                      <p className="font-mono font-bold text-sm text-gray-900">{order.trackingNumber}</p>
+                      <p className="font-mono font-bold text-sm text-gray-900">{order.tracking.trackingNumber}</p>
                     </div>
                     <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all shadow-md">
                       Track Package
@@ -251,68 +300,77 @@ const OrderDetailPage = () => {
               <h2 className="text-xl font-extrabold text-gray-900 mb-6">Order Items</h2>
               
               <div className="space-y-4">
-                {order.items.map((item, idx) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                    onClick={() => navigate(`/product/${item.productId}`)}
-                    className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all cursor-pointer border-2 border-transparent hover:border-gold group"
-                  >
-                    <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    
-                    <div className="flex-1">
-                      <h3 className="font-bold text-sm text-gray-900 mb-1 group-hover:text-gold transition-colors">
-                        {item.name}
-                      </h3>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <div className="flex items-center gap-1">
-                          <img
-                            src={item.sellerAvatar}
-                            alt={item.seller}
-                            className="w-4 h-4 rounded-full"
-                          />
-                          <span className="text-[10px] text-gray-600">{item.seller}</span>
-                        </div>
-                        {item.rating && (
+                {(order.items || []).map((item, idx) => {
+                  const productImage = item.productId?.images?.find(img => img.isMain)?.url || 
+                                      item.productId?.images?.[0]?.url || 
+                                      'https://via.placeholder.com/200';
+                  const productName = item.productId?.title || 'Unknown Product';
+                  const sellerName = item.sellerId?.businessName || 'Unknown Seller';
+
+                  return (
+                    <motion.div
+                      key={item._id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      onClick={() => item.productId?._id && navigate(`/product/${item.productId._id}`)}
+                      className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all cursor-pointer border-2 border-transparent hover:border-gold group"
+                    >
+                      <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+                        <img
+                          src={productImage}
+                          alt={productName}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/200?text=No+Image';
+                          }}
+                        />
+                      </div>
+                      
+                      <div className="flex-1">
+                        <h3 className="font-bold text-sm text-gray-900 mb-1 group-hover:text-gold transition-colors">
+                          {productName}
+                        </h3>
+                        <div className="flex items-center gap-2 mb-1.5">
                           <div className="flex items-center gap-1">
-                            <StarIcon className="w-3 h-3 text-amber-400 fill-current" />
-                            <span className="text-[10px] font-semibold text-gray-600">{item.rating}</span>
+                            <span className="text-[10px] text-gray-600">{sellerName}</span>
                           </div>
-                        )}
+                          {item.variant && (
+                            <div className="text-[10px] text-gray-500">
+                              {item.variant.size && <span>Size: {item.variant.size}</span>}
+                              {item.variant.size && item.variant.color && <span> • </span>}
+                              {item.variant.color && <span>Color: {item.variant.color}</span>}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-gray-500">Qty: {item.quantity ?? 1}</p>
+                          <p className="font-bold text-sm text-gray-900">${(item.totalPrice ?? (item.price ?? 0) * (item.quantity ?? 1)).toFixed(2)}</p>
+                        </div>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
-                        <p className="font-bold text-sm text-gray-900">${(item.price * item.quantity).toFixed(2)}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Contact Seller */}
-              <div className="mt-6 pt-6 border-t-2 border-gray-100">
-                <button
-                  onClick={() => navigate('/messages', { 
-                    state: {
-                      sellerId: 'seller1',
-                      sellerName: order.items[0].seller,
-                      productName: order.items[0].name
-                    }
-                  })}
-                  className="w-full py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-sm hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <ChatBubbleLeftRightIcon className="w-4 h-4" />
-                  Contact Seller
-                </button>
-              </div>
+              {order.items?.length > 0 && order.items[0]?.sellerId && (
+                <div className="mt-6 pt-6 border-t-2 border-gray-100">
+                  <button
+                    onClick={() => navigate('/messages', { 
+                      state: {
+                        sellerId: order.items[0].sellerId._id,
+                        sellerName: order.items[0].sellerId.businessName,
+                        productName: order.items[0].productId?.title
+                      }
+                    })}
+                    className="w-full py-2.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-bold text-sm hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  >
+                    <ChatBubbleLeftRightIcon className="w-4 h-4" />
+                    Contact Seller
+                  </button>
+                </div>
+              )}
             </motion.div>
           </div>
 
@@ -332,26 +390,33 @@ const OrderDetailPage = () => {
               <div className="p-6 space-y-2.5">
                 <div className="flex justify-between text-xs">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-semibold text-gray-900">${order.pricing.subtotal.toFixed(2)}</span>
+                  <span className="font-semibold text-gray-900">${(order.subtotal ?? 0).toFixed(2)}</span>
                 </div>
                 
                 <div className="flex justify-between text-xs">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-semibold text-green-600">
-                    {order.pricing.shipping === 0 ? 'FREE' : `$${order.pricing.shipping.toFixed(2)}`}
+                    {(order.shippingCost ?? 0) === 0 ? 'FREE' : `$${(order.shippingCost ?? 0).toFixed(2)}`}
                   </span>
                 </div>
                 
                 <div className="flex justify-between text-xs">
                   <span className="text-gray-600">Tax</span>
-                  <span className="font-semibold text-gray-900">${order.pricing.tax.toFixed(2)}</span>
+                  <span className="font-semibold text-gray-900">${(order.tax ?? 0).toFixed(2)}</span>
                 </div>
+
+                {order.discount && order.discount > 0 && (
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">Discount</span>
+                    <span className="font-semibold text-green-600">-${(order.discount ?? 0).toFixed(2)}</span>
+                  </div>
+                )}
 
                 <div className="pt-2.5 border-t-2 border-gray-200">
                   <div className="flex justify-between items-baseline">
                     <span className="font-bold text-sm text-gray-900">Total</span>
                     <span className="text-xl font-extrabold text-gray-900">
-                      ${order.pricing.total.toFixed(2)}
+                      ${(order.total ?? 0).toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -364,7 +429,18 @@ const OrderDetailPage = () => {
                   <div>
                     <p className="text-xs text-gray-500">Payment Method</p>
                     <p className="font-semibold text-sm text-gray-900">
-                      {order.payment.brand} •••• {order.payment.last4}
+                      {order.paymentMethod}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Status: <span className={clsx(
+                        'font-semibold',
+                        order.paymentStatus === 'paid' ? 'text-green-600' :
+                        order.paymentStatus === 'pending' ? 'text-yellow-600' :
+                        order.paymentStatus === 'failed' ? 'text-red-600' :
+                        'text-gray-600'
+                      )}>
+                        {(order.paymentStatus || 'pending').charAt(0).toUpperCase() + (order.paymentStatus || 'pending').slice(1)}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -384,19 +460,22 @@ const OrderDetailPage = () => {
               </div>
               
               <div className="space-y-0.5 text-xs text-gray-700">
-                <p className="font-semibold text-gray-900">{order.shippingAddress.name}</p>
-                <p>{order.shippingAddress.street}</p>
-                <p>{order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zip}</p>
-                <p>{order.shippingAddress.country}</p>
-                <p className="flex items-center gap-1.5 text-gray-500 pt-1.5 border-t border-gray-100 mt-1.5">
-                  <PhoneIcon className="w-3 h-3" />
-                  {order.shippingAddress.phone}
-                </p>
+                <p className="font-semibold text-gray-900">{order.shippingAddress?.fullName || 'N/A'}</p>
+                <p>{order.shippingAddress?.addressLine1 || 'N/A'}</p>
+                {order.shippingAddress?.addressLine2 && <p>{order.shippingAddress.addressLine2}</p>}
+                <p>{order.shippingAddress?.city || ''}, {order.shippingAddress?.state || ''} {order.shippingAddress?.postalCode || ''}</p>
+                <p>{order.shippingAddress?.country || ''}</p>
+                {order.shippingAddress?.phoneNumber && (
+                  <p className="flex items-center gap-1.5 text-gray-500 pt-1.5 border-t border-gray-100 mt-1.5">
+                    <PhoneIcon className="w-3 h-3" />
+                    {order.shippingAddress.phoneNumber}
+                  </p>
+                )}
               </div>
             </motion.div>
 
             {/* Estimated Delivery */}
-            {order.estimatedDelivery && order.status !== 'delivered' && (
+            {order.tracking?.estimatedDelivery && orderStatus !== 'delivered' && (
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -408,20 +487,20 @@ const OrderDetailPage = () => {
                   <h3 className="font-bold text-sm">Estimated Delivery</h3>
                 </div>
                 <p className="text-2xl font-extrabold mb-1">
-                  {new Date(order.estimatedDelivery).toLocaleDateString('en-US', { 
+                  {new Date(order.tracking.estimatedDelivery).toLocaleDateString('en-US', { 
                     weekday: 'short',
                     month: 'short', 
                     day: 'numeric' 
                   })}
                 </p>
                 <p className="text-xs text-white/80">
-                  {formatDistanceToNow(order.estimatedDelivery, { addSuffix: true })}
+                  {formatDistanceToNow(new Date(order.tracking.estimatedDelivery), { addSuffix: true })}
                 </p>
               </motion.div>
             )}
 
             {/* Quick Actions */}
-            {order.status !== 'delivered' && order.status !== 'cancelled' && (
+            {orderStatus !== 'delivered' && orderStatus !== 'cancelled' && orderStatus !== 'refunded' && (
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}

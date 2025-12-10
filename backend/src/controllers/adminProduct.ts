@@ -29,7 +29,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
 
     const [products, total] = await Promise.all([
       Product.find(filter)
-        .populate("sellerId", "businessName verificationStatus")
+        .populate("sellerId", "businessName verification.status")
         .sort(sort as string)
         .skip(skip)
         .limit(limitNum),
@@ -177,11 +177,3 @@ export const deleteProduct = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-
-
-
-

@@ -1,4 +1,9 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+/**
+ * Buyer Messages Page
+ * Real-time messaging with Socket.IO integration
+ */
+
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
@@ -11,254 +16,438 @@ import {
   InboxIcon,
   ChatBubbleLeftRightIcon,
   ArrowLeftIcon,
+  CheckIcon,
+  WifiIcon,
+  ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
 import { CheckIcon as CheckIconSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import toast from 'react-hot-toast';
 
-// Mock data - Replace with actual Firebase/API integration
-interface Message {
-  id: string;
-  senderId: string;
-  text: string;
-  timestamp: Date;
-  read: boolean;
-  type?: 'text' | 'image' | 'file';
-}
+// API and Socket imports
+import {
+  useGetChatsQuery,
+  useGetMessagesQuery,
+  useCreateOrGetChatMutation,
+  useSendMessageMutation,
+  Chat,
+  Message,
+  getChatDisplayInfo,
+} from '../api/messagesApi';
+import { useSocket } from '@/core/socket/SocketContext';
+import { useAppSelector } from '@/store/hooks';
 
-interface Conversation {
-  id: string;
-  sellerId: string;
-  sellerName: string;
-  sellerAvatar?: string;
-  productName?: string;
-  productImage?: string;
-  lastMessage: string;
-  lastMessageTime: Date;
-  unreadCount: number;
-  online: boolean;
-  typing?: boolean;
-}
+// ============= COMPONENTS =============
 
-// Mock conversations for buyer
-const mockConversations: Conversation[] = [
-  {
-    id: '1',
-    sellerId: 'seller1',
-    sellerName: 'AudioTech Store',
-    sellerAvatar: 'https://i.pravatar.cc/150?u=audiotech',
-    productName: 'Premium Wireless Headphones',
-    productImage: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100',
-    lastMessage: 'The headphones are in stock! Would you like to place an order?',
-    lastMessageTime: new Date(Date.now() - 300000),
-    unreadCount: 1,
-    online: true,
-  },
-  {
-    id: '2',
-    sellerId: 'seller2',
-    sellerName: 'Fashion Hub',
-    sellerAvatar: 'https://i.pravatar.cc/150?u=fashionhub',
-    productName: 'Handcrafted Leather Bag',
-    productImage: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=100',
-    lastMessage: 'We offer free shipping on this item!',
-    lastMessageTime: new Date(Date.now() - 3600000),
-    unreadCount: 0,
-    online: true,
-  },
-  {
-    id: '3',
-    sellerId: 'seller3',
-    sellerName: 'Home Decor Plus',
-    sellerAvatar: 'https://i.pravatar.cc/150?u=homedecor',
-    productName: 'Minimalist Desk Lamp',
-    lastMessage: 'Thank you for your interest!',
-    lastMessageTime: new Date(Date.now() - 7200000),
-    unreadCount: 0,
-    online: false,
-  },
-];
+// Loading skeleton for chat list
+const ChatListSkeleton = () => (
+  <div className="space-y-2 p-4">
+    {[1, 2, 3, 4].map((i) => (
+      <div key={i} className="flex items-start gap-3 p-3 animate-pulse">
+        <div className="w-12 h-12 rounded-full bg-gray-200" />
+        <div className="flex-1 space-y-2">
+          <div className="h-4 bg-gray-200 rounded w-3/4" />
+          <div className="h-3 bg-gray-200 rounded w-1/2" />
+          <div className="h-3 bg-gray-200 rounded w-full" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
-const mockMessages: Record<string, Message[]> = {
-  '1': [
-    {
-      id: 'm1',
-      senderId: 'buyer',
-      text: 'Hi! I\'m interested in the Premium Wireless Headphones. Is it still available?',
-      timestamp: new Date(Date.now() - 600000),
-      read: true,
-    },
-    {
-      id: 'm2',
-      senderId: 'seller1',
-      text: 'Hello! Yes, the headphones are in stock. We have both black and silver colors available.',
-      timestamp: new Date(Date.now() - 540000),
-      read: true,
-    },
-    {
-      id: 'm3',
-      senderId: 'buyer',
-      text: 'Great! How long does shipping usually take?',
-      timestamp: new Date(Date.now() - 480000),
-      read: true,
-    },
-    {
-      id: 'm4',
-      senderId: 'seller1',
-      text: 'The headphones are in stock! Would you like to place an order?',
-      timestamp: new Date(Date.now() - 300000),
-      read: false,
-    },
-  ],
-  '2': [
-    {
-      id: 'm5',
-      senderId: 'buyer',
-      text: 'Can you tell me more about the leather quality?',
-      timestamp: new Date(Date.now() - 7200000),
-      read: true,
-    },
-    {
-      id: 'm6',
-      senderId: 'seller2',
-      text: 'It\'s genuine Italian leather, very durable and high quality. We offer free shipping on this item!',
-      timestamp: new Date(Date.now() - 3600000),
-      read: true,
-    },
-  ],
+// Loading skeleton for messages
+const MessagesSkeleton = () => (
+  <div className="space-y-4 p-6">
+    {[1, 2, 3].map((i) => (
+      <div key={i} className={clsx('flex gap-3', i % 2 === 0 ? 'flex-row-reverse' : '')}>
+        <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse" />
+        <div className={clsx(
+          'max-w-md px-4 py-3 rounded-2xl animate-pulse',
+          i % 2 === 0 ? 'bg-gold/20' : 'bg-gray-200'
+        )}>
+          <div className="h-4 w-48 bg-gray-300 rounded mb-2" />
+          <div className="h-3 w-24 bg-gray-300 rounded" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+// Connection status indicator
+const ConnectionStatus: React.FC<{ isConnected: boolean; isConnecting: boolean }> = ({ 
+  isConnected, 
+  isConnecting 
+}) => {
+  if (isConnecting) {
+    return (
+      <div className="flex items-center gap-2 px-3 py-1.5 bg-yellow-50 border border-yellow-200 rounded-full">
+        <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+        <span className="text-xs font-medium text-yellow-700">Connecting...</span>
+      </div>
+    );
+  }
+
+  if (!isConnected) {
+    return (
+      <div className="flex items-center gap-2 px-3 py-1.5 bg-red-50 border border-red-200 rounded-full">
+        <ExclamationCircleIcon className="w-4 h-4 text-red-500" />
+        <span className="text-xs font-medium text-red-700">Offline</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
+      <WifiIcon className="w-4 h-4 text-green-500" />
+      <span className="text-xs font-medium text-green-700">Connected</span>
+    </div>
+  );
 };
+
+// Message bubble component
+const MessageBubble: React.FC<{
+  message: Message;
+  isOwn: boolean;
+  showAvatar: boolean;
+}> = ({ message, isOwn, showAvatar }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      className={clsx(
+        'flex gap-3 items-end',
+        isOwn ? 'flex-row-reverse' : 'flex-row'
+      )}
+    >
+      {/* Avatar */}
+      <div className="w-8 h-8 flex-shrink-0">
+        {showAvatar && !isOwn && (
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+            <UserCircleIcon className="w-6 h-6 text-white" />
+          </div>
+        )}
+      </div>
+
+      {/* Message Bubble */}
+      <div
+        className={clsx(
+          'max-w-md px-4 py-2.5 rounded-2xl shadow-sm',
+          isOwn
+            ? 'bg-gradient-to-br from-gold to-gold-dark text-white rounded-br-sm'
+            : 'bg-white border border-gray-200 text-gray-900 rounded-bl-sm'
+        )}
+      >
+        <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+        
+        {/* Attachment */}
+        {message.attachment && (
+          <div className="mt-2 p-2 bg-white/10 rounded-lg">
+            <a 
+              href={message.attachment.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs underline"
+            >
+              {message.attachment.fileName || 'Attachment'}
+            </a>
+          </div>
+        )}
+        
+        <div className={clsx(
+          'flex items-center gap-1 mt-1',
+          isOwn ? 'justify-end' : 'justify-start'
+        )}>
+          <span className={clsx(
+            'text-xs',
+            isOwn ? 'text-white/70' : 'text-gray-500'
+          )}>
+            {formatDistanceToNow(new Date(message.createdAt), { addSuffix: true })}
+          </span>
+          {isOwn && (
+            <CheckIconSolid className={clsx(
+              'w-3.5 h-3.5',
+              message.isRead ? 'text-blue-300' : 'text-white/70'
+            )} />
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Typing indicator component
+const TypingIndicator: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 10 }}
+    className="flex items-center gap-3"
+  >
+    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+      <UserCircleIcon className="w-6 h-6 text-white" />
+    </div>
+    <div className="bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-sm">
+      <div className="flex gap-1">
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            animate={{ y: [0, -8, 0] }}
+            transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.2 }}
+            className="w-2 h-2 bg-gray-400 rounded-full"
+          />
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+// ============= MAIN COMPONENT =============
 
 const BuyerMessagesPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout>();
+  
+  // Auth state
+  const { user } = useAppSelector((state) => state.auth);
+  const currentUserId = user?.uid;
+  
+  // Socket connection
+  const { 
+    isConnected, 
+    isConnecting, 
+    joinChat, 
+    leaveChat, 
+    sendMessage: socketSendMessage,
+    sendTyping,
+    markAsRead,
+    setOnNewMessage,
+    setOnChatUpdated,
+    setOnUserTyping,
+    setOnMessagesRead,
+  } = useSocket();
+  
+  // Local state
+  const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
   const [messageInput, setMessageInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
   const [isMobileView, setIsMobileView] = useState(false);
+  const [typingUsers, setTypingUsers] = useState<Record<string, boolean>>({});
+  const [localMessages, setLocalMessages] = useState<Message[]>([]);
+  
+  // API hooks
+  const { 
+    data: chats = [], 
+    isLoading: chatsLoading,
+    refetch: refetchChats,
+  } = useGetChatsQuery();
+  
+  const { 
+    data: messagesData,
+    isLoading: messagesLoading,
+    refetch: refetchMessages,
+  } = useGetMessagesQuery(
+    { chatId: selectedChatId! },
+    { skip: !selectedChatId }
+  );
+  
+  const [createOrGetChat] = useCreateOrGetChatMutation();
+  const [sendMessageMutation] = useSendMessageMutation();
 
-  // Simulate loading data
+  // Get selected chat info
+  const selectedChat = useMemo(() => 
+    chats.find(c => c._id === selectedChatId),
+    [chats, selectedChatId]
+  );
+
+  // Combined messages (API + local optimistic)
+  const messages = useMemo(() => {
+    const apiMessages = messagesData?.data || [];
+    // Merge and sort by date, removing duplicates
+    const allMessages = [...apiMessages, ...localMessages];
+    const uniqueMessages = allMessages.filter((msg, index, self) => 
+      index === self.findIndex(m => m._id === msg._id)
+    );
+    return uniqueMessages.sort((a, b) => 
+      new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    );
+  }, [messagesData, localMessages]);
+
+  // Set up socket event handlers
   useEffect(() => {
-    const loadData = async () => {
-      await new Promise(resolve => setTimeout(resolve, 800));
-      setConversations(mockConversations);
-      setIsLoading(false);
+    setOnNewMessage((data) => {
+      if (data.chatId === selectedChatId) {
+        // Add new message to local state for instant display
+        setLocalMessages(prev => {
+          // Check if message already exists
+          if (prev.some(m => m._id === data.message._id)) {
+            return prev;
+          }
+          return [...prev, data.message];
+        });
+        
+        // Scroll to bottom
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+      
+      // Refetch chats to update unread counts
+      refetchChats();
+    });
+
+    setOnChatUpdated(() => {
+      refetchChats();
+    });
+
+    setOnUserTyping((data) => {
+      if (data.chatId === selectedChatId) {
+        setTypingUsers(prev => ({
+          ...prev,
+          [data.userId]: data.isTyping,
+        }));
+      }
+    });
+
+    setOnMessagesRead((data) => {
+      if (data.chatId === selectedChatId) {
+        // Update read status in local messages
+        setLocalMessages(prev => 
+          prev.map(m => ({ ...m, isRead: true }))
+        );
+        refetchMessages();
+      }
+    });
+
+    return () => {
+      setOnNewMessage(null);
+      setOnChatUpdated(null);
+      setOnUserTyping(null);
+      setOnMessagesRead(null);
     };
-    
-    loadData();
-  }, []);
+  }, [selectedChatId, refetchChats, refetchMessages, setOnNewMessage, setOnChatUpdated, setOnUserTyping, setOnMessagesRead]);
+
+  // Join/leave chat room when selection changes
+  useEffect(() => {
+    if (selectedChatId && isConnected) {
+      joinChat(selectedChatId);
+      markAsRead(selectedChatId);
+      setLocalMessages([]); // Clear local messages when switching chats
+    }
+
+    return () => {
+      if (selectedChatId && isConnected) {
+        leaveChat(selectedChatId);
+      }
+    };
+  }, [selectedChatId, isConnected, joinChat, leaveChat, markAsRead]);
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   // Handle new conversation from product detail page
   useEffect(() => {
-    if (location.state && location.state.sellerId) {
-      const { sellerId, sellerName, productName, productImage } = location.state;
+    if (location.state?.sellerId) {
+      const { sellerId, sellerName, productName } = location.state;
       
-      // Check if conversation already exists
-      const existingConv = conversations.find(c => c.sellerId === sellerId && c.productName === productName);
+      // Create or get existing chat
+      createOrGetChat({ sellerId })
+        .unwrap()
+        .then(({ data: chat }) => {
+          setSelectedChatId(chat._id);
+          setIsMobileView(true);
+          
+          if (!location.state.exists) {
+            toast.success(`Started conversation with ${sellerName || 'seller'}`);
+          }
+        })
+        .catch(() => {
+          toast.error('Failed to start conversation');
+        });
       
-      if (existingConv) {
-        setSelectedConversation(existingConv);
-        setIsMobileView(true);
-      } else {
-        // Create new conversation
-        const newConv: Conversation = {
-          id: `new-${Date.now()}`,
-          sellerId,
-          sellerName,
-          productName,
-          productImage,
-          lastMessage: '',
-          lastMessageTime: new Date(),
-          unreadCount: 0,
-          online: true,
-        };
-        
-        setConversations(prev => [newConv, ...prev]);
-        setSelectedConversation(newConv);
-        setIsMobileView(true);
-        setMessages([]);
-      }
-      
-      // Clear the location state
+      // Clear location state
       navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location.state, conversations, navigate, location.pathname]);
-
-  // Load messages for selected conversation
-  useEffect(() => {
-    if (selectedConversation) {
-      const conversationMessages = mockMessages[selectedConversation.id] || [];
-      setMessages(conversationMessages);
-      
-      // Mark as read
-      if (selectedConversation.unreadCount > 0) {
-        setConversations(prev => 
-          prev.map(conv => 
-            conv.id === selectedConversation.id 
-              ? { ...conv, unreadCount: 0 } 
-              : conv
-          )
-        );
-      }
-    }
-  }, [selectedConversation]);
+  }, [location.state, createOrGetChat, navigate, location.pathname]);
 
   // Filter conversations
-  const filteredConversations = useMemo(() => {
-    let filtered = conversations;
+  const filteredChats = useMemo(() => {
+    let filtered = chats;
 
     if (searchQuery) {
-      filtered = filtered.filter(conv => 
-        conv.sellerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        conv.productName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        conv.lastMessage.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      filtered = filtered.filter(chat => {
+        const info = getChatDisplayInfo(chat, 'buyer');
+        return info.name.toLowerCase().includes(searchQuery.toLowerCase());
+      });
     }
 
     if (filter === 'unread') {
-      filtered = filtered.filter(conv => conv.unreadCount > 0);
+      filtered = filtered.filter(chat => 
+        (chat.unreadMessagesCount?.buyer || 0) > 0
+      );
     }
 
     return filtered;
-  }, [conversations, searchQuery, filter]);
+  }, [chats, searchQuery, filter]);
 
   const totalUnreadCount = useMemo(() => 
-    conversations.reduce((sum, conv) => sum + conv.unreadCount, 0),
-    [conversations]
+    chats.reduce((sum, chat) => sum + (chat.unreadMessagesCount?.buyer || 0), 0),
+    [chats]
   );
 
-  const handleSendMessage = useCallback(() => {
-    if (!messageInput.trim() || !selectedConversation) return;
+  // Handle sending message
+  const handleSendMessage = useCallback(async () => {
+    if (!messageInput.trim() || !selectedChatId) return;
 
-    const newMessage: Message = {
-      id: `m${Date.now()}`,
-      senderId: 'buyer',
-      text: messageInput,
-      timestamp: new Date(),
-      read: true,
-    };
-
-    setMessages(prev => [...prev, newMessage]);
+    const content = messageInput.trim();
     setMessageInput('');
 
-    setConversations(prev => 
-      prev.map(conv => 
-        conv.id === selectedConversation.id 
-          ? { 
-              ...conv, 
-              lastMessage: messageInput, 
-              lastMessageTime: new Date(),
-            } 
-          : conv
-      )
-    );
+    // Stop typing indicator
+    sendTyping(selectedChatId, false);
 
-    toast.success('Message sent!');
-  }, [messageInput, selectedConversation]);
+    if (isConnected) {
+      // Send via socket for real-time delivery
+      socketSendMessage(selectedChatId, content);
+    } else {
+      // Fallback to HTTP
+      try {
+        await sendMessageMutation({ chatId: selectedChatId, content }).unwrap();
+        refetchMessages();
+      } catch {
+        toast.error('Failed to send message');
+        setMessageInput(content); // Restore message on error
+      }
+    }
+  }, [messageInput, selectedChatId, isConnected, socketSendMessage, sendMessageMutation, sendTyping, refetchMessages]);
+
+  // Handle typing
+  const handleTyping = useCallback((value: string) => {
+    setMessageInput(value);
+
+    if (!selectedChatId || !isConnected) return;
+
+    // Clear existing timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    // Send typing indicator
+    if (value.trim()) {
+      sendTyping(selectedChatId, true);
+      
+      // Stop typing after 2 seconds of inactivity
+      typingTimeoutRef.current = setTimeout(() => {
+        sendTyping(selectedChatId, false);
+      }, 2000);
+    } else {
+      sendTyping(selectedChatId, false);
+    }
+  }, [selectedChatId, isConnected, sendTyping]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -267,10 +456,23 @@ const BuyerMessagesPage = () => {
     }
   };
 
-  if (isLoading) {
+  // Check if someone is typing
+  const isOtherTyping = Object.values(typingUsers).some(Boolean);
+
+  // Loading state
+  if (chatsLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-gold"></div>
+      <div className="h-[calc(100vh-5rem)] bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 h-full">
+          <div className="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden h-full flex">
+            <div className="w-full lg:w-96 border-r border-gray-200">
+              <ChatListSkeleton />
+            </div>
+            <div className="flex-1 hidden lg:flex items-center justify-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gold" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -279,22 +481,27 @@ const BuyerMessagesPage = () => {
     <div className="h-[calc(100vh-5rem)] bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 h-full flex flex-col">
         {/* Header */}
-        <div className="mb-6 shrink-0">
-          <div className="flex items-center gap-4 mb-4">
-            <button
-              onClick={() => navigate(-1)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors lg:hidden"
-            >
-              <ArrowLeftIcon className="w-5 h-5 text-gray-600" />
-            </button>
-            {totalUnreadCount > 0 && (
-              <div className="flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-xl">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-sm font-semibold text-red-600">
-                  {totalUnreadCount} unread message{totalUnreadCount !== 1 ? 's' : ''}
-                </span>
-              </div>
-            )}
+        <div className="mb-4 shrink-0">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => navigate(-1)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors lg:hidden"
+              >
+                <ArrowLeftIcon className="w-5 h-5 text-gray-600" />
+              </button>
+              
+              {totalUnreadCount > 0 && (
+                <div className="flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-xl">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-sm font-semibold text-red-600">
+                    {totalUnreadCount} unread
+                  </span>
+                </div>
+              )}
+            </div>
+            
+            <ConnectionStatus isConnected={isConnected} isConnecting={isConnecting} />
           </div>
 
           {/* Filter Tabs */}
@@ -331,55 +538,64 @@ const BuyerMessagesPage = () => {
 
         {/* Chat Interface */}
         <div className="flex-1 bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden flex min-h-0">
-            {/* Conversations Sidebar */}
-            <div className={clsx(
-              'w-full lg:w-96 border-r border-gray-200 flex flex-col bg-gray-50 h-full',
-              selectedConversation && isMobileView && 'hidden lg:flex'
-            )}>
-              {/* Search */}
-              <div className="p-4 border-b border-gray-200 bg-white">
-                <div className="relative">
-                  <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search sellers or products..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all text-sm"
-                  />
-                </div>
+          {/* Conversations Sidebar */}
+          <div className={clsx(
+            'w-full lg:w-96 border-r border-gray-200 flex flex-col bg-gray-50 h-full',
+            selectedChatId && isMobileView && 'hidden lg:flex'
+          )}>
+            {/* Search */}
+            <div className="p-4 border-b border-gray-200 bg-white">
+              <div className="relative">
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search conversations..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all text-sm"
+                />
               </div>
+            </div>
 
-              {/* Conversation List */}
-              <div className="flex-1 overflow-y-auto">
-                {filteredConversations.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full p-8">
-                    <InboxIcon className="w-16 h-16 text-gray-300 mb-4" />
-                    <p className="text-sm text-gray-500">No conversations</p>
-                  </div>
-                ) : (
-                  filteredConversations.map((conversation, index) => (
+            {/* Conversation List */}
+            <div className="flex-1 overflow-y-auto">
+              {filteredChats.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full p-8">
+                  <InboxIcon className="w-16 h-16 text-gray-300 mb-4" />
+                  <p className="text-sm text-gray-500 text-center">
+                    {searchQuery ? 'No conversations found' : 'No conversations yet'}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-2 text-center">
+                    Start chatting with sellers from product pages
+                  </p>
+                </div>
+              ) : (
+                filteredChats.map((chat, index) => {
+                  const displayInfo = getChatDisplayInfo(chat, 'buyer');
+                  const isSelected = selectedChatId === chat._id;
+                  
+                  return (
                     <motion.div
-                      key={conversation.id}
+                      key={chat._id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      transition={{ delay: index * 0.03 }}
                       onClick={() => {
-                        setSelectedConversation(conversation);
+                        setSelectedChatId(chat._id);
                         setIsMobileView(true);
                       }}
                       className={clsx(
                         'p-4 border-b border-gray-200 cursor-pointer transition-all hover:bg-white',
-                        selectedConversation?.id === conversation.id && 'bg-white border-l-4 border-l-gold'
+                        isSelected && 'bg-white border-l-4 border-l-gold'
                       )}
                     >
                       <div className="flex items-start gap-3">
-                        {/* Seller Avatar */}
+                        {/* Avatar */}
                         <div className="relative flex-shrink-0">
-                          {conversation.sellerAvatar ? (
+                          {displayInfo.avatar ? (
                             <img 
-                              src={conversation.sellerAvatar} 
-                              alt={conversation.sellerName}
+                              src={displayInfo.avatar} 
+                              alt={displayInfo.name}
                               className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/20"
                             />
                           ) : (
@@ -387,261 +603,208 @@ const BuyerMessagesPage = () => {
                               <UserCircleIcon className="w-8 h-8 text-white" />
                             </div>
                           )}
-                          {conversation.online && (
-                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                          )}
                         </div>
 
                         {/* Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
                             <h3 className="font-bold text-sm text-gray-900 truncate">
-                              {conversation.sellerName}
+                              {displayInfo.name}
                             </h3>
                             <span className="text-xs text-gray-500 flex-shrink-0 ml-2">
-                              {formatDistanceToNow(conversation.lastMessageTime, { addSuffix: true })}
+                              {chat.lastMessageAt && formatDistanceToNow(new Date(chat.lastMessageAt), { addSuffix: true })}
                             </span>
                           </div>
-                          {conversation.productName && (
-                            <p className="text-xs text-gold mb-1 truncate flex items-center gap-1">
-                              <span className="font-medium">Re: {conversation.productName}</span>
-                            </p>
-                          )}
+                          
                           <div className="flex items-center justify-between">
                             <p className={clsx(
                               'text-xs truncate',
-                              conversation.unreadCount > 0 ? 'text-gray-900 font-semibold' : 'text-gray-500'
+                              displayInfo.unreadCount > 0 ? 'text-gray-900 font-semibold' : 'text-gray-500'
                             )}>
-                              {conversation.typing ? (
+                              {typingUsers[chat._id] ? (
                                 <span className="text-gold italic">Typing...</span>
                               ) : (
-                                conversation.lastMessage
+                                chat.lastMessage || 'No messages yet'
                               )}
                             </p>
-                            {conversation.unreadCount > 0 && (
+                            {displayInfo.unreadCount > 0 && (
                               <motion.span
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 className="flex-shrink-0 ml-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full"
                               >
-                                {conversation.unreadCount}
+                                {displayInfo.unreadCount}
                               </motion.span>
                             )}
                           </div>
                         </div>
                       </div>
                     </motion.div>
-                  ))
-                )}
-              </div>
+                  );
+                })
+              )}
             </div>
+          </div>
 
-            {/* Chat Area */}
-            {selectedConversation ? (
-              <div className={clsx(
-                'flex-1 flex flex-col bg-white h-full',
-                !isMobileView && 'hidden lg:flex'
-              )}>
-                {/* Chat Header */}
-                <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-white to-gold/5">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <button
-                        onClick={() => {
-                          setIsMobileView(false);
-                          setSelectedConversation(null);
-                        }}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors lg:hidden"
-                      >
-                        <ArrowLeftIcon className="w-5 h-5 text-gray-600" />
-                      </button>
+          {/* Chat Area */}
+          {selectedChat ? (
+            <div className={clsx(
+              'flex-1 flex flex-col bg-white h-full',
+              !isMobileView && 'hidden lg:flex'
+            )}>
+              {/* Chat Header */}
+              <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-white to-gold/5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => {
+                        setIsMobileView(false);
+                        setSelectedChatId(null);
+                      }}
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors lg:hidden"
+                    >
+                      <ArrowLeftIcon className="w-5 h-5 text-gray-600" />
+                    </button>
 
-                      <div className="relative">
-                        {selectedConversation.sellerAvatar ? (
+                    <div className="relative">
+                      {(() => {
+                        const info = getChatDisplayInfo(selectedChat, 'buyer');
+                        return info.avatar ? (
                           <img 
-                            src={selectedConversation.sellerAvatar} 
-                            alt={selectedConversation.sellerName}
+                            src={info.avatar} 
+                            alt={info.name}
                             className="w-12 h-12 rounded-full object-cover ring-2 ring-gold/20"
                           />
                         ) : (
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center">
                             <UserCircleIcon className="w-8 h-8 text-white" />
                           </div>
-                        )}
-                        {selectedConversation.online && (
-                          <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                        )}
-                      </div>
-
-                      <div>
-                        <h2 className="font-bold text-gray-900">{selectedConversation.sellerName}</h2>
-                        {selectedConversation.productName && (
-                          <p className="text-xs text-gold">About: {selectedConversation.productName}</p>
-                        )}
-                        <p className="text-xs text-gray-500">
-                          {selectedConversation.online ? (
-                            <span className="flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full bg-green-500" />
-                              Online
-                            </span>
-                          ) : (
-                            `Last seen ${formatDistanceToNow(selectedConversation.lastMessageTime, { addSuffix: true })}`
-                          )}
-                        </p>
-                      </div>
+                        );
+                      })()}
                     </div>
 
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                      <EllipsisVerticalIcon className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-gray-50/50 to-white">
-                  {messages.map((message, index) => {
-                    const isFromBuyer = message.senderId === 'buyer';
-                    const showAvatar = index === 0 || messages[index - 1].senderId !== message.senderId;
-                    
-                    return (
-                      <motion.div
-                        key={message.id}
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ delay: index * 0.05 }}
-                        className={clsx(
-                          'flex gap-3 items-end',
-                          isFromBuyer ? 'flex-row-reverse' : 'flex-row'
+                    <div>
+                      <h2 className="font-bold text-gray-900">
+                        {getChatDisplayInfo(selectedChat, 'buyer').name}
+                      </h2>
+                      <p className="text-xs text-gray-500">
+                        {isOtherTyping ? (
+                          <span className="text-gold">Typing...</span>
+                        ) : (
+                          'Online'
                         )}
-                      >
-                        {/* Avatar */}
-                        <div className="w-8 h-8 flex-shrink-0">
-                          {showAvatar && !isFromBuyer && (
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-                              <UserCircleIcon className="w-6 h-6 text-white" />
-                            </div>
-                          )}
-                        </div>
+                      </p>
+                    </div>
+                  </div>
 
-                        {/* Message Bubble */}
-                        <div
-                          className={clsx(
-                            'max-w-md px-4 py-2.5 rounded-2xl shadow-sm',
-                            isFromBuyer
-                              ? 'bg-gradient-to-br from-gold to-gold-dark text-white rounded-br-sm'
-                              : 'bg-white border border-gray-200 text-gray-900 rounded-bl-sm'
-                          )}
-                        >
-                          <p className="text-sm leading-relaxed">{message.text}</p>
-                          <div className={clsx(
-                            'flex items-center gap-1 mt-1',
-                            isFromBuyer ? 'justify-end' : 'justify-start'
-                          )}>
-                            <span className={clsx(
-                              'text-xs',
-                              isFromBuyer ? 'text-white/70' : 'text-gray-500'
-                            )}>
-                              {formatDistanceToNow(message.timestamp, { addSuffix: true })}
-                            </span>
-                            {isFromBuyer && message.read && (
-                              <CheckIconSolid className="w-3.5 h-3.5 text-white/70" />
-                            )}
-                          </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-
-                  {/* Typing Indicator */}
-                  {selectedConversation.typing && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-                        <UserCircleIcon className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-sm">
-                        <div className="flex gap-1">
-                          {[0, 1, 2].map((i) => (
-                            <motion.div
-                              key={i}
-                              animate={{ y: [0, -8, 0] }}
-                              transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.2 }}
-                              className="w-2 h-2 bg-gray-400 rounded-full"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <EllipsisVerticalIcon className="w-5 h-5 text-gray-600" />
+                  </button>
                 </div>
+              </div>
 
-                {/* Message Input */}
-                <div className="p-4 border-t border-gray-200 bg-white">
-                  <div className="flex items-end gap-3">
-                    <button className="p-2.5 hover:bg-gray-100 rounded-xl transition-colors flex-shrink-0">
-                      <PaperClipIcon className="w-5 h-5 text-gray-600" />
-                    </button>
-
-                    <div className="flex-1 relative">
-                      <textarea
-                        value={messageInput}
-                        onChange={(e) => setMessageInput(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                        placeholder="Type your message..."
-                        rows={1}
-                        className="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent resize-none transition-all text-sm"
-                        style={{ maxHeight: '120px' }}
-                      />
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-gray-50/50 to-white">
+                {messagesLoading ? (
+                  <MessagesSkeleton />
+                ) : messages.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full text-center">
+                    <ChatBubbleLeftRightIcon className="w-16 h-16 text-gray-300 mb-4" />
+                    <p className="text-gray-500">No messages yet</p>
+                    <p className="text-sm text-gray-400 mt-1">Send a message to start the conversation</p>
+                  </div>
+                ) : (
+                  <>
+                    {messages.map((message, index) => {
+                      const senderId = typeof message.senderId === 'string' 
+                        ? message.senderId 
+                        : message.senderId._id;
+                      const isOwn = message.senderRole === 'buyer';
+                      const showAvatar = index === 0 || 
+                        (typeof messages[index - 1].senderId === 'string' 
+                          ? messages[index - 1].senderId 
+                          : messages[index - 1].senderId._id) !== senderId;
                       
-                      <button 
-                        onClick={() => {}}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-200 rounded-lg transition-colors"
-                      >
-                        <FaceSmileIcon className="w-5 h-5 text-gray-600" />
-                      </button>
-                    </div>
+                      return (
+                        <MessageBubble
+                          key={message._id}
+                          message={message}
+                          isOwn={isOwn}
+                          showAvatar={showAvatar}
+                        />
+                      );
+                    })}
 
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleSendMessage}
-                      disabled={!messageInput.trim()}
-                      className={clsx(
-                        'p-3 rounded-xl transition-all flex-shrink-0',
-                        messageInput.trim()
-                          ? 'bg-gradient-to-br from-gold to-gold-dark text-white shadow-lg hover:shadow-xl'
-                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      )}
+                    {/* Typing Indicator */}
+                    <AnimatePresence>
+                      {isOtherTyping && <TypingIndicator />}
+                    </AnimatePresence>
+                  </>
+                )}
+                
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Message Input */}
+              <div className="p-4 border-t border-gray-200 bg-white">
+                <div className="flex items-end gap-3">
+                  <button className="p-2.5 hover:bg-gray-100 rounded-xl transition-colors flex-shrink-0">
+                    <PaperClipIcon className="w-5 h-5 text-gray-600" />
+                  </button>
+
+                  <div className="flex-1 relative">
+                    <textarea
+                      value={messageInput}
+                      onChange={(e) => handleTyping(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Type your message..."
+                      rows={1}
+                      className="w-full px-4 py-3 pr-12 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent resize-none transition-all text-sm"
+                      style={{ maxHeight: '120px' }}
+                    />
+                    
+                    <button 
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-200 rounded-lg transition-colors"
                     >
-                      <PaperAirplaneIcon className="w-5 h-5" />
-                    </motion.button>
+                      <FaceSmileIcon className="w-5 h-5 text-gray-600" />
+                    </button>
                   </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleSendMessage}
+                    disabled={!messageInput.trim()}
+                    className={clsx(
+                      'p-3 rounded-xl transition-all flex-shrink-0',
+                      messageInput.trim()
+                        ? 'bg-gradient-to-br from-gold to-gold-dark text-white shadow-lg hover:shadow-xl'
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    )}
+                  >
+                    <PaperAirplaneIcon className="w-5 h-5" />
+                  </motion.button>
                 </div>
               </div>
-            ) : (
-              // Empty State
-              <div className={clsx(
-                'flex-1 flex items-center justify-center bg-gradient-to-br from-gray-50 to-white h-full',
-                selectedConversation && isMobileView && 'hidden lg:flex'
-              )}>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center p-8"
-                >
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/20 to-gold-dark/20 flex items-center justify-center">
-                    <ChatBubbleLeftRightIcon className="w-16 h-16 text-gold" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Select a conversation</h2>
-                  <p className="text-gray-500 max-w-sm">
-                    Choose a seller from the list to view your conversation and send messages
-                  </p>
-                </motion.div>
-              </div>
-            )}
+            </div>
+          ) : (
+            // Empty State
+            <div className="flex-1 hidden lg:flex items-center justify-center bg-gradient-to-br from-gray-50 to-white">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center p-8"
+              >
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold/20 to-gold-dark/20 flex items-center justify-center">
+                  <ChatBubbleLeftRightIcon className="w-16 h-16 text-gold" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Select a conversation</h2>
+                <p className="text-gray-500 max-w-sm">
+                  Choose a seller from the list to view your conversation and send messages
+                </p>
+              </motion.div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -649,4 +812,3 @@ const BuyerMessagesPage = () => {
 };
 
 export default BuyerMessagesPage;
-

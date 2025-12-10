@@ -1,0 +1,580 @@
+[
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d6ba"},
+    "userId": {"$oid": "6748a7bd64f0a6a1c3822fe6"},
+    "firebaseUID": "AMsBgBToVUUUYT9RtOuRjqpmA9v2",
+    "type": "store",
+    "businessName": "TM Electronics Hub",
+    "businessRegistrationNumber": "BR-2024-001",
+    "taxId": "TAX-123456789",
+    "vatNumber": "VAT-987654321",
+    "legalName": "TM Electronics Hub LLC",
+    "tradeName": "TM Electronics",
+    "businessType": "llc",
+    "email": "tolosa.mitiku2015@gmail.com",
+    "phoneNumber": "+12125551002",
+    "alternatePhone": "+12125551003",
+    "website": "https://tmelectronics.example.com",
+    "profileImage": "https://lh3.googleusercontent.com/a/ACg8ocKtQL5V5zkZX8hE1aYFCxSjwyaiQznoQED_fD1CsMVDGdQzVssu=s96-c",
+    "coverImage": "https://images.unsplash.com/photo-1550009158-9ebf69173e03",
+    "logoImage": "https://logo.clearbit.com/electronics.com",
+    "bannerImages": [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      "https://images.unsplash.com/photo-1526738549149-8e07eca6c147"
+    ],
+    "address": {
+      "addressLine1": "1234 Tech Boulevard",
+      "addressLine2": "Suite 500",
+      "city": "Los Angeles",
+      "state": "California",
+      "postalCode": "90001",
+      "country": "United States",
+      "geolocation": {
+        "type": "Point",
+        "coordinates": [-118.2437, 34.0522]
+      }
+    },
+    "verification": {
+      "status": "verified",
+      "level": "premium",
+      "submittedAt": {"$date": "2024-11-28T18:00:00.000Z"},
+      "reviewedAt": {"$date": "2024-11-29T10:00:00.000Z"},
+      "reviewedBy": {"$oid": "67473229996f899c73e4f44a"},
+      "verifiedAt": {"$date": "2024-11-29T10:00:00.000Z"},
+      "expiresAt": {"$date": "2025-11-29T10:00:00.000Z"},
+      "documents": [
+        {
+          "type": "business_license",
+          "url": "https://documents.example.com/license-001.pdf",
+          "fileName": "business_license.pdf",
+          "status": "approved",
+          "uploadedAt": {"$date": "2024-11-28T18:00:00.000Z"}
+        },
+        {
+          "type": "tax_cert",
+          "url": "https://documents.example.com/tax-001.pdf",
+          "fileName": "tax_certificate.pdf",
+          "status": "approved",
+          "uploadedAt": {"$date": "2024-11-28T18:00:00.000Z"}
+        }
+      ],
+      "identityVerified": true,
+      "businessVerified": true,
+      "bankAccountVerified": true
+    },
+    "bankAccount": {
+      "accountHolderName": "TM Electronics Hub LLC",
+      "accountType": "checking",
+      "accountNumber": "****1234",
+      "routingNumber": "021000021",
+      "bankName": "Chase Bank",
+      "bankBranch": "Los Angeles Main",
+      "bankAddress": {
+        "city": "Los Angeles",
+        "country": "United States"
+      },
+      "currency": "USD",
+      "isVerified": true,
+      "verifiedAt": {"$date": "2024-11-29T12:00:00.000Z"}
+    },
+    "payoutSettings": {
+      "minimumPayoutAmount": 100,
+      "payoutSchedule": "weekly",
+      "payoutDay": 1,
+      "holdPeriod": 7,
+      "autoPayoutEnabled": true
+    },
+    "storeInfo": {
+      "aboutUs": "We are a premier electronics retailer offering the latest gadgets and technology solutions. With over 5 years of experience in the industry, we pride ourselves on quality products and excellent customer service.",
+      "description": "Your one-stop shop for all things electronics - from smartphones to home automation.",
+      "returnPolicy": "30-day return policy on all items. Products must be in original packaging and unused condition.",
+      "shippingPolicy": "Free shipping on orders over $50. Standard shipping takes 3-5 business days.",
+      "privacyPolicy": "We value your privacy and protect your personal information.",
+      "termsAndConditions": "By purchasing from us, you agree to our terms and conditions.",
+      "warrantyInfo": "All products come with manufacturer warranty.",
+      "faq": [
+        {
+          "question": "Do you offer international shipping?",
+          "answer": "Currently, we only ship within the United States.",
+          "order": 1
+        },
+        {
+          "question": "What payment methods do you accept?",
+          "answer": "We accept all major credit cards, PayPal, and Stripe.",
+          "order": 2
+        }
+      ]
+    },
+    "shipping": {
+      "shipsFrom": {
+        "city": "Los Angeles",
+        "state": "California",
+        "country": "United States",
+        "postalCode": "90001"
+      },
+      "shippingZones": [
+        {
+          "name": "Domestic US",
+          "countries": ["United States"],
+          "regions": [],
+          "postalCodes": [],
+          "shippingMethods": [
+            {
+              "name": "Standard Shipping",
+              "carrier": "USPS",
+              "estimatedDays": {
+                "min": 3,
+                "max": 5
+              },
+              "cost": {
+                "baseRate": 5.99,
+                "perKg": 0,
+                "perItem": 0,
+                "freeShippingThreshold": 50
+              },
+              "isActive": true
+            },
+            {
+              "name": "Express Shipping",
+              "carrier": "FedEx",
+              "estimatedDays": {
+                "min": 1,
+                "max": 2
+              },
+              "cost": {
+                "baseRate": 15.99,
+                "perKg": 2,
+                "perItem": 0,
+                "freeShippingThreshold": 100
+              },
+              "isActive": true
+            }
+          ]
+        }
+      ],
+      "processingTime": {
+        "min": 1,
+        "max": 2
+      },
+      "cutoffTime": "15:00",
+      "handlesOwnShipping": true,
+      "usesPlatformShipping": false
+    },
+    "businessHours": {
+      "monday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "tuesday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "wednesday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "thursday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "friday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "saturday": {"isOpen": true, "open": "10:00", "close": "16:00"},
+      "sunday": {"isOpen": false},
+      "timezone": "America/Los_Angeles",
+      "holidays": []
+    },
+    "metrics": {
+      "totalOrders": 45,
+      "totalSales": 45,
+      "totalRevenue": 12850.00,
+      "totalEarnings": 11565.00,
+      "averageOrderValue": 285.56,
+      "totalProducts": 78,
+      "activeProducts": 75,
+      "outOfStockProducts": 3,
+      "totalCustomers": 28,
+      "repeatCustomerRate": 42,
+      "customerRetentionRate": 65,
+      "averageRating": 4.6,
+      "totalReviews": 32,
+      "rating1Star": 1,
+      "rating2Star": 2,
+      "rating3Star": 4,
+      "rating4Star": 10,
+      "rating5Star": 15,
+      "averageResponseTime": 2.5,
+      "responseRate": 98,
+      "orderCompletionRate": 96,
+      "onTimeDeliveryRate": 94,
+      "orderCancellationRate": 4,
+      "pendingEarnings": 850.00,
+      "availableEarnings": 3200.00,
+      "totalPayouts": 7515.00,
+      "lastPayoutDate": {"$date": "2025-11-30T10:00:00.000Z"},
+      "nextPayoutDate": {"$date": "2025-12-09T10:00:00.000Z"},
+      "last30Days": {
+        "sales": 8,
+        "orders": 8,
+        "revenue": 2150.00,
+        "newCustomers": 5,
+        "views": 450
+      },
+      "lastUpdated": {"$date": "2025-12-07T08:00:00.000Z"}
+    },
+    "customers": {
+      "total": 28,
+      "new": 5,
+      "returning": 23,
+      "repeatPurchaseRate": 42,
+      "averageLifetimeValue": 458.93,
+      "topCustomers": []
+    },
+    "settings": {
+      "autoAcceptOrders": true,
+      "notificationsEnabled": true,
+      "vacationMode": {
+        "isEnabled": false,
+        "autoDisable": true
+      },
+      "inventory": {
+        "lowStockThreshold": 10,
+        "notifyOnLowStock": true,
+        "allowBackorders": false,
+        "hideOutOfStock": false
+      },
+      "orders": {
+        "autoConfirmAfterHours": 24,
+        "autoMarkDeliveredAfterDays": 7,
+        "allowCancellation": true,
+        "cancellationWindow": 24
+      },
+      "returns": {
+        "acceptReturns": true,
+        "returnWindow": 30,
+        "returnShippingPaidBy": "buyer",
+        "restockingFee": 0
+      }
+    },
+    "subscription": {
+      "plan": "pro",
+      "status": "active",
+      "startDate": {"$date": "2024-11-28T17:26:21.104Z"},
+      "renewalDate": {"$date": "2025-12-28T17:26:21.104Z"},
+      "features": {
+        "maxProducts": 500,
+        "prioritySupport": true,
+        "advancedAnalytics": true,
+        "bulkUpload": true,
+        "customBranding": true,
+        "apiAccess": true
+      },
+      "billingCycle": "yearly",
+      "amount": 299.00
+    },
+    "social": {
+      "followers": 245,
+      "following": 15,
+      "facebook": "https://facebook.com/tmelectronics",
+      "instagram": "https://instagram.com/tmelectronics",
+      "twitter": "https://twitter.com/tmelectronics"
+    },
+    "seo": {
+      "slug": "tm-electronics-hub",
+      "metaTitle": "TM Electronics Hub - Premium Electronics Store",
+      "metaDescription": "Shop the latest electronics and gadgets at competitive prices.",
+      "keywords": ["electronics", "gadgets", "smartphones", "laptops", "accessories"]
+    },
+    "compliance": {
+      "gdprCompliant": true,
+      "ccpaCompliant": true,
+      "coppaCompliant": false,
+      "hipaaCompliant": false,
+      "lastAuditDate": {"$date": "2025-01-15T00:00:00.000Z"},
+      "certifications": []
+    },
+    "platformRelationship": {
+      "joinedAt": {"$date": "2024-11-28T17:26:21.104Z"},
+      "accountManager": {"$oid": "67473229996f899c73e4f44a"},
+      "preferredSupport": "email",
+      "notes": "Premium seller with excellent track record",
+      "flags": ["vip"]
+    },
+    "badges": [
+      {
+        "type": "top_seller",
+        "awardedAt": {"$date": "2025-06-01T00:00:00.000Z"}
+      },
+      {
+        "type": "verified_business",
+        "awardedAt": {"$date": "2024-11-29T10:00:00.000Z"}
+      }
+    ],
+    "products": [],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-11-28T17:26:21.104Z"},
+    "updatedAt": {"$date": "2025-12-07T08:30:00.000Z"},
+    "lastActiveAt": {"$date": "2025-12-07T08:30:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d6bd"},
+    "userId": {"$oid": "674a03d139f1f85510c3d4bd"},
+    "firebaseUID": "seller2uid987654321",
+    "type": "store",
+    "businessName": "Tech Gadgets Central",
+    "businessRegistrationNumber": "BR-2024-002",
+    "taxId": "TAX-987654321",
+    "vatNumber": "VAT-123456789",
+    "legalName": "Tech Gadgets Central Inc",
+    "tradeName": "Tech Central",
+    "businessType": "corporation",
+    "email": "tech.gadgets.store@business.com",
+    "phoneNumber": "+12125553001",
+    "alternatePhone": "+12125553002",
+    "website": "https://techgadgetscentral.example.com",
+    "profileImage": "https://i.pravatar.cc/150?img=8",
+    "coverImage": "https://images.unsplash.com/photo-1498049794561-7780e7231661",
+    "logoImage": "https://logo.clearbit.com/tech.com",
+    "bannerImages": [
+      "https://images.unsplash.com/photo-1550009158-9ebf69173e03",
+      "https://images.unsplash.com/photo-1535303311164-664fc9ec6532"
+    ],
+    "address": {
+      "addressLine1": "789 Innovation Drive",
+      "addressLine2": "Building B",
+      "city": "Seattle",
+      "state": "Washington",
+      "postalCode": "98101",
+      "country": "United States",
+      "geolocation": {
+        "type": "Point",
+        "coordinates": [-122.3321, 47.6062]
+      }
+    },
+    "verification": {
+      "status": "verified",
+      "level": "standard",
+      "submittedAt": {"$date": "2024-09-10T09:00:00.000Z"},
+      "reviewedAt": {"$date": "2024-09-11T14:00:00.000Z"},
+      "reviewedBy": {"$oid": "67473229996f899c73e4f44a"},
+      "verifiedAt": {"$date": "2024-09-11T14:00:00.000Z"},
+      "expiresAt": {"$date": "2025-09-11T14:00:00.000Z"},
+      "documents": [
+        {
+          "type": "business_license",
+          "url": "https://documents.example.com/license-002.pdf",
+          "fileName": "business_license.pdf",
+          "status": "approved",
+          "uploadedAt": {"$date": "2024-09-10T09:00:00.000Z"}
+        }
+      ],
+      "identityVerified": true,
+      "businessVerified": true,
+      "bankAccountVerified": true
+    },
+    "bankAccount": {
+      "accountHolderName": "Tech Gadgets Central Inc",
+      "accountType": "checking",
+      "accountNumber": "****5678",
+      "routingNumber": "026009593",
+      "bankName": "Bank of America",
+      "bankBranch": "Seattle Downtown",
+      "bankAddress": {
+        "city": "Seattle",
+        "country": "United States"
+      },
+      "currency": "USD",
+      "isVerified": true,
+      "verifiedAt": {"$date": "2024-09-11T16:00:00.000Z"}
+    },
+    "payoutSettings": {
+      "minimumPayoutAmount": 150,
+      "payoutSchedule": "biweekly",
+      "payoutDay": 15,
+      "holdPeriod": 7,
+      "autoPayoutEnabled": true
+    },
+    "storeInfo": {
+      "aboutUs": "Tech Gadgets Central is your destination for cutting-edge technology and innovative gadgets. We curate the best tech products to enhance your digital lifestyle.",
+      "description": "Innovative gadgets and tech solutions for modern living.",
+      "returnPolicy": "45-day hassle-free returns. Full refund for defective items.",
+      "shippingPolicy": "Fast and reliable shipping. Free shipping on orders over $75.",
+      "privacyPolicy": "Your data security is our priority.",
+      "termsAndConditions": "Standard terms apply to all purchases.",
+      "warrantyInfo": "Extended warranty available on select products.",
+      "faq": [
+        {
+          "question": "Do you price match?",
+          "answer": "Yes, we offer price matching on identical products.",
+          "order": 1
+        }
+      ]
+    },
+    "shipping": {
+      "shipsFrom": {
+        "city": "Seattle",
+        "state": "Washington",
+        "country": "United States",
+        "postalCode": "98101"
+      },
+      "shippingZones": [
+        {
+          "name": "US Nationwide",
+          "countries": ["United States"],
+          "regions": [],
+          "postalCodes": [],
+          "shippingMethods": [
+            {
+              "name": "Standard Shipping",
+              "carrier": "UPS",
+              "estimatedDays": {
+                "min": 3,
+                "max": 7
+              },
+              "cost": {
+                "baseRate": 6.99,
+                "perKg": 0,
+                "perItem": 0,
+                "freeShippingThreshold": 75
+              },
+              "isActive": true
+            }
+          ]
+        }
+      ],
+      "processingTime": {
+        "min": 1,
+        "max": 3
+      },
+      "cutoffTime": "14:00",
+      "handlesOwnShipping": true,
+      "usesPlatformShipping": false
+    },
+    "businessHours": {
+      "monday": {"isOpen": true, "open": "08:00", "close": "20:00"},
+      "tuesday": {"isOpen": true, "open": "08:00", "close": "20:00"},
+      "wednesday": {"isOpen": true, "open": "08:00", "close": "20:00"},
+      "thursday": {"isOpen": true, "open": "08:00", "close": "20:00"},
+      "friday": {"isOpen": true, "open": "08:00", "close": "20:00"},
+      "saturday": {"isOpen": true, "open": "09:00", "close": "18:00"},
+      "sunday": {"isOpen": true, "open": "10:00", "close": "17:00"},
+      "timezone": "America/Los_Angeles",
+      "holidays": []
+    },
+    "metrics": {
+      "totalOrders": 78,
+      "totalSales": 78,
+      "totalRevenue": 24560.00,
+      "totalEarnings": 22104.00,
+      "averageOrderValue": 314.87,
+      "totalProducts": 95,
+      "activeProducts": 92,
+      "outOfStockProducts": 3,
+      "totalCustomers": 52,
+      "repeatCustomerRate": 38,
+      "customerRetentionRate": 58,
+      "averageRating": 4.5,
+      "totalReviews": 54,
+      "rating1Star": 2,
+      "rating2Star": 3,
+      "rating3Star": 6,
+      "rating4Star": 18,
+      "rating5Star": 25,
+      "averageResponseTime": 3.2,
+      "responseRate": 95,
+      "orderCompletionRate": 97,
+      "onTimeDeliveryRate": 92,
+      "orderCancellationRate": 3,
+      "pendingEarnings": 1240.00,
+      "availableEarnings": 5680.00,
+      "totalPayouts": 15184.00,
+      "lastPayoutDate": {"$date": "2025-11-28T10:00:00.000Z"},
+      "nextPayoutDate": {"$date": "2025-12-15T10:00:00.000Z"},
+      "last30Days": {
+        "sales": 12,
+        "orders": 12,
+        "revenue": 3850.00,
+        "newCustomers": 8,
+        "views": 680
+      },
+      "lastUpdated": {"$date": "2025-12-07T06:00:00.000Z"}
+    },
+    "customers": {
+      "total": 52,
+      "new": 8,
+      "returning": 44,
+      "repeatPurchaseRate": 38,
+      "averageLifetimeValue": 472.31,
+      "topCustomers": []
+    },
+    "settings": {
+      "autoAcceptOrders": true,
+      "notificationsEnabled": true,
+      "vacationMode": {
+        "isEnabled": false,
+        "autoDisable": true
+      },
+      "inventory": {
+        "lowStockThreshold": 5,
+        "notifyOnLowStock": true,
+        "allowBackorders": true,
+        "hideOutOfStock": false
+      },
+      "orders": {
+        "autoConfirmAfterHours": 12,
+        "autoMarkDeliveredAfterDays": 5,
+        "allowCancellation": true,
+        "cancellationWindow": 12
+      },
+      "returns": {
+        "acceptReturns": true,
+        "returnWindow": 45,
+        "returnShippingPaidBy": "seller",
+        "restockingFee": 0
+      }
+    },
+    "subscription": {
+      "plan": "basic",
+      "status": "active",
+      "startDate": {"$date": "2024-09-10T08:00:00.000Z"},
+      "renewalDate": {"$date": "2025-09-10T08:00:00.000Z"},
+      "features": {
+        "maxProducts": 200,
+        "prioritySupport": false,
+        "advancedAnalytics": false,
+        "bulkUpload": true,
+        "customBranding": false,
+        "apiAccess": false
+      },
+      "billingCycle": "yearly",
+      "amount": 99.00
+    },
+    "social": {
+      "followers": 412,
+      "following": 28,
+      "facebook": "https://facebook.com/techgadgetscentral",
+      "instagram": "https://instagram.com/techcentral",
+      "twitter": "https://twitter.com/techcentral"
+    },
+    "seo": {
+      "slug": "tech-gadgets-central",
+      "metaTitle": "Tech Gadgets Central - Innovative Tech Products",
+      "metaDescription": "Discover the latest gadgets and technology at Tech Gadgets Central.",
+      "keywords": ["tech", "gadgets", "innovation", "electronics", "smart devices"]
+    },
+    "compliance": {
+      "gdprCompliant": true,
+      "ccpaCompliant": true,
+      "coppaCompliant": false,
+      "hipaaCompliant": false,
+      "lastAuditDate": {"$date": "2025-02-01T00:00:00.000Z"},
+      "certifications": []
+    },
+    "platformRelationship": {
+      "joinedAt": {"$date": "2024-09-10T08:00:00.000Z"},
+      "accountManager": {"$oid": "67473229996f899c73e4f44a"},
+      "preferredSupport": "email",
+      "notes": "Reliable seller with good growth trajectory",
+      "flags": []
+    },
+    "badges": [
+      {
+        "type": "verified_business",
+        "awardedAt": {"$date": "2024-09-11T14:00:00.000Z"}
+      }
+    ],
+    "products": [],
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-09-10T08:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T06:30:00.000Z"},
+    "lastActiveAt": {"$date": "2025-12-07T06:30:00.000Z"}
+  }
+]
+

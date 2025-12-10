@@ -5,24 +5,39 @@ const reviewSchema = new Schema({
   productId: { type: Schema.Types.ObjectId, ref: "Product", required: true },
   sellerId: { type: Schema.Types.ObjectId, ref: "Seller", required: true },
   orderId: { type: Schema.Types.ObjectId, ref: "Order" }, // Link to order for verified purchase
+  
   rating: { type: Number, required: true, min: 1, max: 5 },
   title: { type: String },
   comment: { type: String, required: true },
   images: [{ type: String }], // Review images
+  
   verifiedPurchase: { type: Boolean, default: false },
+  
+  // Helpfulness
   helpful: { type: Number, default: 0 }, // Number of users who found this helpful
   helpfulBy: [{ type: Schema.Types.ObjectId, ref: "User" }], // Users who marked as helpful
+  
+  // Status
   status: {
     type: String,
     enum: ["pending", "approved", "rejected"],
     default: "approved",
   },
+  
+  // Seller Response
   sellerResponse: {
     message: { type: String },
     respondedAt: { type: Date },
   },
+  
+  // Metadata
+  metadata: { type: Map, of: Schema.Types.Mixed },
+  schemaVersion: { type: Number, default: 1 },
+  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
 });
 
 // Indexes
@@ -37,6 +52,7 @@ reviewSchema.index({ status: 1 });
 reviewSchema.index({ userId: 1, productId: 1 }, { unique: true });
 
 export const Review = model("Review", reviewSchema);
+
 
 
 

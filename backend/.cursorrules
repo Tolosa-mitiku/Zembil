@@ -541,3 +541,55 @@ productSchema.statics.findFeatured = function () {
 - [ ] Error stack traces hidden in production
 - [ ] Logging configured for production
 
+## AI Assistant Guidelines
+
+### Documentation Files
+- **NEVER** proactively create documentation files (*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a file exceeds 1000 lines:
+  - **MUST** refactor into smaller, focused files
+  - Break into logical components/modules
+  - Extract reusable utilities into separate files
+  - Create service modules for related business logic
+  - Maintain single responsibility principle
+- Before creating/editing files, check line count and refactor if needed
+- Split large files into:
+  - Controllers: Keep thin, one file per resource
+  - Services: Split by feature/responsibility
+  - Models: One model per file
+  - Routes: Group related routes, split when exceeding limit
+  - Utilities: Extract helpers into separate files
+
+### Frontend Integration Guidelines
+- **CRITICAL**: Frontend should **NEVER** use static/mock data when backend is integrated
+- Ensure all API endpoints return consistent, well-structured responses
+- Always include proper error messages in responses for frontend error handling
+- Response format consistency:
+  ```typescript
+  // Success response
+  {
+    success: true,
+    data: { ... },
+    message?: "Optional message"
+  }
+  
+  // Error response
+  {
+    success: false,
+    message: "Clear error description",
+    error?: "Detailed error (dev only)"
+  }
+  ```
+- When implementing new features:
+  - [ ] Ensure API returns all data frontend needs
+  - [ ] Verify response structure matches frontend types
+  - [ ] Include pagination metadata when returning lists
+  - [ ] Provide appropriate HTTP status codes
+  - [ ] Test endpoints with real data before frontend integration
+  - [ ] Document expected request/response formats
+  - [ ] Handle edge cases (empty results, errors, etc.)
+

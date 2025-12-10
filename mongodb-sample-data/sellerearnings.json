@@ -1,0 +1,1982 @@
+[
+  {
+    "_id": {
+      "$oid": "6d96275bda5e6b9588b63697"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4b6cbb75ec9d6f3bb1725d54"
+    },
+    "orderNumber": "ZMB-20250901-1000",
+    "totalAmount": 2495.0,
+    "platformFee": 249.5,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2245.5,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-02T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8ea300f87e6593c6fb55e1c7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "b94fe20e4bd43b241b49bfa5"
+    },
+    "orderNumber": "ZMB-20250831-1001",
+    "totalAmount": 2866.98,
+    "platformFee": 286.7,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2580.28,
+    "payoutStatus": "paid",
+    "payoutId": "payout_2b892e730dc772fe70f3",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-31T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-24T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2caf05a02028225d59489527"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "b94fe20e4bd43b241b49bfa5"
+    },
+    "orderNumber": "ZMB-20250831-1001",
+    "totalAmount": 559.98,
+    "platformFee": 56.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 503.98,
+    "payoutStatus": "paid",
+    "payoutId": "payout_bcad885326d6f620987c",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-31T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-24T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8eb5b9129bffcfec20ee5e1e"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "04fda1efbb334a1e76555105"
+    },
+    "orderNumber": "ZMB-20250814-1002",
+    "totalAmount": 733.46,
+    "platformFee": 73.35,
+    "platformFeePercentage": 10,
+    "sellerAmount": 660.11,
+    "payoutStatus": "paid",
+    "payoutId": "payout_a0cb070fc242375d07e7",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-14T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-07T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-31T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-09-05T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "559843c618417865e9625c4c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "b43458ab03643d5d540af5ca"
+    },
+    "orderNumber": "ZMB-20251006-1003",
+    "totalAmount": 199.99,
+    "platformFee": 20.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 179.99,
+    "payoutStatus": "paid",
+    "payoutId": "payout_3495e7717c07b476232a",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-03T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-27T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-25T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d6655bde1ad1e3a6f1661a7f"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "bade12737053547f83eec337"
+    },
+    "orderNumber": "ZMB-20251110-1004",
+    "totalAmount": 130.0,
+    "platformFee": 13.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 117.0,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e7e46e586c3315a456b3",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-30T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-23T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "534ab7657a586eaa9cd409cc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "bade12737053547f83eec337"
+    },
+    "orderNumber": "ZMB-20251110-1004",
+    "totalAmount": 999.99,
+    "platformFee": 100.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 899.99,
+    "payoutStatus": "paid",
+    "payoutId": "payout_86fe8cee43731c7e9db2",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-30T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-23T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b1e2e64fd70fc27effa41297"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4da5dc058afce1aef2db63c9"
+    },
+    "orderNumber": "ZMB-20250814-1005",
+    "totalAmount": 3849.77,
+    "platformFee": 384.98,
+    "platformFeePercentage": 10,
+    "sellerAmount": 3464.79,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e5204b98170d6840ecb6",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-23T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-16T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-08-14T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8e01a950523cf0766f43eb7d"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4da5dc058afce1aef2db63c9"
+    },
+    "orderNumber": "ZMB-20250814-1005",
+    "totalAmount": 32.0,
+    "platformFee": 3.2,
+    "platformFeePercentage": 10,
+    "sellerAmount": 28.8,
+    "payoutStatus": "paid",
+    "payoutId": "payout_41ba3c181c7821861701",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-23T11:47:49.392420"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-16T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-08-14T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "900b72211c99f1e79f1686dc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "cb7873ceae09c39c5a13a64e"
+    },
+    "orderNumber": "ZMB-20251016-1006",
+    "totalAmount": 3635.97,
+    "platformFee": 363.6,
+    "platformFeePercentage": 10,
+    "sellerAmount": 3272.37,
+    "payoutStatus": "on_hold",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-13T11:47:49.392420"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T11:47:49.392420"
+    },
+    "updatedAt": {
+      "$date": "2025-12-11T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a12015551c5f8a65cbf73581"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "f10b64452c5a20541a72c070"
+    },
+    "orderNumber": "ZMB-20250826-1007",
+    "totalAmount": 605.37,
+    "platformFee": 60.54,
+    "platformFeePercentage": 10,
+    "sellerAmount": 544.83,
+    "payoutStatus": "paid",
+    "payoutId": "payout_9f31ad832f436c33bc7b",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-29T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-22T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1d0e9a834d9f8f55af409c68"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "orderNumber": "ZMB-20250916-1008",
+    "totalAmount": 1899.99,
+    "platformFee": 190.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1709.99,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6c0111bf429ae4185b2fd219"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4492dbbac7d9e477973791e3"
+    },
+    "orderNumber": "ZMB-20250916-1008",
+    "totalAmount": 59.99,
+    "platformFee": 6.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 53.99,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7f478587464225829ec33f9c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "7d6e10692db98954500c026c"
+    },
+    "orderNumber": "ZMB-20250822-1009",
+    "totalAmount": 249.0,
+    "platformFee": 24.9,
+    "platformFeePercentage": 10,
+    "sellerAmount": 224.1,
+    "payoutStatus": "paid",
+    "payoutId": "payout_c5b3b5297d10a3a35055",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-14T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-12T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6e26bf0221c764268e58a16c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "420b150ddf83bac67f11d49c"
+    },
+    "orderNumber": "ZMB-20251004-1010",
+    "totalAmount": 899.98,
+    "platformFee": 90.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 809.98,
+    "payoutStatus": "processing",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-29T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fe6bf1f6689cf86c4e714d2b"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "420b150ddf83bac67f11d49c"
+    },
+    "orderNumber": "ZMB-20251004-1010",
+    "totalAmount": 722.97,
+    "platformFee": 72.3,
+    "platformFeePercentage": 10,
+    "sellerAmount": 650.67,
+    "payoutStatus": "processing",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-29T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2607dd36efdcf3434454b8c7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "06b6fa3ed8eac751bc3a2edb"
+    },
+    "orderNumber": "ZMB-20251023-1011",
+    "totalAmount": 390.98,
+    "platformFee": 39.1,
+    "platformFeePercentage": 10,
+    "sellerAmount": 351.88,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-01T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "18acf3b0a12c2029979b99cc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "4163a1571900816a746c1d58"
+    },
+    "orderNumber": "ZMB-20250809-1012",
+    "totalAmount": 606.24,
+    "platformFee": 60.62,
+    "platformFeePercentage": 10,
+    "sellerAmount": 545.62,
+    "payoutStatus": "paid",
+    "payoutId": "payout_cc9fefc56505201c2b63",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-30T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-23T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-09-21T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "801eee10631c4c113d7218ea"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4163a1571900816a746c1d58"
+    },
+    "orderNumber": "ZMB-20250809-1012",
+    "totalAmount": 1049.98,
+    "platformFee": 105.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 944.98,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e886809a2e120cb4ed49",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-30T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-23T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-09-21T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7a10844758f30c872ca270c4"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "d0b661c97dddd69da4f5d2dd"
+    },
+    "orderNumber": "ZMB-20251021-1013",
+    "totalAmount": 18.0,
+    "platformFee": 1.8,
+    "platformFeePercentage": 10,
+    "sellerAmount": 16.2,
+    "payoutStatus": "paid",
+    "payoutId": "payout_3ff106665057916e6a81",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-17T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-10T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-03T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fed3ffc379895f43b3c0fbb7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "1d3909a3e90fe27aa6416575"
+    },
+    "orderNumber": "ZMB-20251012-1014",
+    "totalAmount": 401.29,
+    "platformFee": 40.13,
+    "platformFeePercentage": 10,
+    "sellerAmount": 361.16,
+    "payoutStatus": "paid",
+    "payoutId": "payout_77762e48ffe7dc3313a4",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-28T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5165fd2939453f369508f6d7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "1d3909a3e90fe27aa6416575"
+    },
+    "orderNumber": "ZMB-20251012-1014",
+    "totalAmount": 299.99,
+    "platformFee": 30.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 269.99,
+    "payoutStatus": "paid",
+    "payoutId": "payout_40e9b6af147034f7acac",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-04T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-28T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e92a0276f742cffbafd271c8"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "11ad635925783dd07f37439a"
+    },
+    "orderNumber": "ZMB-20250830-1015",
+    "totalAmount": 3459.96,
+    "platformFee": 346.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 3113.96,
+    "payoutStatus": "paid",
+    "payoutId": "payout_87ea1ca384bf160942f9",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-20T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3442464c0acf8ba5dbd6bf2d"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "11ad635925783dd07f37439a"
+    },
+    "orderNumber": "ZMB-20250830-1015",
+    "totalAmount": 1499.98,
+    "platformFee": 150.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1349.98,
+    "payoutStatus": "paid",
+    "payoutId": "payout_94d52ccfc13135f7d36e",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-20T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e10d57dadb651a5a1184d835"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "598199e2119f1a1691e52ac4"
+    },
+    "orderNumber": "ZMB-20250809-1016",
+    "totalAmount": 265.98,
+    "platformFee": 26.6,
+    "platformFeePercentage": 10,
+    "sellerAmount": 239.38,
+    "payoutStatus": "paid",
+    "payoutId": "payout_1278b807d4b01e3001c3",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-07T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-31T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cfed23fb8680b3a03e28a6f6"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "598199e2119f1a1691e52ac4"
+    },
+    "orderNumber": "ZMB-20250809-1016",
+    "totalAmount": 738.98,
+    "platformFee": 73.9,
+    "platformFeePercentage": 10,
+    "sellerAmount": 665.08,
+    "payoutStatus": "paid",
+    "payoutId": "payout_dd53c079a5f9b44d2868",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-07T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-31T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-08-29T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cc663822b79c0b487972b232"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "c0b9bd0541242266e972b273"
+    },
+    "orderNumber": "ZMB-20250910-1017",
+    "totalAmount": 59.42,
+    "platformFee": 5.94,
+    "platformFeePercentage": 10,
+    "sellerAmount": 53.48,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-04T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "17e9d7dddb9d00e807ac4e6d"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "e928cf2c755502adeb09d1f5"
+    },
+    "orderNumber": "ZMB-20250827-1018",
+    "totalAmount": 574.97,
+    "platformFee": 57.5,
+    "platformFeePercentage": 10,
+    "sellerAmount": 517.47,
+    "payoutStatus": "on_hold",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-09T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5193b30c64e1ba08eeebd513"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "24e743af38f28fd8b84cf077"
+    },
+    "orderNumber": "ZMB-20250924-1019",
+    "totalAmount": 49.9,
+    "platformFee": 4.99,
+    "platformFeePercentage": 10,
+    "sellerAmount": 44.91,
+    "payoutStatus": "paid",
+    "payoutId": "payout_3a767c7385c470b2e747",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-22T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-15T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "757e67deee1c5f7d6f68dbfe"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "24e743af38f28fd8b84cf077"
+    },
+    "orderNumber": "ZMB-20250924-1019",
+    "totalAmount": 1604.99,
+    "platformFee": 160.5,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1444.49,
+    "payoutStatus": "paid",
+    "payoutId": "payout_f1f6bbef4016b1858c69",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-22T11:47:49.393422"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-15T11:47:49.393422"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "updatedAt": {
+      "$date": "2025-10-13T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2dca2ddf716a5fbac41b7ab7"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "2b365a2de59cf4f5b3655beb"
+    },
+    "orderNumber": "ZMB-20251103-1020",
+    "totalAmount": 390.98,
+    "platformFee": 39.1,
+    "platformFeePercentage": 10,
+    "sellerAmount": 351.88,
+    "payoutStatus": "paid",
+    "payoutId": "payout_9781002f7c10d308c67a",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-12T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-05T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-03T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c777acb19c639b035e8a0e15"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "a1c26afbac7d91440a42fdce"
+    },
+    "orderNumber": "ZMB-20250909-1021",
+    "totalAmount": 358.0,
+    "platformFee": 35.8,
+    "platformFeePercentage": 10,
+    "sellerAmount": 322.2,
+    "payoutStatus": "paid",
+    "payoutId": "payout_1a0116ced5ccecbacd3e",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-28T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-21T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-19T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6285bcbf79f1dc74d3dacb04"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "a1c26afbac7d91440a42fdce"
+    },
+    "orderNumber": "ZMB-20250909-1021",
+    "totalAmount": 683.0,
+    "platformFee": 68.3,
+    "platformFeePercentage": 10,
+    "sellerAmount": 614.7,
+    "payoutStatus": "paid",
+    "payoutId": "payout_2881540fdfaafcbc95a2",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-28T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-21T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-19T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "766ed0697de2e20da1104bc3"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "4621caeb016293b6820066fa"
+    },
+    "orderNumber": "ZMB-20250828-1022",
+    "totalAmount": 67.99,
+    "platformFee": 6.8,
+    "platformFeePercentage": 10,
+    "sellerAmount": 61.19,
+    "payoutStatus": "processing",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-18T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-11T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-16T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "04715f982147fcecc5460995"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "337f92fb0f6ff13df4aa859c"
+    },
+    "orderNumber": "ZMB-20250921-1023",
+    "totalAmount": 3799.98,
+    "platformFee": 380.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 3419.98,
+    "payoutStatus": "paid",
+    "payoutId": "payout_77d5301e719d3ba5e66f",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-13T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-06T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-11-04T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d7bcaa209c93c5dd18c7911c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "9918d149250860bdbb19cb1b"
+    },
+    "orderNumber": "ZMB-20251010-1024",
+    "totalAmount": 450.47,
+    "platformFee": 45.05,
+    "platformFeePercentage": 10,
+    "sellerAmount": 405.42,
+    "payoutStatus": "paid",
+    "payoutId": "payout_d600b89a09ca9c3d659f",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-20T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-13T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ebdeede4ce8d37468aa3aac6"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "9918d149250860bdbb19cb1b"
+    },
+    "orderNumber": "ZMB-20251010-1024",
+    "totalAmount": 399.98,
+    "platformFee": 40.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 359.98,
+    "payoutStatus": "paid",
+    "payoutId": "payout_6a18edc46321bcbbc430",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-20T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-13T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-10-11T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "896437c5a0ba10e814fdbe52"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "87590ae22f5328fb2aca3e82"
+    },
+    "orderNumber": "ZMB-20251030-1025",
+    "totalAmount": 2379.99,
+    "platformFee": 238.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2141.99,
+    "payoutStatus": "paid",
+    "payoutId": "payout_f6cb7e62db733525e420",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-29T11:47:49.394430"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-22T11:47:49.394430"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.394430"
+    },
+    "updatedAt": {
+      "$date": "2025-08-20T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3a3105423a2168e43dae4d54"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "406d9e21accf67378342e7f9"
+    },
+    "orderNumber": "ZMB-20250830-1026",
+    "totalAmount": 261.98,
+    "platformFee": 26.2,
+    "platformFeePercentage": 10,
+    "sellerAmount": 235.78,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e60f19807e33ee64b685",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-23T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1843ba207512e3a207c539ce"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "406d9e21accf67378342e7f9"
+    },
+    "orderNumber": "ZMB-20250830-1026",
+    "totalAmount": 458.98,
+    "platformFee": 45.9,
+    "platformFeePercentage": 10,
+    "sellerAmount": 413.08,
+    "payoutStatus": "paid",
+    "payoutId": "payout_a26213bdc49becc65b52",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-30T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-23T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d3a80b64caf551ad1a7e191d"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "185ea166a73baf86e3702050"
+    },
+    "orderNumber": "ZMB-20250911-1027",
+    "totalAmount": 99.8,
+    "platformFee": 9.98,
+    "platformFeePercentage": 10,
+    "sellerAmount": 89.82,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e14e1339f04c2cce849b",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-05T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-28T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-26T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "543d616deab5261d1492dbaa"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "185ea166a73baf86e3702050"
+    },
+    "orderNumber": "ZMB-20250911-1027",
+    "totalAmount": 305.98,
+    "platformFee": 30.6,
+    "platformFeePercentage": 10,
+    "sellerAmount": 275.38,
+    "payoutStatus": "paid",
+    "payoutId": "payout_eeb5df3be7cd8ba0524a",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-05T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-28T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-26T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c1445b196953c4aee0d3cbf6"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "d62b564ee3c37fb55b0a3d83"
+    },
+    "orderNumber": "ZMB-20250826-1028",
+    "totalAmount": 36.0,
+    "platformFee": 3.6,
+    "platformFeePercentage": 10,
+    "sellerAmount": 32.4,
+    "payoutStatus": "paid",
+    "payoutId": "payout_efccc367a66f117b1d09",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-25T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-18T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-11T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-16T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "348bc8feeaa234400d67bbfd"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "07b84a9968aa5da110cedfbd"
+    },
+    "orderNumber": "ZMB-20250905-1029",
+    "totalAmount": 48.0,
+    "platformFee": 4.8,
+    "platformFeePercentage": 10,
+    "sellerAmount": 43.2,
+    "payoutStatus": "paid",
+    "payoutId": "payout_d640cc8b4519b2b36e59",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-18T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-11T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4ccd66888f84bf91f5e5e271"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "e0756704e95238db28a3d819"
+    },
+    "orderNumber": "ZMB-20251108-1030",
+    "totalAmount": 2599.96,
+    "platformFee": 260.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2339.96,
+    "payoutStatus": "paid",
+    "payoutId": "payout_f943b7f39c362631b426",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-14T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-19T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0475bc9a5cedac15174167a2"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "e0756704e95238db28a3d819"
+    },
+    "orderNumber": "ZMB-20251108-1030",
+    "totalAmount": 1499.99,
+    "platformFee": 150.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1349.99,
+    "payoutStatus": "paid",
+    "payoutId": "payout_e77ca4b731300ff32c75",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-28T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-21T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-14T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-19T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e64a05a5cc970178f8a84613"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "97376c56f714cc34f0818fc4"
+    },
+    "orderNumber": "ZMB-20250915-1031",
+    "totalAmount": 49.9,
+    "platformFee": 4.99,
+    "platformFeePercentage": 10,
+    "sellerAmount": 44.91,
+    "payoutStatus": "paid",
+    "payoutId": "payout_80bb91090ec80ab0d301",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-09-22T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-09-15T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-08T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-09-13T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "176f5bab0e06cb059d9f0a1c"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "orderNumber": "ZMB-20250821-1032",
+    "totalAmount": 314.33,
+    "platformFee": 31.43,
+    "platformFeePercentage": 10,
+    "sellerAmount": 282.9,
+    "payoutStatus": "paid",
+    "payoutId": "payout_3a2cfde60d56057023e6",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-31T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-24T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-08-22T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f0b7b49d626336b13ecaaa2f"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "913709ed22ace1eee98f1771"
+    },
+    "orderNumber": "ZMB-20250821-1032",
+    "totalAmount": 4338.19,
+    "platformFee": 433.82,
+    "platformFeePercentage": 10,
+    "sellerAmount": 3904.37,
+    "payoutStatus": "paid",
+    "payoutId": "payout_8392071ce8433f155c7f",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-08-31T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-08-24T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-08-22T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "146da7fe35f8e88768cb2465"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "bd64c4c78359667e8128f563"
+    },
+    "orderNumber": "ZMB-20250918-1033",
+    "totalAmount": 102.0,
+    "platformFee": 10.2,
+    "platformFeePercentage": 10,
+    "sellerAmount": 91.8,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "04e5c6036609bb9fd5850379"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "bd64c4c78359667e8128f563"
+    },
+    "orderNumber": "ZMB-20250918-1033",
+    "totalAmount": 152.99,
+    "platformFee": 15.3,
+    "platformFeePercentage": 10,
+    "sellerAmount": 137.69,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-29T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0af885cfc5be2960ee0b45ae"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "85e901a43b39edb8cbcee6c2"
+    },
+    "orderNumber": "ZMB-20251115-1034",
+    "totalAmount": 894.96,
+    "platformFee": 89.5,
+    "platformFeePercentage": 10,
+    "sellerAmount": 805.46,
+    "payoutStatus": "processing",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-14T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-12T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1ff6b002b11c0162379213ab"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "85e901a43b39edb8cbcee6c2"
+    },
+    "orderNumber": "ZMB-20251115-1034",
+    "totalAmount": 322.99,
+    "platformFee": 32.3,
+    "platformFeePercentage": 10,
+    "sellerAmount": 290.69,
+    "payoutStatus": "processing",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-14T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-11-12T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "796693b1cdfe8a057e483626"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "orderNumber": "ZMB-20250825-1035",
+    "totalAmount": 165.99,
+    "platformFee": 16.6,
+    "platformFeePercentage": 10,
+    "sellerAmount": 149.39,
+    "payoutStatus": "paid",
+    "payoutId": "payout_4a18e063cbfb161f8219",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-18T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-11T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cc6780622886af527edca760"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "3c4ebdf1a96d4c37aab2c5ff"
+    },
+    "orderNumber": "ZMB-20250825-1035",
+    "totalAmount": 211.0,
+    "platformFee": 21.1,
+    "platformFeePercentage": 10,
+    "sellerAmount": 189.9,
+    "payoutStatus": "paid",
+    "payoutId": "payout_2f7531e15e0a5b21e1b4",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-18T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-11T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-09T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1131417e7e9e29c4268059b9"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "32e4af291506746aac14ffec"
+    },
+    "orderNumber": "ZMB-20251031-1036",
+    "totalAmount": 744.0,
+    "platformFee": 74.4,
+    "platformFeePercentage": 10,
+    "sellerAmount": 669.6,
+    "payoutStatus": "paid",
+    "payoutId": "payout_17cca4d361089436ba09",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-13T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-06T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-29T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a9368dd89afb0898af34ad85"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "32e4af291506746aac14ffec"
+    },
+    "orderNumber": "ZMB-20251031-1036",
+    "totalAmount": 764.99,
+    "platformFee": 76.5,
+    "platformFeePercentage": 10,
+    "sellerAmount": 688.49,
+    "payoutStatus": "paid",
+    "payoutId": "payout_b06fb0083dd8b0366b80",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-10-13T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-10-06T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-29T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ffc653e6c4997b13d1637ae5"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "370387a460f9b31b486d74a3"
+    },
+    "orderNumber": "ZMB-20250825-1037",
+    "totalAmount": 32.0,
+    "platformFee": 3.2,
+    "platformFeePercentage": 10,
+    "sellerAmount": 28.8,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-03T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "02470aa1479181037adfda5b"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "370387a460f9b31b486d74a3"
+    },
+    "orderNumber": "ZMB-20250825-1037",
+    "totalAmount": 589.97,
+    "platformFee": 59.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 530.97,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-03T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-01T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "59ba29e0b65a48dd09f3211e"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "orderNumber": "ZMB-20251119-1038",
+    "totalAmount": 1759.77,
+    "platformFee": 175.98,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1583.79,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-04T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ad869b5f13d87dffed2fd528"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "8ce335e43be2553fd46a1b8b"
+    },
+    "orderNumber": "ZMB-20251119-1038",
+    "totalAmount": 2299.98,
+    "platformFee": 230.0,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2069.98,
+    "payoutStatus": "pending",
+    "payoutId": null,
+    "payoutMethod": null,
+    "payoutDate": null,
+    "eligibleForPayoutAt": {
+      "$date": "2025-12-04T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c96ac06d50008e673263deac"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "orderId": {
+      "$oid": "64b5e98545078a7faeef7140"
+    },
+    "orderNumber": "ZMB-20250910-1039",
+    "totalAmount": 1555.48,
+    "platformFee": 155.55,
+    "platformFeePercentage": 10,
+    "sellerAmount": 1399.93,
+    "payoutStatus": "paid",
+    "payoutId": "payout_dc76fb8999015da97590",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-01T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-25T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8f888a2cdee263d1b9ececfa"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "orderId": {
+      "$oid": "64b5e98545078a7faeef7140"
+    },
+    "orderNumber": "ZMB-20250910-1039",
+    "totalAmount": 2577.98,
+    "platformFee": 257.8,
+    "platformFeePercentage": 10,
+    "sellerAmount": 2320.18,
+    "payoutStatus": "paid",
+    "payoutId": "payout_b6f68730816b8b3f68be",
+    "payoutMethod": "bank_transfer",
+    "payoutDate": {
+      "$date": "2025-11-08T11:47:49.395657"
+    },
+    "eligibleForPayoutAt": {
+      "$date": "2025-11-01T11:47:49.395657"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-25T11:47:49.395657"
+    },
+    "updatedAt": {
+      "$date": "2025-10-30T11:47:49.395657"
+    }
+  }
+]

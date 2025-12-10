@@ -1,0 +1,482 @@
+[
+  {
+    "_id": {
+      "$oid": "51a1d245bbe36a56d3db5380"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "ticketNumber": "TKT-000001",
+    "userName": "Tolosa Mitiku",
+    "userEmail": "wonexmitex@gmail.com",
+    "subject": "Need help with password reset",
+    "message": "I need assistance with: Need help with password reset. Please help me resolve this issue.",
+    "category": "returns",
+    "priority": "medium",
+    "status": "in-progress",
+    "tags": [
+      "returns",
+      "medium"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-11-05T13:51:06.441330"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {},
+    "relatedTickets": [],
+    "source": "email",
+    "firstResponseAt": {
+      "$date": "2025-11-05T13:51:06.441330"
+    },
+    "lastResponseAt": {
+      "$date": "2025-11-06T11:51:06.441330"
+    },
+    "lastActivityAt": {
+      "$date": "2025-11-06T11:51:06.441330"
+    },
+    "views": 5,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-05T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-11-06T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6f72b3cf705980aa816b2bbe"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "ticketNumber": "TKT-000002",
+    "userName": "TM Electronics",
+    "userEmail": "tolosa.mitiku2015@gmail.com",
+    "subject": "Need help with password reset",
+    "message": "I need assistance with: Need help with password reset. Please help me resolve this issue.",
+    "category": "product",
+    "priority": "medium",
+    "status": "resolved",
+    "tags": [
+      "product",
+      "medium"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-10-14T13:51:06.441330"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {
+      "resolvedBy": {
+        "$oid": "67473229996f899c73e4f44a"
+      },
+      "resolvedAt": {
+        "$date": "2025-10-16T11:51:06.441330"
+      },
+      "resolutionNotes": "Issue resolved successfully.",
+      "satisfactionRating": 4
+    },
+    "relatedTickets": [],
+    "source": "mobile",
+    "firstResponseAt": {
+      "$date": "2025-10-14T13:51:06.441330"
+    },
+    "lastResponseAt": {
+      "$date": "2025-10-15T11:51:06.441330"
+    },
+    "lastActivityAt": {
+      "$date": "2025-10-15T11:51:06.441330"
+    },
+    "views": 1,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-14T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-10-15T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "023ca282c9312ac0d02d0c30"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "ticketNumber": "TKT-000003",
+    "userName": "Tech Gadgets",
+    "userEmail": "tech.gadgets.store@business.com",
+    "subject": "Shipping delay inquiry",
+    "message": "I need assistance with: Shipping delay inquiry. Please help me resolve this issue.",
+    "category": "account",
+    "priority": "medium",
+    "status": "waiting-response",
+    "tags": [
+      "account",
+      "medium"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-10-28T13:51:06.442519"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {},
+    "relatedTickets": [],
+    "source": "web",
+    "firstResponseAt": {
+      "$date": "2025-10-28T13:51:06.442519"
+    },
+    "lastResponseAt": {
+      "$date": "2025-10-29T11:51:06.442519"
+    },
+    "lastActivityAt": {
+      "$date": "2025-10-29T11:51:06.442519"
+    },
+    "views": 7,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-28T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-10-29T11:51:06.442519"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "84666e3596e41e54329e2fba"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "ticketNumber": "TKT-000004",
+    "userName": "Tech Gadgets",
+    "userEmail": "tech.gadgets.store@business.com",
+    "subject": "How do I track my order?",
+    "message": "I need assistance with: How do I track my order?. Please help me resolve this issue.",
+    "category": "shipping",
+    "priority": "high",
+    "status": "open",
+    "tags": [
+      "shipping",
+      "high"
+    ],
+    "attachments": [],
+    "responses": [],
+    "assignedTo": null,
+    "resolution": {},
+    "relatedTickets": [],
+    "source": "web",
+    "firstResponseAt": null,
+    "lastResponseAt": null,
+    "lastActivityAt": {
+      "$date": "2025-11-07T11:51:06.442519"
+    },
+    "views": 7,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-06T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-11-07T11:51:06.442519"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dc0b85e25fe90fdaae193e8b"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "ticketNumber": "TKT-000005",
+    "userName": "Sarah Johnson",
+    "userEmail": "sarah.johnson@email.com",
+    "subject": "How do I track my order?",
+    "message": "I need assistance with: How do I track my order?. Please help me resolve this issue.",
+    "category": "product",
+    "priority": "medium",
+    "status": "closed",
+    "tags": [
+      "product",
+      "medium"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-11-12T13:51:06.442519"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {
+      "resolvedBy": {
+        "$oid": "67473229996f899c73e4f44a"
+      },
+      "resolvedAt": {
+        "$date": "2025-11-14T11:51:06.442519"
+      },
+      "resolutionNotes": "Issue resolved successfully.",
+      "satisfactionRating": 5
+    },
+    "relatedTickets": [],
+    "source": "mobile",
+    "firstResponseAt": {
+      "$date": "2025-11-12T13:51:06.442519"
+    },
+    "lastResponseAt": {
+      "$date": "2025-11-13T11:51:06.442519"
+    },
+    "lastActivityAt": {
+      "$date": "2025-11-13T11:51:06.442519"
+    },
+    "views": 4,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-12T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-11-13T11:51:06.442519"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8032bfce7c998a3c44d9b07c"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "ticketNumber": "TKT-000006",
+    "userName": "Sarah Johnson",
+    "userEmail": "sarah.johnson@email.com",
+    "subject": "Shipping delay inquiry",
+    "message": "I need assistance with: Shipping delay inquiry. Please help me resolve this issue.",
+    "category": "shipping",
+    "priority": "low",
+    "status": "waiting-response",
+    "tags": [
+      "shipping",
+      "low"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-11-26T13:51:06.442519"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {},
+    "relatedTickets": [],
+    "source": "web",
+    "firstResponseAt": {
+      "$date": "2025-11-26T13:51:06.442519"
+    },
+    "lastResponseAt": {
+      "$date": "2025-11-27T11:51:06.442519"
+    },
+    "lastActivityAt": {
+      "$date": "2025-11-27T11:51:06.442519"
+    },
+    "views": 1,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-11-27T11:51:06.442519"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8d93bb50a4cfa70c1054e4c8"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "ticketNumber": "TKT-000007",
+    "userName": "Tech Gadgets",
+    "userEmail": "tech.gadgets.store@business.com",
+    "subject": "Question about return policy",
+    "message": "I need assistance with: Question about return policy. Please help me resolve this issue.",
+    "category": "billing",
+    "priority": "low",
+    "status": "resolved",
+    "tags": [
+      "billing",
+      "low"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-10-13T13:51:06.442519"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {
+      "resolvedBy": {
+        "$oid": "67473229996f899c73e4f44a"
+      },
+      "resolvedAt": {
+        "$date": "2025-10-15T11:51:06.442519"
+      },
+      "resolutionNotes": "Issue resolved successfully.",
+      "satisfactionRating": 4
+    },
+    "relatedTickets": [],
+    "source": "mobile",
+    "firstResponseAt": {
+      "$date": "2025-10-13T13:51:06.442519"
+    },
+    "lastResponseAt": {
+      "$date": "2025-10-14T11:51:06.442519"
+    },
+    "lastActivityAt": {
+      "$date": "2025-10-14T11:51:06.442519"
+    },
+    "views": 5,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-13T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-10-14T11:51:06.442519"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "89baf66a9a958aa78c084714"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "ticketNumber": "TKT-000008",
+    "userName": "Tech Gadgets",
+    "userEmail": "tech.gadgets.store@business.com",
+    "subject": "How do I track my order?",
+    "message": "I need assistance with: How do I track my order?. Please help me resolve this issue.",
+    "category": "general",
+    "priority": "high",
+    "status": "waiting-response",
+    "tags": [
+      "general",
+      "high"
+    ],
+    "attachments": [],
+    "responses": [
+      {
+        "userId": {
+          "$oid": "67473229996f899c73e4f44a"
+        },
+        "userName": "Support Team",
+        "userRole": "admin",
+        "message": "Thank you for contacting us. We're looking into your issue and will get back to you shortly.",
+        "isInternal": false,
+        "createdAt": {
+          "$date": "2025-10-22T13:51:06.442519"
+        }
+      }
+    ],
+    "assignedTo": {
+      "$oid": "67473229996f899c73e4f44a"
+    },
+    "resolution": {},
+    "relatedTickets": [],
+    "source": "web",
+    "firstResponseAt": {
+      "$date": "2025-10-22T13:51:06.442519"
+    },
+    "lastResponseAt": {
+      "$date": "2025-10-23T11:51:06.442519"
+    },
+    "lastActivityAt": {
+      "$date": "2025-10-23T11:51:06.442519"
+    },
+    "views": 5,
+    "isEscalated": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-22T11:51:06.442519"
+    },
+    "updatedAt": {
+      "$date": "2025-10-23T11:51:06.442519"
+    }
+  }
+]

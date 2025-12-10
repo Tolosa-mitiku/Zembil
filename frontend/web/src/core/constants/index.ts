@@ -1,5 +1,6 @@
 // API Configuration
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://zembil.vercel.app/api/v1';
+// Default to localhost for development, override with VITE_API_BASE_URL for production
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
 
 // Firebase Configuration
 export const FIREBASE_CONFIG = {

@@ -1,0 +1,531 @@
+# Zembil Web Frontend - React/TypeScript Cursor Rules
+
+## Project Overview
+Zembil web frontend is a React application with TypeScript, using Vite as the build tool, Redux Toolkit for state management, and Tailwind CSS for styling.
+
+## Architecture Pattern: Feature-Based Structure
+
+### Directory Structure
+```
+src/
+├── core/                    # Core utilities, constants, configs
+├── features/               # Feature modules (vertical slicing)
+│   └── [feature_name]/
+│       ├── api/               # API calls for this feature
+│       ├── components/        # Feature-specific components
+│       ├── hooks/            # Feature-specific hooks
+│       ├── pages/            # Page components
+│       ├── store/            # Redux slices for this feature
+│       ├── types/            # TypeScript types/interfaces
+│       └── utils/            # Feature utilities
+├── shared/                 # Shared/common components
+├── hooks/                  # Global custom hooks
+├── store/                  # Global Redux store
+└── main.tsx               # Entry point
+```
+
+## Coding Standards
+
+### 1. File Naming Conventions
+- Use `PascalCase` for component files: `HomePage.tsx`, `ProductCard.tsx`
+- Use `camelCase` for utility files: `formatPrice.ts`, `useAuth.ts`
+- Use `camelCase` for API files: `productApi.ts`, `authApi.ts`
+- Hooks: `use[HookName].ts` (e.g., `useCart.ts`, `useProducts.ts`)
+- Types: `[feature].types.ts` or `types.ts` within feature folder
+
+### 2. Component Pattern
+```typescript
+import { FC } from 'react';
+
+interface ProductCardProps {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  onAddToCart?: () => void;
+}
+
+export const ProductCard: FC<ProductCardProps> = ({ 
+  id, 
+  title, 
+  price, 
+  image, 
+  onAddToCart 
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-4">
+      <img src={image} alt={title} className="w-full h-48 object-cover" />
+      <h3 className="text-lg font-semibold mt-2">{title}</h3>
+      <p className="text-gold-600 font-bold">${price.toFixed(2)}</p>
+      {onAddToCart && (
+        <button onClick={onAddToCart} className="btn-primary mt-2">
+          Add to Cart
+        </button>
+      )}
+    </div>
+  );
+};
+```
+
+### 3. TypeScript Types
+```typescript
+// Always define proper types/interfaces
+export interface Product {
+  id: string;
+  sellerId: string;
+  title: string;
+  description?: string;
+  category: string;
+  price: number;
+  stockQuantity: number;
+  images: string[];
+  isFeatured: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  message?: string;
+  error?: string;
+}
+
+export interface PaginatedResponse<T> {
+  success: boolean;
+  data: T[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+```
+
+### 4. API Integration Pattern
+```typescript
+// features/products/api/productApi.ts
+import axios from 'axios';
+import { Product, ApiResponse, PaginatedResponse } from '../types';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+
+export const productApi = {
+  async getProducts(params?: {
+    page?: number;
+    limit?: number;
+    category?: string;
+    search?: string;
+  }): Promise<PaginatedResponse<Product>> {
+    const response = await axios.get(`${API_BASE_URL}/products`, { params });
+    return response.data;
+  },
+
+  async getProductById(id: string): Promise<ApiResponse<Product>> {
+    const response = await axios.get(`${API_BASE_URL}/products/${id}`);
+    return response.data;
+  },
+
+  async createProduct(data: Partial<Product>): Promise<ApiResponse<Product>> {
+    const response = await axios.post(`${API_BASE_URL}/products`, data);
+    return response.data;
+  },
+};
+```
+
+### 5. Redux Toolkit Slice Pattern
+```typescript
+// features/products/store/productsSlice.ts
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { productApi } from '../api/productApi';
+import { Product } from '../types';
+
+interface ProductsState {
+  products: Product[];
+  loading: boolean;
+  error: string | null;
+  currentProduct: Product | null;
+}
+
+const initialState: ProductsState = {
+  products: [],
+  loading: false,
+  error: null,
+  currentProduct: null,
+};
+
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async (params?: { page?: number; limit?: number }) => {
+    const response = await productApi.getProducts(params);
+    return response.data;
+  }
+);
+
+const productsSlice = createSlice({
+  name: 'products',
+  initialState,
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to fetch products';
+      });
+  },
+});
+
+export const { clearError } = productsSlice.actions;
+export default productsSlice.reducer;
+```
+
+### 6. Custom Hooks Pattern
+```typescript
+// features/products/hooks/useProducts.ts
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchProducts } from '../store/productsSlice';
+
+export const useProducts = (params?: { category?: string; page?: number }) => {
+  const dispatch = useAppDispatch();
+  const { products, loading, error } = useAppSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts(params));
+  }, [dispatch, params?.category, params?.page]);
+
+  return { products, loading, error };
+};
+```
+
+### 7. Page Component Pattern
+```typescript
+// features/products/pages/ProductsPage.tsx
+import { FC } from 'react';
+import { useProducts } from '../hooks/useProducts';
+import { ProductCard } from '../components/ProductCard';
+import { LoadingSpinner } from '@/shared/LoadingSpinner';
+import { ErrorMessage } from '@/shared/ErrorMessage';
+
+export const ProductsPage: FC = () => {
+  const { products, loading, error } = useProducts();
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage message={error} />;
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Products</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+## Tailwind CSS Guidelines
+
+### 1. Use Tailwind Classes
+```typescript
+// GOOD - Use Tailwind utility classes
+<div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-md">
+  <h2 className="text-xl font-bold text-gray-900">Title</h2>
+</div>
+
+// BAD - Inline styles
+<div style={{ display: 'flex', padding: '16px', backgroundColor: 'white' }}>
+  <h2 style={{ fontSize: '20px', fontWeight: 'bold' }}>Title</h2>
+</div>
+```
+
+### 2. Responsive Design
+```typescript
+// Mobile-first responsive classes
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  {/* Content */}
+</div>
+
+// Responsive padding/margin
+<div className="p-4 md:p-6 lg:p-8">
+  {/* Content */}
+</div>
+```
+
+### 3. Custom Tailwind Config
+```javascript
+// tailwind.config.js - Define custom colors
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        gold: {
+          50: '#FFF9E5',
+          100: '#FFF3CC',
+          200: '#FFE699',
+          300: '#FFD966',
+          400: '#FFCC33',
+          500: '#D4AF37', // Primary gold
+          600: '#B8941E',
+          700: '#9C7A15',
+          800: '#80600C',
+          900: '#644703',
+        },
+      },
+    },
+  },
+};
+```
+
+## Code Quality Standards
+
+### 1. Error Handling
+```typescript
+// Always handle errors gracefully
+try {
+  const response = await productApi.getProducts();
+  setProducts(response.data);
+} catch (error) {
+  console.error('Failed to fetch products:', error);
+  setError(error instanceof Error ? error.message : 'Unknown error');
+}
+```
+
+### 2. Loading States
+```typescript
+// Always show loading states
+{loading ? (
+  <LoadingSpinner />
+) : (
+  <ProductList products={products} />
+)}
+```
+
+### 3. Type Safety
+```typescript
+// Always use TypeScript types
+interface ButtonProps {
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  children: React.ReactNode;
+}
+
+// Use type guards
+function isProduct(item: unknown): item is Product {
+  return (
+    typeof item === 'object' &&
+    item !== null &&
+    'id' in item &&
+    'title' in item &&
+    'price' in item
+  );
+}
+```
+
+### 4. Environment Variables
+```typescript
+// Use Vite environment variables
+const API_URL = import.meta.env.VITE_API_URL;
+const IS_PRODUCTION = import.meta.env.PROD;
+
+// Never commit sensitive data
+// Add to .env.local (gitignored)
+VITE_API_URL=http://localhost:5000/api/v1
+VITE_FIREBASE_API_KEY=your-key
+```
+
+## Performance Best Practices
+
+### 1. Memoization
+```typescript
+import { useMemo, useCallback } from 'react';
+
+// Memoize expensive calculations
+const sortedProducts = useMemo(() => {
+  return [...products].sort((a, b) => b.price - a.price);
+}, [products]);
+
+// Memoize callbacks
+const handleAddToCart = useCallback((id: string) => {
+  dispatch(addToCart(id));
+}, [dispatch]);
+```
+
+### 2. Code Splitting
+```typescript
+// Lazy load components
+import { lazy, Suspense } from 'react';
+
+const ProductsPage = lazy(() => import('./features/products/pages/ProductsPage'));
+
+// Use in routes
+<Suspense fallback={<LoadingSpinner />}>
+  <ProductsPage />
+</Suspense>
+```
+
+### 3. Image Optimization
+```typescript
+// Use optimized image formats
+<img 
+  src={product.image} 
+  alt={product.title}
+  loading="lazy"
+  className="w-full h-48 object-cover"
+/>
+```
+
+## Testing Guidelines
+
+### 1. Component Tests
+```typescript
+import { render, screen } from '@testing-library/react';
+import { ProductCard } from './ProductCard';
+
+describe('ProductCard', () => {
+  it('renders product information', () => {
+    const product = {
+      id: '1',
+      title: 'Test Product',
+      price: 29.99,
+      image: '/test.jpg',
+    };
+
+    render(<ProductCard {...product} />);
+    
+    expect(screen.getByText('Test Product')).toBeInTheDocument();
+    expect(screen.getByText('$29.99')).toBeInTheDocument();
+  });
+});
+```
+
+## Accessibility
+
+### 1. Semantic HTML
+```typescript
+// GOOD - Semantic HTML
+<nav>
+  <ul>
+    <li><a href="/products">Products</a></li>
+  </ul>
+</nav>
+
+// BAD - Div soup
+<div className="nav">
+  <div className="list">
+    <div className="item"><span>Products</span></div>
+  </div>
+</div>
+```
+
+### 2. ARIA Labels
+```typescript
+<button 
+  aria-label="Add to cart"
+  onClick={handleAddToCart}
+>
+  <ShoppingCartIcon />
+</button>
+```
+
+## Security Best Practices
+
+### 1. Authentication
+```typescript
+// Store tokens securely
+import { auth } from '@/core/firebase';
+
+const token = await auth.currentUser?.getIdToken();
+
+// Include in API requests
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+```
+
+### 2. Input Sanitization
+```typescript
+// Sanitize user input
+import DOMPurify from 'dompurify';
+
+const sanitizedHTML = DOMPurify.sanitize(userInput);
+```
+
+## AI Assistant Guidelines
+
+### Documentation Files
+- **NEVER** proactively create documentation files (*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a file exceeds 1000 lines:
+  - **MUST** refactor into smaller, focused components
+  - Break large pages into smaller components
+  - Extract reusable UI components
+  - Split API calls into separate service files
+  - Create custom hooks for complex logic
+  - Separate Redux slices by domain
+- Before creating/editing files, check line count and refactor if needed
+- Split large files into:
+  - Pages: Extract sections into separate components
+  - Components: Create sub-components for complex UIs
+  - API files: Group by resource/feature
+  - Redux slices: Split by feature domain
+  - Utilities: One utility file per concern
+
+### Backend Integration - Static Data Removal
+- **CRITICAL**: When integrating frontend with backend, **ALWAYS** remove all static/mock data
+- **MUST** ensure all displayed data comes directly from backend API calls
+- Before completing integration:
+  - [ ] Remove all hardcoded/mock data arrays
+  - [ ] Remove static JSON files used for testing
+  - [ ] Delete mock API functions
+  - [ ] Remove dummy data generators
+  - [ ] Verify all data is fetched from actual API endpoints
+  - [ ] Check console for any references to static data
+  - [ ] Ensure loading states trigger real API calls
+- **Pattern for migration**:
+  ```typescript
+  // BEFORE (BAD - Static data)
+  const products = [
+    { id: '1', title: 'Product 1', price: 29.99 },
+    { id: '2', title: 'Product 2', price: 39.99 },
+  ];
+
+  // AFTER (GOOD - Backend data)
+  const { products, loading, error } = useProducts();
+  // Fetches from backend API
+  ```
+- Replace all instances of:
+  - Mock data arrays → API calls
+  - Static constants → Environment variables or API configs
+  - Hardcoded values → Backend responses
+  - Local storage fallbacks → Backend authentication
+
+## Deployment Checklist
+- [ ] Environment variables configured for production
+- [ ] API URLs point to production backend
+- [ ] Firebase config uses production credentials
+- [ ] All console.log statements removed
+- [ ] Error tracking configured (Sentry, etc.)
+- [ ] Performance monitoring enabled
+- [ ] Build optimizations applied
+- [ ] Security headers configured
+- [ ] CORS properly configured on backend
+

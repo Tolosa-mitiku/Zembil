@@ -1,0 +1,2386 @@
+[
+  {
+    "_id": {
+      "$oid": "976ddc0ce6169bf8ebead7bd"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250901-1000 has been placed successfully.",
+    "data": {
+      "orderId": "4b6cbb75ec9d6f3bb1725d54",
+      "orderNumber": "ZMB-20250901-1000"
+    },
+    "image": "",
+    "actionUrl": "/orders/4b6cbb75ec9d6f3bb1725d54",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-11-25T13:47:49.392420"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-25T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9287651e30ae280fa7c94508"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250901-1000 has been confirmed by the seller.",
+    "data": {
+      "orderId": "4b6cbb75ec9d6f3bb1725d54",
+      "orderNumber": "ZMB-20250901-1000"
+    },
+    "actionUrl": "/orders/4b6cbb75ec9d6f3bb1725d54",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-25T16:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T16:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7ff5aa6b65503f35be9b2676"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250901-1000 has been shipped! Track your package.",
+    "data": {
+      "orderId": "4b6cbb75ec9d6f3bb1725d54",
+      "trackingNumber": "TRK818718608"
+    },
+    "actionUrl": "/orders/4b6cbb75ec9d6f3bb1725d54/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-27T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "40f616d26b74da0353ad2c88"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250831-1001 has been placed successfully.",
+    "data": {
+      "orderId": "b94fe20e4bd43b241b49bfa5",
+      "orderNumber": "ZMB-20250831-1001"
+    },
+    "image": "",
+    "actionUrl": "/orders/b94fe20e4bd43b241b49bfa5",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c1994bea5fd81ce17b866efe"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250831-1001 has been confirmed by the seller.",
+    "data": {
+      "orderId": "b94fe20e4bd43b241b49bfa5",
+      "orderNumber": "ZMB-20250831-1001"
+    },
+    "actionUrl": "/orders/b94fe20e4bd43b241b49bfa5",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-17T12:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-17T12:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "71e60c4a0ccd2c5ef0ca9900"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250831-1001 has been shipped! Track your package.",
+    "data": {
+      "orderId": "b94fe20e4bd43b241b49bfa5",
+      "trackingNumber": "TRK943522099"
+    },
+    "actionUrl": "/orders/b94fe20e4bd43b241b49bfa5/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-19T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-19T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2dc2feff4c9b0c92e63350f5"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250814-1002 has been placed successfully.",
+    "data": {
+      "orderId": "04fda1efbb334a1e76555105",
+      "orderNumber": "ZMB-20250814-1002"
+    },
+    "image": "",
+    "actionUrl": "/orders/04fda1efbb334a1e76555105",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-31T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-31T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eb9a7a3b6b8c35c14c6d83b0"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250814-1002 has been confirmed by the seller.",
+    "data": {
+      "orderId": "04fda1efbb334a1e76555105",
+      "orderNumber": "ZMB-20250814-1002"
+    },
+    "actionUrl": "/orders/04fda1efbb334a1e76555105",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-31T16:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-31T16:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "aeb8b54bfad0e55bf6405a7c"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250814-1002 has been shipped! Track your package.",
+    "data": {
+      "orderId": "04fda1efbb334a1e76555105",
+      "trackingNumber": "TRK749715056"
+    },
+    "actionUrl": "/orders/04fda1efbb334a1e76555105/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-02T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-02T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1398c51d237abc06c8dec2e2"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251006-1003 has been placed successfully.",
+    "data": {
+      "orderId": "b43458ab03643d5d540af5ca",
+      "orderNumber": "ZMB-20251006-1003"
+    },
+    "image": "",
+    "actionUrl": "/orders/b43458ab03643d5d540af5ca",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-20T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8a7e2608138da7dc966e7804"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251006-1003 has been confirmed by the seller.",
+    "data": {
+      "orderId": "b43458ab03643d5d540af5ca",
+      "orderNumber": "ZMB-20251006-1003"
+    },
+    "actionUrl": "/orders/b43458ab03643d5d540af5ca",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-20T12:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-20T12:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9ee4ee6b0bd8c35fbaa92c9c"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251006-1003 has been shipped! Track your package.",
+    "data": {
+      "orderId": "b43458ab03643d5d540af5ca",
+      "trackingNumber": "TRK699818775"
+    },
+    "actionUrl": "/orders/b43458ab03643d5d540af5ca/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-22T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5b50a005245f758f4fc056ca"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251110-1004 has been placed successfully.",
+    "data": {
+      "orderId": "bade12737053547f83eec337",
+      "orderNumber": "ZMB-20251110-1004"
+    },
+    "image": "",
+    "actionUrl": "/orders/bade12737053547f83eec337",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-16T13:47:49.392420"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3d72f4c22bc8012cc3840602"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251110-1004 has been confirmed by the seller.",
+    "data": {
+      "orderId": "bade12737053547f83eec337",
+      "orderNumber": "ZMB-20251110-1004"
+    },
+    "actionUrl": "/orders/bade12737053547f83eec337",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-16T12:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T12:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "840fdc637dd011c467932f1e"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251110-1004 has been shipped! Track your package.",
+    "data": {
+      "orderId": "bade12737053547f83eec337",
+      "trackingNumber": "TRK908120284"
+    },
+    "actionUrl": "/orders/bade12737053547f83eec337/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-18T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-18T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f1005cdf5a61b229d4cb39ca"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250814-1005 has been placed successfully.",
+    "data": {
+      "orderId": "4da5dc058afce1aef2db63c9",
+      "orderNumber": "ZMB-20250814-1005"
+    },
+    "image": "",
+    "actionUrl": "/orders/4da5dc058afce1aef2db63c9",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b70553e241a83921b3a137f4"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250814-1005 has been confirmed by the seller.",
+    "data": {
+      "orderId": "4da5dc058afce1aef2db63c9",
+      "orderNumber": "ZMB-20250814-1005"
+    },
+    "actionUrl": "/orders/4da5dc058afce1aef2db63c9",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-09T17:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-09T17:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b8975ee7de9cf098d8fb0e37"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250814-1005 has been shipped! Track your package.",
+    "data": {
+      "orderId": "4da5dc058afce1aef2db63c9",
+      "trackingNumber": "TRK870788041"
+    },
+    "actionUrl": "/orders/4da5dc058afce1aef2db63c9/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-11T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-11T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "879861e9d457cd6140c86615"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251016-1006 has been placed successfully.",
+    "data": {
+      "orderId": "cb7873ceae09c39c5a13a64e",
+      "orderNumber": "ZMB-20251016-1006"
+    },
+    "image": "",
+    "actionUrl": "/orders/cb7873ceae09c39c5a13a64e",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-12-06T13:47:49.392420"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-06T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "775747c0f3ea1874a5e20c59"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251016-1006 has been confirmed by the seller.",
+    "data": {
+      "orderId": "cb7873ceae09c39c5a13a64e",
+      "orderNumber": "ZMB-20251016-1006"
+    },
+    "actionUrl": "/orders/cb7873ceae09c39c5a13a64e",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-06T17:47:49.392420"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-06T17:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "682d0ebd77e22cb504d3bc19"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251016-1006 has been shipped! Track your package.",
+    "data": {
+      "orderId": "cb7873ceae09c39c5a13a64e",
+      "trackingNumber": "TRK856938797"
+    },
+    "actionUrl": "/orders/cb7873ceae09c39c5a13a64e/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-08T11:47:49.392420"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-08T11:47:49.392420"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1e79dc7bdc87a655b5cb045d"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250826-1007 has been placed successfully.",
+    "data": {
+      "orderId": "f10b64452c5a20541a72c070",
+      "orderNumber": "ZMB-20250826-1007"
+    },
+    "image": "",
+    "actionUrl": "/orders/f10b64452c5a20541a72c070",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-08-15T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-15T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7b1b062c3b008ca19c015d54"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250826-1007 has been confirmed by the seller.",
+    "data": {
+      "orderId": "f10b64452c5a20541a72c070",
+      "orderNumber": "ZMB-20250826-1007"
+    },
+    "actionUrl": "/orders/f10b64452c5a20541a72c070",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-15T14:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T14:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ca14e811b925ed85bccc77ed"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250826-1007 has been shipped! Track your package.",
+    "data": {
+      "orderId": "f10b64452c5a20541a72c070",
+      "trackingNumber": "TRK844925680"
+    },
+    "actionUrl": "/orders/f10b64452c5a20541a72c070/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-17T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "354311c0e065eb1a359299fd"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250916-1008 has been placed successfully.",
+    "data": {
+      "orderId": "4492dbbac7d9e477973791e3",
+      "orderNumber": "ZMB-20250916-1008"
+    },
+    "image": "",
+    "actionUrl": "/orders/4492dbbac7d9e477973791e3",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3305fad5e0aa1091f20e8371"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250916-1008 has been confirmed by the seller.",
+    "data": {
+      "orderId": "4492dbbac7d9e477973791e3",
+      "orderNumber": "ZMB-20250916-1008"
+    },
+    "actionUrl": "/orders/4492dbbac7d9e477973791e3",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-25T17:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-25T17:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b2d29d3cffbc5bc550b03bea"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250916-1008 has been shipped! Track your package.",
+    "data": {
+      "orderId": "4492dbbac7d9e477973791e3",
+      "trackingNumber": "TRK136476861"
+    },
+    "actionUrl": "/orders/4492dbbac7d9e477973791e3/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0feb245e39ebccac986652b7"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250822-1009 has been placed successfully.",
+    "data": {
+      "orderId": "7d6e10692db98954500c026c",
+      "orderNumber": "ZMB-20250822-1009"
+    },
+    "image": "",
+    "actionUrl": "/orders/7d6e10692db98954500c026c",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-07T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1289614f9979d71d3bfaea42"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250822-1009 has been confirmed by the seller.",
+    "data": {
+      "orderId": "7d6e10692db98954500c026c",
+      "orderNumber": "ZMB-20250822-1009"
+    },
+    "actionUrl": "/orders/7d6e10692db98954500c026c",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-07T15:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-07T15:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7d0259476c64cb35e98c5f80"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250822-1009 has been shipped! Track your package.",
+    "data": {
+      "orderId": "7d6e10692db98954500c026c",
+      "trackingNumber": "TRK535140330"
+    },
+    "actionUrl": "/orders/7d6e10692db98954500c026c/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-09T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-09T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "50485f8ff48b95375c740bb2"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251004-1010 has been placed successfully.",
+    "data": {
+      "orderId": "420b150ddf83bac67f11d49c",
+      "orderNumber": "ZMB-20251004-1010"
+    },
+    "image": "",
+    "actionUrl": "/orders/420b150ddf83bac67f11d49c",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "34a7a2b2626bfd3bb780a693"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251004-1010 has been confirmed by the seller.",
+    "data": {
+      "orderId": "420b150ddf83bac67f11d49c",
+      "orderNumber": "ZMB-20251004-1010"
+    },
+    "actionUrl": "/orders/420b150ddf83bac67f11d49c",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-22T13:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T13:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2dc39186eea26ecfd58dedaf"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251004-1010 has been shipped! Track your package.",
+    "data": {
+      "orderId": "420b150ddf83bac67f11d49c",
+      "trackingNumber": "TRK955718436"
+    },
+    "actionUrl": "/orders/420b150ddf83bac67f11d49c/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "542925f11e7c9c852900cae3"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251023-1011 has been placed successfully.",
+    "data": {
+      "orderId": "06b6fa3ed8eac751bc3a2edb",
+      "orderNumber": "ZMB-20251023-1011"
+    },
+    "image": "",
+    "actionUrl": "/orders/06b6fa3ed8eac751bc3a2edb",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1551e4054931ce547c7ece45"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251023-1011 has been confirmed by the seller.",
+    "data": {
+      "orderId": "06b6fa3ed8eac751bc3a2edb",
+      "orderNumber": "ZMB-20251023-1011"
+    },
+    "actionUrl": "/orders/06b6fa3ed8eac751bc3a2edb",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-24T12:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-24T12:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b592cea39c4389c461059812"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251023-1011 has been shipped! Track your package.",
+    "data": {
+      "orderId": "06b6fa3ed8eac751bc3a2edb",
+      "trackingNumber": "TRK314399069"
+    },
+    "actionUrl": "/orders/06b6fa3ed8eac751bc3a2edb/track",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-26T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1318bfaad4536a4e2f076260"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250809-1012 has been placed successfully.",
+    "data": {
+      "orderId": "4163a1571900816a746c1d58",
+      "orderNumber": "ZMB-20250809-1012"
+    },
+    "image": "",
+    "actionUrl": "/orders/4163a1571900816a746c1d58",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7a7193b11960a0ad8a8fa4d3"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250809-1012 has been confirmed by the seller.",
+    "data": {
+      "orderId": "4163a1571900816a746c1d58",
+      "orderNumber": "ZMB-20250809-1012"
+    },
+    "actionUrl": "/orders/4163a1571900816a746c1d58",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-16T14:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-16T14:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e0d8a19fa5ef072a8f1210ca"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250809-1012 has been shipped! Track your package.",
+    "data": {
+      "orderId": "4163a1571900816a746c1d58",
+      "trackingNumber": "TRK954580436"
+    },
+    "actionUrl": "/orders/4163a1571900816a746c1d58/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-18T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-18T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bb3063dac2c47248ff829725"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251021-1013 has been placed successfully.",
+    "data": {
+      "orderId": "d0b661c97dddd69da4f5d2dd",
+      "orderNumber": "ZMB-20251021-1013"
+    },
+    "image": "",
+    "actionUrl": "/orders/d0b661c97dddd69da4f5d2dd",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-03T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-03T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-03T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c12926927695f68ca351bf48"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251021-1013 has been confirmed by the seller.",
+    "data": {
+      "orderId": "d0b661c97dddd69da4f5d2dd",
+      "orderNumber": "ZMB-20251021-1013"
+    },
+    "actionUrl": "/orders/d0b661c97dddd69da4f5d2dd",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-03T17:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-03T17:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a2cbe7eb3916d44886901dfb"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251021-1013 has been shipped! Track your package.",
+    "data": {
+      "orderId": "d0b661c97dddd69da4f5d2dd",
+      "trackingNumber": "TRK902514309"
+    },
+    "actionUrl": "/orders/d0b661c97dddd69da4f5d2dd/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-05T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-05T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4ae3c3049c5f9ce5890e63b7"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251012-1014 has been placed successfully.",
+    "data": {
+      "orderId": "1d3909a3e90fe27aa6416575",
+      "orderNumber": "ZMB-20251012-1014"
+    },
+    "image": "",
+    "actionUrl": "/orders/1d3909a3e90fe27aa6416575",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-10-21T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d45d86c04c15c2567eda8369"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251012-1014 has been confirmed by the seller.",
+    "data": {
+      "orderId": "1d3909a3e90fe27aa6416575",
+      "orderNumber": "ZMB-20251012-1014"
+    },
+    "actionUrl": "/orders/1d3909a3e90fe27aa6416575",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-21T16:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-21T16:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "87b70a1c9f968939d67bfd15"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251012-1014 has been shipped! Track your package.",
+    "data": {
+      "orderId": "1d3909a3e90fe27aa6416575",
+      "trackingNumber": "TRK686090494"
+    },
+    "actionUrl": "/orders/1d3909a3e90fe27aa6416575/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-23T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-23T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d8c8f22d30accfe08de91bf7"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250830-1015 has been placed successfully.",
+    "data": {
+      "orderId": "11ad635925783dd07f37439a",
+      "orderNumber": "ZMB-20250830-1015"
+    },
+    "image": "",
+    "actionUrl": "/orders/11ad635925783dd07f37439a",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-06T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a75719a458d10af0cc67f9dc"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250830-1015 has been confirmed by the seller.",
+    "data": {
+      "orderId": "11ad635925783dd07f37439a",
+      "orderNumber": "ZMB-20250830-1015"
+    },
+    "actionUrl": "/orders/11ad635925783dd07f37439a",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-06T15:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T15:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d0229d4c118dc9846c60bbff"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250830-1015 has been shipped! Track your package.",
+    "data": {
+      "orderId": "11ad635925783dd07f37439a",
+      "trackingNumber": "TRK157349092"
+    },
+    "actionUrl": "/orders/11ad635925783dd07f37439a/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "401eb165d5b8accb763c3d35"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250809-1016 has been placed successfully.",
+    "data": {
+      "orderId": "598199e2119f1a1691e52ac4",
+      "orderNumber": "ZMB-20250809-1016"
+    },
+    "image": "",
+    "actionUrl": "/orders/598199e2119f1a1691e52ac4",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2ccac99aa8a54a4623fb4612"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250809-1016 has been confirmed by the seller.",
+    "data": {
+      "orderId": "598199e2119f1a1691e52ac4",
+      "orderNumber": "ZMB-20250809-1016"
+    },
+    "actionUrl": "/orders/598199e2119f1a1691e52ac4",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-24T14:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-24T14:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "147acd74c2813848c35f24ec"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250809-1016 has been shipped! Track your package.",
+    "data": {
+      "orderId": "598199e2119f1a1691e52ac4",
+      "trackingNumber": "TRK520329496"
+    },
+    "actionUrl": "/orders/598199e2119f1a1691e52ac4/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-26T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-26T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2679742665df39f4c9ccfb2d"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250910-1017 has been placed successfully.",
+    "data": {
+      "orderId": "c0b9bd0541242266e972b273",
+      "orderNumber": "ZMB-20250910-1017"
+    },
+    "image": "",
+    "actionUrl": "/orders/c0b9bd0541242266e972b273",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "193c419592573caeb482f199"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250910-1017 has been confirmed by the seller.",
+    "data": {
+      "orderId": "c0b9bd0541242266e972b273",
+      "orderNumber": "ZMB-20250910-1017"
+    },
+    "actionUrl": "/orders/c0b9bd0541242266e972b273",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-27T14:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-27T14:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d78bbecfa01ee4b7fea89962"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250827-1018 has been placed successfully.",
+    "data": {
+      "orderId": "e928cf2c755502adeb09d1f5",
+      "orderNumber": "ZMB-20250827-1018"
+    },
+    "image": "",
+    "actionUrl": "/orders/e928cf2c755502adeb09d1f5",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-12-02T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-02T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6063386075f97ff3faad805f"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250827-1018 has been confirmed by the seller.",
+    "data": {
+      "orderId": "e928cf2c755502adeb09d1f5",
+      "orderNumber": "ZMB-20250827-1018"
+    },
+    "actionUrl": "/orders/e928cf2c755502adeb09d1f5",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-02T16:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-02T16:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d00893c210f5f386eef0ea38"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250827-1018 has been shipped! Track your package.",
+    "data": {
+      "orderId": "e928cf2c755502adeb09d1f5",
+      "trackingNumber": "TRK106973170"
+    },
+    "actionUrl": "/orders/e928cf2c755502adeb09d1f5/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-04T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-04T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "866b6782a1fa65c83cd0165c"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250924-1019 has been placed successfully.",
+    "data": {
+      "orderId": "24e743af38f28fd8b84cf077",
+      "orderNumber": "ZMB-20250924-1019"
+    },
+    "image": "",
+    "actionUrl": "/orders/24e743af38f28fd8b84cf077",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-08T13:47:49.393422"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T11:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "82914a3794d7a2609c8de9ce"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250924-1019 has been confirmed by the seller.",
+    "data": {
+      "orderId": "24e743af38f28fd8b84cf077",
+      "orderNumber": "ZMB-20250924-1019"
+    },
+    "actionUrl": "/orders/24e743af38f28fd8b84cf077",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-08T14:47:49.393422"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-08T14:47:49.393422"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a75c6b76144144a6e4d9bb69"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251103-1020 has been placed successfully.",
+    "data": {
+      "orderId": "2b365a2de59cf4f5b3655beb",
+      "orderNumber": "ZMB-20251103-1020"
+    },
+    "image": "",
+    "actionUrl": "/orders/2b365a2de59cf4f5b3655beb",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-10-29T13:47:49.394430"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-29T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "36f5e6884a1f4ca231b72576"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251103-1020 has been confirmed by the seller.",
+    "data": {
+      "orderId": "2b365a2de59cf4f5b3655beb",
+      "orderNumber": "ZMB-20251103-1020"
+    },
+    "actionUrl": "/orders/2b365a2de59cf4f5b3655beb",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-29T14:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-29T14:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "155f15f40e890d1ca83214f4"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251103-1020 has been shipped! Track your package.",
+    "data": {
+      "orderId": "2b365a2de59cf4f5b3655beb",
+      "trackingNumber": "TRK840615526"
+    },
+    "actionUrl": "/orders/2b365a2de59cf4f5b3655beb/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-31T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "94abb0f8d0dcd2fc5bd26956"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250909-1021 has been placed successfully.",
+    "data": {
+      "orderId": "a1c26afbac7d91440a42fdce",
+      "orderNumber": "ZMB-20250909-1021"
+    },
+    "image": "",
+    "actionUrl": "/orders/a1c26afbac7d91440a42fdce",
+    "isRead": true,
+    "readAt": {
+      "$date": "2025-08-14T13:47:49.394430"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5450e44a30e96e40ab7ce77d"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250909-1021 has been confirmed by the seller.",
+    "data": {
+      "orderId": "a1c26afbac7d91440a42fdce",
+      "orderNumber": "ZMB-20250909-1021"
+    },
+    "actionUrl": "/orders/a1c26afbac7d91440a42fdce",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-14T15:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-14T15:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5d003c3697ff12144943014b"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250909-1021 has been shipped! Track your package.",
+    "data": {
+      "orderId": "a1c26afbac7d91440a42fdce",
+      "trackingNumber": "TRK982743780"
+    },
+    "actionUrl": "/orders/a1c26afbac7d91440a42fdce/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-16T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-16T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5b05c458d28e8ed7cd88884b"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250828-1022 has been placed successfully.",
+    "data": {
+      "orderId": "4621caeb016293b6820066fa",
+      "orderNumber": "ZMB-20250828-1022"
+    },
+    "image": "",
+    "actionUrl": "/orders/4621caeb016293b6820066fa",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-11T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-11T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d2a971ad84ab2ef46c5ecd9a"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250828-1022 has been confirmed by the seller.",
+    "data": {
+      "orderId": "4621caeb016293b6820066fa",
+      "orderNumber": "ZMB-20250828-1022"
+    },
+    "actionUrl": "/orders/4621caeb016293b6820066fa",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-11T15:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-11T15:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "365ad98443f413e4d4adf2a6"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250828-1022 has been shipped! Track your package.",
+    "data": {
+      "orderId": "4621caeb016293b6820066fa",
+      "trackingNumber": "TRK235780861"
+    },
+    "actionUrl": "/orders/4621caeb016293b6820066fa/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-13T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-13T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "51444c2f7cc826059a2f2e39"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250921-1023 has been placed successfully.",
+    "data": {
+      "orderId": "337f92fb0f6ff13df4aa859c",
+      "orderNumber": "ZMB-20250921-1023"
+    },
+    "image": "",
+    "actionUrl": "/orders/337f92fb0f6ff13df4aa859c",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-30T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "88360093915b04f0ff888f18"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250921-1023 has been confirmed by the seller.",
+    "data": {
+      "orderId": "337f92fb0f6ff13df4aa859c",
+      "orderNumber": "ZMB-20250921-1023"
+    },
+    "actionUrl": "/orders/337f92fb0f6ff13df4aa859c",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-30T17:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-30T17:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7d1724bcc5dadd92d9b68b46"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250921-1023 has been shipped! Track your package.",
+    "data": {
+      "orderId": "337f92fb0f6ff13df4aa859c",
+      "trackingNumber": "TRK796563095"
+    },
+    "actionUrl": "/orders/337f92fb0f6ff13df4aa859c/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-01T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-01T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "de75a9d028b195b8db50f86e"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251010-1024 has been placed successfully.",
+    "data": {
+      "orderId": "9918d149250860bdbb19cb1b",
+      "orderNumber": "ZMB-20251010-1024"
+    },
+    "image": "",
+    "actionUrl": "/orders/9918d149250860bdbb19cb1b",
+    "isRead": true,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "f93791bd1ecc9421e87e8e0c"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251010-1024 has been confirmed by the seller.",
+    "data": {
+      "orderId": "9918d149250860bdbb19cb1b",
+      "orderNumber": "ZMB-20251010-1024"
+    },
+    "actionUrl": "/orders/9918d149250860bdbb19cb1b",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-06T16:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-06T16:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1ad19e14fd54f2d5ce1b3ed1"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20251030-1025 has been placed successfully.",
+    "data": {
+      "orderId": "87590ae22f5328fb2aca3e82",
+      "orderNumber": "ZMB-20251030-1025"
+    },
+    "image": "",
+    "actionUrl": "/orders/87590ae22f5328fb2aca3e82",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-08-15T13:47:49.394430"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-15T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "99d87c5e50729567909af960"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20251030-1025 has been confirmed by the seller.",
+    "data": {
+      "orderId": "87590ae22f5328fb2aca3e82",
+      "orderNumber": "ZMB-20251030-1025"
+    },
+    "actionUrl": "/orders/87590ae22f5328fb2aca3e82",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-15T14:47:49.394430"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-15T14:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d4788ea4b6c92eaddd8bec31"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20251030-1025 has been shipped! Track your package.",
+    "data": {
+      "orderId": "87590ae22f5328fb2aca3e82",
+      "trackingNumber": "TRK459119674"
+    },
+    "actionUrl": "/orders/87590ae22f5328fb2aca3e82/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-08-17T11:47:49.394430"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-08-17T11:47:49.394430"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dfcdd6e6bb8e3823c20f7854"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250830-1026 has been placed successfully.",
+    "data": {
+      "orderId": "406d9e21accf67378342e7f9",
+      "orderNumber": "ZMB-20250830-1026"
+    },
+    "image": "",
+    "actionUrl": "/orders/406d9e21accf67378342e7f9",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-10-16T13:47:49.395657"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4020100e9ca69b88ae78d6c7"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250830-1026 has been confirmed by the seller.",
+    "data": {
+      "orderId": "406d9e21accf67378342e7f9",
+      "orderNumber": "ZMB-20250830-1026"
+    },
+    "actionUrl": "/orders/406d9e21accf67378342e7f9",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-16T13:47:49.395657"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-16T13:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "50d19197a63013502d9255ff"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250830-1026 has been shipped! Track your package.",
+    "data": {
+      "orderId": "406d9e21accf67378342e7f9",
+      "trackingNumber": "TRK844609117"
+    },
+    "actionUrl": "/orders/406d9e21accf67378342e7f9/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-18T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-18T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0592870d580f98d98a0b2179"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250911-1027 has been placed successfully.",
+    "data": {
+      "orderId": "185ea166a73baf86e3702050",
+      "orderNumber": "ZMB-20250911-1027"
+    },
+    "image": "",
+    "actionUrl": "/orders/185ea166a73baf86e3702050",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-09-21T13:47:49.395657"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ed49263030807fa77fc49a18"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250911-1027 has been confirmed by the seller.",
+    "data": {
+      "orderId": "185ea166a73baf86e3702050",
+      "orderNumber": "ZMB-20250911-1027"
+    },
+    "actionUrl": "/orders/185ea166a73baf86e3702050",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-21T16:47:49.395657"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-21T16:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "61ce5ba7f766ec029b2fd1f5"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250911-1027 has been shipped! Track your package.",
+    "data": {
+      "orderId": "185ea166a73baf86e3702050",
+      "trackingNumber": "TRK282576935"
+    },
+    "actionUrl": "/orders/185ea166a73baf86e3702050/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-23T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-23T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "257c550c99c808cbbae90d85"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250826-1028 has been placed successfully.",
+    "data": {
+      "orderId": "d62b564ee3c37fb55b0a3d83",
+      "orderNumber": "ZMB-20250826-1028"
+    },
+    "image": "",
+    "actionUrl": "/orders/d62b564ee3c37fb55b0a3d83",
+    "isRead": false,
+    "readAt": null,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-11T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-11T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3d27f9364cfba15b1dc044b4"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250826-1028 has been confirmed by the seller.",
+    "data": {
+      "orderId": "d62b564ee3c37fb55b0a3d83",
+      "orderNumber": "ZMB-20250826-1028"
+    },
+    "actionUrl": "/orders/d62b564ee3c37fb55b0a3d83",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-11T15:47:49.395657"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-11T15:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6158d9b94aa0c07bab22bb1a"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_shipped",
+    "title": "Order Shipped",
+    "message": "Your order ZMB-20250826-1028 has been shipped! Track your package.",
+    "data": {
+      "orderId": "d62b564ee3c37fb55b0a3d83",
+      "trackingNumber": "TRK566488170"
+    },
+    "actionUrl": "/orders/d62b564ee3c37fb55b0a3d83/track",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-09-13T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-09-13T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "28fe8cbe5b156b57d8cd0241"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_created",
+    "title": "Order Placed Successfully",
+    "message": "Your order ZMB-20250905-1029 has been placed successfully.",
+    "data": {
+      "orderId": "07b84a9968aa5da110cedfbd",
+      "orderNumber": "ZMB-20250905-1029"
+    },
+    "image": "",
+    "actionUrl": "/orders/07b84a9968aa5da110cedfbd",
+    "isRead": false,
+    "readAt": {
+      "$date": "2025-10-04T13:47:49.395657"
+    },
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    },
+    "priority": "high",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T11:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "17e5f0405146829369360557"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "order_confirmed",
+    "title": "Order Confirmed",
+    "message": "Your order ZMB-20250905-1029 has been confirmed by the seller.",
+    "data": {
+      "orderId": "07b84a9968aa5da110cedfbd",
+      "orderNumber": "ZMB-20250905-1029"
+    },
+    "actionUrl": "/orders/07b84a9968aa5da110cedfbd",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-10-04T15:47:49.395657"
+    },
+    "priority": "medium",
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-04T15:47:49.395657"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3b7d992d79b3e90d3556bf3f"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "type": "promotion",
+    "title": "Weekend Sale - Up to 30% Off!",
+    "message": "Shop now and save big on electronics, fashion, and more!",
+    "data": {
+      "saleType": "weekend"
+    },
+    "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da",
+    "actionUrl": "/sales/weekend-special",
+    "isRead": false,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-11-22T11:50:14.836565"
+    },
+    "priority": "low",
+    "expiresAt": {
+      "$date": "2025-11-29T11:50:14.836565"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-22T11:50:14.836565"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "50337fbecb52ec254805b9e0"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "type": "promotion",
+    "title": "Weekend Sale - Up to 30% Off!",
+    "message": "Shop now and save big on electronics, fashion, and more!",
+    "data": {
+      "saleType": "weekend"
+    },
+    "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da",
+    "actionUrl": "/sales/weekend-special",
+    "isRead": true,
+    "isSent": true,
+    "sentAt": {
+      "$date": "2025-12-04T11:50:14.836565"
+    },
+    "priority": "low",
+    "expiresAt": {
+      "$date": "2025-12-11T11:50:14.836565"
+    },
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-12-04T11:50:14.836565"
+    }
+  }
+]

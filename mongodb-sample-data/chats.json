@@ -1,0 +1,214 @@
+[
+  {
+    "_id": {
+      "$oid": "3d272421e3c16c2ceabbaa46"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6ba",
+    "lastMessage": "Thank you for your help!",
+    "lastMessageAt": {
+      "$date": "2025-12-03T11:51:06.441330"
+    },
+    "unreadMessagesCount": {
+      "buyer": 1,
+      "seller": 0
+    },
+    "participants": [
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d4ba"
+        },
+        "role": "buyer",
+        "isOnline": true,
+        "lastSeen": {
+          "$date": "2025-12-03T11:51:06.441330"
+        },
+        "isTyping": false
+      },
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "role": "seller",
+        "isOnline": true,
+        "lastSeen": {
+          "$date": "2025-12-03T11:51:06.441330"
+        },
+        "isTyping": false
+      }
+    ],
+    "isActive": true,
+    "isArchived": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-03T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-12-03T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c58a380172472eac91dbc332"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4ba_674a03d139f1f85510c3d6bd",
+    "lastMessage": "Thank you for your help!",
+    "lastMessageAt": {
+      "$date": "2025-11-30T11:51:06.441330"
+    },
+    "unreadMessagesCount": {
+      "buyer": 2,
+      "seller": 1
+    },
+    "participants": [
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d4ba"
+        },
+        "role": "buyer",
+        "isOnline": false,
+        "lastSeen": {
+          "$date": "2025-11-30T11:51:06.441330"
+        },
+        "isTyping": false
+      },
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "role": "seller",
+        "isOnline": false,
+        "lastSeen": {
+          "$date": "2025-11-30T11:51:06.441330"
+        },
+        "isTyping": false
+      }
+    ],
+    "isActive": true,
+    "isArchived": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-10-31T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-11-30T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1c24bcdc02e52f6206fdbe65"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6ba"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6ba",
+    "lastMessage": "Thank you for your help!",
+    "lastMessageAt": {
+      "$date": "2025-12-02T11:51:06.441330"
+    },
+    "unreadMessagesCount": {
+      "buyer": 0,
+      "seller": 2
+    },
+    "participants": [
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d4bc"
+        },
+        "role": "buyer",
+        "isOnline": true,
+        "lastSeen": {
+          "$date": "2025-12-02T11:51:06.441330"
+        },
+        "isTyping": false
+      },
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "role": "seller",
+        "isOnline": false,
+        "lastSeen": {
+          "$date": "2025-12-02T11:51:06.441330"
+        },
+        "isTyping": false
+      }
+    ],
+    "isActive": true,
+    "isArchived": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-02T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-12-02T11:51:06.441330"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "49b24db42c5358639515c1c3"
+    },
+    "buyerId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "sellerId": {
+      "$oid": "674a03d139f1f85510c3d6bd"
+    },
+    "chatRoomId": "chat_674a03d139f1f85510c3d4bc_674a03d139f1f85510c3d6bd",
+    "lastMessage": "Thank you for your help!",
+    "lastMessageAt": {
+      "$date": "2025-12-07T11:51:06.441330"
+    },
+    "unreadMessagesCount": {
+      "buyer": 3,
+      "seller": 1
+    },
+    "participants": [
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d4bc"
+        },
+        "role": "buyer",
+        "isOnline": false,
+        "lastSeen": {
+          "$date": "2025-12-07T11:51:06.441330"
+        },
+        "isTyping": false
+      },
+      {
+        "userId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "role": "seller",
+        "isOnline": true,
+        "lastSeen": {
+          "$date": "2025-12-07T11:51:06.441330"
+        },
+        "isTyping": false
+      }
+    ],
+    "isActive": true,
+    "isArchived": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-07T11:51:06.441330"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:51:06.441330"
+    }
+  }
+]

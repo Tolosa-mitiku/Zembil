@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
 import { authorizeRole } from "../middlewares/authorizeRole";
+import { verifyFirebaseToken } from "../middlewares/verifyFirebaseToken";
 
 // User Management
 import {
   getAllUsers,
   getUserDetails,
+  getUserStats,
   updateUserRole,
   updateUserStatus,
-  getUserStats,
 } from "../controllers/adminUser";
 
 // Seller Management
@@ -16,27 +16,27 @@ import {
   getAllSellers,
   getPendingVerifications,
   getSellerDetails,
-  verifySeller,
+  getSellerStats,
   rejectSeller,
   suspendSeller,
-  getSellerStats,
+  verifySeller,
 } from "../controllers/adminSeller";
 
 // Product Management
 import {
-  getAllProducts as adminGetAllProducts,
-  featureProduct,
-  approveProduct,
-  rejectProduct,
   deleteProduct as adminDeleteProduct,
+  getAllProducts as adminGetAllProducts,
+  approveProduct,
+  featureProduct,
+  rejectProduct,
 } from "../controllers/adminProduct";
 
 // Order Management
 import {
   getAllOrders as adminGetAllOrders,
   getOrderDetails as adminGetOrderDetails,
-  processRefund,
   getOrderStats,
+  processRefund,
 } from "../controllers/adminOrder";
 
 // Analytics
@@ -51,18 +51,47 @@ import {
 import {
   getAllCategories as adminGetAllCategories,
   createCategory,
-  updateCategory,
   deleteCategory,
+  updateCategory,
 } from "../controllers/adminCategory";
 
 // Banner Management
 import {
   getAllBanners as adminGetAllBanners,
   createBanner,
-  updateBanner,
   deleteBanner,
   toggleBannerStatus,
+  updateBanner,
 } from "../controllers/adminBanner";
+
+// Audit Logs
+import { getAuditLogs, getAuditStats } from "../controllers/auditLog";
+
+// System Management
+import { getHealthHistory, getSystemHealth } from "../controllers/systemHealth";
+
+import {
+  getSystemConfig,
+  toggleMaintenanceMode,
+  updateSystemConfig,
+} from "../controllers/systemConfig";
+
+// Payout Management (Admin functions)
+import {
+  approvePayout as adminApprovePayout,
+  rejectPayout as adminRejectPayout,
+  getAllPayoutRequests,
+} from "../controllers/payoutRequest";
+
+// Refund Management (Admin functions)
+import {
+  approveRefund as adminApproveRefund,
+  rejectRefund as adminRejectRefund,
+  getAllRefunds,
+} from "../controllers/refund";
+
+// Session Management (Admin functions)
+import { getAllActiveSessions } from "../controllers/userSession";
 
 const router = Router();
 
@@ -118,12 +147,30 @@ router.put("/banners/:id", updateBanner);
 router.put("/banners/:id/toggle", toggleBannerStatus);
 router.delete("/banners/:id", deleteBanner);
 
+// ============= AUDIT LOGS =============
+router.get("/audit", getAuditLogs);
+router.get("/audit/stats", getAuditStats);
+
+// ============= SYSTEM HEALTH =============
+router.get("/system/health", getSystemHealth);
+router.get("/system/health/history", getHealthHistory);
+
+// ============= SYSTEM CONFIGURATION =============
+router.get("/system/config", getSystemConfig);
+router.put("/system/config", updateSystemConfig);
+router.post("/system/maintenance", toggleMaintenanceMode);
+
+// ============= PAYOUT MANAGEMENT =============
+router.get("/payouts", getAllPayoutRequests);
+router.put("/payouts/:id/approve", adminApprovePayout);
+router.put("/payouts/:id/reject", adminRejectPayout);
+
+// ============= REFUND MANAGEMENT =============
+router.get("/refunds", getAllRefunds);
+router.put("/refunds/:id/approve", adminApproveRefund);
+router.put("/refunds/:id/reject", adminRejectRefund);
+
+// ============= SESSION MANAGEMENT =============
+router.get("/sessions/all", getAllActiveSessions);
+
 export default router;
-
-
-
-
-
-
-
-

@@ -874,4 +874,31 @@ class _ModernProductCardState extends State<ModernProductCard>
 
 ---
 
+## AI Assistant Guidelines
+
+### Documentation Files
+- **NEVER** proactively create documentation files (*.md, README files)
+- Only create documentation files when **explicitly** requested by the user
+- Focus on code implementation rather than documentation generation
+
+### File Size Management
+- **MAXIMUM FILE SIZE**: 1000 lines of code
+- When a UI file/widget exceeds 1000 lines:
+  - **MUST** refactor into smaller, reusable widgets
+  - Extract sections into separate widget files
+  - Create sub-widgets for complex UI components
+  - Split large pages into multiple widget composition files
+  - Extract theme-related code into theme files
+  - Move constants to separate constant files
+- Component extraction strategy:
+  - Header sections → separate widget files
+  - List items → separate widget files
+  - Cards → separate widget files
+  - Bottom sheets/dialogs → separate widget files
+  - Form sections → separate widget files
+- Maintain widget tree clarity while keeping files manageable
+- Use widget composition over large monolithic widgets
+
+---
+
 **Follow these rules to maintain a consistent, modern, and luxurious UI throughout the Zembil app** 🏆✨

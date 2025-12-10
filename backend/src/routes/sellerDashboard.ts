@@ -64,18 +64,12 @@ router.post("/payouts/request", requestPayout);
 router.get("/transactions", getTransactionHistory);
 
 // Store Settings
-router.get("/settings", async (req, res, next) => {
-  // Get seller ID from user and pass to controller
-  // This is a workaround - in production you'd want cleaner handling
-  req.params.id = req.body.sellerId || "";
-  return getStoreSettings(req, res);
-});
-router.put("/settings", async (req, res, next) => {
-  req.params.id = req.body.sellerId || "";
-  return updateStoreSettings(req, res);
-});
+router.get("/settings", getStoreSettings);
+router.put("/settings", updateStoreSettings);
 
 export default router;
+
+
 
 
 

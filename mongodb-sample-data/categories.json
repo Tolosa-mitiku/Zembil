@@ -1,0 +1,243 @@
+[
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7aa"},
+    "name": "Electronics",
+    "slug": "electronics",
+    "description": "Consumer electronics, gadgets, and accessories",
+    "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661",
+    "icon": "devices",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 1,
+    "productsCount": 45,
+    "seo": {
+      "metaTitle": "Electronics - Latest Gadgets and Devices",
+      "metaDescription": "Shop the latest electronics, smartphones, laptops, and tech accessories.",
+      "keywords": ["electronics", "gadgets", "smartphones", "laptops", "tech"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7ab"},
+    "name": "Smartphones",
+    "slug": "smartphones",
+    "description": "Latest smartphones from top brands",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
+    "icon": "smartphone",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7aa"},
+    "isActive": true,
+    "displayOrder": 1,
+    "productsCount": 18,
+    "seo": {
+      "metaTitle": "Smartphones - Latest Models",
+      "metaDescription": "Browse the latest smartphones from Apple, Samsung, Google, and more.",
+      "keywords": ["smartphone", "mobile", "iphone", "android", "cell phone"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7ac"},
+    "name": "Laptops",
+    "slug": "laptops",
+    "description": "Powerful laptops for work and play",
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+    "icon": "laptop",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7aa"},
+    "isActive": true,
+    "displayOrder": 2,
+    "productsCount": 12,
+    "seo": {
+      "metaTitle": "Laptops - Best Deals on Notebooks",
+      "metaDescription": "Find the perfect laptop for your needs - gaming, business, or personal use.",
+      "keywords": ["laptop", "notebook", "computer", "macbook", "chromebook"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7ad"},
+    "name": "Accessories",
+    "slug": "accessories",
+    "description": "Tech accessories and peripherals",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    "icon": "headphones",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7aa"},
+    "isActive": true,
+    "displayOrder": 3,
+    "productsCount": 15,
+    "seo": {
+      "metaTitle": "Tech Accessories - Enhance Your Devices",
+      "metaDescription": "Shop for headphones, chargers, cases, and more tech accessories.",
+      "keywords": ["accessories", "headphones", "charger", "case", "cable"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7ae"},
+    "name": "Fashion",
+    "slug": "fashion",
+    "description": "Clothing, shoes, and fashion accessories",
+    "image": "https://images.unsplash.com/photo-1445205170230-053b83016050",
+    "icon": "style",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 2,
+    "productsCount": 38,
+    "seo": {
+      "metaTitle": "Fashion - Latest Trends and Styles",
+      "metaDescription": "Discover the latest fashion trends in clothing, shoes, and accessories.",
+      "keywords": ["fashion", "clothing", "shoes", "apparel", "style"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7af"},
+    "name": "Men's Clothing",
+    "slug": "mens-clothing",
+    "description": "Men's fashion and apparel",
+    "image": "https://images.unsplash.com/photo-1516257984-b1b4d707412e",
+    "icon": "male",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7ae"},
+    "isActive": true,
+    "displayOrder": 1,
+    "productsCount": 15,
+    "seo": {
+      "metaTitle": "Men's Clothing - Fashion for Men",
+      "metaDescription": "Shop the latest men's fashion including shirts, pants, and outerwear.",
+      "keywords": ["mens clothing", "mens fashion", "shirts", "pants", "jackets"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b0"},
+    "name": "Women's Clothing",
+    "slug": "womens-clothing",
+    "description": "Women's fashion and apparel",
+    "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d",
+    "icon": "female",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7ae"},
+    "isActive": true,
+    "displayOrder": 2,
+    "productsCount": 18,
+    "seo": {
+      "metaTitle": "Women's Clothing - Latest Fashion",
+      "metaDescription": "Explore trendy women's clothing including dresses, tops, and more.",
+      "keywords": ["womens clothing", "womens fashion", "dresses", "tops", "skirts"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b1"},
+    "name": "Shoes",
+    "slug": "shoes",
+    "description": "Footwear for all occasions",
+    "image": "https://images.unsplash.com/photo-1460353581641-37baddab0fa2",
+    "icon": "shoe",
+    "parentCategory": {"$oid": "674a03d139f1f85510c3d7ae"},
+    "isActive": true,
+    "displayOrder": 3,
+    "productsCount": 5,
+    "seo": {
+      "metaTitle": "Shoes - Footwear for Every Style",
+      "metaDescription": "Find the perfect shoes for any occasion - sneakers, boots, sandals, and more.",
+      "keywords": ["shoes", "sneakers", "boots", "sandals", "footwear"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b2"},
+    "name": "Home & Garden",
+    "slug": "home-garden",
+    "description": "Home decor, furniture, and garden essentials",
+    "image": "https://images.unsplash.com/photo-1484101403633-562f891dc89a",
+    "icon": "home",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 3,
+    "productsCount": 22,
+    "seo": {
+      "metaTitle": "Home & Garden - Decor and Furniture",
+      "metaDescription": "Shop home decor, furniture, and garden essentials for your living space.",
+      "keywords": ["home", "garden", "furniture", "decor", "home improvement"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b3"},
+    "name": "Beauty & Personal Care",
+    "slug": "beauty-personal-care",
+    "description": "Beauty products and personal care items",
+    "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9",
+    "icon": "spa",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 4,
+    "productsCount": 18,
+    "seo": {
+      "metaTitle": "Beauty & Personal Care Products",
+      "metaDescription": "Discover beauty essentials and personal care products for your daily routine.",
+      "keywords": ["beauty", "skincare", "makeup", "cosmetics", "personal care"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b4"},
+    "name": "Sports & Outdoors",
+    "slug": "sports-outdoors",
+    "description": "Sports equipment and outdoor gear",
+    "image": "https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee",
+    "icon": "fitness_center",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 5,
+    "productsCount": 12,
+    "seo": {
+      "metaTitle": "Sports & Outdoors Equipment",
+      "metaDescription": "Find sports equipment and outdoor gear for your active lifestyle.",
+      "keywords": ["sports", "outdoors", "fitness", "camping", "athletic"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  },
+  {
+    "_id": {"$oid": "674a03d139f1f85510c3d7b5"},
+    "name": "Books",
+    "slug": "books",
+    "description": "Books across all genres",
+    "image": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d",
+    "icon": "book",
+    "parentCategory": null,
+    "isActive": true,
+    "displayOrder": 6,
+    "productsCount": 8,
+    "seo": {
+      "metaTitle": "Books - Read Your Next Favorite",
+      "metaDescription": "Browse books from fiction to non-fiction, bestsellers to classics.",
+      "keywords": ["books", "reading", "literature", "novels", "bestsellers"]
+    },
+    "schemaVersion": 1,
+    "createdAt": {"$date": "2024-01-15T10:00:00.000Z"},
+    "updatedAt": {"$date": "2025-12-07T00:00:00.000Z"}
+  }
+]
+

@@ -41,6 +41,8 @@ export interface IFeatureRequest extends Document {
   relatedFeatures: Types.ObjectId[];
   views: number;
   lastActivityAt: Date;
+  metadata?: Map<string, any>;
+  schemaVersion?: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -165,6 +167,14 @@ const FeatureRequestSchema = new Schema<IFeatureRequest>(
       type: Date,
       default: Date.now,
     },
+    metadata: {
+      type: Map,
+      of: Schema.Types.Mixed,
+    },
+    schemaVersion: {
+      type: Number,
+      default: 1,
+    },
   },
   {
     timestamps: true,
@@ -175,11 +185,13 @@ const FeatureRequestSchema = new Schema<IFeatureRequest>(
 FeatureRequestSchema.index({ userId: 1, status: 1 });
 FeatureRequestSchema.index({ createdAt: -1 });
 FeatureRequestSchema.index({ upvotes: 1 });
+FeatureRequestSchema.index({ status: 1, category: 1 });
 
 export const FeatureRequest = mongoose.model<IFeatureRequest>(
   "FeatureRequest",
   FeatureRequestSchema
 );
+
 
 
 

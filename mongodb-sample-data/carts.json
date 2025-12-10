@@ -1,0 +1,214 @@
+[
+  {
+    "_id": {
+      "$oid": "a1c712368c39158af77ee4e1"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4ba"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "64594a263cb3bdacd1577399"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Foreo Luna 3 Facial Cleansing Brush",
+        "image": "https://images.unsplash.com/photo-1608481582407",
+        "price": 169.15,
+        "quantity": 2,
+        "addedAt": {
+          "$date": "2025-12-02T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "352308bf13fcc403da763e55"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "KitchenAid Artisan Series Stand Mixer",
+        "image": "https://images.unsplash.com/photo-1572580399246",
+        "price": 449.99,
+        "quantity": 1,
+        "addedAt": {
+          "$date": "2025-12-03T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "3e8f3f9ba34494b06d378045"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Vans Old Skool Classic Skateboard Shoes",
+        "image": "https://images.unsplash.com/photo-1699467216562",
+        "price": 65.0,
+        "quantity": 2,
+        "addedAt": {
+          "$date": "2025-12-05T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "b4a3e03661c883dc18a3990a"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Converse Chuck Taylor All Star High Top",
+        "image": "https://images.unsplash.com/photo-1608228006941",
+        "price": 51.0,
+        "quantity": 3,
+        "addedAt": {
+          "$date": "2025-12-06T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "99ff482b96ef8a16209f5339"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "The North Face Denali Fleece Jacket",
+        "image": "https://images.unsplash.com/photo-1597644296642",
+        "price": 179.0,
+        "quantity": 1,
+        "addedAt": {
+          "$date": "2025-12-01T11:49:19.457987"
+        }
+      }
+    ],
+    "subtotal": 1250.29,
+    "tax": 100.02,
+    "shipping": 0,
+    "total": 1350.31,
+    "promoCode": "",
+    "discount": 0,
+    "isActive": true,
+    "lastActivity": {
+      "$date": "2025-12-07T11:49:19.457987"
+    },
+    "convertedToOrder": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-23T11:49:19.457987"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.457987"
+    },
+    "expiresAt": {
+      "$date": "2025-12-23T11:49:19.457987"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "95069269583787dd33960a41"
+    },
+    "userId": {
+      "$oid": "674a03d139f1f85510c3d4bc"
+    },
+    "items": [
+      {
+        "productId": {
+          "$oid": "ca14eabd8ca97035be47d11f"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6bd"
+        },
+        "title": "Oral-B iO Series 9 Electric Toothbrush",
+        "image": "https://images.unsplash.com/photo-1624430902426",
+        "price": 254.99,
+        "quantity": 1,
+        "addedAt": {
+          "$date": "2025-12-04T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "674b03d139f1f85510c3e007"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "iPad Air 11-inch M2 Wi-Fi 256GB - Starlight",
+        "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0",
+        "price": 699.99,
+        "quantity": 1,
+        "addedAt": {
+          "$date": "2025-11-30T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "6ef8e8def862a801265cf023"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Educated: A Memoir by Tara Westover",
+        "image": "https://images.unsplash.com/photo-1562624841349",
+        "price": 16.0,
+        "quantity": 2,
+        "addedAt": {
+          "$date": "2025-12-03T11:49:19.457987"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "423134f1ec47bffe3712aaf3"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Dyson V15 Detect Cordless Vacuum",
+        "image": "https://images.unsplash.com/photo-1699835613583",
+        "price": 749.99,
+        "quantity": 1,
+        "addedAt": {
+          "$date": "2025-12-05T11:49:19.458986"
+        }
+      },
+      {
+        "productId": {
+          "$oid": "6c640fb8983d3fc6cff2fcff"
+        },
+        "sellerId": {
+          "$oid": "674a03d139f1f85510c3d6ba"
+        },
+        "title": "Thinking, Fast and Slow by Daniel Kahneman",
+        "image": "https://images.unsplash.com/photo-1687930047610",
+        "price": 16.15,
+        "quantity": 2,
+        "addedAt": {
+          "$date": "2025-12-01T11:49:19.458986"
+        }
+      }
+    ],
+    "subtotal": 1769.27,
+    "tax": 141.54,
+    "shipping": 0,
+    "total": 1910.81,
+    "promoCode": "",
+    "discount": 0,
+    "isActive": true,
+    "lastActivity": {
+      "$date": "2025-12-07T11:49:19.458986"
+    },
+    "convertedToOrder": false,
+    "schemaVersion": 1,
+    "createdAt": {
+      "$date": "2025-11-23T11:49:19.458986"
+    },
+    "updatedAt": {
+      "$date": "2025-12-07T11:49:19.458986"
+    },
+    "expiresAt": {
+      "$date": "2025-12-23T11:49:19.458986"
+    }
+  }
+]

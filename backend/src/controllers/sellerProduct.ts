@@ -102,7 +102,7 @@ export const createSellerProduct = async (
     }
 
     // Check if seller is verified
-    if (seller.verificationStatus !== "verified") {
+    if (seller.verification?.status !== "verified") {
       return res.status(403).json({
         success: false,
         message: "Seller must be verified to add products",
@@ -225,7 +225,7 @@ export const deleteSellerProduct = async (
     // Remove from seller's products array
     seller.products = seller.products.filter(
       (pid) => pid.toString() !== id
-    );
+    ) as any;
     await seller.save();
 
     return res.status(200).json({
@@ -281,14 +281,18 @@ export const updateProductStock = async (
       });
     }
 
-    product.stockQuantity = stockQuantity;
+    // Update both new and legacy fields
+    if (product.inventory) {
+      product.inventory.stockQuantity = stockQuantity;
+    }
+    product.stockQuantity = stockQuantity; // Legacy field (auto-populated by pre-save hook)
     product.updatedAt = new Date();
     await product.save();
 
     return res.status(200).json({
       success: true,
       message: "Stock updated successfully",
-      data: { stockQuantity: product.stockQuantity },
+      data: { stockQuantity: stockQuantity },
     });
   } catch (error) {
     return res.status(500).json({
@@ -331,7 +335,7 @@ export const bulkUploadProducts = async (
     }
 
     // Check if seller is verified
-    if (seller.verificationStatus !== "verified") {
+    if (seller.verification?.status !== "verified") {
       return res.status(403).json({
         success: false,
         message: "Seller must be verified to add products",
@@ -384,6 +388,8 @@ export const bulkUploadProducts = async (
     });
   }
 };
+
+
 
 
 

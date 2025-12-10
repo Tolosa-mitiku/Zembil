@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { User } from "../models/users";
 import { Order } from "../models/order";
 import { Product } from "../models/product";
 import { Seller } from "../models/seller";
+import { User } from "../models/users";
 
 // Get dashboard overview with enhanced metrics
 export const getDashboardOverview = async (req: Request, res: Response) => {
@@ -64,7 +64,9 @@ export const getDashboardOverview = async (req: Request, res: Response) => {
     const orderGrowth =
       previous7DaysOrders > 0
         ? ((last7DaysOrders - previous7DaysOrders) / previous7DaysOrders) * 100
-        : last7DaysOrders > 0 ? 100 : 0;
+        : last7DaysOrders > 0
+        ? 100
+        : 0;
 
     // Calculate revenue for last 7 days for growth
     const last7DaysRevenue = await Order.aggregate([
@@ -105,7 +107,9 @@ export const getDashboardOverview = async (req: Request, res: Response) => {
     const revenueGrowth =
       previousRevenue > 0
         ? ((currentRevenue - previousRevenue) / previousRevenue) * 100
-        : currentRevenue > 0 ? 100 : 0;
+        : currentRevenue > 0
+        ? 100
+        : 0;
 
     // Get recent orders for display
     const recentOrders = await Order.find()
@@ -153,7 +157,9 @@ export const getRevenueAnalytics = async (req: Request, res: Response) => {
   try {
     const { startDate, endDate, period = "daily" } = req.query;
 
-    const start = startDate ? new Date(startDate as string) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const start = startDate
+      ? new Date(startDate as string)
+      : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const end = endDate ? new Date(endDate as string) : new Date();
 
     const revenueByDate = await Order.aggregate([
@@ -196,7 +202,9 @@ export const getSalesAnalytics = async (req: Request, res: Response) => {
   try {
     const { startDate, endDate, period = "daily" } = req.query;
 
-    const start = startDate ? new Date(startDate as string) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const start = startDate
+      ? new Date(startDate as string)
+      : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const end = endDate ? new Date(endDate as string) : new Date();
 
     // Sales over time
@@ -331,8 +339,3 @@ export const getUserAnalytics = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-

@@ -21,8 +21,15 @@ const addressSchema = new Schema({
     longitude: { type: Number },
   },
   isDefault: { type: Boolean, default: false },
+  
+  // Metadata
+  metadata: { type: Map, of: Schema.Types.Mixed },
+  schemaVersion: { type: Number, default: 1 },
+  
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+}, {
+  timestamps: true,
 });
 
 // Ensure only one default address per user
@@ -34,14 +41,17 @@ addressSchema.pre("save", async function (next) {
       { $set: { isDefault: false } }
     );
   }
+  this.updatedAt = new Date();
   next();
 });
 
 // Indexes
 addressSchema.index({ userId: 1 });
 addressSchema.index({ isDefault: 1 });
+addressSchema.index({ userId: 1, isDefault: 1 });
 
 export const Address = model("Address", addressSchema);
+
 
 
 

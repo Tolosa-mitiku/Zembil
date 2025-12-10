@@ -3,6 +3,7 @@ import { Product } from "../models/product";
 import { Seller } from "../models/seller";
 import { CustomRequest } from "../types/express";
 import { verifySellerOwnership } from "../utils/verifySellerOwnership";
+import { syncProfileImageToUser } from "../services/profileSync.service";
 
 // Create a new seller (individual or store)
 export const createSeller = async (req: Request, res: Response) => {
@@ -22,13 +23,24 @@ export const getCurrentSeller = async (req: CustomRequest, res: Response) => {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }
 
-    const seller = await Seller.findOne({ firebaseUID: req.user.uid });
+    const seller = await Seller.findOne({ firebaseUID: req.user.uid }).populate("userId", "email phoneNumber");
     
     if (!seller) {
       return res.status(404).json({ success: false, message: "Seller profile not found" });
     }
 
-    res.status(200).json({ success: true, data: seller });
+    // Combine seller data with user data
+    const sellerData = seller.toObject();
+    const userData = sellerData.userId as any;
+
+    res.status(200).json({ 
+      success: true, 
+      data: {
+        ...sellerData,
+        email: userData?.email,
+        phoneNumber: userData?.phoneNumber,
+      }
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Error fetching seller profile", error });
   }
@@ -48,19 +60,20 @@ export const updateSellerInfo = async (req: CustomRequest, res: Response) => {
       return res.status(403).json({ success: false, message: "Forbidden: You do not own this profile" });
     }
 
-    const allowedUpdates = [
-      "businessName", "phoneNumber", "aboutUs", "returnPolicy", 
-      "shippingPolicy", "address", "businessHours", "settings"
-    ];
-
-    const updates: any = {};
-    Object.keys(req.body).forEach(key => {
-      if (allowedUpdates.includes(key)) {
-        updates[key] = req.body[key];
-      }
-    });
-
-    updates.updatedAt = new Date();
+    const updates: any = { updatedAt: new Date() };
+    
+    // Handle top-level fields
+    // Note: email and phoneNumber are managed in User model
+    if (req.body.businessName !== undefined) updates.businessName = req.body.businessName;
+    if (req.body.alternatePhone !== undefined) updates.alternatePhone = req.body.alternatePhone;
+    if (req.body.address !== undefined) updates.address = req.body.address;
+    if (req.body.businessHours !== undefined) updates.businessHours = req.body.businessHours;
+    if (req.body.settings !== undefined) updates.settings = req.body.settings;
+    
+    // Handle storeInfo nested fields
+    if (req.body.aboutUs !== undefined) updates['storeInfo.aboutUs'] = req.body.aboutUs;
+    if (req.body.returnPolicy !== undefined) updates['storeInfo.returnPolicy'] = req.body.returnPolicy;
+    if (req.body.shippingPolicy !== undefined) updates['storeInfo.shippingPolicy'] = req.body.shippingPolicy;
 
     const updatedSeller = await Seller.findByIdAndUpdate(id, updates, { new: true });
 
@@ -99,6 +112,15 @@ export const uploadProfilePicture = async (req: CustomRequest, res: Response) =>
       { profileImage: imageUrl, updatedAt: new Date() },
       { new: true }
     );
+
+    // Sync profile image back to User
+    if (updatedSeller) {
+      try {
+        await syncProfileImageToUser(updatedSeller.userId, imageUrl);
+      } catch (error) {
+        console.warn("Failed to sync profile image to User", error);
+      }
+    }
 
     res.status(200).json({ 
       success: true, 
@@ -180,11 +202,20 @@ export const updateSellerType = async (req: CustomRequest, res: Response) => {
 // Get seller profile by ID (Public/Admin)
 export const getSellerProfile = async (req: Request, res: Response) => {
   try {
-    const seller = await Seller.findById(req.params.id);
+    const seller = await Seller.findById(req.params.id).populate("userId", "email phoneNumber");
     if (!seller) {
       return res.status(404).json({ message: "Seller not found" });
     }
-    res.status(200).json(seller);
+    
+    // Combine seller data with user data
+    const sellerData = seller.toObject();
+    const userData = sellerData.userId as any;
+    
+    res.status(200).json({
+      ...sellerData,
+      email: userData?.email,
+      phoneNumber: userData?.phoneNumber,
+    });
   } catch (error) {
     res.status(500).json({ message: "Error fetching seller profile", error });
   }
@@ -267,10 +298,10 @@ export const getStoreSettings = async (req: Request, res: Response) => {
         businessName: seller.businessName,
         profileImage: seller.profileImage,
         coverImage: seller.coverImage,
-        aboutUs: seller.aboutUs,
-        returnPolicy: seller.returnPolicy,
-        shippingPolicy: seller.shippingPolicy,
-        shippingZones: seller.shippingZones,
+        aboutUs: seller.storeInfo?.aboutUs,
+        returnPolicy: seller.storeInfo?.returnPolicy,
+        shippingPolicy: seller.storeInfo?.shippingPolicy,
+        shippingZones: seller.shipping?.shippingZones,
         businessHours: seller.businessHours,
         settings: seller.settings,
       },
@@ -295,23 +326,32 @@ export const updateStoreSettings = async (req: Request, res: Response) => {
       });
     }
 
-    const allowedFields = [
-      "businessName",
-      "profileImage",
-      "coverImage",
-      "aboutUs",
-      "returnPolicy",
-      "shippingPolicy",
-      "shippingZones",
-      "businessHours",
-      "settings",
-    ];
-
-    allowedFields.forEach((field) => {
-      if (req.body[field] !== undefined) {
-        (seller as any)[field] = req.body[field];
-      }
-    });
+    // Update top-level fields
+    if (req.body.businessName !== undefined) seller.businessName = req.body.businessName;
+    if (req.body.profileImage !== undefined) seller.profileImage = req.body.profileImage;
+    if (req.body.coverImage !== undefined) seller.coverImage = req.body.coverImage;
+    if (req.body.businessHours !== undefined) seller.businessHours = req.body.businessHours;
+    if (req.body.settings !== undefined) seller.settings = req.body.settings;
+    
+    // Update storeInfo nested fields
+    if (req.body.aboutUs !== undefined) {
+      if (!seller.storeInfo) seller.storeInfo = {} as any;
+      seller.storeInfo!.aboutUs = req.body.aboutUs;
+    }
+    if (req.body.returnPolicy !== undefined) {
+      if (!seller.storeInfo) seller.storeInfo = {} as any;
+      seller.storeInfo!.returnPolicy = req.body.returnPolicy;
+    }
+    if (req.body.shippingPolicy !== undefined) {
+      if (!seller.storeInfo) seller.storeInfo = {} as any;
+      seller.storeInfo!.shippingPolicy = req.body.shippingPolicy;
+    }
+    
+    // Update shipping nested fields
+    if (req.body.shippingZones !== undefined) {
+      if (!seller.shipping) seller.shipping = {} as any;
+      seller.shipping!.shippingZones = req.body.shippingZones;
+    }
 
     seller.updatedAt = new Date();
     await seller.save();
