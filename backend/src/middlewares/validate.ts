@@ -21,7 +21,7 @@ export const validate = (schema: Joi.Schema, source: "body" | "query" | "params"
     });
 
     if (error) {
-      const errors = error.details.map((detail) => ({
+      const errors = error.details.map((detail: Joi.ValidationErrorItem) => ({
         field: detail.path.join("."),
         message: detail.message,
         type: detail.type,
