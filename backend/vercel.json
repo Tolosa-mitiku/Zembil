@@ -26,11 +26,5 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "regions": ["iad1"],
-  "functions": {
-    "dist/server.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  "regions": ["iad1"]
 }
