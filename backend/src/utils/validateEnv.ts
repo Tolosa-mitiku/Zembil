@@ -4,6 +4,8 @@
  */
 
 import { Logger } from './logger';
+import * as fs from 'fs';
+import * as path from 'path';
 
 interface EnvValidationResult {
   isValid: boolean;
@@ -16,7 +18,7 @@ interface EnvValidationResult {
  */
 const REQUIRED_ENV_VARS = [
   'MONGO_URI',
-  'FIREBASE_SERVICE_ACCOUNT',
+  // FIREBASE_SERVICE_ACCOUNT is optional if firebase-service-account.json exists
   'ENCRYPTION_KEY',
   'SESSION_SECRET',
   'NODE_ENV',
@@ -61,10 +63,17 @@ export const validateEnv = (): EnvValidationResult => {
     missing.push('SESSION_SECRET (must be at least 32 characters)');
   }
 
-  // Validate Firebase service account
-  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  // Validate Firebase service account (file or environment variable)
+  const firebaseServiceAccountPath = path.join(__dirname, '../../firebase-service-account.json');
+  const hasFirebaseFile = fs.existsSync(firebaseServiceAccountPath);
+  const hasFirebaseEnv = !!process.env.FIREBASE_SERVICE_ACCOUNT;
+
+  if (!hasFirebaseFile && !hasFirebaseEnv) {
+    missing.push('FIREBASE_SERVICE_ACCOUNT (or firebase-service-account.json file)');
+  } else if (hasFirebaseEnv) {
+    // Validate environment variable format if it exists
     try {
-      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+      const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT!);
       const requiredFields = ['project_id', 'private_key', 'client_email'];
       
       for (const field of requiredFields) {

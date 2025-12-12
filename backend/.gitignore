@@ -16,6 +16,9 @@ pnpm-debug.log*
 # Sensitive: Firebase Service Account
 firebase-service-account.json
 **/firebase-service-account.json
+service-account.json
+**/service-account.json
+*-firebase-adminsdk-*.json
 
 # Build output
 dist/
