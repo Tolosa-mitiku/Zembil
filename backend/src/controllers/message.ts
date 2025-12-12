@@ -124,9 +124,15 @@ export const sendMessage = async (req: CustomRequest, res: Response) => {
     chat.lastMessageAt = new Date();
 
     if (senderRole === "buyer") {
+      if (!chat.unreadMessagesCount) {
+        chat.unreadMessagesCount = { buyer: 0, seller: 0 };
+      }
       chat.unreadMessagesCount.seller =
         (chat.unreadMessagesCount.seller || 0) + 1;
     } else {
+      if (!chat.unreadMessagesCount) {
+        chat.unreadMessagesCount = { buyer: 0, seller: 0 };
+      }
       chat.unreadMessagesCount.buyer =
         (chat.unreadMessagesCount.buyer || 0) + 1;
     }

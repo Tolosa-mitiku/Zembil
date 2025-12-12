@@ -1,0 +1,13 @@
+# This file tells Cursor what to ignore (overrides .gitignore for AI context)
+# We're explicitly UN-ignoring .env files for this session
+
+# Un-ignore .env files by not listing them here
+# (Cursor will still respect .gitignore for git operations)
+
+# Still ignore large directories to save context
+node_modules/
+dist/
+build/
+.vercel/
+uploads/
+

@@ -6,12 +6,12 @@
 import crypto from "crypto";
 
 const ALGORITHM = "aes-256-gcm";
-const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
+const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || "";
 
 // Validate encryption key on startup
-if (!ENCRYPTION_KEY || ENCRYPTION_KEY.length !== 32) {
-  console.error("❌ FATAL: ENCRYPTION_KEY must be exactly 32 characters");
-  console.error("Generate one with: openssl rand -hex 32");
+if (!ENCRYPTION_KEY || ENCRYPTION_KEY.length !== 64) {
+  console.error("❌ FATAL: ENCRYPTION_KEY must be exactly 64 characters hex");
+  console.error("Generate one with: node generate-keys.js");
   process.exit(1);
 }
 
@@ -27,7 +27,7 @@ export function encrypt(text: string): string {
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(
       ALGORITHM,
-      Buffer.from(ENCRYPTION_KEY),
+      Buffer.from(ENCRYPTION_KEY, 'hex'),
       iv
     );
 
@@ -66,7 +66,7 @@ export function decrypt(encryptedData: string): string {
 
     const decipher = crypto.createDecipheriv(
       ALGORITHM,
-      Buffer.from(ENCRYPTION_KEY),
+      Buffer.from(ENCRYPTION_KEY, 'hex'),
       iv
     );
 

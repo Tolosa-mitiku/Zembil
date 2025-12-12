@@ -7,6 +7,8 @@
 
 import admin from "firebase-admin";
 import { Logger } from "../utils/logger";
+import * as path from "path";
+import * as fs from "fs";
 
 // Flag to track initialization
 let isInitialized = false;
@@ -22,32 +24,48 @@ export const initializeFirebase = (): void => {
   }
 
   try {
-    // Parse service account from environment variable
-    const serviceAccountJSON = process.env.FIREBASE_SERVICE_ACCOUNT;
+    // Try to load service account from file first
+    const serviceAccountPath = path.join(__dirname, '../../firebase-service-account.json');
     
-    if (!serviceAccountJSON) {
-      throw new Error("FIREBASE_SERVICE_ACCOUNT environment variable is not set");
+    let serviceAccount: admin.ServiceAccount;
+
+    if (fs.existsSync(serviceAccountPath)) {
+      // Load from file (for local development)
+      Logger.info("Loading Firebase service account from file");
+      serviceAccount = require(serviceAccountPath);
+    } else if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+      // Fallback to environment variable (for production/Vercel)
+      Logger.info("Loading Firebase service account from environment variable");
+      serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    } else {
+      throw new Error(
+        "Firebase service account not found. Please either:\n" +
+        "1. Place firebase-service-account.json in the backend folder, OR\n" +
+        "2. Set FIREBASE_SERVICE_ACCOUNT environment variable\n" +
+        "Download from: https://console.firebase.google.com/project/zembil1010/settings/serviceaccounts/adminsdk"
+      );
     }
 
-    const serviceAccount = JSON.parse(serviceAccountJSON);
+    // Validate required fields (JSON uses snake_case, TypeScript expects camelCase)
+    const projectId = (serviceAccount as any).project_id || serviceAccount.projectId;
+    const privateKey = (serviceAccount as any).private_key || serviceAccount.privateKey;
+    const clientEmail = (serviceAccount as any).client_email || serviceAccount.clientEmail;
 
-    // Validate required fields
-    const requiredFields = ['project_id', 'private_key', 'client_email'];
-    for (const field of requiredFields) {
-      if (!serviceAccount[field]) {
-        throw new Error(`Missing required field in service account: ${field}`);
-      }
+    if (!projectId || !privateKey || !clientEmail) {
+      throw new Error(
+        `Missing required fields in service account. Required: project_id, private_key, client_email`
+      );
     }
 
     // Initialize Firebase Admin
     admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-      projectId: serviceAccount.project_id,
+      credential: admin.credential.cert(serviceAccount),
+      projectId: projectId,
     });
 
     isInitialized = true;
     Logger.info("Firebase Admin SDK initialized successfully", {
-      projectId: serviceAccount.project_id,
+      projectId: projectId,
     });
   } catch (error) {
     Logger.error("Failed to initialize Firebase Admin SDK", { error });

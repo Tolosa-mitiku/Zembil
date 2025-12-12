@@ -6,14 +6,10 @@
 export const securityConfig = {
   // CORS Configuration
   cors: {
-    allowedOrigins: process.env.ALLOWED_ORIGINS?.split(",") || [
+    allowedOrigins: process.env.ALLOWED_ORIGINS?.split(",").map(origin => origin.trim()) || [
       "http://localhost:3000",
       "http://localhost:5173",
       "http://localhost:4173",
-      "http://10.94.233.66:5173", // Local network IP
-      "http://10.94.233.66:3000", // Local network IP alternate port
-      "https://zembil.vercel.app",
-      "https://www.zembil.vercel.app",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
@@ -34,17 +30,17 @@ export const securityConfig = {
   rateLimits: {
     general: {
       windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 100, // 100 requests per window
+      max: parseInt(process.env.RATE_LIMIT_GENERAL || "100"),
       message: "Too many requests, please try again later",
     },
     auth: {
       windowMs: 15 * 60 * 1000,
-      max: 5, // Only 5 login attempts
+      max: parseInt(process.env.RATE_LIMIT_AUTH || "5"),
       message: "Too many login attempts, please try again in 15 minutes",
     },
     api: {
       windowMs: 60 * 1000, // 1 minute
-      max: 60, // 60 requests per minute
+      max: parseInt(process.env.RATE_LIMIT_API || "60"),
       message: "Rate limit exceeded, slow down",
     },
     strict: {
@@ -56,23 +52,23 @@ export const securityConfig = {
 
   // Session Configuration
   session: {
-    expirationDays: 7, // Standard session
-    rememberMeDays: 30, // "Remember me" session
-    maxActiveSessions: 5, // Max concurrent sessions per user
+    expirationDays: parseInt(process.env.SESSION_EXPIRATION_DAYS || "7"),
+    rememberMeDays: parseInt(process.env.SESSION_REMEMBER_ME_DAYS || "30"),
+    maxActiveSessions: parseInt(process.env.MAX_ACTIVE_SESSIONS || "5"),
     tokenLength: 64, // Session token length (bytes)
   },
 
   // File Upload
   fileUpload: {
-    maxSize: 5 * 1024 * 1024, // 5MB
-    maxFiles: 10, // Max files per upload
+    maxSize: parseInt(process.env.MAX_FILE_SIZE || String(5 * 1024 * 1024)), // Default 5MB
+    maxFiles: parseInt(process.env.MAX_FILES_PER_UPLOAD || "10"),
     allowedImageTypes: ["image/jpeg", "image/png", "image/webp", "image/jpg"],
     allowedDocTypes: [
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ],
-    uploadPath: "uploads",
+    uploadPath: process.env.UPLOAD_PATH || "uploads",
   },
 
   // Pagination
@@ -114,7 +110,7 @@ export const securityConfig = {
     maxPrice: 1000000, // $1M max
     minQuantity: 1,
     maxQuantity: 1000,
-    minPayoutAmount: 100,
+    minPayoutAmount: parseInt(process.env.PAYOUT_MIN_AMOUNT || "100"),
   },
 
   // Security Headers
