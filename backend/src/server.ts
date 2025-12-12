@@ -1,13 +1,17 @@
 // server.ts
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import { createServer } from "http";
+import mongoose from "mongoose";
 import app from "./app"; // Import the app from app.ts
 import { initializeJobs } from "./jobs"; // Import scheduled jobs
 import { initializeSocket } from "./services/socketService"; // Import Socket.IO service
+import { validateAndLogEnv } from "./utils/validateEnv"; // Environment validation
 
 // Initialize dotenv to load environment variables
 dotenv.config();
+
+// Validate environment variables before starting
+validateAndLogEnv();
 
 // Get the MongoDB connection URI and port from environment variables
 const PORT = process.env.PORT || 5000;
@@ -24,14 +28,16 @@ mongoose
   .connect(MONGO_URI, {})
   .then(() => {
     console.log("Connected to MongoDB");
-    
+
     // Initialize scheduled jobs
     if (process.env.ENABLE_CRON_JOBS !== "false") {
       initializeJobs();
     } else {
-      console.log("⏸️  Scheduled jobs disabled (set ENABLE_CRON_JOBS=true to enable)");
+      console.log(
+        "⏸️  Scheduled jobs disabled (set ENABLE_CRON_JOBS=true to enable)"
+      );
     }
-    
+
     // Start the HTTP server (with Socket.IO attached)
     httpServer.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
