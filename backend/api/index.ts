@@ -1,4 +1,5 @@
 // Vercel serverless function entry point
+import type { Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import app from "../src/app";
@@ -9,23 +10,41 @@ dotenv.config();
 let isConnected = false;
 
 const connectDB = async () => {
-  if (isConnected) {
+  if (isConnected && mongoose.connection.readyState === 1) {
     return;
   }
 
   try {
     const MONGO_URI = process.env.MONGO_URI || "";
-    await mongoose.connect(MONGO_URI);
+    if (!MONGO_URI) {
+      throw new Error("MONGO_URI is not defined");
+    }
+    await mongoose.connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+    });
     isConnected = true;
-    console.log("✅ MongoDB connected");
+    console.log("✅ MongoDB connected for serverless");
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
+    isConnected = false;
     throw error;
   }
 };
 
-// Connect to DB before handling requests
-connectDB();
-
-export default app;
+// Handler for Vercel
+export default async (req: Request, res: Response) => {
+  try {
+    // Connect to DB on each cold start
+    await connectDB();
+    
+    // Handle the request with Express app
+    return app(req, res);
+  } catch (error) {
+    console.error("Handler error:", error);
+    return res.status(500).json({ 
+      success: false, 
+      message: "Internal server error" 
+    });
+  }
+};
 
