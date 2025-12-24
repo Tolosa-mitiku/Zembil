@@ -18,14 +18,14 @@
 
 ### Step 2: Configure Project Settings
 
-| Setting | Value |
-|---------|-------|
-| **Project Name** | `zembil-web` (or your choice) |
-| **Framework Preset** | **Vite** |
-| **Root Directory** | `frontend/web` ← **CRITICAL!** |
-| **Build Command** | `npm run build` (default) |
-| **Output Directory** | `dist` (default) |
-| **Install Command** | `npm install` (default) |
+| Setting              | Value                          |
+| -------------------- | ------------------------------ |
+| **Project Name**     | `zembil-web` (or your choice)  |
+| **Framework Preset** | **Vite**                       |
+| **Root Directory**   | `frontend/web` ← **CRITICAL!** |
+| **Build Command**    | `npm run build` (default)      |
+| **Output Directory** | `dist` (default)               |
+| **Install Command**  | `npm install` (default)        |
 
 **Important:** Click "Edit" next to "Root Directory" and set it to `frontend/web`
 
@@ -105,12 +105,15 @@ https://your-frontend-url.vercel.app,http://localhost:3000,http://localhost:5173
 Once deployed, test these:
 
 ### Health Check
+
 ```
 https://your-frontend-url.vercel.app
 ```
 
 ### API Connection
+
 Open browser console and check:
+
 - No CORS errors
 - API requests go to `zembil-backend.vercel.app`
 - Firebase authentication works
@@ -127,6 +130,7 @@ Open browser console and check:
 ### Environment Variables Per Branch
 
 Vercel automatically creates preview deployments for PRs:
+
 - **Production**: Uses Production environment variables
 - **Preview**: Uses Preview environment variables (optional)
 - **Development**: Uses Development environment variables (optional)
@@ -136,16 +140,19 @@ Vercel automatically creates preview deployments for PRs:
 ### Build Fails
 
 **Error:** TypeScript errors
+
 - **Solution:** We've disabled strict TypeScript checking for Vercel. If needed, run `npm run build:check` locally to see type errors.
 
 ### CORS Errors
 
 **Error:** "CORS policy: No 'Access-Control-Allow-Origin'"
+
 - **Solution:** Make sure backend `ALLOWED_ORIGINS` includes your frontend URL
 
 ### Firebase Not Working
 
 **Error:** Firebase configuration errors
+
 - **Solution:** Double-check all Firebase env variables are correct
 - Make sure no quotes around the values in Vercel
 - Verify Firebase project settings
@@ -153,12 +160,14 @@ Vercel automatically creates preview deployments for PRs:
 ### API Requests Fail
 
 **Error:** Network errors or 404s
+
 - **Solution:** Check `VITE_API_BASE_URL` points to `https://zembil-backend.vercel.app/api/v1`
 - Verify backend is running (visit `/api/v1/health`)
 
 ### Blank Page After Deploy
 
 **Error:** White screen, no errors
+
 - **Solution:** Check browser console for errors
 - Verify all environment variables are set
 - Check Vercel deployment logs
@@ -183,6 +192,7 @@ git push origin main
 ```
 
 Or manually redeploy:
+
 1. Vercel Dashboard → Your Project
 2. Deployments tab
 3. Click "..." → Redeploy
@@ -197,4 +207,3 @@ Your full-stack Zembil e-commerce platform is now live!
 - **Backend:** https://zembil-backend.vercel.app
 
 Need help? Check the Vercel logs or ask me! 🚀
-
