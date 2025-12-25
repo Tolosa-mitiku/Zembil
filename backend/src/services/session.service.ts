@@ -90,7 +90,6 @@ export class SessionService {
         }
       );
 
-      console.log(`✅ Created session for user ${userId}`);
       return {
         sessionToken,
         refreshToken,
@@ -161,7 +160,6 @@ export class SessionService {
         }
       );
 
-      console.log(`✅ Logged out session ${session._id}`);
     } catch (error) {
       console.error("Error logging out session:", error);
       throw error;
@@ -194,7 +192,6 @@ export class SessionService {
         }
       );
 
-      console.log(`✅ Logged out all sessions for user ${userId}`);
     } catch (error) {
       console.error("Error logging out all sessions:", error);
       throw error;
@@ -243,7 +240,6 @@ export class SessionService {
         );
       }
 
-      console.log(`✅ Cleaned up ${expiredSessions.length} expired sessions`);
     } catch (error) {
       console.error("Error cleaning up sessions:", error);
       throw error;
@@ -267,7 +263,6 @@ export class SessionService {
         }
       );
 
-      console.log(`✅ Marked device as trusted`);
     } catch (error) {
       console.error("Error marking device as trusted:", error);
       throw error;

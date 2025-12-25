@@ -108,7 +108,6 @@ export class PayoutService {
         }
       );
 
-      console.log(`✅ Created payout request for seller ${sellerId}`);
       return payoutRequest;
     } catch (error) {
       console.error("Error creating payout request:", error);
@@ -152,7 +151,6 @@ export class PayoutService {
         }
       );
 
-      console.log(`✅ Approved payout ${payoutId}`);
       return payout;
     } catch (error) {
       console.error("Error approving payout:", error);
@@ -209,7 +207,6 @@ export class PayoutService {
         }
       );
 
-      console.log(`✅ Rejected payout ${payoutId}`);
     } catch (error) {
       console.error("Error rejecting payout:", error);
       throw error;
@@ -274,7 +271,6 @@ export class PayoutService {
           }
         );
 
-        console.log(`✅ Processed payout ${payout._id}`);
       }
 
       return approvedPayouts.length;

@@ -273,7 +273,6 @@ export const signInWithGoogle = async (): Promise<{ firebaseUser: FirebaseUser; 
       }
       
       if (hasStaleData) {
-        console.log('🔵 Found stale Firebase auth data, clearing before sign-in...');
         await clearFirebaseAuthState();
         // Small delay to ensure cleanup is complete
         await new Promise(resolve => setTimeout(resolve, 100));
@@ -359,7 +358,6 @@ export const sendVerificationEmail = async (): Promise<void> => {
  * This ensures a clean slate for subsequent sign-ins
  */
 export const clearFirebaseAuthState = async (): Promise<void> => {
-  console.log('🔵 Clearing Firebase auth state...');
   
   // Clear Firebase keys from localStorage
   const keysToRemove: string[] = [];
@@ -372,7 +370,6 @@ export const clearFirebaseAuthState = async (): Promise<void> => {
   keysToRemove.forEach(key => {
     try {
       localStorage.removeItem(key);
-      console.log(`✅ Removed localStorage key: ${key}`);
     } catch (e) {
       console.warn(`Could not remove localStorage key: ${key}`, e);
     }
@@ -390,7 +387,6 @@ export const clearFirebaseAuthState = async (): Promise<void> => {
       const deleteRequest = indexedDB.deleteDatabase(dbName);
       await new Promise<void>((resolve, reject) => {
         deleteRequest.onsuccess = () => {
-          console.log(`✅ Deleted IndexedDB: ${dbName}`);
           resolve();
         };
         deleteRequest.onerror = () => {
@@ -406,8 +402,7 @@ export const clearFirebaseAuthState = async (): Promise<void> => {
       console.warn(`Error deleting IndexedDB ${dbName}:`, e);
     }
   }
-  
-  console.log('✅ Firebase auth state cleared');
+
 };
 
 /**
@@ -477,15 +472,7 @@ export const debugAuthState = async (): Promise<{
 }> => {
   const user = auth.currentUser;
   
-  console.log('=== 🔐 Auth Debug Info ===');
-  
   if (!user) {
-    console.log('❌ No Firebase user currently logged in');
-    console.log('💡 Possible causes:');
-    console.log('   - User has not signed in');
-    console.log('   - Firebase auth has not finished initializing');
-    console.log('   - Session was cleared or expired');
-    
     return {
       hasFirebaseUser: false,
       email: null,
@@ -496,12 +483,6 @@ export const debugAuthState = async (): Promise<{
       provider: null,
     };
   }
-  
-  console.log('✅ Firebase user found:');
-  console.log(`   Email: ${user.email}`);
-  console.log(`   UID: ${user.uid}`);
-  console.log(`   Email Verified: ${user.emailVerified}`);
-  console.log(`   Provider: ${user.providerData[0]?.providerId || 'unknown'}`);
   
   let hasToken = false;
   let tokenExpiry: Date | null = null;
@@ -514,22 +495,11 @@ export const debugAuthState = async (): Promise<{
       // Decode token to get expiry (JWT tokens have expiry in payload)
       const payload = JSON.parse(atob(token.split('.')[1]));
       tokenExpiry = new Date(payload.exp * 1000);
-      
-      const now = new Date();
-      const isExpired = tokenExpiry < now;
-      const timeToExpiry = Math.round((tokenExpiry.getTime() - now.getTime()) / 1000 / 60);
-      
-      console.log(`   Token Valid: ${!isExpired}`);
-      console.log(`   Token Expires: ${tokenExpiry.toLocaleString()}`);
-      console.log(`   Time to Expiry: ${isExpired ? 'EXPIRED' : `${timeToExpiry} minutes`}`);
-      console.log('✅ Token retrieved successfully');
     }
   } catch (error) {
     console.error('❌ Failed to get ID token:', error);
     hasToken = false;
   }
-  
-  console.log('========================');
   
   return {
     hasFirebaseUser: true,

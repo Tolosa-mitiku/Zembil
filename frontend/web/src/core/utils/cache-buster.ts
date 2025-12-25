@@ -15,7 +15,6 @@ export async function clearAllCaches() {
       await Promise.all(
         cacheNames.map(cacheName => caches.delete(cacheName))
       );
-      console.log('✅ Cache Storage cleared');
     }
 
     // Unregister all service workers
@@ -24,7 +23,6 @@ export async function clearAllCaches() {
       await Promise.all(
         registrations.map(registration => registration.unregister())
       );
-      console.log('✅ Service Workers unregistered');
     }
   } catch (error) {
     console.error('Error clearing caches:', error);
@@ -61,7 +59,6 @@ export function disableCachingInDev() {
         });
       };
 
-      console.log('🚫 Cache disabled for development (excluding API calls)');
     }
   }
 }

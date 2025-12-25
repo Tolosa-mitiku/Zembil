@@ -110,7 +110,6 @@ app.use(
       if (securityConfig.cors.allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
-        console.warn(`CORS blocked origin: ${origin}`);
         callback(new Error("CORS policy violation: Origin not allowed"));
       }
     },
@@ -126,9 +125,6 @@ app.use(
 app.use(
   mongoSanitize({
     replaceWith: "_",
-    onSanitize: ({ key }) => {
-      console.warn(`⚠️  Potential NoSQL injection attempt blocked: ${key}`);
-    },
   })
 );
 

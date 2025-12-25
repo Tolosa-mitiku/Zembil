@@ -5,6 +5,7 @@
 
 import { AuditLog } from "../models";
 import { Types } from "mongoose";
+import Logger from "../utils/logger";
 
 export class AuditService {
   /**
@@ -36,9 +37,9 @@ export class AuditService {
         status: "success",
       });
 
-      console.log(`📝 Logged action: ${action} by ${adminName}`);
+      Logger.info(`Logged action: ${action} by ${adminName}`);
     } catch (error) {
-      console.error("Error logging audit action:", error);
+      Logger.error("Error logging audit action:", error);
       // Don't throw - audit logging should never break the main flow
     }
   }
@@ -69,7 +70,7 @@ export class AuditService {
         errorMessage,
       });
     } catch (error) {
-      console.error("Error logging failed action:", error);
+      Logger.error("Error logging failed action:", error);
     }
   }
 
@@ -117,7 +118,7 @@ export class AuditService {
         },
       };
     } catch (error) {
-      console.error("Error getting audit trail:", error);
+      Logger.error("Error getting audit trail:", error);
       throw error;
     }
   }
@@ -162,7 +163,7 @@ export class AuditService {
         topAdmins: byAdmin,
       };
     } catch (error) {
-      console.error("Error getting audit stats:", error);
+      Logger.error("Error getting audit stats:", error);
       throw error;
     }
   }

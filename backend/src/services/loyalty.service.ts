@@ -5,6 +5,7 @@
 
 import { Buyer, User } from "../models";
 import { Types } from "mongoose";
+import Logger from "../utils/logger";
 
 const TIER_REQUIREMENTS = {
   bronze: 0,
@@ -39,9 +40,8 @@ export class LoyaltyService {
       // Check for tier upgrade
       await this.checkTierUpgrade(userId);
 
-      console.log(`✅ Awarded ${points} points to user ${userId} - ${reason}`);
     } catch (error) {
-      console.error("Error awarding points:", error);
+      Logger.error("Error awarding points:", error);
       throw error;
     }
   }
@@ -73,9 +73,9 @@ export class LoyaltyService {
       // Check if tier should be downgraded
       await this.checkTierUpgrade(userId);
 
-      console.log(`✅ Deducted ${points} points from user ${userId}`);
+      Logger.info(`Deducted ${points} points from user ${userId}`);
     } catch (error) {
-      console.error("Error deducting points:", error);
+      Logger.error("Error deducting points:", error);
       throw error;
     }
   }
@@ -128,12 +128,12 @@ export class LoyaltyService {
           }
         );
 
-        console.log(`🎉 User ${userId} upgraded to ${newTier} tier!`);
+        Logger.info(`User ${userId} upgraded to ${newTier} tier!`);
 
         // You can send a notification here
       }
     } catch (error) {
-      console.error("Error checking tier upgrade:", error);
+      Logger.error("Error checking tier upgrade:", error);
       throw error;
     }
   }
@@ -158,7 +158,7 @@ export class LoyaltyService {
       const points = this.calculateOrderPoints(orderAmount);
       await this.awardPoints(userId, points, `Order ${orderId} completed`);
     } catch (error) {
-      console.error("Error awarding order points:", error);
+      Logger.error("Error awarding order points:", error);
       throw error;
     }
   }
@@ -185,9 +185,9 @@ export class LoyaltyService {
         }
       );
 
-      console.log(`✅ Processed referral from ${referrerId} to ${newUserId}`);
+      Logger.info(`Processed referral from ${referrerId} to ${newUserId}`);
     } catch (error) {
-      console.error("Error processing referral:", error);
+      Logger.error("Error processing referral:", error);
       throw error;
     }
   }
@@ -208,7 +208,7 @@ export class LoyaltyService {
         tierUpgradeDate: buyer.loyalty?.tierUpgradeDate,
       };
     } catch (error) {
-      console.error("Error getting loyalty status:", error);
+      Logger.error("Error getting loyalty status:", error);
       throw error;
     }
   }

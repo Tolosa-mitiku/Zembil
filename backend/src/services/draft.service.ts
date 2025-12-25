@@ -5,6 +5,7 @@
 
 import { ProductDraft } from "../models";
 import { Types } from "mongoose";
+import Logger from "../utils/logger";
 
 export class DraftService {
   /**
@@ -35,10 +36,10 @@ export class DraftService {
         { upsert: true, new: true }
       );
 
-      console.log(`✅ Saved draft for seller ${sellerId}`);
+      Logger.info(`Saved draft for seller ${sellerId}`);
       return draft;
     } catch (error) {
-      console.error("Error saving draft:", error);
+      Logger.error("Error saving draft:", error);
       throw error;
     }
   }
@@ -59,7 +60,7 @@ export class DraftService {
       const draft = await ProductDraft.findOne(filter);
       return draft;
     } catch (error) {
-      console.error("Error getting draft:", error);
+      Logger.error("Error getting draft:", error);
       throw error;
     }
   }
@@ -78,9 +79,9 @@ export class DraftService {
       }
 
       await ProductDraft.deleteOne(filter);
-      console.log(`✅ Deleted draft for seller ${sellerId}`);
+      Logger.info(`Deleted draft for seller ${sellerId}`);
     } catch (error) {
-      console.error("Error deleting draft:", error);
+      Logger.error("Error deleting draft:", error);
       throw error;
     }
   }
@@ -95,7 +96,7 @@ export class DraftService {
       });
       return drafts;
     } catch (error) {
-      console.error("Error getting seller drafts:", error);
+      Logger.error("Error getting seller drafts:", error);
       throw error;
     }
   }

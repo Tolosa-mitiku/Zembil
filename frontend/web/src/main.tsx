@@ -10,11 +10,6 @@ import { SocketProvider } from './core/socket/SocketContext';
 import './index.css';
 import { disableCachingInDev } from './core/utils/cache-buster';
 
-console.log('=== Zembil App Starting ===');
-console.log('Environment:', import.meta.env.MODE);
-console.log('API Base URL:', import.meta.env.VITE_API_BASE_URL);
-console.log('Firebase Project ID:', import.meta.env.VITE_FIREBASE_PROJECT_ID);
-
 // Disable caching in development mode
 disableCachingInDev();
 
@@ -33,7 +28,6 @@ window.addEventListener('unhandledrejection', (event) => {
     errorMessage.includes('IndexedDBLocalPersistence') ||
     errorMessage.includes('directlySetCurrentUser')
   ) {
-    console.log('⚠️ Suppressed unhandled Firebase HMR error - this is harmless in development');
     event.preventDefault(); // Prevent the error from being logged
     return;
   }

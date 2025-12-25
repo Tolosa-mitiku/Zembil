@@ -5,6 +5,7 @@
 
 import { Product, Review, Seller, Order, Buyer } from "../models";
 import { Types } from "mongoose";
+import Logger from "../utils/logger";
 
 export class AnalyticsService {
   /**
@@ -50,9 +51,9 @@ export class AnalyticsService {
         }
       );
 
-      console.log(`✅ Updated metrics for product ${productId}`);
+      Logger.info(`Updated metrics for product ${productId}`);
     } catch (error) {
-      console.error("Error updating product metrics:", error);
+      Logger.error("Error updating product metrics:", error);
       throw error;
     }
   }
@@ -143,9 +144,9 @@ export class AnalyticsService {
         }
       );
 
-      console.log(`✅ Updated metrics for seller ${sellerId}`);
+      Logger.info(`Updated metrics for seller ${sellerId}`);
     } catch (error) {
-      console.error("Error updating seller metrics:", error);
+      Logger.error("Error updating seller metrics:", error);
       throw error;
     }
   }
@@ -184,7 +185,7 @@ export class AnalyticsService {
       // Also update user stats
       await this.updateUserStats(buyerId);
     } catch (error) {
-      console.error("Error updating buyer analytics:", error);
+      Logger.error("Error updating buyer analytics:", error);
       throw error;
     }
   }
@@ -205,7 +206,7 @@ export class AnalyticsService {
         },
       });
     } catch (error) {
-      console.error("Error updating user stats:", error);
+      Logger.error("Error updating user stats:", error);
     }
   }
 
@@ -239,7 +240,7 @@ export class AnalyticsService {
         );
       }
     } catch (error) {
-      console.error("Error tracking product view:", error);
+      Logger.error("Error tracking product view:", error);
     }
   }
 
@@ -279,9 +280,9 @@ export class AnalyticsService {
         );
       }
 
-      console.log("✅ Updated trending products");
+      Logger.info("Updated trending products");
     } catch (error) {
-      console.error("Error calculating trending products:", error);
+      Logger.error("Error calculating trending products:", error);
       throw error;
     }
   }
@@ -324,7 +325,7 @@ export class AnalyticsService {
         last30Days: seller.metrics?.last30Days,
       };
     } catch (error) {
-      console.error("Error getting seller dashboard analytics:", error);
+      Logger.error("Error getting seller dashboard analytics:", error);
       throw error;
     }
   }

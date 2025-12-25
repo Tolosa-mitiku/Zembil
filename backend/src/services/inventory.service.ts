@@ -5,6 +5,7 @@
 
 import { Product, Cart } from "../models";
 import { Types } from "mongoose";
+import Logger from "../utils/logger";
 
 interface CartItem {
   productId: string | Types.ObjectId;
@@ -48,10 +49,10 @@ export class InventoryService {
         throw new Error("Insufficient inventory for some items");
       }
 
-      console.log(`✅ Reserved inventory for ${items.length} items`);
+      Logger.info(`Reserved inventory for ${items.length} items`);
       return true;
     } catch (error) {
-      console.error("Error reserving inventory:", error);
+      Logger.error("Error reserving inventory:", error);
       throw error;
     }
   }
@@ -73,9 +74,9 @@ export class InventoryService {
       }));
 
       await Product.bulkWrite(operations);
-      console.log(`✅ Released inventory for ${items.length} items`);
+      Logger.info(`Released inventory for ${items.length} items`);
     } catch (error) {
-      console.error("Error releasing inventory:", error);
+      Logger.error("Error releasing inventory:", error);
       throw error;
     }
   }
@@ -103,9 +104,9 @@ export class InventoryService {
       }));
 
       await Product.bulkWrite(operations);
-      console.log(`✅ Committed inventory for ${items.length} items`);
+      Logger.info(`Committed inventory for ${items.length} items`);
     } catch (error) {
-      console.error("Error committing inventory:", error);
+      Logger.error("Error committing inventory:", error);
       throw error;
     }
   }
@@ -131,9 +132,9 @@ export class InventoryService {
       }));
 
       await Product.bulkWrite(operations);
-      console.log(`✅ Restored inventory for ${items.length} items`);
+      Logger.info(`Restored inventory for ${items.length} items`);
     } catch (error) {
-      console.error("Error restoring inventory:", error);
+      Logger.error("Error restoring inventory:", error);
       throw error;
     }
   }
@@ -154,12 +155,12 @@ export class InventoryService {
         },
       }).populate("sellerId");
 
-      console.log(`⚠️ Found ${lowStockProducts.length} low stock products`);
+      Logger.warn(`Found ${lowStockProducts.length} low stock products`);
 
       // You can send notifications here
       return lowStockProducts;
     } catch (error) {
-      console.error("Error checking low stock:", error);
+      Logger.error("Error checking low stock:", error);
       throw error;
     }
   }
@@ -183,7 +184,7 @@ export class InventoryService {
 
       return available >= quantity;
     } catch (error) {
-      console.error("Error checking availability:", error);
+      Logger.error("Error checking availability:", error);
       return false;
     }
   }
@@ -223,9 +224,9 @@ export class InventoryService {
         );
       }
 
-      console.log(`✅ Updated stock for product ${productId}`);
+      Logger.info(`Updated stock for product ${productId}`);
     } catch (error) {
-      console.error("Error updating stock:", error);
+      Logger.error("Error updating stock:", error);
       throw error;
     }
   }

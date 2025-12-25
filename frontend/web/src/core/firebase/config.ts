@@ -2,9 +2,6 @@ import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
 import { FIREBASE_CONFIG } from '../constants';
 
-console.log('=== Firebase Configuration ===');
-console.log('Firebase Config:', FIREBASE_CONFIG);
-
 // Check if all required config values are present
 const requiredKeys = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId'];
 const missingKeys = requiredKeys.filter(key => !FIREBASE_CONFIG[key as keyof typeof FIREBASE_CONFIG]);
@@ -49,11 +46,9 @@ const existingApps = getApps();
 if (existingApps.length === 0) {
   app = initializeApp(FIREBASE_CONFIG);
   auth = getAuth(app);
-  console.log('✅ Firebase app initialized successfully');
 } else {
   app = existingApps[0];
   auth = getAuth(app);
-  console.log('✅ Using existing Firebase app instance');
 }
 
 export { auth };

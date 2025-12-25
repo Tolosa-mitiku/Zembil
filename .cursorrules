@@ -1,0 +1,273 @@
+# Zembil E-Commerce Platform - Cursor AI Rules
+
+## 🚨 CRITICAL - CI/CD Protection Rules
+
+### 🛡️ CI/CD INTEGRITY (HIGHEST PRIORITY)
+**The CI/CD pipeline on Vercel MUST NEVER BREAK.**
+- **Build Verification:** Before ANY commit to `main`, you MUST run `npm run build` in both `backend/` and `frontend/web/`. If it fails, FIX IT before committing.
+- **Config Protection:** The following files define the build pipeline. **DO NOT MODIFY** them without explicit user instruction and thorough understanding of the consequences:
+  - `backend/api/index.ts` (Serverless Entry)
+  - `backend/vercel.json` (Backend Deployment Config)
+  - `backend/package.json` (Backend Dependencies/Scripts)
+  - `backend/tsconfig.json` (Backend TypeScript Config)
+  - `frontend/web/package.json` (Frontend Dependencies/Scripts)
+  - `frontend/web/vite.config.ts` (Frontend Build Config)
+  - `frontend/web/tsconfig.json` (Frontend TypeScript Config)
+
+### ⛔ NEVER MODIFY WITHOUT USER APPROVAL:
+
+#### Backend (Vercel Serverless)
+- `backend/api/index.ts`
+- `backend/vercel.json`
+- `backend/package.json`
+- `backend/tsconfig.json`
+- `backend/.env`
+
+#### Frontend (Vite + Vercel)
+- `frontend/web/package.json`
+- `frontend/web/tsconfig.json`
+- `frontend/web/vite.config.ts`
+- `frontend/web/.env`
+
+### ⚠️ Require Confirmation Before:
+- Changing build commands in package.json
+- Modifying TypeScript strict mode settings
+- Altering Vercel configuration files
+- Updating critical dependencies (firebase, express, mongoose, react, etc.)
+- Changing environment variable names or structure
+
+---
+
+## 📋 Code Quality Standards
+
+### Console Logs
+- ❌ **STRICTLY FORBIDDEN:** `console.log()` in production code.
+- ✅ **ALLOWED:** `console.error()` for caught exceptions, `console.warn()` for non-critical issues.
+- ✅ **PREFERRED:** Use `Logger` class (in backend) or specific debug utilities (in frontend, guarded by dev mode).
+
+### Code Cleanup
+- Remove commented-out code blocks
+- Remove unused imports
+- Remove dead code and unreachable statements
+- Remove temporary test files or scripts
+
+### TypeScript
+- Maintain current TypeScript settings (strict: false for frontend)
+- Always fix TypeScript errors before committing
+- Use proper type definitions, avoid `any` when possible
+
+---
+
+## 🔒 Security Rules
+
+### Environment Variables
+- **NEVER** commit `.env` files
+- **NEVER** hardcode API keys, secrets, or credentials
+- Always use `process.env.VARIABLE_NAME` (backend) or `import.meta.env.VITE_VARIABLE_NAME` (frontend)
+
+### Sensitive Data
+- MongoDB connection strings - always in `.env`
+- Firebase service account - always in `.env` or Vercel environment
+- Encryption keys - always in `.env`
+- Session secrets - always in `.env`
+
+---
+
+## 🚀 Deployment Workflow
+
+### Before Every Commit:
+1. ✅ **MANDATORY:** Test build locally (`npm run build`) in the modified directory.
+2. ✅ Remove all `console.log` statements.
+3. ✅ Fix all TypeScript errors.
+4. ✅ Verify no sensitive data in code.
+5. ✅ Update relevant documentation if needed.
+
+### Git Commit Messages:
+Use conventional commits:
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `chore:` - Maintenance (cleanup, deps)
+- `docs:` - Documentation only
+- `refactor:` - Code restructuring
+- `perf:` - Performance improvement
+- `test:` - Testing changes
+
+---
+
+## 🏗️ Project Structure
+
+### Backend (`backend/`)
+```
+backend/
+├── api/
+│   └── index.ts          ⚠️ CRITICAL - Vercel entry point
+├── src/
+│   ├── app.ts            - Express app configuration
+│   ├── server.ts         - Development server (not used in Vercel)
+│   ├── config/           - Configuration files
+│   ├── controllers/      - Request handlers
+│   ├── models/           - MongoDB schemas
+│   ├── routes/           - API routes
+│   ├── middlewares/      - Custom middleware
+│   ├── services/         - Business logic
+│   └── utils/            - Helper functions
+├── package.json          ⚠️ CRITICAL - Build configuration
+├── tsconfig.json         ⚠️ CRITICAL - TypeScript config
+└── vercel.json           ⚠️ CRITICAL - Vercel deployment
+```
+
+### Frontend (`frontend/web/`)
+```
+frontend/web/
+├── src/
+│   ├── core/             - Core utilities, Firebase, API
+│   ├── features/         - Feature modules (buyer, seller, admin)
+│   ├── shared/           - Shared components
+│   ├── store/            - Redux store
+│   └── main.tsx          - App entry point
+├── package.json          ⚠️ CRITICAL - Build configuration
+├── tsconfig.json         ⚠️ CRITICAL - TypeScript config
+└── vite.config.ts        ⚠️ CRITICAL - Vite build config
+```
+
+---
+
+## 🔧 Technology Stack
+
+### Backend
+- **Runtime:** Node.js + TypeScript
+- **Framework:** Express.js
+- **Database:** MongoDB (Mongoose)
+- **Auth:** Firebase Admin SDK
+- **Deployment:** Vercel Serverless Functions
+
+### Frontend
+- **Framework:** React 18 + TypeScript
+- **Build Tool:** Vite
+- **State Management:** Redux Toolkit
+- **Styling:** Tailwind CSS
+- **Auth:** Firebase Client SDK
+- **Deployment:** Vercel
+
+---
+
+## 🧪 Testing & Validation
+
+### Backend Testing
+```bash
+cd backend
+npm run build          # Must succeed before commit
+npm run dev            # Test locally (optional)
+```
+
+### Frontend Testing
+```bash
+cd frontend/web
+npm run build          # Must succeed before commit
+npm run dev            # Test locally (optional)
+```
+
+---
+
+## 🚫 What NOT to Do
+
+1. ❌ Don't modify Vercel configuration files without asking
+2. ❌ Don't change package.json scripts without user approval
+3. ❌ Don't commit console.logs to main branch
+4. ❌ Don't commit .env files or secrets
+5. ❌ Don't force push to main (`git push --force`)
+6. ❌ Don't skip git hooks or verifications
+7. ❌ Don't change TypeScript strict mode without asking
+8. ❌ Don't update major dependencies without testing
+9. ❌ Don't remove error handling or validation
+10. ❌ Don't commit code that breaks the build
+
+---
+
+## ✅ What TO Do
+
+1. ✅ Always test builds before committing
+2. ✅ Remove console.logs and debug code
+3. ✅ Use proper error handling
+4. ✅ Write clean, maintainable code
+5. ✅ Follow existing code patterns
+6. ✅ Keep documentation updated
+7. ✅ Ask before major changes
+8. ✅ Commit with descriptive messages
+9. ✅ Fix linter/TypeScript errors
+10. ✅ Maintain backward compatibility
+
+---
+
+## 📞 Communication Protocol
+
+### Always Ask User Before:
+- Modifying CI/CD configuration
+- Changing build process
+- Updating critical dependencies
+- Altering environment variable structure
+- Making breaking changes
+- Deploying to production
+
+### Can Proceed Without Asking:
+- Removing console.logs
+- Fixing TypeScript errors
+- Adding JSDoc comments
+- Refactoring code (no logic changes)
+- Updating documentation
+- Fixing bugs (non-breaking)
+
+---
+
+## 🎯 Current Deployment Status
+
+- **Backend:** https://zembil-backend.vercel.app
+- **Frontend:** https://[your-frontend].vercel.app
+- **CI/CD:** Automatic deployment on push to `main`
+
+### Environment Variables Set in Vercel:
+
+**Backend:**
+- MONGO_URI
+- FIREBASE_SERVICE_ACCOUNT
+- ENCRYPTION_KEY
+- SESSION_SECRET
+- ALLOWED_ORIGINS
+- NODE_ENV=production
+
+**Frontend:**
+- VITE_API_BASE_URL
+- VITE_API_URL
+- VITE_FIREBASE_API_KEY
+- VITE_FIREBASE_AUTH_DOMAIN
+- VITE_FIREBASE_PROJECT_ID
+- VITE_FIREBASE_STORAGE_BUCKET
+- VITE_FIREBASE_MESSAGING_SENDER_ID
+- VITE_FIREBASE_APP_ID
+
+---
+
+## 🔄 CI/CD Pipeline
+
+When you push to `main`:
+1. GitHub triggers Vercel webhook
+2. Vercel clones the repository
+3. Runs `npm install` (frontend/backend separately)
+4. Runs `npm run build`
+5. Deploys if build succeeds
+6. Rollback if build fails (keeps previous deployment)
+
+**Build must ALWAYS succeed** - test locally first!
+
+---
+
+## 📚 Additional Notes
+
+- This is a production e-commerce platform
+- Changes affect live users
+- Always prioritize stability over features
+- Security is paramount
+- Performance matters
+- User experience is critical
+
+**When in doubt, ASK THE USER!** 🙋‍♂️

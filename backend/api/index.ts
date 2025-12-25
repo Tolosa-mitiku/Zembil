@@ -23,9 +23,7 @@ const connectDB = async () => {
       serverSelectionTimeoutMS: 5000,
     });
     isConnected = true;
-    console.log("✅ MongoDB connected for serverless");
   } catch (error) {
-    console.error("❌ MongoDB connection error:", error);
     isConnected = false;
     throw error;
   }
@@ -40,7 +38,6 @@ export default async (req: Request, res: Response) => {
     // Handle the request with Express app
     return app(req, res);
   } catch (error) {
-    console.error("Handler error:", error);
     return res.status(500).json({ 
       success: false, 
       message: "Internal server error" 

@@ -147,14 +147,12 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
         // Connection events
         newSocket.on('connect', () => {
-          console.log('🔌 Socket connected:', newSocket.id);
           setIsConnected(true);
           setIsConnecting(false);
           setError(null);
         });
 
         newSocket.on('disconnect', (reason) => {
-          console.log('🔌 Socket disconnected:', reason);
           setIsConnected(false);
           
           if (reason === 'io server disconnect') {
@@ -171,14 +169,12 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
         // Message events
         newSocket.on('new_message', (data: { chatId: string; message: Message }) => {
-          console.log('📨 New message received:', data);
           if (onNewMessageRef.current) {
             onNewMessageRef.current(data);
           }
         });
 
         newSocket.on('chat_updated', (chat: Chat) => {
-          console.log('💬 Chat updated:', chat);
           if (onChatUpdatedRef.current) {
             onChatUpdatedRef.current(chat);
           }
